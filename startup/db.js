@@ -7,7 +7,7 @@ module.exports = function () {
   })
     .authenticate()
     .then(() => {
-      console.log("Connection has been established successfully.");
+      console.log("Database connection has been established successfully.");
     })
     .catch(() => {
       console.error("Unable to connect to the database:", error);
