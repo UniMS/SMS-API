@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "h10W0&ld",
-    "database": "utycc-sms",
+    "database": "utycc_sms",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
