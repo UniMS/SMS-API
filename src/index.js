@@ -13,6 +13,14 @@ require("./database/models/religion");
 require("./database/models/remark");
 require("./database/models/role");
 require("./database/models/subject");
+require("./database/models/township");
+require("./database/models/student");
+require("./database/models/exam");
+require("./database/models/enrollment");
+require("./database/models/course");
+require("./database/models/parent");
+require("./database/models/examResult");
+require("./database/models/grading");
 
 sequelize
   .sync()
