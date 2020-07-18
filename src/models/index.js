@@ -23,9 +23,6 @@ sequelize = new Sequelize(
   }
 );
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-
 fs.readdirSync(__dirname)
   .filter((file) => {
     return (
@@ -36,5 +33,16 @@ fs.readdirSync(__dirname)
     const model = require(path.join(__dirname, file))(sequelize, DataTypes);
     db[model.name] = model;
   });
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+console.log("Associating --------------");
+Object.keys(db).forEach((modelName) => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
+console.log("End associating --------------");
 
 module.exports = db;
