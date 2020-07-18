@@ -37,12 +37,10 @@ fs.readdirSync(__dirname)
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-console.log("Associating --------------");
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
 });
-console.log("End associating --------------");
 
 module.exports = db;
