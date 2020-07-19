@@ -1,7 +1,4 @@
 "use strict";
-
-const { DataTypes } = require("sequelize");
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert("religions", [
@@ -31,29 +28,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete("Religion", [
-      {
-        name: "Buddhism",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        name: "Christianity",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      { name: "Islam", createdAt: new Date(), updatedAt: new Date() },
-      {
-        name: "Hinduism",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        name: "Non-religional",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      { name: "Others", createdAt: new Date(), updatedAt: new Date() },
-    ]);
+    await queryInterface.bulkDelete("religions", null, {});
   },
 };

@@ -84,15 +84,6 @@ module.exports = (sequelize, DataTypes) => {
         field: "address",
         type: DataTypes.STRING(255),
       },
-      townshipId: {
-        allowNull: false,
-        field: "township_id",
-        references: {
-          model: "townships",
-          key: "township_id",
-        },
-        type: DataTypes.INTEGER,
-      },
     },
     {
       tableName: "parents",
@@ -103,6 +94,7 @@ module.exports = (sequelize, DataTypes) => {
     Parent.belongsTo(models.Student, {
       foreignKey: {
         allowNull: false,
+        type: DataTypes.INTEGER,
         name: "student_id",
       },
       onDelete: "NO ACTION",

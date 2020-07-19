@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     Township.belongsTo(models.Region, {
       foreignKey: {
         allowNull: false,
+        type: DataTypes.INTEGER,
         name: "region_id",
       },
       onDelete: "NO ACTION",

@@ -31,6 +31,7 @@ module.exports = function (sequelize, DataTypes) {
     User.belongsTo(models.Role, {
       foreignKey: {
         allowNull: false,
+        type: DataTypes.INTEGER,
         name: "role_id",
       },
       onDelete: "NO ACTION",

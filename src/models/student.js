@@ -79,20 +79,11 @@ module.exports = (sequelize, DataTypes) => {
       tableName: "students",
     }
   );
-
   Student.associate = function (models) {
-    Student.belongsTo(models.Township, {
-      foreignKey: {
-        allowNull: false,
-        name: "township_id",
-      },
-      onDelete: "NO ACTION",
-      onUpdate: "CASCADE",
-    });
-
     Student.belongsTo(models.Religion, {
       foreignKey: {
         allowNull: false,
+        type: DataTypes.INTEGER,
         name: "religion_id",
       },
       onDelete: "NO ACTION",
@@ -102,7 +93,19 @@ module.exports = (sequelize, DataTypes) => {
     Student.belongsTo(models.Ethnicity, {
       foreignKey: {
         allowNull: false,
+        type: DataTypes.INTEGER,
         name: "ethnicity_id",
+      },
+
+      onDelete: "NO ACTION",
+      onUpdate: "CASCADE",
+    });
+
+    Student.belongsTo(models.Township, {
+      foreignKey: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        name: "township_id",
       },
       onDelete: "NO ACTION",
       onUpdate: "CASCADE",

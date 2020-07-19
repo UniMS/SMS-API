@@ -1,9 +1,9 @@
-require("dotenv").config();
+require("dotenv").config({ path: "./config.env" });
 
 module.exports = {
   development: {
     username: "root",
-    password: "h10W0&ld",
+    password: "admin123",
     database: "utycc_sms",
     host: process.env.DB_HOST,
     dialect: "mysql",
