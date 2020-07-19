@@ -1,4 +1,4 @@
 require("../models")
-  .sequelize.sync({ force: true })
+  .sequelize.sync()
   .then(() => console.log("Re-synced database !"))
   .catch((error) => console.error(error));
