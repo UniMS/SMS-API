@@ -26,15 +26,6 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Grading.associate = (models) => {
-    // Grading.belongsTo(models.Exam, {
-    //   foreignKey: {
-    //     allowNull: false,
-    //     name: "exam_id",
-    //   },
-    //   onDelete: "NO ACTION",
-    //   onUpdate: "CASCADE",
-    // });
-
     Grading.belongsTo(models.Course, {
       foreignKey: {
         allowNull: false,

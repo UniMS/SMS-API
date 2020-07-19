@@ -47,15 +47,6 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "NO ACTION",
       onUpdate: "CASCADE",
     });
-
-    // Result.belongsTo(models.Exam, {
-    //   foreignKey: {
-    //     allowNull: false,
-    //     name: "exam_id",
-    //   },
-    //   onDelete: "NO ACTION",
-    //   onUpdate: "CASCADE",
-    // });
   };
 
   return Result;

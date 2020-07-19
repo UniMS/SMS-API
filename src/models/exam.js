@@ -43,6 +43,24 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "NO ACTION",
       onUpdate: "CASCADE",
     });
+
+    Exam.hasMany(models.Grading, {
+      foreignKey: {
+        allowNull: false,
+        name: "exam_id",
+      },
+      onDelete: "NO ACTION",
+      onUpdate: "CASCADE",
+    });
+
+    Exam.hasMany(models.Result, {
+      foreignKey: {
+        allowNull: false,
+        name: "exam_id",
+      },
+      onDelete: "NO ACTION",
+      onUpdate: "CASCADE",
+    });
   };
 
   return Exam;
