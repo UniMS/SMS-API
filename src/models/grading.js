@@ -1,8 +1,30 @@
 "use strict";
 
-module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("exam_results", {
+const { Model } = require("sequelize");
+
+module.exports = (sequelize, DataTypes) => {
+  class Grading extends Model {
+    static associate(models) {
+      ExamResult.belongsTo(models.Exam, {
+        foreignKey: "examId",
+      });
+
+      ExamResult.belongsTo(models.Course, {
+        foreignKey: "courseId",
+      });
+
+      ExamResult.belongsTo(models.Enrollment, {
+        foreignKey: "enrollmentId",
+      });
+
+      ExamResult.belongsTo(models.Grade, {
+        foreignKey: "gradeId",
+      });
+    }
+  }
+
+  Grading.init(
+    {
       examResultId: {
         allowNull: false,
         autoIncrement: true,
@@ -54,6 +76,10 @@ module.exports = {
         },
         type: Sequelize.INTEGER,
       },
+      mark: {
+        allowNull: false,
+        type: Sequelize.TINYINT,
+      },
       getDistinction: {
         allowNull: false,
         field: "get_distinction",
@@ -69,10 +95,13 @@ module.exports = {
         field: "updated_at",
         type: Sequelize.DATE,
       },
-    });
-  },
+    },
+    {
+      sequelize,
+      modelName: "Grading",
+      tableName: "gradings",
+    }
+  );
 
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("exam_results");
-  },
+  return Grading;
 };

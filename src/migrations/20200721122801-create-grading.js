@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("exam_results", {
+    await queryInterface.createTable("gradings", {
       examResultId: {
         allowNull: false,
         autoIncrement: true,
@@ -54,6 +54,10 @@ module.exports = {
         },
         type: Sequelize.INTEGER,
       },
+      mark: {
+        allowNull: false,
+        type: Sequelize.TINYINT,
+      },
       getDistinction: {
         allowNull: false,
         field: "get_distinction",
@@ -73,6 +77,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("exam_results");
+    await queryInterface.dropTable("gradings");
   },
 };
