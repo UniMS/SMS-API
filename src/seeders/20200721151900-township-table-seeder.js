@@ -3,11 +3,10 @@
 const _ = require("lodash");
 const faker = require("faker");
 
-const users = _.range(1, 8).map((index) => {
+const townships = _.range(1, 11).map((index) => {
   return {
-    username: faker.internet.email(),
-    password: faker.internet.password(),
-    role_id: index,
+    name: faker.address.city(),
+    region_id: index,
     created_at: new Date(),
     updated_at: new Date(),
   };
@@ -16,12 +15,12 @@ const users = _.range(1, 8).map((index) => {
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.sequelize.query(
-      "ALTER TABLE users AUTO_INCREMENT = 1;"
+      "ALTER TABLE townships AUTO_INCREMENT = 1;"
     );
-    await queryInterface.bulkInsert("users", users);
+    await queryInterface.bulkInsert("townships", townships);
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete("users", null);
+    await queryInterface.bulkDelete("townships", null);
   },
 };

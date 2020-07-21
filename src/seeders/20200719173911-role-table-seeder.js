@@ -18,6 +18,9 @@ const roles = [
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    await queryInterface.sequelize.query(
+      "ALTER TABLE roles AUTO_INCREMENT = 1;"
+    );
     await queryInterface.bulkInsert("roles", roles);
   },
 
