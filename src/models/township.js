@@ -3,37 +3,33 @@
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Township extends Model {
     static associate(models) {
-      User.belongsTo(models.Role, {
-        foreignKey: "roleId",
+      Township.belongsTo(models.Region, {
+        foreignKey: "regionId",
       });
     }
   }
 
-  User.init(
+  Township.init(
     {
-      userId: {
+      townshipId: {
         allowNull: false,
         autoIncrement: true,
-        field: "user_id",
+        field: "township_id",
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      username: {
+      name: {
         allowNull: false,
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(30),
       },
-      password: {
+      regionId: {
         allowNull: false,
-        type: DataTypes.STRING(255),
-      },
-      roleId: {
-        allowNull: false,
-        field: "role_id",
+        field: "region_id",
         references: {
-          model: "roles",
-          key: "role_id",
+          model: "regions",
+          key: "region_id",
         },
         type: DataTypes.INTEGER,
       },
@@ -50,10 +46,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "User",
-      tableName: "users",
+      modelName: "Township",
+      tableName: "townships",
     }
   );
-
-  return User;
+  return Township;
 };
