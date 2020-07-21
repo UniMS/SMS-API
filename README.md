@@ -14,3 +14,5 @@ API for Student Management System
 5. `sequelize db:migrate`
 
 6. `sequelize db:seed:all`
+
+7. `npm run dev`
