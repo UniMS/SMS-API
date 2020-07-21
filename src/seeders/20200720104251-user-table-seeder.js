@@ -3,11 +3,11 @@
 const _ = require("lodash");
 const faker = require("faker");
 
-const users = _.range(1, 8).map((index) => {
+const users = _.range(1, 21).map((index) => {
   return {
     username: faker.internet.email(),
     password: faker.internet.password(),
-    role_id: index,
+    role_id: Math.floor(Math.random() * 7) + 1,
     created_at: new Date(),
     updated_at: new Date(),
   };
