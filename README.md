@@ -1,4 +1,5 @@
 # SMS-API
+
 API for Student Management System
 
 ## Project Setup
@@ -16,3 +17,8 @@ API for Student Management System
 6. `sequelize db:seed:all`
 
 7. `npm run dev`
+
+## Documentation
+
+- [Migration](https://github.com/UniMS/SMS-API/blob/master/docs/2-migrations-and-models.md)
+- [Seeding](https://github.com/UniMS/SMS-API/blob/master/docs/3-seeder.md)
