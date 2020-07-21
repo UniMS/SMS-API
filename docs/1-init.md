@@ -19,7 +19,7 @@ Host Address - https://github.com/UniMS/SMS-API <br>
 
 ### 4 - Connect to the database. In your project folder, run the following command.
 
-> `cp .env.example`
+> `cp .env.example .env`
 
 and fill up with your information.
 
