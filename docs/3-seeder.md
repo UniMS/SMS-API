@@ -87,7 +87,7 @@ sequelize seed:generate --name table_name-table-seeder
 sequelize db:seed:undo:all
 ```
 
-4. Run your new seeder.
+4. Run all previous seeders and new seeder.
 
 ```
 sequelize db:seed:all
