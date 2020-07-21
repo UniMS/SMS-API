@@ -38,6 +38,7 @@ module.exports = {
       },
       heldIn: {
         allowNull: false,
+        field: "held_in",
         type: Sequelize.DATE,
       },
       createdAt: {
