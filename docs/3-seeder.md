@@ -63,7 +63,9 @@ This will populate the table with initial test data.
 
 # Useful Command
 
-0. Create seeders **as sorted in migrations** because of foreign keys constraints. Otherwrise, seeders are not goning work properly.
+### Creating a seeder
+
+0. Create seeders **as sorted in migrations** because of foreign keys constraints. Otherwrise, seeders are not goning to work properly.
 
 1. Create a seeder:
 
@@ -76,6 +78,8 @@ sequelize seed:generate --name table_name-table-seeder
 2. Write your seeder.
 
 ...
+
+### Testing a seeder
 
 3. Delete previous seeder data.
 
