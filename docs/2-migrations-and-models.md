@@ -6,7 +6,7 @@
 - if you want to specify more than one attribute, you can by putting `,` next to each other like `name:string,description:string`
 
 ```
-sequelize model:generate --name Region --attributes name:string
+sequelize model:generate --name region --attributes name:string
 ```
 
 ## in `models/region.js`
