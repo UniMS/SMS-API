@@ -1,37 +1,139 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class parent extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+  class Parent extends Model {
     static associate(models) {
-      // define association here
+      Parent.belongsTo(models.Student, {
+        foreignKey: "studentId",
+      });
+
+      Parent.belongsTo(models.Township, {
+        foreignKey: "townshipId",
+      });
     }
-  };
-  parent.init({
-    fatherNameMm: DataTypes.STRING,
-    fatherNameEn: DataTypes.STRING,
-    fatherNrc: DataTypes.STRING,
-    fatherNrcFront: DataTypes.STRING,
-    fatherNrcBack: DataTypes.STRING,
-    fatherJob: DataTypes.STRING,
-    fatherPhone: DataTypes.STRING,
-    motherNameMm: DataTypes.STRING,
-    motherNameEn: DataTypes.STRING,
-    motherNrc: DataTypes.STRING,
-    motherNrcFront: DataTypes.STRING,
-    motherNrcBack: DataTypes.STRING,
-    motherJob: DataTypes.STRING,
-    motherPhone: DataTypes.STRING,
-    address: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'parent',
-  });
-  return parent;
+  }
+
+  Parent.init(
+    {
+      parentId: {
+        allowNull: false,
+        autoIncrement: true,
+        field: "parent_id",
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      studentId: {
+        allowNull: false,
+        field: "student_id",
+        onDelete: "NO ACTION",
+        onUpdate: "CASCADE",
+        references: {
+          model: "students",
+          key: "student_id",
+        },
+        type: Sequelize.INTEGER,
+      },
+      fatherNameMm: {
+        allowNull: false,
+        field: "father_name_mm",
+        type: Sequelize.STRING(50),
+      },
+      fatherNameEn: {
+        allowNull: false,
+        field: "father_name_en",
+        type: Sequelize.STRING(50),
+      },
+      fatherNrc: {
+        allowNull: false,
+        field: "father_nrc",
+        type: Sequelize.STRING(30),
+      },
+      fatherNrcFront: {
+        allowNull: true,
+        field: "father_nrc_front",
+        type: Sequelize.STRING(50),
+      },
+      fatherNrcBack: {
+        allowNull: true,
+        field: "father_nrc_back",
+        type: Sequelize.STRING(50),
+      },
+      fatherJob: {
+        allowNull: false,
+        field: "father_job",
+        type: Sequelize.STRING(30),
+      },
+      fatherPhone: {
+        allowNull: false,
+        field: "father_phone",
+        type: Sequelize.STRING(30),
+      },
+      motherNameMm: {
+        allowNull: false,
+        field: "mother_name_mm",
+        type: Sequelize.STRING(50),
+      },
+      motherNameEn: {
+        allowNull: false,
+        field: "mother_name_en",
+        type: Sequelize.STRING(50),
+      },
+      motherNrc: {
+        allowNull: false,
+        field: "mother_nrc",
+        type: Sequelize.STRING(30),
+      },
+      motherNrcFront: {
+        allowNull: true,
+        field: "mother_nrc_front",
+        type: Sequelize.STRING(50),
+      },
+      motherNrcBack: {
+        allowNull: true,
+        field: "mother_nrc_back",
+        type: Sequelize.STRING(50),
+      },
+      motherJob: {
+        allowNull: false,
+        field: "mother_job",
+        type: Sequelize.STRING(30),
+      },
+      motherPhone: {
+        allowNull: false,
+        field: "mother_phone",
+        type: Sequelize.STRING(30),
+      },
+      address: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      townshipId: {
+        allowNull: false,
+        field: "township_id",
+        onDelete: "NO ACTION",
+        onUpdate: "CASCADE",
+        references: {
+          model: "townships",
+          key: "township_id",
+        },
+        type: Sequelize.INTEGER,
+      },
+      createdAt: {
+        allowNull: false,
+        field: "created_at",
+        type: Sequelize.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        field: "updated_at",
+        type: Sequelize.DATE,
+      },
+    },
+    {
+      sequelize,
+      modelName: "Parent",
+      tableName: "parents",
+    }
+  );
+  return Parent;
 };
