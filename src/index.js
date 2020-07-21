@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-require("./startup/db");
+require("./models");
 require("./startup/router")(app);
 require("./middlewares/error");
 

@@ -1,6 +1,20 @@
+"use strict";
+
+const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define(
-    "Region",
+  class region extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+
+  Region.init(
     {
       regionId: {
         allowNull: false,
@@ -9,14 +23,24 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      name: {
+      name: DataTypes.STRING,
+      createdAt: {
         allowNull: false,
-        field: "name",
-        type: DataTypes.STRING(30),
+        field: "created_at",
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        field: "updated_at",
+        type: DataTypes.DATE,
       },
     },
     {
+      sequelize,
       tableName: "regions",
+      modelName: "Regin",
     }
   );
+
+  return Region;
 };

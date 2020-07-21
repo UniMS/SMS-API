@@ -23,6 +23,14 @@ sequelize = new Sequelize(
   }
 );
 
+sequelize
+  .authenticate()
+  .then(() => console.log(`Connected to the database.`))
+  .catch((error) => {
+    console.log(`Unable to connect to the database`, error);
+    process.exit(1);
+  });
+
 fs.readdirSync(__dirname)
   .filter((file) => {
     return (
