@@ -8,6 +8,14 @@ module.exports = (sequelize, DataTypes) => {
       Student.belongsTo(models.Township, {
         foreignKey: "townshipId",
       });
+
+      Student.belongsTo(models.Ethnicity, {
+        foreignKey: "ethnicityId",
+      });
+
+      Student.belongsTo(models.Religion, {
+        foreignKey: "religionId",
+      });
     }
   }
 
@@ -80,6 +88,15 @@ module.exports = (sequelize, DataTypes) => {
         references: {
           model: "ethnicities",
           key: "ethnicity_id",
+        },
+        type: DataTypes.INTEGER,
+      },
+      religionId: {
+        allowNull: false,
+        field: "religion_id",
+        references: {
+          model: "religons",
+          key: "religion_id",
         },
         type: DataTypes.INTEGER,
       },

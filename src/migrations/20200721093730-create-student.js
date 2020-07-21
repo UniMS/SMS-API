@@ -77,6 +77,17 @@ module.exports = {
         },
         type: Sequelize.INTEGER,
       },
+      religionId: {
+        allowNull: false,
+        field: "religion_id",
+        onDelete: "NO ACTION",
+        onUpdate: "CASCADE",
+        references: {
+          model: "religions",
+          key: "religion_id",
+        },
+        type: Sequelize.INTEGER,
+      },
       photo: {
         allowNull: true,
         type: Sequelize.STRING(30),
