@@ -49,7 +49,7 @@ But, we need to change some of the names and add some fields.
 - We need to add some fields: `regionId`, `createdAt` and `updatedAt`.
 - We also need to change `modelName` to `Region` and add `tableName: regions` next to it.
 
-After all these changes and modification has been applied, our model should look like below.
+After all these changes and modification have been applied, our model should look like below.
 ```
 "use strict";
 
@@ -88,8 +88,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
+      modelName: "Region",
       tableName: "regions",
-      modelName: "Regin",
     }
   );
 
