@@ -2,7 +2,7 @@
 
 ## Creating Model and Migration at the same time
 
-If we create a model, sequelize cli automatically creates associated migration for us. So, in this docs, we are going to create **region model and migration** and we will populate our tables with seeders in the [next docs](https://github.com/UniMS/SMS-API/blob/master/docs/3-seeder.md).
+If we create a model with sequelize cli, it automatically creates associated migration for us. So, in this docs, we are going to create **region model and migration** and we will populate our tables with seeders in the [next docs](https://github.com/UniMS/SMS-API/blob/master/docs/3-seeder.md).
 
 *In order to follow this docs, you should have already installed the [sequelize-cli](https://github.com/sequelize/cli).*
 
@@ -15,7 +15,7 @@ sequelize model:generate --name region --attributes name:string
 - by running the above command, it will create `region.js` in `models` folder and `timestamp-create-region.js` in `migrations` folder.
 - if you want to specify more than one attribute, you can do so by putting `,` next to each attribute like `name:string,description:string`
 
-Now, let's take a look at what that sequelize-cli gives us in created `models/region.js` file.
+Now, let's take a look at what sequelize-cli gives us in created `models/region.js` file.
 ## in `models/region.js`
 
 ```
@@ -45,9 +45,9 @@ module.exports = (sequelize, DataTypes) => {
 ```
 
 But, we need to change some of the names and add some fields.
-- Model name should be Pascal case. So change `region.init` to `Region.init`.
+- Model name should be Pascal case. So change `class region` to `class Region`, `region.init` to `Region.init` and finally `return region` to `return Region`.
 - We need to add some fields: `regionId`, `createdAt` and `updatedAt`.
-- We also need to change `modelName` to `Region` and add `tableName: regions`.
+- We also need to change `modelName` to `Region` and add `tableName: regions` next to it.
 
 After all these changes and modification has been applied, our model should look like below.
 ```
@@ -56,7 +56,7 @@ After all these changes and modification has been applied, our model should look
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  class region extends Model {
+  class Region extends Model {
     static associate(models) {
       // define association here
     }
@@ -99,7 +99,7 @@ module.exports = (sequelize, DataTypes) => {
 
 ## in `migrations/20200720172323-create-region.js`
 
-**sequelize-cli** generates contents like below.
+**sequelize-cli** generates migrations like below.
 ```
 'use strict';
 module.exports = {
@@ -130,7 +130,7 @@ module.exports = {
 };
 ```
 
-Oh... This is ugly. give some line break.
+Oh... This is ugly. Give some line break.
 
 ```
 'use strict';
@@ -209,4 +209,4 @@ Next, run the following command.
 sequelize db:migrate
 ```
 
-This will create `regions` table with the specified field in the database.
+This will create `regions` table with the specified fields in the database.
