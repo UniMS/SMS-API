@@ -1,19 +1,19 @@
 # Seeders
 
-After we have build our table, like `regions`, it is time to populate the data with `seeder`.
+After we have built the `region` table, it is time to populate the data with `seeder`.
 
 To create seeder, run the following command,
 
-> `sequelize seed:generate --name region-table-seeder`
+```console
+sequelize seed:generate --name region-table-seeder
+```
 
-Please note the naming convention. `<table_name-table-seeder>`
-
-Above command will create `seeder` file in `seeders` folder.
+Please note the naming convention. `<table_name-table-seeder>` Above command will create a `timestamp-region-table-seeder` file in `seeders` folder.
 
 ## in `seeders/20200720175151-region-table-seeder.js`
 
-```
-'use strict';
+```javascript
+"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -26,7 +26,7 @@ module.exports = {
 
 After writing seeder, it will look like below:
 
-```
+```javascript
 "use strict";
 
 const regions = ["Ayeyarwady", "Yangon", "Mon", "Mandalay", "Shan"].map(
@@ -43,7 +43,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.sequelize.query(
       "ALTER TABLE roles AUTO_INCREMENT = 1;"
-    ); // <-- to avoid foreign_key constraints
+    ); // to avoid foreign_key constraints
 
     await queryInterface.bulkInsert("regions", regions);
   },
@@ -52,12 +52,13 @@ module.exports = {
     await queryInterface.bulkDelete("regions", null);
   },
 };
-
 ```
 
 To run the seeder,
 
-> `sequelize db:seed --seed 20200720175151-region-table-seeder`
+```javascript
+sequelize db:seed --seed 20200720175151-region-table-seeder
+```
 
 This will populate the table with initial test data.
 
@@ -65,30 +66,26 @@ This will populate the table with initial test data.
 
 ### Creating a seeder
 
-0. Create seeders **as sorted in migrations** because of foreign keys constraints. Otherwrise, seeders are not goning to work properly.
+1. !important. Create seeders **as sorted in migrations** because of foreign keys constraints. Otherwrise, seeders are not goning to work properly.
 
-1. Create a seeder:
+2. Create a seeder:
 
-```
+```console
 sequelize seed:generate --name table_name-table-seeder
 ```
 
-...
+3. Write your seeder.
 
-2. Write your seeder.
+### Using seeder
 
-...
+4. Delete previous seeder data.
 
-### Testing a seeder
-
-3. Delete previous seeder data.
-
-```
+```console
 sequelize db:seed:undo:all
 ```
 
-4. Run all previous seeders and new seeder.
+5. Run all previous seeders and that new seeder.
 
-```
+```console
 sequelize db:seed:all
 ```
