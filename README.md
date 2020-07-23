@@ -8,9 +8,9 @@ API for Student Management System
 
 2. `npm install`
 
-3. `cp .env.example .env`
+3. `cp .env.example .env` (This command **copies** contents of .env.example and **creates** a new file called `.env`.)
 
-4. Fill your database credentials in `.env` file.
+4. Fill your database credentials in that `.env` file.
 
 5. `sequelize db:migrate`
 
