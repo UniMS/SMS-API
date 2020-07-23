@@ -18,7 +18,7 @@ sequelize model:generate --name region --attributes name:string
 Now, let's take a look at what sequelize-cli gives us in created `models/region.js` file.
 ## in `models/region.js`
 
-```
+```javascript
 "use strict";
 
 const { Model } = require("sequelize");
@@ -50,7 +50,7 @@ But, we need to change some of the names and add some fields.
 - We also need to change `modelName` to `Region` and add `tableName: regions` next to it.
 
 After all these changes and modification have been applied, our model should look like below.
-```
+```javascript
 "use strict";
 
 const { Model } = require("sequelize");
@@ -100,8 +100,8 @@ module.exports = (sequelize, DataTypes) => {
 ## in `migrations/20200720172323-create-region.js`
 
 **sequelize-cli** generates migrations like below.
-```
-'use strict';
+```javascript
+"use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('regions', {
@@ -131,9 +131,8 @@ module.exports = {
 ```
 
 Oh... This is ugly. Give some line break.
-
-```
-'use strict';
+```javascript
+"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -157,7 +156,7 @@ module.exports = {
       }
     });
   },
-
+  
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('regions');
   }
@@ -166,7 +165,7 @@ module.exports = {
 
 This is better. Now, we need to make some changes in order to match our modified model. After modified, below is the result.
 
-```
+```javascript
 "use strict";
 
 module.exports = {
@@ -200,7 +199,6 @@ module.exports = {
     await queryInterface.dropTable("regions");
   },
 };
-
 ```
 
 Next, run the following command.
