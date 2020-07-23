@@ -8,7 +8,7 @@ If we create a model with sequelize cli, it automatically creates associated mig
 
 Let's run the following command.
 
-```
+```console
 sequelize model:generate --name region --attributes name:string
 ```
 
@@ -203,7 +203,7 @@ module.exports = {
 
 Next, run the following command.
 
-```
+```console
 sequelize db:migrate
 ```
 
