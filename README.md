@@ -8,7 +8,7 @@ API for Student Management System
 
 2. `npm install`
 
-3. `cp .env.example .env` (This command **copies** contents of .env.example and **creates** a new file called `.env`.)
+3. `cp .env.example .env` (`cp` means `copy` which **copies** contents of .env.example and **creates** a new file called `.env`.)
 
 4. Fill your database credentials in that `.env` file.
 
