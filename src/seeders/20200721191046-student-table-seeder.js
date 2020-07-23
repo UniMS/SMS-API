@@ -1,11 +1,13 @@
 "use strict";
+
 const _ = require("lodash");
 const faker = require("faker");
-const students = _.range(1, 51).map((index) => {
+
+const rows = _.range(1, 21).map(() => {
   return {
     name_en: faker.internet.userName(),
     name_mm: faker.internet.userName(),
-    nrc: faker.random.number(),
+    nrc: faker.random.alphaNumeric(4),
     nrc_front: faker.image.imageUrl(),
     nrc_back: faker.image.imageUrl(),
     gender: Number(faker.random.boolean()),
@@ -16,22 +18,23 @@ const students = _.range(1, 51).map((index) => {
     photo: faker.image.imageUrl(),
     ward_recommendation_letter: faker.image.imageUrl(),
     police_recommendation_letter: faker.image.imageUrl(),
-    religion_id: Math.floor(Math.random() * 4) + 1,
-    ethnicity_id: Math.floor(Math.random() * 135) + 1,
-    township_id: Math.floor(Math.random() * 10) + 1,
+    religion_id: _.random(1, 8),
+    ethnicity_id: _.random(1, 135),
+    township_id: _.random(1, 10),
     created_at: new Date(),
     updated_at: new Date(),
   };
 });
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.sequelize.query(
       "ALTER TABLE students AUTO_INCREMENT = 1;"
     );
-    await queryInterface.bulkInsert("students", students, {});
+    await queryInterface.bulkInsert("students", rows);
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete("students", null, {});
+    await queryInterface.bulkDelete("students", null);
   },
 };

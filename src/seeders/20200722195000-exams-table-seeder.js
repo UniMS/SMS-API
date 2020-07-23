@@ -3,10 +3,12 @@
 const _ = require("lodash");
 const faker = require("faker");
 
-const rows = _.range(1, 31).map(() => {
+const exams = _.range(1, 11).map((index) => {
   return {
-    name: faker.name.jobArea(),
-    code: faker.finance.bic(),
+    degree_id: _.random(1, 15),
+    academic_year_id: index,
+    semester: _.random(1, 2),
+    held_in: faker.date.past(),
     created_at: new Date(),
     updated_at: new Date(),
   };
@@ -15,12 +17,12 @@ const rows = _.range(1, 31).map(() => {
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.sequelize.query(
-      "ALTER TABLE subjects AUTO_INCREMENT = 1;"
+      "ALTER TABLE exams AUTO_INCREMENT = 1;"
     );
-    await queryInterface.bulkInsert("subjects", rows);
+    await queryInterface.bulkInsert("exams", exams);
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete("subjects", null);
+    await queryInterface.bulkDelete("exams", null);
   },
 };

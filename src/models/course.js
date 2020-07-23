@@ -5,19 +5,19 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Course extends Model {
     static associate(models) {
-      Enrollment.belongsTo(models.Major, {
+      Course.belongsTo(models.Major, {
         foreignKey: "majorId",
       });
 
-      Enrollment.belongsTo(models.Subject, {
+      Course.belongsTo(models.Subject, {
         foreignKey: "subjectId",
       });
 
-      Enrollment.belongsTo(models.AcademicYear, {
+      Course.belongsTo(models.AcademicYear, {
         foreignKey: "academicYearId",
       });
 
-      Enrollment.belongsTo(models.AttendanceYear, {
+      Course.belongsTo(models.AttendanceYear, {
         foreignKey: "attendanceYearId",
       });
     }
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         field: "course_id",
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       majorId: {
         allowNull: false,
@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "majors",
           key: "major_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       subjectId: {
         allowNull: false,
@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "subjects",
           key: "subject_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       academicYearId: {
         allowNull: false,
@@ -63,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "academic_years",
           key: "academic_year_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       attendanceYearId: {
         allowNull: false,
@@ -74,46 +74,46 @@ module.exports = (sequelize, DataTypes) => {
           model: "attendance_years",
           key: "attendance_year_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       semester: {
         allowNull: false,
-        type: Sequelize.TINYINT,
+        type: DataTypes.TINYINT,
       },
       peroidsInWeeks: {
         allowNull: false,
         field: "periods_in_weeks",
-        type: Sequelize.TINYINT,
+        type: DataTypes.TINYINT,
       },
       lecturesInHoursPerWeek: {
         allowNull: false,
         field: "lectures_in_hours_per_week",
-        type: Sequelize.TINYINT,
+        type: DataTypes.TINYINT,
       },
       labsFieldsDrawingsInHoursPerWeek: {
         allowNull: false,
         field: "labs_fields_drawings_in_hours_per_week",
-        type: Sequelize.TINYINT,
+        type: DataTypes.TINYINT,
       },
       distinctionMark: {
         allowNull: false,
         field: "distinction_mark",
-        type: Sequelize.TINYINT,
+        type: DataTypes.TINYINT,
       },
       fullMark: {
         allowNull: false,
         field: "full_mark",
-        type: Sequelize.TINYINT,
+        type: DataTypes.TINYINT,
       },
       createdAt: {
         allowNull: false,
         field: "created_at",
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
         field: "updated_at",
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
     },
     {

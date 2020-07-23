@@ -16,25 +16,25 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         field: "remark_id",
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING(20),
+        type: DataTypes.STRING(20),
       },
       description: {
         allowNull: true,
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
       },
       createdAt: {
         allowNull: false,
         field: "created_at",
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
         field: "updated_at",
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
     },
     {

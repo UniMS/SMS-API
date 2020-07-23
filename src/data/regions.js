@@ -1,0 +1,17 @@
+module.exports = [
+  "Ayeyarwady",
+  "Bago",
+  "Chin",
+  "Kachin",
+  "Katyah",
+  "Kayin",
+  "Magway",
+  "Mandalay",
+  "Mon",
+  "Naypyidaw",
+  "Rakhine",
+  "Sagaing",
+  "Shan",
+  "Tanintharyi",
+  "Yangon",
+];

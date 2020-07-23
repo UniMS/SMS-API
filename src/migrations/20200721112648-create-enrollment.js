@@ -67,6 +67,7 @@ module.exports = {
       },
       rollNo: {
         allowNull: false,
+        field: "roll_no",
         type: Sequelize.STRING,
       },
       remarkId: {

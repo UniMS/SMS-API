@@ -2,11 +2,10 @@
 
 const _ = require("lodash");
 
-const gradings = _.range(1, 21).map((index) => {
+const examResults = _.range(1, 21).map((index) => {
   const mark = _.random(1, 100);
 
   return {
-    mark: mark,
     get_distinction: mark > 80,
     exam_id: _.random(1, 10),
     course_id: index,
@@ -20,12 +19,12 @@ const gradings = _.range(1, 21).map((index) => {
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.sequelize.query(
-      "ALTER TABLE gradings AUTO_INCREMENT = 1;"
+      "ALTER TABLE exam_results AUTO_INCREMENT = 1;"
     );
-    await queryInterface.bulkInsert("gradings", gradings);
+    await queryInterface.bulkInsert("exam_results", examResults);
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete("gradings", null);
+    await queryInterface.bulkDelete("exam_results", null);
   },
 };

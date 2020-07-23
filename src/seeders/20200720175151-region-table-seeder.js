@@ -1,17 +1,8 @@
 "use strict";
 
-const regions = [
-  "Ayeyarwady",
-  "Yangon",
-  "Mon",
-  "Mandalay",
-  "Shan",
-  "Kachin",
-  "Katyar",
-  "Kayin",
-  "Chin",
-  "Magway",
-].map((region) => {
+const regions = require("../data/regions");
+
+const rows = regions.map((region) => {
   return {
     name: region,
     created_at: new Date(),
@@ -24,10 +15,10 @@ module.exports = {
     await queryInterface.sequelize.query(
       "ALTER TABLE regions AUTO_INCREMENT = 1;"
     );
-    await queryInterface.bulkInsert("regions", regions);
+    await queryInterface.bulkInsert("regions", rows);
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete("regions", null, {});
+    await queryInterface.bulkDelete("regions", null);
   },
 };

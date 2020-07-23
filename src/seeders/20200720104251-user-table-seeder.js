@@ -3,11 +3,11 @@
 const _ = require("lodash");
 const faker = require("faker");
 
-const users = _.range(1, 21).map((index) => {
+const rows = _.range(1, 8).map((index) => {
   return {
     username: faker.internet.email(),
     password: faker.internet.password(),
-    role_id: Math.floor(Math.random() * 7) + 1,
+    role_id: index,
     created_at: new Date(),
     updated_at: new Date(),
   };
@@ -18,7 +18,7 @@ module.exports = {
     await queryInterface.sequelize.query(
       "ALTER TABLE users AUTO_INCREMENT = 1;"
     );
-    await queryInterface.bulkInsert("users", users);
+    await queryInterface.bulkInsert("users", rows);
   },
 
   down: async (queryInterface, Sequelize) => {

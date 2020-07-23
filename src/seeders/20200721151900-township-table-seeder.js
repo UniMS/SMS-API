@@ -3,7 +3,7 @@
 const _ = require("lodash");
 const faker = require("faker");
 
-const townships = _.range(1, 11).map((index) => {
+const rows = _.range(1, 11).map((index) => {
   return {
     name: faker.address.city(),
     region_id: index,
@@ -17,7 +17,7 @@ module.exports = {
     await queryInterface.sequelize.query(
       "ALTER TABLE townships AUTO_INCREMENT = 1;"
     );
-    await queryInterface.bulkInsert("townships", townships);
+    await queryInterface.bulkInsert("townships", rows);
   },
 
   down: async (queryInterface, Sequelize) => {

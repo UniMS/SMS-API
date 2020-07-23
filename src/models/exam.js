@@ -5,9 +5,9 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Exam extends Model {
     static associate(models) {
-      Exam.belongsTo(models.Degree, {
-        foreignKey: "examId",
-      });
+      // Exam.belongsTo(models.Degree, {
+      //   foreignKey: "examId",
+      // });
 
       Exam.belongsTo(models.AcademicYear, {
         foreignKey: "academicYearId",
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         field: "exam_id",
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       degreeId: {
         allowNull: false,
@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "degrees",
           key: "degree_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       academicYearId: {
         allowNull: false,
@@ -44,25 +44,25 @@ module.exports = (sequelize, DataTypes) => {
           model: "academic_years",
           key: "academic_year_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       semester: {
         allowNull: false,
-        type: Sequelize.TINYINT,
+        type: DataTypes.TINYINT,
       },
       heldIn: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
       createdAt: {
         allowNull: false,
         field: "created_at",
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
         field: "updated_at",
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
     },
     {

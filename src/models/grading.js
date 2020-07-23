@@ -5,19 +5,19 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Grading extends Model {
     static associate(models) {
-      ExamResult.belongsTo(models.Exam, {
+      Grading.belongsTo(models.Exam, {
         foreignKey: "examId",
       });
 
-      ExamResult.belongsTo(models.Course, {
+      Grading.belongsTo(models.Course, {
         foreignKey: "courseId",
       });
 
-      ExamResult.belongsTo(models.Enrollment, {
+      Grading.belongsTo(models.Enrollment, {
         foreignKey: "enrollmentId",
       });
 
-      ExamResult.belongsTo(models.Grade, {
+      Grading.belongsTo(models.Grade, {
         foreignKey: "gradeId",
       });
     }
@@ -25,12 +25,12 @@ module.exports = (sequelize, DataTypes) => {
 
   Grading.init(
     {
-      examResultId: {
+      gradingId: {
         allowNull: false,
         autoIncrement: true,
-        field: "exam_result_id",
+        field: "grading_id",
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       examId: {
         allowNull: false,
@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "exams",
           key: "exam_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       courseId: {
         allowNull: false,
@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "courses",
           key: "course_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       enrollmentId: {
         allowNull: false,
@@ -63,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "enrollments",
           key: "enrollment_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       gradeId: {
         allowNull: false,
@@ -74,26 +74,26 @@ module.exports = (sequelize, DataTypes) => {
           model: "grades",
           key: "grade_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       mark: {
         allowNull: false,
-        type: Sequelize.TINYINT,
+        type: DataTypes.TINYINT,
       },
       getDistinction: {
         allowNull: false,
         field: "get_distinction",
-        type: Sequelize.TINYINT(1),
+        type: DataTypes.TINYINT(1),
       },
       createdAt: {
         allowNull: false,
         field: "created_at",
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
         field: "updated_at",
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
     },
     {

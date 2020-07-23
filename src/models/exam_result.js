@@ -5,9 +5,9 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class ExamResult extends Model {
     static associate(models) {
-      ExamResult.belongsTo(models.Exam, {
-        foreignKey: "examId",
-      });
+      // ExamResult.belongsTo(models.Exam, {
+      //   foreignKey: "examId",
+      // });
 
       ExamResult.belongsTo(models.Course, {
         foreignKey: "courseId",
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         field: "exam_result_id",
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       examId: {
         allowNull: false,
@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "exams",
           key: "exam_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       courseId: {
         allowNull: false,
@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "courses",
           key: "course_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       enrollmentId: {
         allowNull: false,
@@ -63,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "enrollments",
           key: "enrollment_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       gradeId: {
         allowNull: false,
@@ -74,22 +74,22 @@ module.exports = (sequelize, DataTypes) => {
           model: "grades",
           key: "grade_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
       getDistinction: {
         allowNull: false,
         field: "get_distinction",
-        type: Sequelize.TINYINT,
+        type: DataTypes.TINYINT,
       },
       createdAt: {
         allowNull: false,
         field: "created_at",
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
         field: "updated_at",
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
     },
     {

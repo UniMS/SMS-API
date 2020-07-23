@@ -1,10 +1,13 @@
 "use strict";
 
-const majors = ["ICT", "IST", "CE", "EcE", "Ame", "Pre"].map((major) => {
+const majors = require("../data/majors");
+
+const rows = majors.map((major) => {
   return {
-    name: major,
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    name: major.name,
+    description: major.description,
+    created_at: new Date(),
+    updated_at: new Date(),
   };
 });
 
@@ -13,7 +16,7 @@ module.exports = {
     await queryInterface.sequelize.query(
       "ALTER TABLE majors AUTO_INCREMENT = 1;"
     );
-    await queryInterface.bulkInsert("majors", majors);
+    await queryInterface.bulkInsert("majors", rows);
   },
 
   down: async (queryInterface, Sequelize) => {
