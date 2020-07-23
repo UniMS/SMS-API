@@ -1,7 +1,7 @@
 "use strict";
 
 const _ = require("lodash");
-const majors = require("../data/majors");
+const majors = require("../../data/majors");
 
 const enrollments = _.range(1, 21).map((index) => {
   const attendanceYear = _.random(1, 6);

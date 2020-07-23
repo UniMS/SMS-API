@@ -1,6 +1,6 @@
 "use strict";
 
-const regions = require("../data/regions");
+const regions = require("../../data/regions");
 
 const rows = regions.map((region) => {
   return {

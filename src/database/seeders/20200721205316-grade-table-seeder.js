@@ -1,6 +1,6 @@
 "use strict";
 
-const grades = require("../data/grades");
+const grades = require("../../data/grades");
 
 const rows = grades.map((grade) => {
   return {

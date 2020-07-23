@@ -1,6 +1,6 @@
 "use strict";
 
-const roles = require("../data/roles");
+const roles = require("../../data/roles");
 
 const rows = roles.map((role) => {
   return {

@@ -1,6 +1,6 @@
 "use strict";
 
-const attendanceYears = require("../data/attendanceYears");
+const attendanceYears = require("../../data/attendanceYears");
 
 const rows = attendanceYears.map((year) => {
   return {

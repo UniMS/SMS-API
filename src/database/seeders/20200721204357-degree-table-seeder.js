@@ -1,6 +1,6 @@
 "use strict";
 
-const degrees = require("../data/degrees");
+const degrees = require("../../data/degrees");
 
 const rows = degrees.map((degree) => {
   return {

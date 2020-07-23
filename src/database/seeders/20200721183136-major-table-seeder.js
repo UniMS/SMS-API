@@ -1,6 +1,6 @@
 "use strict";
 
-const majors = require("../data/majors");
+const majors = require("../../data/majors");
 
 const rows = majors.map((major) => {
   return {

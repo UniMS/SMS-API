@@ -1,6 +1,6 @@
 "use strict";
 
-const ethnicities = require("../data/ethnicities");
+const ethnicities = require("../../data/ethnicities");
 
 const rows = ethnicities.map((ethnicity) => {
   return {

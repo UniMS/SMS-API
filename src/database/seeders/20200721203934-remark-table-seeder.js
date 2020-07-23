@@ -1,6 +1,6 @@
 "use strict";
 
-const remarks = require("../data/remarks");
+const remarks = require("../../data/remarks");
 
 const rows = remarks.map((remark) => {
   return {

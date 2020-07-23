@@ -1,6 +1,6 @@
 "use strict";
 
-const religions = require("../data/religions");
+const religions = require("../../data/religions");
 
 const rows = religions.map((religion) => {
   return {
