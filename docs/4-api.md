@@ -23,13 +23,13 @@
 
 ### Search
 
-| NO. | Method | Routes                                                   | Description                                    |
-| --- | ------ | -------------------------------------------------------- | ---------------------------------------------- |
-| 10  | GET    | `/students/:academicYear/:major/:attendanceYear/:name`   | Search a student by `name`, eg. Mg Mg          |
-| 11  | GET    | `/students/:academicYear/:major/:attendanceYear/:rollNo` | Search a student by `roll-no`, eg. 83          |
-| 12  | GET    | `/students/:academicYear/:rollNo`                        | Search a student by `roll-no`, eg. 1ICT-83     |
-| 13  | GET    | `/students/:serialNo`                                    | Search a student by id `serial-no`, eg. 103984 |
-| 14  | GET    | `/students/:nrc`                                         | Search a student by NRC                        |
+| NO. | Method | Routes                                                   | Description                                          |
+| --- | ------ | -------------------------------------------------------- | ---------------------------------------------------- |
+| 10  | GET    | `/students/:academicYear/:major/:attendanceYear/:name`   | Search a student by `name`, eg. Mg Mg                |
+| 11  | GET    | `/students/:academicYear/:major/:attendanceYear/:rollNo` | Search a student by `roll-no`, eg. 83                |
+| 12  | GET    | `/students/:academicYear/:rollNo`                        | Search a student by `roll-no`, eg. 1ICT-83           |
+| 13  | GET    | `/students/:serialNo`                                    | Search a student by id `uni-entrance-no`, eg. 103984 |
+| 14  | GET    | `/students/:nrc`                                         | Search a student by `nrc`                            |
 
 ## Exam Result
 
@@ -84,6 +84,6 @@
 | 32  | GET    | `/gradings/:academicYear/:major/:attendanceYear/:name`   | Search a student's grading by `name`, eg. Mg Mg      |
 | 33  | GET    | `/gradings/:academicYear/:major/:attendanceYear/:rollNo` | Search a student's grading by `roll-no`, eg. 83      |
 | 34  | GET    | `/gradings/:academicYear/:rollNo`                        | Search a student's grading by `roll-no`, eg. 1ICT-83 |
-| 35  | GET    | `/gradings/:academicYear/:serialNo`                      | Search a student's grading by `serial-no`            |
+| 35  | GET    | `/gradings/:academicYear/:serialNo`                      | Search a student's grading by `uni-entrance-no`      |
 | 36  | GET    | `/gradings/:nrc`                                         | Search a student's all gradings by `nrc`             |
-| 37  | GET    | `/gradings/:serialNo`                                    | Search a student's all gradings by `serial-no`       |
+| 37  | GET    | `/gradings/:serialNo`                                    | Search a student's all gradings by `uni-entrance-no` |
