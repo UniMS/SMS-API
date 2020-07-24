@@ -31,8 +31,6 @@
 | 13  | GET    | `/students/:serialNo`                                    | Search a student by id `serial-no`, eg. 103984 |
 | 14  | GET    | `/students/:nrc`                                         | Search a student by NRC                        |
 
----
-
 ## Exam Result
 
 ### Basic CRUD routes
@@ -60,8 +58,6 @@
 | 23  | GET    | `/exam-results/:academicYear/:major/:attendanceYear/:rollNo` | Search a student's exam result by `roll-no`, eg. 83      |
 | 24  | GET    | `/exam-results/:academicYear/:rollNo`                        | Search a student's exam result by `roll-no`, eg. 1ICT-83 |
 
----
-
 ## Grading
 
 ### Basic CRUD routes
@@ -81,7 +77,7 @@
 | 30  | GET    | `/gradings/:academicYear/:major/:attendanceYear`         | Filter gradings by `academic-year`, `major` and `attendance-year`           |
 | 31  | GET    | `/gradings/:academicYear/:major/:attendanceYear/:remark` | Filter gradings by `academic-year`, `major`, `attendance-year` and `remark` |
 
-## Search
+### Search
 
 | NO. | Method | Routes                                                   | Description                                          |
 | --- | ------ | -------------------------------------------------------- | ---------------------------------------------------- |
