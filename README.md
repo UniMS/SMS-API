@@ -22,3 +22,4 @@ API for Student Management System
 
 - [Migrations and Models](https://github.com/UniMS/SMS-API/blob/master/docs/2-migrations-and-models.md)
 - [Seeders](https://github.com/UniMS/SMS-API/blob/master/docs/3-seeder.md)
+- [APIs](https://github.com/UniMS/SMS-API/blob/master/docs/4-api.md)
