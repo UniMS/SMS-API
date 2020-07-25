@@ -3,20 +3,9 @@ const models = require("../database/models");
 const catchAsync = require("../middlewares/catchAsync");
 
 exports.searchByCompleteRollNumber = catchAsync(async (req, res) => {
-  const academicYear = await models.AcademicYear.findOne({
-    where: { name: req.params.academicYear },
-    attributes: ["academicYearId"],
-  });
-
-  if (!academicYear)
-    return res.status(404).json({
-      status: "success",
-      message: "Unknown academic year.",
-    });
-
   const student = await models.Enrollment.findOne({
     where: {
-      academicYearId: academicYear.academicYearId,
+      academicYearId: req.params.academicYearId,
       rollNo: req.params.rollNo,
     },
     include: [

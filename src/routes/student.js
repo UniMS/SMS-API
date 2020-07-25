@@ -3,7 +3,7 @@ const router = express.Router();
 const students = require("../controllers/students");
 
 router.get(
-  "/academic-year/:academicYear/roll-no/:rollNo",
+  "/academic-year/:academicYearId/roll-no/:rollNo",
   students.searchByCompleteRollNumber
 );
 router.get("/nrc/:nrc", students.searchByNRC);
