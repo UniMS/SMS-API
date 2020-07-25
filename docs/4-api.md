@@ -2,7 +2,7 @@
 
 ## User
 
-### Basic CRUD user routes
+### Basic CRUD routes
 
 | NO. | Method | Routes                                    | Description                        |
 | --- | ------ | ----------------------------------------- | ---------------------------------- |
