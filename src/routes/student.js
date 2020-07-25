@@ -8,5 +8,9 @@ router.get(
 );
 router.get("/nrc/:nrc", students.searchByNRC);
 router.get("/entrance-no/:entranceNo", students.searchByEntranceNo);
+router.get(
+  "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/roll-no/:rollNo",
+  students.searchByRollNumber
+);
 
 module.exports = router;
