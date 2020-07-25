@@ -20,5 +20,6 @@ router.get(
   students.filterStudents
 );
 router.get("/:studentId/attendance-history", students.getAcademicHistories);
+router.get("/:studentId/parents", students.getParent);
 
 module.exports = router;

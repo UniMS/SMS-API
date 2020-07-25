@@ -221,6 +221,71 @@ exports.searchByName = catchAsync(async (req, res) => {
     },
   });
 });
+
+exports.getAcademicHistories = catchAsync(async (req, res) => {
+  const histories = await models.Enrollment.findAll({
+    where: {
+      studentId: req.params.studentId,
+    },
+    include: [
+      {
+        model: models.AcademicYear,
+        as: "academicYear",
+      },
+      {
+        model: models.AttendanceYear,
+        as: "attendanceYear",
+      },
+      {
+        model: models.Status,
+        as: "status",
+      },
+      {
+        model: models.Major,
+        as: "major",
+      },
+    ],
+  });
+
+  if (!histories.length > 0)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+  return res.status(200).json({
+    status: "success",
+    data: {
+      histories,
+    },
+  });
+});
+
+exports.getParent = catchAsync(async (req, res) => {
+  const parent = await models.Parent.findAll({
+    where: {
+      studentId: req.params.studentId,
+    },
+    include: [
+      {
+        model: models.Township,
+        as: "township",
+      },
+    ],
+  });
+
+  if (!parent)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+  return res.status(200).json({
+    status: "success",
+    data: {
+      parent,
+    },
+  });
+});
+
 // Filter students by academic-year, major and attendance-year
 exports.filterStudents = catchAsync(async (req, res) => {
   const students = await models.Enrollment.findAll({
@@ -270,40 +335,14 @@ exports.filterStudents = catchAsync(async (req, res) => {
     },
   });
 });
-exports.getAcademicHistories = catchAsync(async (req, res) => {
-  const histories = await models.Enrollment.findAll({
+
+exports.deleteStudent = catchAsync(async (req, res) => {
+  await models.Student.destroy({
     where: {
       studentId: req.params.studentId,
     },
-    include: [
-      {
-        model: models.AcademicYear,
-        as: "academicYear",
-      },
-      {
-        model: models.AttendanceYear,
-        as: "attendanceYear",
-      },
-      {
-        model: models.Status,
-        as: "status",
-      },
-      {
-        model: models.Major,
-        as: "major",
-      },
-    ],
   });
-
-  if (!histories.length > 0)
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
   return res.status(200).json({
     status: "success",
-    data: {
-      histories,
-    },
   });
 });

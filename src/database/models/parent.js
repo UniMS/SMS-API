@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Parent.belongsTo(models.Township, {
         foreignKey: "townshipId",
+        as: "township",
       });
     }
   }
