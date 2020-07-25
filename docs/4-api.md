@@ -2,6 +2,18 @@
 
 ## Enrollment
 
+
+### Basic CRUD user routes
+
+| NO. | Method | Routes                                    | Description                        |
+| --- | ------ | ----------------------------------------- | ---------------------------------- |
+| 1   | GET    | `/users`                                  | Get all users                      |
+| 2   | POST   | `/users`                                  | Add new user                       |
+| 3   | POST   | `/users/login`                            | Check user credentials             |
+| 4   | GET    | `/users/:userId`                          | Get user by ID                     |
+| 5   | PUT    | `/users/:userId`                          | Update user by ID                  |
+| 6   | DELETE | `/users/:userId`                          | Delete user by ID                  |
+
 ### Basic CRUD routes
 
 | NO. | Method | Routes                                    | Description                        |
