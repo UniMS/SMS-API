@@ -1,6 +1,6 @@
 # APIs
 
-## Users
+## User
 
 ### Basic CRUD user routes
 
