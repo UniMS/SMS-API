@@ -10,6 +10,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      entranceNo: {
+        allowNull: false,
+        field: "entrance_no",
+        type: Sequelize.STRING(30),
+      },
       nameEn: {
         allowNull: false,
         field: "name_en",
