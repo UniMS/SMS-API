@@ -1,7 +1,6 @@
 # APIs
 
-## Enrollment
-
+## Users
 
 ### Basic CRUD user routes
 
@@ -13,6 +12,8 @@
 | 4   | GET    | `/users/:userId`                          | Get user by ID                     |
 | 5   | PUT    | `/users/:userId`                          | Update user by ID                  |
 | 6   | DELETE | `/users/:userId`                          | Delete user by ID                  |
+
+## Enrollment
 
 ### Basic CRUD routes
 
