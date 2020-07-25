@@ -169,7 +169,7 @@ exports.searchByEntranceNo = catchAsync(async (req, res) => {
 });
 
 exports.searchByName = catchAsync(async (req, res) => {
-  const student = await models.Enrollment.findOne({
+  const student = await models.Enrollment.findAll({
     where: {
       academicYearId: req.params.academicYearId,
       majorId: req.params.majorId,
@@ -267,6 +267,43 @@ exports.filterStudents = catchAsync(async (req, res) => {
     status: "success",
     data: {
       students,
+    },
+  });
+});
+exports.getAcademicHistories = catchAsync(async (req, res) => {
+  const histories = await models.Enrollment.findAll({
+    where: {
+      studentId: req.params.studentId,
+    },
+    include: [
+      {
+        model: models.AcademicYear,
+        as: "academicYear",
+      },
+      {
+        model: models.AttendanceYear,
+        as: "attendanceYear",
+      },
+      {
+        model: models.Status,
+        as: "status",
+      },
+      {
+        model: models.Major,
+        as: "major",
+      },
+    ],
+  });
+
+  if (!histories.length > 0)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+  return res.status(200).json({
+    status: "success",
+    data: {
+      histories,
     },
   });
 });
