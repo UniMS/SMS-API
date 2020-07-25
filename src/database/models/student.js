@@ -7,14 +7,17 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Student.belongsTo(models.Township, {
         foreignKey: "townshipId",
+        as: "township",
       });
 
       Student.belongsTo(models.Ethnicity, {
         foreignKey: "ethnicityId",
+        as: "ethnicity",
       });
 
       Student.belongsTo(models.Religion, {
         foreignKey: "religionId",
+        as: "religion",
       });
     }
   }

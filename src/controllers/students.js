@@ -9,14 +9,38 @@ exports.searchByCompleteRollNumber = catchAsync(async (req, res) => {
       rollNo: req.params.rollNo,
     },
     include: [
-      models.Degree,
-      models.AcademicYear,
-      models.AttendanceYear,
-      models.Status,
-      models.Major,
-      models.Student,
+      {
+        model: models.Degree,
+        as: "degree",
+      },
+      {
+        model: models.AcademicYear,
+        as: "academicYear",
+      },
+      {
+        model: models.AttendanceYear,
+        as: "attendanceYear",
+      },
+      {
+        model: models.Status,
+        as: "status",
+      },
+      {
+        model: models.Major,
+        as: "major",
+      },
+      {
+        model: models.Student,
+        as: "student",
+      },
     ],
   });
+
+  if (!student)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
 
   return res.status(200).json({
     status: "success",
@@ -33,22 +57,40 @@ exports.searchByRollNumber = catchAsync(async (req, res) => {
       majorId: req.params.majorId,
       attendanceYearId: req.params.attendanceYearId,
       rollNo: {
-        [Op.like]: `%${req.params.rollNo}`,
+        [Op.like]: `%${req.params.rollNo}%`,
       },
     },
     include: [
-      models.Degree,
-      models.AcademicYear,
-      models.AttendanceYear,
-      models.Status,
-      models.Major,
-      models.Student,
+      {
+        model: models.Degree,
+        as: "degree",
+      },
+      {
+        model: models.AcademicYear,
+        as: "academicYear",
+      },
+      {
+        model: models.AttendanceYear,
+        as: "attendanceYear",
+      },
+      {
+        model: models.Status,
+        as: "status",
+      },
+      {
+        model: models.Major,
+        as: "major",
+      },
+      {
+        model: models.Student,
+        as: "student",
+      },
     ],
   });
 
   if (!student)
     return res.status(404).json({
-      status: "success",
+      status: "fail",
       message: "No data!",
     });
 
@@ -63,12 +105,25 @@ exports.searchByRollNumber = catchAsync(async (req, res) => {
 exports.searchByNRC = catchAsync(async (req, res) => {
   const student = await models.Student.findOne({
     where: { nrc: req.params.nrc },
-    include: [models.Township, models.Religion, models.Ethnicity],
+    include: [
+      {
+        model: models.Township,
+        as: "township",
+      },
+      {
+        model: models.Religion,
+        as: "religion",
+      },
+      {
+        model: models.Ethnicity,
+        as: "ethnicity",
+      },
+    ],
   });
 
   if (!student)
     return res.status(404).json({
-      status: "success",
+      status: "fail",
       message: "No data!",
     });
 
@@ -83,12 +138,25 @@ exports.searchByNRC = catchAsync(async (req, res) => {
 exports.searchByEntranceNo = catchAsync(async (req, res) => {
   const student = await models.Student.findOne({
     where: { entranceNo: req.params.entranceNo },
-    include: [models.Township, models.Religion, models.Ethnicity],
+    include: [
+      {
+        model: models.Township,
+        as: "township",
+      },
+      {
+        model: models.Religion,
+        as: "religion",
+      },
+      {
+        model: models.Ethnicity,
+        as: "ethnicity",
+      },
+    ],
   });
 
   if (!student)
     return res.status(404).json({
-      status: "success",
+      status: "fail",
       message: "No data!",
     });
 
@@ -96,6 +164,109 @@ exports.searchByEntranceNo = catchAsync(async (req, res) => {
     status: "success",
     data: {
       student,
+    },
+  });
+});
+
+exports.searchByName = catchAsync(async (req, res) => {
+  const student = await models.Enrollment.findOne({
+    where: {
+      academicYearId: req.params.academicYearId,
+      majorId: req.params.majorId,
+      attendanceYearId: req.params.attendanceYearId,
+    },
+    include: [
+      {
+        model: models.Student,
+        as: "student",
+        where: {
+          nameEn: {
+            [Op.like]: `%${req.params.name}`,
+          },
+        },
+      },
+      {
+        model: models.Degree,
+        as: "degree",
+      },
+      {
+        model: models.AcademicYear,
+        as: "academicYear",
+      },
+      {
+        model: models.AttendanceYear,
+        as: "attendanceYear",
+      },
+      {
+        model: models.Status,
+        as: "status",
+      },
+      {
+        model: models.Major,
+        as: "major",
+      },
+    ],
+  });
+
+  if (!student)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      student,
+    },
+  });
+});
+// Filter students by academic-year, major and attendance-year
+exports.filterStudents = catchAsync(async (req, res) => {
+  const students = await models.Enrollment.findAll({
+    where: {
+      academicYearId: req.params.academicYearId,
+      majorId: req.params.majorId,
+      attendanceYearId: req.params.attendanceYearId,
+    },
+    include: [
+      {
+        model: models.Degree,
+        as: "degree",
+      },
+      {
+        model: models.AcademicYear,
+        as: "academicYear",
+      },
+      {
+        model: models.AttendanceYear,
+        as: "attendanceYear",
+      },
+      {
+        model: models.Status,
+        as: "status",
+      },
+      {
+        model: models.Major,
+        as: "major",
+      },
+      {
+        model: models.Student,
+        as: "student",
+      },
+    ],
+  });
+
+  if (!students.length > 0)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      students,
     },
   });
 });
