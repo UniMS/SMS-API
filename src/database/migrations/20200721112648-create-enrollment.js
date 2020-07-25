@@ -70,14 +70,14 @@ module.exports = {
         field: "roll_no",
         type: Sequelize.STRING,
       },
-      remarkId: {
+      statusId: {
         allowNull: false,
-        field: "remark_id",
+        field: "status_id",
         onDelete: "NO ACTION",
         onUpdate: "CASCADE",
         references: {
-          model: "remarks",
-          key: "remark_id",
+          model: "status",
+          key: "status_id",
         },
         type: Sequelize.INTEGER,
       },

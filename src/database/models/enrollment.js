@@ -5,9 +5,9 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Enrollment extends Model {
     static associate(models) {
-      // Enrollment.belongsTo(models.Degree, {
-      //   foreignKey: "degreeId",
-      // });
+      Enrollment.belongsTo(models.Degree, {
+        foreignKey: "degreeId",
+      });
 
       Enrollment.belongsTo(models.Major, {
         foreignKey: "majorId",
@@ -25,8 +25,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "attendanceYearId",
       });
 
-      Enrollment.belongsTo(models.Remark, {
-        foreignKey: "remarkId",
+      Enrollment.belongsTo(models.Status, {
+        foreignKey: "statusId",
       });
     }
   }
@@ -97,16 +97,17 @@ module.exports = (sequelize, DataTypes) => {
       },
       rollNo: {
         allowNull: false,
+        field: "roll_no",
         type: DataTypes.STRING,
       },
-      remarkId: {
+      statusId: {
         allowNull: false,
-        field: "remark_id",
+        field: "status_id",
         onDelete: "NO ACTION",
         onUpdate: "CASCADE",
         references: {
-          model: "remarks",
-          key: "remark_id",
+          model: "status",
+          key: "status_id",
         },
         type: DataTypes.INTEGER,
       },

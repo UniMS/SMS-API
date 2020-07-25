@@ -54,6 +54,17 @@ module.exports = {
         },
         type: Sequelize.INTEGER,
       },
+      remarkId: {
+        allowNull: false,
+        field: "remark_id",
+        onDelete: "NO ACTION",
+        onUpdate: "CASCADE",
+        references: {
+          model: "remarks",
+          key: "remark_id",
+        },
+        type: Sequelize.INTEGER,
+      },
       mark: {
         allowNull: false,
         type: Sequelize.TINYINT,

@@ -28,18 +28,19 @@ module.exports = (sequelize, DataTypes) => {
       },
       createdAt: {
         allowNull: false,
-        fidld: "created_at",
+        field: "created_at",
         type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
-        fidld: "updated_at",
+        field: "updated_at",
         type: DataTypes.DATE,
       },
     },
     {
       sequelize,
-      modelName: "degree",
+      modelName: "Degree",
+      tableName: "degrees",
     }
   );
 

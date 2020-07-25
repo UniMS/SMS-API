@@ -16,7 +16,7 @@ const enrollments = _.range(1, 21).map((index) => {
     academic_year_id: _.random(1, 10),
     attendance_year_id: attendanceYear,
     roll_no: `${attendanceYear}${major}-${_.random(0, 150)}${repeater}`,
-    remark_id: _.random(1, 3),
+    status_id: _.random(1, 3),
     created_at: new Date(),
     updated_at: new Date(),
   };

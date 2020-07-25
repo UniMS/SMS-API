@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       Grading.belongsTo(models.Grade, {
         foreignKey: "gradeId",
       });
+
+      Grading.belongsTo(models.Remark, {
+        foreignKey: "remarkId",
+      });
     }
   }
 
@@ -73,6 +77,17 @@ module.exports = (sequelize, DataTypes) => {
         references: {
           model: "grades",
           key: "grade_id",
+        },
+        type: DataTypes.INTEGER,
+      },
+      remarkId: {
+        allowNull: false,
+        field: "remark_id",
+        onDelete: "NO ACTION",
+        onUpdate: "CASCADE",
+        references: {
+          model: "remarks",
+          key: "remark_id",
         },
         type: DataTypes.INTEGER,
       },
