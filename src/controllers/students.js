@@ -55,3 +55,23 @@ exports.searchByNRC = catchAsync(async (req, res) => {
     },
   });
 });
+
+exports.searchByEntranceNo = catchAsync(async (req, res) => {
+  const student = await models.Student.findOne({
+    where: { entranceNo: req.params.entranceNo },
+    include: [models.Township, models.Religion, models.Ethnicity],
+  });
+
+  if (!student)
+    return res.status(404).json({
+      status: "success",
+      message: "No data!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      student,
+    },
+  });
+});

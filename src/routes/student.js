@@ -7,5 +7,6 @@ router.get(
   students.searchByCompleteRollNumber
 );
 router.get("/nrc/:nrc", students.searchByNRC);
+router.get("/entrance-no/:entranceNo", students.searchByEntranceNo);
 
 module.exports = router;
