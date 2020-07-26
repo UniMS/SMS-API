@@ -46,5 +46,5 @@ exports.studentUploadFields = [
   { name: "motherNrcFront", maxCount: 1 },
   { name: "motherNrcBack", maxCount: 1 },
   { name: "wardRecommendationLetter", maxCount: 1 },
-  { name: "policeRecommendationRetter", maxCount: 1 },
+  { name: "policeRecommendationLetter", maxCount: 1 },
 ];

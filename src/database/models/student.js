@@ -120,10 +120,10 @@ module.exports = (sequelize, DataTypes) => {
         field: "ward_recommendation_letter",
         type: DataTypes.STRING(50),
       },
-      policeRecommendationRetter: {
+      policeRecommendationLetter: {
         allowNull: true,
         field: "police_recommendation_letter",
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING(50),
       },
       createdAt: {
         allowNull: false,
