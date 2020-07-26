@@ -8,7 +8,7 @@
 | --- | ------ | ---------------- | ---------------------- |
 | 1   | GET    | `/users`         | Get all users          |
 | 2   | POST   | `/users`         | Add new user           |
-| 3   | POST   | `/users/login`   | Check user credentials |
+| 3   | POST   | `/users/auth`    | Check user credentials |
 | 4   | GET    | `/users/:userId` | Get user by ID         |
 | 5   | PUT    | `/users/:userId` | Update user by ID      |
 | 6   | DELETE | `/users/:userId` | Delete user by ID      |
@@ -17,16 +17,16 @@
 
 ### Basic CRUD routes
 
-| NO. | Method | Routes                                    | Description                        |
-| --- | ------ | ----------------------------------------- | ---------------------------------- |
-| 1   | GET    | `/students`                               | Get all students                   |
-| 2   | POST   | `/students`                               | Create a new student               |
+| NO. | Method | Routes                                    | Description                        | Ramark |
+| --- | ------ | ----------------------------------------- | ---------------------------------- | ------ |
+| 1   | GET    | `/students`                               | Get all students                   | ✔      |
+| 2   | POST   | `/students`                               | Create a new student               | ✔      |
 | 3   | POST   | `/students/csv`                           | Create bulks students with csv     |
-| 4   | GET    | `/students/:studentId`                    | Get a student                      |
+| 4   | GET    | `/students/:studentId`                    | Get a student                      | ✔      |
 | 5   | PUT    | `/students/:studentId`                    | Update a student                   |
 | 6   | DELETE | `/students/:studentId`                    | Delete a student                   |
-| 7   | GET    | `/students/:studentId/parents`            | Get a student's parent             |
-| 8   | GET    | `/students/:studentId/attendance-history` | Get a student's attendance history |
+| 7   | GET    | `/students/:studentId/parents`            | Get a student's parent             | ✔      |
+| 8   | GET    | `/students/:studentId/attendance-history` | Get a student's attendance history | ✔      |
 
 ### Filter
 
