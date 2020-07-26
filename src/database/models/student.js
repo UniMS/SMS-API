@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "ethnicityId",
         as: "ethnicity",
       });
-
+      Student.hasOne(models.Parent, {
+        foreignKey: "studentId",
+        as: "parent",
+      });
       Student.belongsTo(models.Religion, {
         foreignKey: "religionId",
         as: "religion",
@@ -110,12 +113,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       photo: {
         allowNull: true,
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING(50),
       },
       wardRecommendationLetter: {
         allowNull: true,
         field: "ward_recommendation_letter",
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING(50),
       },
       policeRecommendationRetter: {
         allowNull: true,

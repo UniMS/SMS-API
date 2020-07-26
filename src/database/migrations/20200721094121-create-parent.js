@@ -91,11 +91,12 @@ module.exports = {
         field: "mother_phone",
         type: Sequelize.STRING(30),
       },
-      address: {
+      parentAddress: {
         allowNull: false,
-        type: Sequelize.STRING,
+        field: "address",
+        type: Sequelize.STRING(255),
       },
-      townshipId: {
+      parentTownshipId: {
         allowNull: false,
         field: "township_id",
         onDelete: "NO ACTION",
