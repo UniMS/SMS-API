@@ -1,7 +1,66 @@
 const { Op } = require("sequelize");
+const _ = require("lodash");
+const faker = require("faker");
+const sharp = require("sharp");
+const upload = require("../utils/upload");
 const models = require("../database/models");
 const catchAsync = require("../middlewares/catchAsync");
+const {
+  studentFilterFields,
+  parentFilterFields,
+  studentUploadFields,
+} = require("../utils/fields");
 
+exports.uploadStudentImages = upload.fields(studentUploadFields);
+exports.resizeStudentsImages = catchAsync(async (req, res, next) => {
+  if (!req.files) return next();
+  await Promise.all(
+    _.values(req.files).map(async (file, index) => {
+      let name = `image-${faker.random.uuid()}.jpeg`;
+      let { fieldname, buffer } = file[0];
+      await sharp(buffer)
+        .resize(640, 320)
+        .toFormat("jpeg")
+        .jpeg({ quality: 90 })
+        .toFile(`public/images/${name}`);
+      req.body[fieldname] = name;
+    })
+  );
+
+  next();
+});
+exports.addStudent = catchAsync(async (req, res) => {
+  const student = await models.Student.create(
+    _.pick(req.body, studentFilterFields)
+  );
+  const parent = await student.createParent(
+    _.pick(req.body, parentFilterFields)
+  );
+  res.status(201).send({
+    status: "success",
+    student,
+    parent,
+  });
+});
+exports.getStudents = catchAsync(async (req, res) => {
+  const students = await models.Student.findAll({
+    include: {
+      all: true,
+      exclude: ["createdAt", "updatedAt"],
+    },
+  });
+  if (!students.length > 0) {
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+  }
+  res.status(200).send({
+    status: "success",
+    length: students.length,
+    students,
+  });
+});
 exports.searchByCompleteRollNumber = catchAsync(async (req, res) => {
   const student = await models.Enrollment.findOne({
     where: {
@@ -108,35 +167,7 @@ exports.searchByName = catchAsync(async (req, res) => {
       attendanceYearId: req.params.attendanceYearId,
     },
     include: [
-      {
-        model: models.Student,
-        as: "student",
-        where: {
-          nameEn: {
-            [Op.like]: `%${req.params.name}%`,
-          },
-        },
-      },
-      {
-        model: models.Degree,
-        as: "degree",
-      },
-      {
-        model: models.AcademicYear,
-        as: "academicYear",
-      },
-      {
-        model: models.AttendanceYear,
-        as: "attendanceYear",
-      },
-      {
-        model: models.Status,
-        as: "status",
-      },
-      {
-        model: models.Major,
-        as: "major",
-      },
+      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
     ],
   });
 

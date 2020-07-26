@@ -95,17 +95,17 @@ module.exports = {
       },
       photo: {
         allowNull: true,
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(50),
       },
       wardRecommendationLetter: {
         allowNull: true,
         field: "ward_recommendation_letter",
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(50),
       },
       policeRecommendationRetter: {
         allowNull: true,
         field: "police_recommendation_letter",
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(50),
       },
       createdAt: {
         allowNull: false,

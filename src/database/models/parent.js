@@ -6,9 +6,8 @@ module.exports = (sequelize, DataTypes) => {
       Parent.belongsTo(models.Student, {
         foreignKey: "studentId",
       });
-
       Parent.belongsTo(models.Township, {
-        foreignKey: "townshipId",
+        foreignKey: "parentTownshipId",
         as: "township",
       });
     }
@@ -104,11 +103,12 @@ module.exports = (sequelize, DataTypes) => {
         field: "mother_phone",
         type: DataTypes.STRING(30),
       },
-      address: {
+      parentAddress: {
         allowNull: false,
         type: DataTypes.STRING,
+        field: "address",
       },
-      townshipId: {
+      parentTownshipId: {
         allowNull: false,
         field: "township_id",
         onDelete: "NO ACTION",
