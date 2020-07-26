@@ -59,6 +59,17 @@ module.exports = {
         field: "get_distinction",
         type: Sequelize.TINYINT(1),
       },
+      remarkId: {
+        allowNull: false,
+        field: "remark_id",
+        onDelete: "NO ACTION",
+        onUpdate: "CASCADE",
+        references: {
+          model: "remarks",
+          key: "remark_id",
+        },
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         field: "created_at",

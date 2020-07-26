@@ -46,6 +46,28 @@ module.exports = (sequelize, DataTypes) => {
         },
         type: DataTypes.INTEGER,
       },
+      attendanceYearId: {
+        allowNull: false,
+        field: "attendance_year_id",
+        onDelete: "NO ACTION",
+        onUpdate: "CASCADE",
+        references: {
+          model: "attendance_years",
+          key: "attendance_year_id",
+        },
+        type: DataTypes.INTEGER,
+      },
+      majorId: {
+        allowNull: false,
+        field: "major_id",
+        onDelete: "NO ACTION",
+        onUpdate: "CASCADE",
+        references: {
+          model: "majors",
+          key: "major_id",
+        },
+        type: DataTypes.INTEGER,
+      },
       semester: {
         allowNull: false,
         type: DataTypes.TINYINT,

@@ -89,3 +89,92 @@ exports.searchByRollNo = catchAsync(async (req, res) => {
     },
   });
 });
+
+exports.filterExamResults = catchAsync(async (req, res) => {
+  const exam = await models.Exam.findOne({
+    where: {
+      academicYearId: req.params.academicYearId,
+      majorId: req.params.majorId,
+      attendanceYearId: req.params.attendanceYearId,
+    },
+    attributes: ["examId"],
+  });
+
+  if (!exam)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  const examResults = await models.ExamResult.findAll({
+    where: {
+      examId: exam.examId,
+    },
+    include: [
+      {
+        all: true,
+        nested: true,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
+    ],
+  });
+
+  if (!examResults)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      examResults,
+    },
+  });
+});
+
+exports.filterExamResultsByRemark = catchAsync(async (req, res) => {
+  const exam = await models.Exam.findOne({
+    where: {
+      academicYearId: req.params.academicYearId,
+      majorId: req.params.majorId,
+      attendanceYearId: req.params.attendanceYearId,
+    },
+    attributes: ["examId"],
+  });
+
+  console.log("lllllllll ", exam);
+
+  if (!exam)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data d!",
+    });
+
+  const examResults = await models.ExamResult.findAll({
+    where: {
+      examId: exam.examId,
+      remarkId: req.params.remarkId,
+    },
+    include: [
+      {
+        all: true,
+        nested: true,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
+    ],
+  });
+
+  if (!examResults)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data e!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      examResults,
+    },
+  });
+});

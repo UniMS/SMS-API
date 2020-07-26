@@ -10,5 +10,13 @@ router.get(
   "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/roll-no/:rollNo",
   examResults.searchByRollNo
 );
+router.get(
+  "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId",
+  examResults.filterExamResults
+);
+router.get(
+  "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/remark/:remarkId",
+  examResults.filterExamResultsByRemark
+);
 
 module.exports = router;
