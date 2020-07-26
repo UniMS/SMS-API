@@ -143,8 +143,6 @@ exports.filterExamResultsByRemark = catchAsync(async (req, res) => {
     attributes: ["examId"],
   });
 
-  console.log("lllllllll ", exam);
-
   if (!exam)
     return res.status(404).json({
       status: "fail",
