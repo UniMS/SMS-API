@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const students = require("../controllers/students");
+
 router.get(
   "/academic-year/:academicYearId/roll-no/:rollNo",
   students.searchByCompleteRollNumber
@@ -12,7 +13,7 @@ router.get(
   students.searchByRollNumber
 );
 router.get(
-  "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/:name",
+  "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/name/:name",
   students.searchByName
 );
 router.get(

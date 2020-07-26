@@ -4,14 +4,14 @@
 
 ### Basic CRUD routes
 
-| NO. | Method | Routes                                    | Description                        |
-| --- | ------ | ----------------------------------------- | ---------------------------------- |
-| 1   | GET    | `/users`                                  | Get all users                      |
-| 2   | POST   | `/users`                                  | Add new user                       |
-| 3   | POST   | `/users/login`                            | Check user credentials             |
-| 4   | GET    | `/users/:userId`                          | Get user by ID                     |
-| 5   | PUT    | `/users/:userId`                          | Update user by ID                  |
-| 6   | DELETE | `/users/:userId`                          | Delete user by ID                  |
+| NO. | Method | Routes           | Description            |
+| --- | ------ | ---------------- | ---------------------- |
+| 1   | GET    | `/users`         | Get all users          |
+| 2   | POST   | `/users`         | Add new user           |
+| 3   | POST   | `/users/login`   | Check user credentials |
+| 4   | GET    | `/users/:userId` | Get user by ID         |
+| 5   | PUT    | `/users/:userId` | Update user by ID      |
+| 6   | DELETE | `/users/:userId` | Delete user by ID      |
 
 ## Enrollment
 
@@ -30,19 +30,19 @@
 
 ### Filter
 
-| NO. | Method | Routes                                                                                     | Description                                                       |
-| --- | ------ | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
-| 9   | GET    | `/students/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId` | Filter students by `academic-year`, `major` and `attendance-year` |
+| NO. | Method | Routes                                                                                     | Description                                                       | Remark |
+| --- | ------ | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- | ------ |
+| 9   | GET    | `/students/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId` | Filter students by `academic-year`, `major` and `attendance-year` | ✔      |
 
 ### Search
 
-| NO. | Method | Routes                                                                                             | Description                                          |
-| --- | ------ | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| 10  | GET    | `/students/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/:name`   | Search a student by `name`, eg. Mg Mg                |
-| 11  | GET    | `/students/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/:rollNo` | Search a student by `roll-no`, eg. 83                |
-| 12  | GET    | `/students/academic-year/:academicYearId/:rollNo`                                                  | Search a student by `roll-no`, eg. 1ICT-83           |
-| 13  | GET    | `/students/entrance-no/:entranceNo`                                                                | Search a student by id `uni-entrance-no`, eg. 103984 |
-| 14  | GET    | `/students/nrc/:nrc`                                                                               | Search a student by `nrc`                            |
+| NO. | Method | Routes                                                                                             | Description                                          | Remark |
+| --- | ------ | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ------ |
+| 10  | GET    | `/students/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/:name`   | Search a student by `name`, eg. Mg Mg                | ✔      |
+| 11  | GET    | `/students/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/:rollNo` | Search a student by `roll-no`, eg. 83                | ✔      |
+| 12  | GET    | `/students/academic-year/:academicYearId/:rollNo`                                                  | Search a student by `roll-no`, eg. 1ICT-83           | ✔      |
+| 13  | GET    | `/students/entrance-no/:entranceNo`                                                                | Search a student by id `uni-entrance-no`, eg. 103984 | ✔      |
+| 14  | GET    | `/students/nrc/:nrc`                                                                               | Search a student by `nrc`                            | ✔      |
 
 ## Exam Result
 
@@ -65,11 +65,10 @@
 
 ## Search
 
-| NO. | Method | Routes                                                                                                 | Description                                              |
-| --- | ------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------- |
-| 22  | GET    | `/exam-results/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/:name`   | Search a student's exam result by `name`, eg. Mg Mg      |
-| 23  | GET    | `/exam-results/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/:rollNo` | Search a student's exam result by `roll-no`, eg. 83      |
-| 24  | GET    | `/exam-results/academic-year/:academicYearId/roll-no/:rollNo`                                          | Search a student's exam result by `roll-no`, eg. 1ICT-83 |
+| NO. | Method | Routes                                                                                                 | Description                                              | Remark |
+| --- | ------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------- | ------ |
+| 22  | GET    | `/exam-results/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/:rollNo` | Search a student's exam result by `roll-no`, eg. 83      | ✔      |
+| 23  | GET    | `/exam-results/academic-year/:academicYearId/roll-no/:rollNo`                                          | Search a student's exam result by `roll-no`, eg. 1ICT-83 | ✔      |
 
 ## Grading
 
@@ -77,26 +76,26 @@
 
 | NO. | Method | Routes                 | Description                    |
 | --- | ------ | ---------------------- | ------------------------------ |
-| 25  | GET    | `/gradings`            | Get all gradings               |
-| 26  | POST   | `/gradings/csv`        | Create bulks gradings with csv |
-| 27  | GET    | `/gradings/:gradingId` | Get a grading                  |
-| 28  | PUT    | `/gradings/:gradingId` | Update a grading               |
-| 29  | DELETE | `/gradings/:gradingId` | Delete a grading               |
+| 24  | GET    | `/gradings`            | Get all gradings               |
+| 25  | POST   | `/gradings/csv`        | Create bulks gradings with csv |
+| 26  | GET    | `/gradings/:gradingId` | Get a grading                  |
+| 27  | PUT    | `/gradings/:gradingId` | Update a grading               |
+| 28  | DELETE | `/gradings/:gradingId` | Delete a grading               |
 
 ### Filter
 
 | NO. | Method | Routes                                                                                                    | Description                                                                 |
 | --- | ------ | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| 30  | GET    | `/gradings/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId`                | Filter gradings by `academic-year`, `major` and `attendance-year`           |
-| 31  | GET    | `/gradings/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/remark/:remark` | Filter gradings by `academic-year`, `major`, `attendance-year` and `remark` |
+| 19  | GET    | `/gradings/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId`                | Filter gradings by `academic-year`, `major` and `attendance-year`           |
+| 30  | GET    | `/gradings/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/remark/:remark` | Filter gradings by `academic-year`, `major`, `attendance-year` and `remark` |
 
 ### Search
 
 | NO. | Method | Routes                                                                                             | Description                                          |
 | --- | ------ | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| 32  | GET    | `/gradings/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/:name`   | Search a student's grading by `name`, eg. Mg Mg      |
-| 33  | GET    | `/gradings/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/:rollNo` | Search a student's grading by `roll-no`, eg. 83      |
-| 34  | GET    | `/gradings/academic-year/:academicYearId/roll-no/:rollNo`                                          | Search a student's grading by `roll-no`, eg. 1ICT-83 |
-| 35  | GET    | `/gradings/academic-year/:academicYearId/entrance-no/:entranceNo`                                  | Search a student's grading by `uni-entrance-no`      |
-| 36  | GET    | `/gradings/nrc/:nrc`                                                                               | Search a student's all gradings by `nrc`             |
-| 37  | GET    | `/gradings/entrance-no/:entranceNo`                                                                | Search a student's all gradings by `uni-entrance-no` |
+| 31  | GET    | `/gradings/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/:name`   | Search a student's grading by `name`, eg. Mg Mg      |
+| 32  | GET    | `/gradings/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/:rollNo` | Search a student's grading by `roll-no`, eg. 83      |
+| 33  | GET    | `/gradings/academic-year/:academicYearId/roll-no/:rollNo`                                          | Search a student's grading by `roll-no`, eg. 1ICT-83 |
+| 34  | GET    | `/gradings/academic-year/:academicYearId/entrance-no/:entranceNo`                                  | Search a student's grading by `uni-entrance-no`      |
+| 35  | GET    | `/gradings/nrc/:nrc`                                                                               | Search a student's all gradings by `nrc`             |
+| 36  | GET    | `/gradings/entrance-no/:entranceNo`                                                                | Search a student's all gradings by `uni-entrance-no` |

@@ -52,6 +52,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       heldIn: {
         allowNull: false,
+        field: "held_in",
         type: DataTypes.DATE,
       },
       createdAt: {

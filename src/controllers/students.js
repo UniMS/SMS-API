@@ -113,7 +113,7 @@ exports.searchByName = catchAsync(async (req, res) => {
         as: "student",
         where: {
           nameEn: {
-            [Op.like]: `%${req.params.name}`,
+            [Op.like]: `%${req.params.name}%`,
           },
         },
       },
