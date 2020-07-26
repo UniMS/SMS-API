@@ -22,7 +22,7 @@ router.get(
 );
 
 router.get(
-  "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/:name",
+  "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/name/:name",
   students.searchByName
 );
 router.get(

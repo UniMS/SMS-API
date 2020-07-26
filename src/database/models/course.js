@@ -7,18 +7,22 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Course.belongsTo(models.Major, {
         foreignKey: "majorId",
+        as: "major",
       });
 
       Course.belongsTo(models.Subject, {
         foreignKey: "subjectId",
+        as: "subject",
       });
 
       Course.belongsTo(models.AcademicYear, {
         foreignKey: "academicYearId",
+        as: "academicYear",
       });
 
       Course.belongsTo(models.AttendanceYear, {
         foreignKey: "attendanceYearId",
+        as: "attendanceYear",
       });
     }
   }
