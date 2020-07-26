@@ -12,7 +12,7 @@ exports.studentFilterFields = [
   "hostelAddress",
   "photo",
   "wardRecommendationLetter",
-  "policeRecommendationRetter",
+  "policeRecommendationLetter",
   "townshipId",
   "religionId",
   "ethnicityId",
