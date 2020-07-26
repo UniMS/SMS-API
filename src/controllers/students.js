@@ -9,30 +9,7 @@ exports.searchByCompleteRollNumber = catchAsync(async (req, res) => {
       rollNo: req.params.rollNo,
     },
     include: [
-      {
-        model: models.Degree,
-        as: "degree",
-      },
-      {
-        model: models.AcademicYear,
-        as: "academicYear",
-      },
-      {
-        model: models.AttendanceYear,
-        as: "attendanceYear",
-      },
-      {
-        model: models.Status,
-        as: "status",
-      },
-      {
-        model: models.Major,
-        as: "major",
-      },
-      {
-        model: models.Student,
-        as: "student",
-      },
+      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
     ],
   });
 
@@ -61,30 +38,7 @@ exports.searchByRollNumber = catchAsync(async (req, res) => {
       },
     },
     include: [
-      {
-        model: models.Degree,
-        as: "degree",
-      },
-      {
-        model: models.AcademicYear,
-        as: "academicYear",
-      },
-      {
-        model: models.AttendanceYear,
-        as: "attendanceYear",
-      },
-      {
-        model: models.Status,
-        as: "status",
-      },
-      {
-        model: models.Major,
-        as: "major",
-      },
-      {
-        model: models.Student,
-        as: "student",
-      },
+      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
     ],
   });
 
@@ -106,18 +60,7 @@ exports.searchByNRC = catchAsync(async (req, res) => {
   const student = await models.Student.findOne({
     where: { nrc: req.params.nrc },
     include: [
-      {
-        model: models.Township,
-        as: "township",
-      },
-      {
-        model: models.Religion,
-        as: "religion",
-      },
-      {
-        model: models.Ethnicity,
-        as: "ethnicity",
-      },
+      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
     ],
   });
 
@@ -139,18 +82,7 @@ exports.searchByEntranceNo = catchAsync(async (req, res) => {
   const student = await models.Student.findOne({
     where: { entranceNo: req.params.entranceNo },
     include: [
-      {
-        model: models.Township,
-        as: "township",
-      },
-      {
-        model: models.Religion,
-        as: "religion",
-      },
-      {
-        model: models.Ethnicity,
-        as: "ethnicity",
-      },
+      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
     ],
   });
 
@@ -228,22 +160,7 @@ exports.getAcademicHistories = catchAsync(async (req, res) => {
       studentId: req.params.studentId,
     },
     include: [
-      {
-        model: models.AcademicYear,
-        as: "academicYear",
-      },
-      {
-        model: models.AttendanceYear,
-        as: "attendanceYear",
-      },
-      {
-        model: models.Status,
-        as: "status",
-      },
-      {
-        model: models.Major,
-        as: "major",
-      },
+      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
     ],
   });
 
@@ -266,10 +183,7 @@ exports.getParent = catchAsync(async (req, res) => {
       studentId: req.params.studentId,
     },
     include: [
-      {
-        model: models.Township,
-        as: "township",
-      },
+      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
     ],
   });
 
@@ -295,30 +209,7 @@ exports.filterStudents = catchAsync(async (req, res) => {
       attendanceYearId: req.params.attendanceYearId,
     },
     include: [
-      {
-        model: models.Degree,
-        as: "degree",
-      },
-      {
-        model: models.AcademicYear,
-        as: "academicYear",
-      },
-      {
-        model: models.AttendanceYear,
-        as: "attendanceYear",
-      },
-      {
-        model: models.Status,
-        as: "status",
-      },
-      {
-        model: models.Major,
-        as: "major",
-      },
-      {
-        model: models.Student,
-        as: "student",
-      },
+      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
     ],
   });
 

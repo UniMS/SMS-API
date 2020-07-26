@@ -1,6 +1,6 @@
 "use strict";
 
-require("dotenv").config({ path: "./config.env" });
+require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 const { Sequelize, DataTypes } = require("sequelize");
