@@ -22,7 +22,7 @@
 | 1   | GET    | `/students`                               | Get all students                   | ✔      |
 | 2   | POST   | `/students`                               | Create a new student               | ✔      |
 | 3   | POST   | `/students/csv`                           | Create bulks students with csv     |
-| 4   | GET    | `/students/:studentId`                    | Get a student                      | ✔      |
+| 4   | GET    | `/students/:studentId`                    | Get a student                      |        |
 | 5   | PUT    | `/students/:studentId`                    | Update a student                   |
 | 6   | DELETE | `/students/:studentId`                    | Delete a student                   |
 | 7   | GET    | `/students/:studentId/parents`            | Get a student's parent             | ✔      |
@@ -48,11 +48,11 @@
 
 ### Basic CRUD routes
 
-| NO. | Method | Routes                        | Description                        |
-| --- | ------ | ----------------------------- | ---------------------------------- |
-| 15  | GET    | `/exam-results`               | Get all exam results               |
+| NO. | Method | Routes                        | Description                        | Remark |
+| --- | ------ | ----------------------------- | ---------------------------------- | ------ |
+| 15  | GET    | `/exam-results`               | Get all exam results               | ✔      |
 | 16  | POST   | `/exam-results/csv`           | Create bulks exam results with csv |
-| 17  | GET    | `/exam-results/:examResultId` | Get an exam result                 |
+| 17  | GET    | `/exam-results/:examResultId` | Get an exam result                 | ✔      |
 | 18  | PUT    | `/exam-results/:examResultId` | Update an exam result              |
 | 19  | DELETE | `/exam-results/:examResultId` | Delete an exam result              |
 

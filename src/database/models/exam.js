@@ -5,12 +5,14 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Exam extends Model {
     static associate(models) {
-      // Exam.belongsTo(models.Degree, {
-      //   foreignKey: "examId",
-      // });
+      Exam.belongsTo(models.Degree, {
+        foreignKey: "examId",
+        as: "degree",
+      });
 
       Exam.belongsTo(models.AcademicYear, {
         foreignKey: "academicYearId",
+        as: "academicYear",
       });
     }
   }

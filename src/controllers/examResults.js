@@ -2,6 +2,59 @@ const { Op } = require("sequelize");
 const models = require("../database/models");
 const catchAsync = require("../middlewares/catchAsync");
 
+exports.getAllExamResults = catchAsync(async (req, res) => {
+  const examResults = await models.ExamResult.findAll({
+    include: [
+      {
+        all: true,
+        nested: true,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
+    ],
+  });
+
+  if (!examResults)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      examResults,
+    },
+  });
+});
+
+exports.getExamResult = catchAsync(async (req, res) => {
+  const examResult = await models.ExamResult.findOne({
+    where: {
+      examResultId: req.params.examResultId,
+    },
+    include: [
+      {
+        all: true,
+        nested: true,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
+    ],
+  });
+
+  if (!examResult)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      examResult,
+    },
+  });
+});
+
 exports.searchByCompleteRollNo = catchAsync(async (req, res) => {
   const enrollment = await models.Enrollment.findOne({
     where: {

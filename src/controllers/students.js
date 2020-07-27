@@ -42,6 +42,7 @@ exports.addStudent = catchAsync(async (req, res) => {
     parent,
   });
 });
+
 exports.getStudents = catchAsync(async (req, res) => {
   const students = await models.Student.findAll({
     include: {
@@ -61,6 +62,7 @@ exports.getStudents = catchAsync(async (req, res) => {
     students,
   });
 });
+
 exports.searchByCompleteRollNumber = catchAsync(async (req, res) => {
   const student = await models.Enrollment.findOne({
     where: {

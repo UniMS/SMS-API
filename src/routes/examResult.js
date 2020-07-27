@@ -2,6 +2,10 @@ const express = require("express");
 const router = express.Router();
 const examResults = require("../controllers/examResults");
 
+router.route("/").get(examResults.getAllExamResults);
+
+router.get("/:examResultId", examResults.getExamResult);
+
 router.get(
   "/academic-year/:academicYearId/roll-no/:rollNo",
   examResults.searchByCompleteRollNo
