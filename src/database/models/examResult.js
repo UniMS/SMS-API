@@ -24,6 +24,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "gradeId",
         as: "grade",
       });
+
+      ExamResult.belongsTo(models.Remark, {
+        foreignKey: "remarkId",
+        as: "remark",
+      });
     }
   }
 
@@ -84,6 +89,17 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         field: "get_distinction",
         type: DataTypes.TINYINT,
+      },
+      remarkId: {
+        allowNull: false,
+        field: "remark_id",
+        onDelete: "NO ACTION",
+        onUpdate: "CASCADE",
+        references: {
+          model: "remarks",
+          key: "remark_id",
+        },
+        type: DataTypes.INTEGER,
       },
       createdAt: {
         allowNull: false,

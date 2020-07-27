@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Parent.belongsTo(models.Student, {
         foreignKey: "studentId",
+        as: "student",
       });
       Parent.belongsTo(models.Township, {
         foreignKey: "parentTownshipId",

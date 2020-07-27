@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.belongsTo(models.Role, {
         foreignKey: "roleId",
+        as: "role",
       });
     }
   }

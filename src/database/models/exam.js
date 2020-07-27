@@ -5,12 +5,14 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Exam extends Model {
     static associate(models) {
-      // Exam.belongsTo(models.Degree, {
-      //   foreignKey: "examId",
-      // });
+      Exam.belongsTo(models.Degree, {
+        foreignKey: "examId",
+        as: "degree",
+      });
 
       Exam.belongsTo(models.AcademicYear, {
         foreignKey: "academicYearId",
+        as: "academicYear",
       });
     }
   }
@@ -43,6 +45,28 @@ module.exports = (sequelize, DataTypes) => {
         references: {
           model: "academic_years",
           key: "academic_year_id",
+        },
+        type: DataTypes.INTEGER,
+      },
+      attendanceYearId: {
+        allowNull: false,
+        field: "attendance_year_id",
+        onDelete: "NO ACTION",
+        onUpdate: "CASCADE",
+        references: {
+          model: "attendance_years",
+          key: "attendance_year_id",
+        },
+        type: DataTypes.INTEGER,
+      },
+      majorId: {
+        allowNull: false,
+        field: "major_id",
+        onDelete: "NO ACTION",
+        onUpdate: "CASCADE",
+        references: {
+          model: "majors",
+          key: "major_id",
         },
         type: DataTypes.INTEGER,
       },

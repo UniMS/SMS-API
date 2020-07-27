@@ -12,6 +12,7 @@ exports.addStudent = catchAsync(async (req, res) => {
     parent,
   });
 });
+
 exports.getStudents = catchAsync(async (req, res) => {
   const students = await models.Student.findAll({
     include: {

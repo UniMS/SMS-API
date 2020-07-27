@@ -7,22 +7,27 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Grading.belongsTo(models.Exam, {
         foreignKey: "examId",
+        as: "exam",
       });
 
       Grading.belongsTo(models.Course, {
         foreignKey: "courseId",
+        as: "course",
       });
 
       Grading.belongsTo(models.Enrollment, {
         foreignKey: "enrollmentId",
+        as: "enrollment",
       });
 
       Grading.belongsTo(models.Grade, {
         foreignKey: "gradeId",
+        as: "grade",
       });
 
       Grading.belongsTo(models.Remark, {
         foreignKey: "remarkId",
+        as: "remark",
       });
     }
   }

@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Township.belongsTo(models.Region, {
         foreignKey: "regionId",
+        as: "region",
       });
     }
   }
