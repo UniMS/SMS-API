@@ -1,15 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const students = require("../controllers/students");
+const uploadImages = require("../middlewares/uploadImages");
+const resizeImages = require("../middlewares/resizeImages");
 
 router
   .route("/")
   .get(students.getStudents)
-  .post(
-    students.uploadStudentImages,
-    students.resizeStudentsImages,
-    students.addStudent
-  );
+  .post(uploadImages, resizeImages, students.addStudent);
+
 router.get(
   "/academic-year/:academicYearId/roll-no/:rollNo",
   students.searchByCompleteRollNumber

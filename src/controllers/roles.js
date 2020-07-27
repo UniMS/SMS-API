@@ -1,5 +1,5 @@
 const models = require("../database/models");
-const catchAsync = require("../middlewares/catchAsync");
+const catchAsync = require("../utils/catchAsync");
 
 exports.findAll = catchAsync(async (req, res) => {
   const roles = await models.Role.findAll();

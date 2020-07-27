@@ -1,6 +1,6 @@
 const { Op } = require("sequelize");
 const models = require("../database/models");
-const catchAsync = require("../middlewares/catchAsync");
+const catchAsync = require("../utils/catchAsync");
 
 exports.searchByCompleteRollNo = catchAsync(async (req, res) => {
   const enrollment = await models.Enrollment.findOne({

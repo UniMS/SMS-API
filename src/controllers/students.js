@@ -1,41 +1,11 @@
-const { Op } = require("sequelize");
 const _ = require("lodash");
-const faker = require("faker");
-const sharp = require("sharp");
-const upload = require("../utils/upload");
+const { Op } = require("sequelize");
 const models = require("../database/models");
-const catchAsync = require("../middlewares/catchAsync");
-const {
-  studentFilterFields,
-  parentFilterFields,
-  studentUploadFields,
-} = require("../utils/fields");
-
-exports.uploadStudentImages = upload.fields(studentUploadFields);
-exports.resizeStudentsImages = catchAsync(async (req, res, next) => {
-  if (!req.files) return next();
-  await Promise.all(
-    _.values(req.files).map(async (file, index) => {
-      let name = `image-${faker.random.uuid()}.jpeg`;
-      let { fieldname, buffer } = file[0];
-      await sharp(buffer)
-        .resize(640, 320)
-        .toFormat("jpeg")
-        .jpeg({ quality: 90 })
-        .toFile(`public/images/${name}`);
-      req.body[fieldname] = name;
-    })
-  );
-
-  next();
-});
+const catchAsync = require("../utils/catchAsync");
+const { studentFields, parentFields } = require("../utils/fields");
 exports.addStudent = catchAsync(async (req, res) => {
-  const student = await models.Student.create(
-    _.pick(req.body, studentFilterFields)
-  );
-  const parent = await student.createParent(
-    _.pick(req.body, parentFilterFields)
-  );
+  const student = await models.Student.create(_.pick(req.body, studentFields));
+  const parent = await student.createParent(_.pick(req.body, parentFields));
   res.status(201).send({
     status: "success",
     student,
@@ -61,6 +31,7 @@ exports.getStudents = catchAsync(async (req, res) => {
     students,
   });
 });
+
 exports.searchByCompleteRollNumber = catchAsync(async (req, res) => {
   const student = await models.Enrollment.findOne({
     where: {

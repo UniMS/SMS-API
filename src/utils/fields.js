@@ -1,4 +1,4 @@
-exports.studentFilterFields = [
+exports.studentFields = [
   "entranceNo",
   "nameEn",
   "nameMm",
@@ -18,7 +18,7 @@ exports.studentFilterFields = [
   "ethnicityId",
 ];
 
-exports.parentFilterFields = [
+exports.parentFields = [
   "fatherNameMm",
   "fatherNameEn",
   "fatherNrc",
@@ -37,7 +37,7 @@ exports.parentFilterFields = [
   "parentTownshipId",
 ];
 
-exports.studentUploadFields = [
+exports.uploadFields = [
   { name: "nrcFront", maxCount: 1 },
   { name: "nrcBack", maxCount: 1 },
   { name: "photo", maxCount: 1 },
