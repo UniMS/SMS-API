@@ -1,18 +1,5 @@
 # APIs
 
-## User
-
-### Basic CRUD routes
-
-| NO. | Method | Routes           | Description            |
-| --- | ------ | ---------------- | ---------------------- |
-| 1   | GET    | `/users`         | Get all users          |
-| 2   | POST   | `/users`         | Add new user           |
-| 3   | POST   | `/users/auth`    | Check user credentials |
-| 4   | GET    | `/users/:userId` | Get user by ID         |
-| 5   | PUT    | `/users/:userId` | Update user by ID      |
-| 6   | DELETE | `/users/:userId` | Delete user by ID      |
-
 ## Enrollment
 
 ### Basic CRUD routes
@@ -99,3 +86,16 @@
 | 34  | GET    | `/gradings/academic-year/:academicYearId/entrance-no/:entranceNo`                                  | Search a student's grading by `uni-entrance-no`      |
 | 35  | GET    | `/gradings/nrc/:nrc`                                                                               | Search a student's all gradings by `nrc`             |
 | 36  | GET    | `/gradings/entrance-no/:entranceNo`                                                                | Search a student's all gradings by `uni-entrance-no` |
+
+## User
+
+### Basic CRUD routes
+
+| NO. | Method | Routes           | Description            |
+| --- | ------ | ---------------- | ---------------------- |
+| 1   | GET    | `/users`         | Get all users          |
+| 2   | POST   | `/users`         | Add new user           |
+| 3   | POST   | `/users/auth`    | Check user credentials |
+| 4   | GET    | `/users/:userId` | Get user by ID         |
+| 5   | PUT    | `/users/:userId` | Update user by ID      |
+| 6   | DELETE | `/users/:userId` | Delete user by ID      |
