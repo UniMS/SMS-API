@@ -2,6 +2,7 @@ const _ = require("lodash");
 const faker = require("faker");
 const sharp = require("sharp");
 const catchAsync = require("../utils/catchAsync");
+
 module.exports = catchAsync(async (req, res, next) => {
   if (!req.files) return next();
   await Promise.all(

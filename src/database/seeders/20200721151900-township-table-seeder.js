@@ -1,12 +1,11 @@
 "use strict";
 
-const _ = require("lodash");
-const faker = require("faker");
+const townships = require("../../data/townships");
 
-const rows = _.range(1, 11).map((index) => {
+let rows = townships.map((township, index) => {
   return {
-    name: faker.address.city(),
-    region_id: index,
+    name: township.name,
+    region_id: township.regionId,
     created_at: new Date(),
     updated_at: new Date(),
   };

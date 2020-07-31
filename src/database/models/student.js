@@ -34,11 +34,11 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      entranceNo: {
-        allowNull: false,
-        field: "entrance_no",
-        type: DataTypes.STRING(30),
-      },
+      // entranceNo: {
+      //   allowNull: false,
+      //   field: "entrance_no",
+      //   type: DataTypes.STRING(30),
+      // },
       nameEn: {
         allowNull: false,
         field: "name_en",

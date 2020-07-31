@@ -4,10 +4,15 @@ const students = require("../controllers/students");
 const uploadImages = require("../middlewares/uploadImages");
 const resizeImages = require("../middlewares/resizeImages");
 
+const multer = require("multer");
+const upload = multer({ dest: "tmp/csv/" });
+
 router
   .route("/")
   .get(students.getStudents)
   .post(uploadImages, resizeImages, students.addStudent);
+
+router.route("/csv").post(upload.single("file"), students.importWithCSV);
 
 router.get(
   "/academic-year/:academicYearId/roll-no/:rollNo",

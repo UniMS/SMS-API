@@ -1,8 +1,159 @@
 const _ = require("lodash");
 const { Op } = require("sequelize");
+
+const fs = require("fs");
+const csv = require("fast-csv");
+
 const models = require("../database/models");
 const catchAsync = require("../utils/catchAsync");
-const { studentFields, parentFields } = require("../utils/fields");
+const {
+  studentFields,
+  parentFields,
+  csvStudentDataEntryFields,
+} = require("../utils/fields");
+
+exports.importWithCSV = catchAsync(async (req, res) => {
+  let csvData = [];
+
+  fs.createReadStream(req.file.path)
+    .pipe(
+      csv.parse({
+        ignoreEmpty: true,
+        trim: true,
+        skipLines: 6,
+      })
+    )
+    .on("error", (error) => console.error(error))
+    .on("data", (row) => {
+      csvData.push(getHeaders(_.compact(row), csvStudentDataEntryFields));
+    })
+    .on("end", async () => {
+      fs.unlinkSync(req.file.path);
+
+      const data = csvData.map((data) => {
+        const student = _.pick(data, studentFields);
+        const parent = _.pick(data, parentFields);
+        return [student, parent];
+      });
+
+      const insertedData = [];
+
+      const promises = data.map(async (d) => {
+        const gender = d[0].gender === "Male" ? 0 : 1;
+        const township = d[0].townshipId;
+        const ethnicity = d[0].ethnicityId;
+        const religion = d[0].religionId;
+        const parentTownship = d[1].parentTownshipId;
+
+        // get townshipId
+        // const { townshipId } = await models.Township.findOne({
+        //   where: {
+        //     name: township,
+        //   },
+        //   attributes: ["townshipId"],
+        //   raw: true,
+        // });
+
+        // get parentTownshipId
+        // const { townshipId: parentTownshipId } = await models.Township.findOne({
+        //   where: {
+        //     name: parentTownship,
+        //   },
+        //   attributes: ["townshipId"],
+        //   raw: true,
+        // });
+
+        // get ethnicityId
+        // const { ethnicityId } = await models.Ethnicity.findOne({
+        //   where: {
+        //     name: ethnicity,
+        //   },
+        //   attributes: ["ethnicityId"],
+        //   raw: true,
+        // });
+
+        // get religinoId
+        // const { religionId } = await models.Religion.findOne({
+        //   where: {
+        //     name: religion,
+        //   },
+        //   attributes: ["religionId"],
+        //   raw: true,
+        // });
+
+        // prepare student data with above ids
+        // const student = {
+        //   ...d[0],
+        //   gender,
+        //   townshipId,
+        //   ethnicityId,
+        //   religionId,
+        // };
+        // insert student data
+        const student = { ...d[0], gender };
+        let std = await models.Student.create({
+          student,
+          townships: [
+            {
+              name: township,
+            },
+          ],
+          ethnicities: [
+            {
+              name: ethnicity,
+            },
+          ],
+          religion: [
+            {
+              name: religion,
+            },
+          ],
+        });
+
+        // prepare parent data with above ids and lastInserted studnet Id
+        // const parent = {
+        //   ...d[1],
+        //   parentTownshipId,
+        //   studentId: std.studentId,
+        // };
+        // insert parent data
+        // await models.Parent.create(parent);
+
+        // get inserted student and parent data
+        const mydata = await models.Student.findOne({
+          where: {
+            studentId: std.studentId,
+          },
+          include: [
+            {
+              all: true,
+              nested: true,
+              attributes: { exclude: ["createdAt", "updatedAt"] },
+            },
+          ],
+        });
+
+        insertedData.push(mydata);
+      }); // end data.map
+
+      await Promise.all(promises);
+
+      return res.status(201).send({
+        status: "success",
+        insertedData,
+      });
+    }); // end readstream
+});
+
+function getHeaders(csvData, headers) {
+  let result = {};
+  result = headers.reduce(
+    (o, key, index) => ({ ...o, [key]: csvData[index] }),
+    {}
+  );
+  return result;
+}
+
 exports.addStudent = catchAsync(async (req, res) => {
   const student = await models.Student.create(_.pick(req.body, studentFields));
   const parent = await student.createParent(_.pick(req.body, parentFields));

@@ -5,7 +5,7 @@ const faker = require("faker");
 
 const rows = _.range(1, 21).map(() => {
   return {
-    entrance_no: faker.random.alphaNumeric(10),
+    // entrance_no: faker.random.alphaNumeric(10),
     name_en: faker.internet.userName(),
     name_mm: faker.internet.userName(),
     nrc: faker.random.alphaNumeric(4),
