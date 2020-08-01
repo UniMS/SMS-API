@@ -16,6 +16,8 @@ router.get(
 
 router.get("/:studentId", students.getStudent);
 
+router.get("/:studentId/parents", students.getParent);
+
 // ----------------------------------------------------------------------------
 router.route("/").post(uploadImages, resizeImages, students.addStudent);
 
@@ -38,6 +40,5 @@ router.get(
 );
 
 router.get("/:studentId/attendance-history", students.getAcademicHistories);
-router.get("/:studentId/parents", students.getParent);
 
 module.exports = router;

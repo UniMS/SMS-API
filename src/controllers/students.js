@@ -218,6 +218,29 @@ exports.getStudent = catchAsync(async (req, res) => {
   });
 });
 
+exports.getParent = catchAsync(async (req, res) => {
+  const parent = await models.Parent.findAll({
+    where: {
+      studentId: req.params.studentId,
+    },
+    include: [
+      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
+    ],
+  });
+
+  if (!parent)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+  return res.status(200).json({
+    status: "success",
+    data: {
+      parent,
+    },
+  });
+});
+
 // ------------------------------------------------------------------
 
 exports.addStudent = catchAsync(async (req, res) => {
@@ -373,29 +396,6 @@ exports.getAcademicHistories = catchAsync(async (req, res) => {
     status: "success",
     data: {
       histories,
-    },
-  });
-});
-
-exports.getParent = catchAsync(async (req, res) => {
-  const parent = await models.Parent.findAll({
-    where: {
-      studentId: req.params.studentId,
-    },
-    include: [
-      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
-    ],
-  });
-
-  if (!parent)
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
-  return res.status(200).json({
-    status: "success",
-    data: {
-      parent,
     },
   });
 });
