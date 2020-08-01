@@ -17,9 +17,9 @@ module.exports = (sequelize, DataTypes) => {
       });
 
       Township.hasMany(models.Parent, {
-        foreignKey: "townshipId",
+        foreignKey: "parentTownshipId",
         as: "parentTownship",
-        sourceKey: "townshipId",
+        // sourceKey: "townshipId",
       });
 
       // Township.belongsTo(models.Student, {

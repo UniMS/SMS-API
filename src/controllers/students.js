@@ -190,6 +190,34 @@ exports.filterStudents = catchAsync(async (req, res) => {
   });
 });
 
+exports.getStudent = catchAsync(async (req, res) => {
+  const student = await models.Student.findOne({
+    where: {
+      studentId: req.params.studentId,
+    },
+    include: [
+      {
+        all: true,
+        nested: true,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
+    ],
+  });
+
+  if (student.length < 0)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      student,
+    },
+  });
+});
+
 // ------------------------------------------------------------------
 
 exports.addStudent = catchAsync(async (req, res) => {

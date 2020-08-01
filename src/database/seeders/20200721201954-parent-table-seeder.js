@@ -21,7 +21,7 @@ const rows = _.range(1, 21).map((index) => {
     mother_phone: faker.phone.phoneNumber(),
     address: faker.address.streetAddress(),
     student_id: index,
-    township_id: _.random(1, 10),
+    parent_township_id: _.random(1, 10),
     created_at: new Date(),
     updated_at: new Date(),
   };

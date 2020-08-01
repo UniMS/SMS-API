@@ -14,6 +14,8 @@ router.get(
   students.filterStudents
 );
 
+router.get("/:studentId", students.getStudent);
+
 // ----------------------------------------------------------------------------
 router.route("/").post(uploadImages, resizeImages, students.addStudent);
 

@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
 
       Parent.belongsTo(models.Township, {
         foreignKey: "parentTownshipId",
-        as: "township",
-        targetKey: "townshipId",
+        as: "parentTownship",
+        // targetKey: "townshipId",
       });
     }
   }
@@ -114,7 +114,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       parentTownshipId: {
         allowNull: false,
-        field: "township_id",
+        field: "parent_township_id",
         onDelete: "NO ACTION",
         onUpdate: "CASCADE",
         references: {

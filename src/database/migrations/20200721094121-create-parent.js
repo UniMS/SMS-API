@@ -98,7 +98,7 @@ module.exports = {
       },
       parentTownshipId: {
         allowNull: false,
-        field: "township_id",
+        field: "parent_township_id",
         onDelete: "NO ACTION",
         onUpdate: "CASCADE",
         references: {
