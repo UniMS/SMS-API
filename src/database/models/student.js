@@ -8,19 +8,25 @@ module.exports = (sequelize, DataTypes) => {
       Student.belongsTo(models.Township, {
         foreignKey: "townshipId",
         as: "township",
+        targetKey: "townshipId",
       });
 
       Student.belongsTo(models.Ethnicity, {
         foreignKey: "ethnicityId",
         as: "ethnicity",
+        targetKey: "ethnicityId",
       });
-      Student.hasOne(models.Parent, {
-        foreignKey: "studentId",
-        as: "parent",
-      });
+
       Student.belongsTo(models.Religion, {
         foreignKey: "religionId",
         as: "religion",
+        targetKey: "religionId",
+      });
+
+      Student.hasOne(models.Parent, {
+        foreignKey: "studentId",
+        as: "parent",
+        sourceKey: "studentId",
       });
     }
   }

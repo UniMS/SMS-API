@@ -7,12 +7,15 @@ const resizeImages = require("../middlewares/resizeImages");
 const multer = require("multer");
 const upload = multer({ dest: "tmp/csv/" });
 
-router
-  .route("/")
-  .get(students.getStudents)
-  .post(uploadImages, resizeImages, students.addStudent);
-
 router.route("/csv").post(upload.single("file"), students.importWithCSV);
+
+router.get(
+  "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId",
+  students.filterStudents
+);
+
+// ----------------------------------------------------------------------------
+router.route("/").post(uploadImages, resizeImages, students.addStudent);
 
 router.get(
   "/academic-year/:academicYearId/roll-no/:rollNo",
@@ -30,11 +33,6 @@ router.get(
 router.get(
   "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/name/:name",
   students.searchByName
-);
-
-router.get(
-  "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId",
-  students.filterStudents
 );
 
 router.get("/:studentId/attendance-history", students.getAcademicHistories);

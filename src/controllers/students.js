@@ -39,11 +39,23 @@ exports.importWithCSV = catchAsync(async (req, res) => {
       const insertedData = [];
 
       const promises = data.map(async (d) => {
-        const gender = d[0].gender === "Male" ? 0 : 1;
         const township = d[0].townshipId;
         const ethnicity = d[0].ethnicityId;
         const religion = d[0].religionId;
         const parentTownship = d[1].parentTownshipId;
+
+        const studentData = _.pick(d[0], [
+          "nameEn",
+          "nameMm",
+          "nrc",
+          "gender",
+          "birthday",
+          "phone",
+          "address",
+          "hostelAddress",
+        ]);
+
+        studentData.gender = studentData.gender === "Male" ? 0 : 1;
 
         // get townshipId
         // const { townshipId } = await models.Township.findOne({
@@ -90,25 +102,23 @@ exports.importWithCSV = catchAsync(async (req, res) => {
         //   religionId,
         // };
         // insert student data
-        const student = { ...d[0], gender };
-        let std = await models.Student.create({
-          student,
-          townships: [
-            {
-              name: township,
-            },
-          ],
-          ethnicities: [
-            {
-              name: ethnicity,
-            },
-          ],
-          religion: [
-            {
-              name: religion,
-            },
-          ],
-        });
+        let std = await models.Student.create(
+          {
+            nameEn: "Htet Phyo Naing",
+            nameMm: "ထက်ဖြိုးနိုင်",
+            nrc: "1/MaMaMa(N) 222222",
+            gender: 0,
+            birthday: "2020-07-30",
+            phone: "11111111111",
+            address: "address1",
+            hostelAddress: "hostel addr 1",
+            townshipId: 1,
+            ethnicityId: 2,
+            religionId: 2,
+            parent: [{ ...d[1], parentTownshipId: 1 }],
+          },
+          { include: ["parent"] }
+        );
 
         // prepare parent data with above ids and lastInserted studnet Id
         // const parent = {
@@ -154,6 +164,34 @@ function getHeaders(csvData, headers) {
   return result;
 }
 
+exports.filterStudents = catchAsync(async (req, res) => {
+  const students = await models.Enrollment.findAll({
+    where: {
+      academicYearId: req.params.academicYearId,
+      majorId: req.params.majorId,
+      attendanceYearId: req.params.attendanceYearId,
+    },
+    include: [
+      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
+    ],
+  });
+
+  if (!students.length > 0)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      students,
+    },
+  });
+});
+
+// ------------------------------------------------------------------
+
 exports.addStudent = catchAsync(async (req, res) => {
   const student = await models.Student.create(_.pick(req.body, studentFields));
   const parent = await student.createParent(_.pick(req.body, parentFields));
@@ -161,26 +199,6 @@ exports.addStudent = catchAsync(async (req, res) => {
     status: "success",
     student,
     parent,
-  });
-});
-
-exports.getStudents = catchAsync(async (req, res) => {
-  const students = await models.Student.findAll({
-    include: {
-      all: true,
-      exclude: ["createdAt", "updatedAt"],
-    },
-  });
-  if (!students.length > 0) {
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
-  }
-  res.status(200).send({
-    status: "success",
-    length: students.length,
-    students,
   });
 });
 
@@ -350,33 +368,6 @@ exports.getParent = catchAsync(async (req, res) => {
     status: "success",
     data: {
       parent,
-    },
-  });
-});
-
-// Filter students by academic-year, major and attendance-year
-exports.filterStudents = catchAsync(async (req, res) => {
-  const students = await models.Enrollment.findAll({
-    where: {
-      academicYearId: req.params.academicYearId,
-      majorId: req.params.majorId,
-      attendanceYearId: req.params.attendanceYearId,
-    },
-    include: [
-      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
-    ],
-  });
-
-  if (!students.length > 0)
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
-
-  return res.status(200).json({
-    status: "success",
-    data: {
-      students,
     },
   });
 });

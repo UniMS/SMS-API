@@ -9,6 +9,28 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "regionId",
         as: "region",
       });
+
+      Township.hasMany(models.Student, {
+        foreignKey: "townshipId",
+        as: "township",
+        // sourceKey: "name",
+      });
+
+      Township.hasMany(models.Parent, {
+        foreignKey: "townshipId",
+        as: "parentTownship",
+        sourceKey: "townshipId",
+      });
+
+      // Township.belongsTo(models.Student, {
+      //   foreignKey: "townshipId",
+      //   as: "township",
+      // });
+
+      // Township.belongsTo(models.Parent, {
+      //   foreignKey: "townshipId",
+      //   as: "parentTownship",
+      // });
     }
   }
 

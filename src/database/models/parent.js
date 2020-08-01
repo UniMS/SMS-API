@@ -6,10 +6,13 @@ module.exports = (sequelize, DataTypes) => {
       Parent.belongsTo(models.Student, {
         foreignKey: "studentId",
         as: "student",
+        targetKey: "studentId",
       });
+
       Parent.belongsTo(models.Township, {
         foreignKey: "parentTownshipId",
         as: "township",
+        targetKey: "townshipId",
       });
     }
   }
