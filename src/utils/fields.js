@@ -36,6 +36,15 @@ exports.parentFields = [
   "parentTownshipId",
 ];
 
+exports.enrollmentFields = [
+  "degreeId",
+  "majorId",
+  "academicYearId",
+  "attendanceYearId",
+  "rollNo",
+  "remarkId",
+];
+
 exports.uploadFields = [
   { name: "nrcFront", maxCount: 1 },
   { name: "nrcBack", maxCount: 1 },
@@ -49,7 +58,7 @@ exports.uploadFields = [
 ];
 
 exports.csvStudentDataEntryFields = [
-  "studentId",
+  "rollNo",
   "nameEn",
   "nameMm",
   "nrc",

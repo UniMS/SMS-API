@@ -8,6 +8,7 @@ const multer = require("multer");
 const upload = multer({ dest: "tmp/csv/" });
 
 router.route("/csv").post(upload.single("file"), students.importWithCSV);
+router.route("/csvv").post(upload.single("file"), students.importWithCSVv);
 
 router.get(
   "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId",
