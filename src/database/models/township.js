@@ -8,11 +8,11 @@ module.exports = (sequelize, DataTypes) => {
       Township.belongsTo(models.Region, {
         foreignKey: "regionId",
         as: "region",
-      });
+      }); // Ok
 
       Township.hasMany(models.Student, {
-        foreignKey: "townshipId",
-        as: "township",
+        foreignKey: "studentId",
+        as: "students",
         // sourceKey: "name",
       });
 

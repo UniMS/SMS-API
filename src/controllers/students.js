@@ -468,6 +468,41 @@ exports.getStudentsByTownshipId = catchAsync(async (req, res) => {
   });
 });
 
+exports.getStudentsByRegionId = catchAsync(async (req, res) => {
+  const students = await models.Student.findAll({
+    include: [
+      {
+        model: models.Township,
+        as: "township",
+        required: true,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+        include: [
+          {
+            model: models.Region,
+            as: "region",
+            required: true,
+            where: { regionId: req.params.regionId },
+            attributes: { exclude: ["createdAt", "updatedAt"] },
+          },
+        ],
+      },
+    ],
+  });
+
+  if (!students.length)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      students,
+    },
+  });
+});
+
 // ------------------------------------------------------------------
 
 exports.addStudent = catchAsync(async (req, res) => {

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "townshipId",
         as: "township",
         targetKey: "townshipId",
-      });
+      }); //ok
 
       Student.belongsTo(models.Ethnicity, {
         foreignKey: "ethnicityId",
