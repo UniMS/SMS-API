@@ -440,6 +440,34 @@ exports.getAcademicHistories = catchAsync(async (req, res) => {
   });
 });
 
+exports.getStudentsByTownshipId = catchAsync(async (req, res) => {
+  const students = await models.Student.findAll({
+    where: {
+      townshipId: req.params.townshipId,
+    },
+    include: [
+      {
+        all: true,
+        nested: true,
+        attributes: { exclude: ["createdAt", "updatedAt"] },
+      },
+    ],
+  });
+
+  if (!students)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      students,
+    },
+  });
+});
+
 // ------------------------------------------------------------------
 
 exports.addStudent = catchAsync(async (req, res) => {

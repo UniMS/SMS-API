@@ -19,6 +19,8 @@ router.get("/:studentId", students.getStudent);
 
 router.get("/:studentId/parents", students.getParent);
 
+router.get("/townships/:townshipId", students.getStudentsByTownshipId);
+
 // ----------------------------------------------------------------------------
 router.route("/").post(uploadImages, resizeImages, students.addStudent);
 
