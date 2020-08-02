@@ -6,7 +6,7 @@ module.exports = {
       examResultId: {
         allowNull: false,
         autoIncrement: true,
-        field: "exam_result_id",
+        field: "grading_id",
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
