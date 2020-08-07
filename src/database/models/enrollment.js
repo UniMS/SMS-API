@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "majorId",
         as: "major",
       });
-
       Enrollment.belongsTo(models.Student, {
         foreignKey: "studentId",
         as: "student",
@@ -33,6 +32,11 @@ module.exports = (sequelize, DataTypes) => {
       Enrollment.belongsTo(models.Status, {
         foreignKey: "statusId",
         as: "status",
+      });
+
+      Enrollment.hasOne(models.Grading, {
+        foreignKey: "enrollmentId",
+        as: "grading",
       });
     }
   }
