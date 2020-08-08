@@ -211,77 +211,6 @@ function getHeaders(csvData, headers) {
   return result;
 }
 
-exports.getStudentsCountByAcademicYear = catchAsync(async (req, res) => {
-  const studentCount = await models.Enrollment.count({
-    where: {
-      academicYearId: req.params.academicYearId,
-    },
-  });
-
-  if (!studentCount) {
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
-  }
-
-  res.status(200).send({
-    status: "success",
-    data: {
-      count: studentCount,
-    },
-  });
-});
-
-exports.getStudentsCountByMajorAndAcademicYear = catchAsync(
-  async (req, res) => {
-    const students = await models.Enrollment.findAll({
-      where: {
-        academicYearId: req.params.academicYearId,
-        majorId: req.params.majorId,
-      },
-    });
-    if (!students.length > 0) {
-      return res.status(404).json({
-        status: "fail",
-        message: "No data!",
-      });
-    }
-    res.status(200).send({
-      status: "success",
-      count: students.length,
-    });
-  }
-);
-exports.getStudentsCountBySubjectAndGrade = catchAsync(async (req, res) => {
-  const { subjectId } = await models.Subject.findOne({
-    where: {
-      name: {
-        [Op.like]: `%${req.params.name}%`,
-      },
-    },
-  });
-  const { courseId } = await models.Course.findOne({
-    subjectId: subjectId,
-    majorId: req.params.majorId,
-  });
-  const gradings = await models.Grading.findAll({
-    where: {
-      courseId,
-      gradeId: req.params.gradeId,
-    },
-  });
-  if (!gradings) {
-    res.status(404).send({
-      status: "fail",
-    });
-  }
-  res.status(200).send({
-    status: "success",
-    count: gradings.length,
-  });
-});
-
 exports.getStudentGPA = catchAsync(async (req, res, next) => {
   const enrollemnt = await models.Enrollment.findOne({
     where: {
@@ -357,6 +286,7 @@ exports.getStudent = catchAsync(async (req, res) => {
     },
   });
 });
+
 exports.getParent = catchAsync(async (req, res) => {
   const parent = await models.Parent.findAll({
     where: {
@@ -465,6 +395,53 @@ exports.getStudentsByRegionId = catchAsync(async (req, res) => {
     },
   });
 });
+
+exports.getGradingByStudentId = catchAsync(async (req, res) => {
+  const grading = await models.Enrollment.findAll({
+    where: { studentId: req.params.studentId },
+    include: [
+      {
+        model: models.Grading,
+        as: "grading",
+        include: [
+          {
+            all: true,
+            nested: true,
+            attributes: { exclude: ["createdAt", "updatedAt"] },
+          },
+        ],
+      },
+    ],
+    attributes: {
+      exclude: [
+        "enrollmentId",
+        "createdAt",
+        "updatedAt",
+        "degreeId",
+        "majorId",
+        "studentId",
+        "academicYearId",
+        "attendanceYearId",
+        "rollNo",
+        "statusId",
+      ],
+    },
+  });
+
+  if (!grading)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+  return res.status(200).json({
+    status: "success",
+    data: {
+      grading,
+    },
+  });
+});
+
+// ------------------------------------------------------------------
 
 exports.addStudent = catchAsync(async (req, res) => {
   const student = await models.Student.create(_.pick(req.body, studentFields));

@@ -204,3 +204,32 @@ exports.filterExamResultsByRemark = catchAsync(async (req, res) => {
     },
   });
 });
+
+exports.updateExamResult = catchAsync(async (req, res) => {
+  const exam_result = await models.ExamResult.update(req.body, {
+    where: {
+      examResultId: req.params.examResultId,
+    },
+  });
+  return res.status(200).json({
+    status: "success",
+    data: {
+      exam_result,
+    },
+  });
+});
+
+exports.deleteExamResult = catchAsync(async (req, res) => {
+  const exam_result = await models.ExamResult.destroy({
+    where: {
+      examResultId: req.params.examResultId,
+    },
+  });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      exam_result,
+    },
+  });
+});

@@ -7,4 +7,7 @@ router.get(
   gradings.filterGradings
 );
 
+router.put("/:gradingId", gradings.updateGrading);
+router.delete("/:gradingId", gradings.deleteGrading);
+
 module.exports = router;
