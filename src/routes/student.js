@@ -8,7 +8,6 @@ const multer = require("multer");
 const upload = multer({ dest: "tmp/csv/" });
 
 router.route("/csv").post(upload.single("file"), students.importWithCSV);
-router.route("/csvv").post(upload.single("file"), students.importWithCSVv);
 
 router.get(
   "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId",
@@ -37,26 +36,7 @@ router.get("/:studentId/parents", students.getParent);
 router.get("/townships/:townshipId", students.getStudentsByTownshipId);
 router.get("/regions/:regionId", students.getStudentsByRegionId);
 
-// ----------------------------------------------------------------------------
 router.route("/").post(uploadImages, resizeImages, students.addStudent);
-
-router.get(
-  "/academic-year/:academicYearId/roll-no/:rollNo",
-  students.searchByCompleteRollNumber
-);
-
-router.get("/nrc/:nrc", students.searchByNRC);
-router.get("/entrance-no/:entranceNo", students.searchByEntranceNo);
-
-router.get(
-  "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/roll-no/:rollNo",
-  students.searchByRollNumber
-);
-
-router.get(
-  "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/name/:name",
-  students.searchByName
-);
 
 router.get("/:studentId/attendance-history", students.getAcademicHistories);
 
