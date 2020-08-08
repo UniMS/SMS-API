@@ -7,4 +7,14 @@ router.get(
   gradings.filterGradings
 );
 
+router.get(
+  "/grade/:gradeId/subject/:name/major/:majorId/students-count",
+  gradings.getStudentsCountBySubjectAndGrade
+);
+
+router.get(
+  "/:studentId/attendance-year/:attendanceYearId/student-gpa",
+  gradings.getStudentGPA
+);
+
 module.exports = router;
