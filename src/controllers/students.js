@@ -209,7 +209,7 @@ function getHeaders(csvData, headers) {
 }
 
 exports.getStudentsCountByAcademicYear = catchAsync(async (req, res) => {
-  const studentCount = await models.Enrollment.count({
+  const studentsCount = await models.Enrollment.count({
     where: {
       academicYearId: req.params.academicYearId,
     },
@@ -222,34 +222,39 @@ exports.getStudentsCountByAcademicYear = catchAsync(async (req, res) => {
     });
   }
 
-  res.status(200).send({
+  return res.status(200).send({
     status: "success",
     data: {
-      count: studentCount,
+      count: studentsCount,
     },
   });
 });
 
 exports.getStudentsCountByMajorAndAcademicYear = catchAsync(
   async (req, res) => {
-    const students = await models.Enrollment.findAll({
+    const studentsCount = await models.Enrollment.count({
       where: {
         academicYearId: req.params.academicYearId,
         majorId: req.params.majorId,
       },
     });
-    if (!students.length > 0) {
+
+    if (!studentsCount) {
       return res.status(404).json({
         status: "fail",
         message: "No data!",
       });
     }
-    res.status(200).send({
+
+    return res.status(200).send({
       status: "success",
-      count: students.length,
+      data: {
+        count: studentsCount,
+      },
     });
   }
 );
+
 exports.getStudentsCountBySubjectAndGrade = catchAsync(async (req, res) => {
   const { subjectId } = await models.Subject.findOne({
     where: {
