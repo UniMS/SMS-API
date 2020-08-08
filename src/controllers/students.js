@@ -209,20 +209,24 @@ function getHeaders(csvData, headers) {
 }
 
 exports.getStudentsCountByAcademicYear = catchAsync(async (req, res) => {
-  const students = await models.Enrollment.findAll({
+  const studentCount = await models.Enrollment.count({
     where: {
       academicYearId: req.params.academicYearId,
     },
   });
-  if (!students.length > 0) {
+
+  if (!studentCount) {
     return res.status(404).json({
       status: "fail",
       message: "No data!",
     });
   }
+
   res.status(200).send({
     status: "success",
-    count: students.length,
+    data: {
+      count: studentCount,
+    },
   });
 });
 
