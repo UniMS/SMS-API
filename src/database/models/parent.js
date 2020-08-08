@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       studentId: {
         allowNull: false,
         field: "student_id",
-        onDelete: "NO ACTION",
+        onDelete: "CASCADE",
         onUpdate: "CASCADE",
         references: {
           model: "students",

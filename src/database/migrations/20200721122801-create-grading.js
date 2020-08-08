@@ -35,7 +35,7 @@ module.exports = {
       enrollmentId: {
         allowNull: false,
         field: "enrollment_id",
-        onDelete: "NO ACTION",
+        onDelete: "CASCADE",
         onUpdate: "CASCADE",
         references: {
           model: "enrollments",
