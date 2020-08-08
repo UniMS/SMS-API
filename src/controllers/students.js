@@ -208,35 +208,6 @@ function getHeaders(csvData, headers) {
   return result;
 }
 
-exports.getStudentsCountBySubjectAndGrade = catchAsync(async (req, res) => {
-  const { subjectId } = await models.Subject.findOne({
-    where: {
-      name: {
-        [Op.like]: `%${req.params.name}%`,
-      },
-    },
-  });
-  const { courseId } = await models.Course.findOne({
-    subjectId: subjectId,
-    majorId: req.params.majorId,
-  });
-  const gradings = await models.Grading.findAll({
-    where: {
-      courseId,
-      gradeId: req.params.gradeId,
-    },
-  });
-  if (!gradings) {
-    res.status(404).send({
-      status: "fail",
-    });
-  }
-  res.status(200).send({
-    status: "success",
-    count: gradings.length,
-  });
-});
-
 exports.getStudentGPA = catchAsync(async (req, res, next) => {
   const enrollemnt = await models.Enrollment.findOne({
     where: {

@@ -17,4 +17,9 @@ router.get(
   statistics.getStudentsCountByAcademicYearAndMajor
 );
 
+router.get(
+  "/grades/:gradeId/subject/:name/major/:majorId/students-count",
+  statistics.getStudentsCountBySubjectAndGrade
+);
+
 module.exports = router;

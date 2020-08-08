@@ -44,56 +44,6 @@ exports.filterGradings = catchAsync(async (req, res) => {
   });
 });
 
-<<<<<<< HEAD
-exports.getStudentsCountBySubjectAndGrade = catchAsync(async (req, res) => {
-  const { subjectId } = await models.Subject.findOne({
-    where: {
-      name: {
-        [Op.like]: `%${req.params.name}%`,
-      },
-    },
-  });
-  const { courseId } = await models.Course.findOne({
-    subjectId: subjectId,
-    majorId: req.params.majorId,
-  });
-  const gradings = await models.Grading.findAll({
-    where: {
-      courseId,
-      gradeId: req.params.gradeId,
-    },
-  });
-  if (!gradings) {
-    res.status(404).send({
-      status: "fail",
-    });
-  }
-  res.status(200).send({
-    status: "success",
-    count: gradings.length,
-  });
-});
-
-exports.getStudentGPA = catchAsync(async (req, res, next) => {
-  const enrollemnt = await models.Enrollment.findOne({
-    where: {
-      studentId: req.params.studentId,
-      attendanceYearId: req.params.attendanceYearId,
-    },
-    include: [
-      {
-        model: models.Grading,
-        as: "grading",
-      },
-    ],
-    attributes: {
-      exclude: ["createdAt", "updatedAt"],
-    },
-  });
-  res.status(200).send({
-    status: "success",
-    enrollemnt,
-=======
 exports.updateGrading = catchAsync(async (req, res) => {
   const grading = await models.Grading.update(req.body, {
     where: {
@@ -120,6 +70,5 @@ exports.deleteGrading = catchAsync(async (req, res) => {
     data: {
       grading,
     },
->>>>>>> a06965982c543bd7d9db6f672266dd39ad85822a
   });
 });
