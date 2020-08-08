@@ -24,4 +24,7 @@ router.get(
   examResults.filterExamResultsByRemark
 );
 
+router.put("/:examResultId", examResults.updateExamResult);
+router.delete("/:examResultId", examResults.deleteExamResult);
+
 module.exports = router;

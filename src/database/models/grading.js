@@ -15,10 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         as: "course",
       });
 
-      Grading.belongsTo(models.Enrollment, {
-        foreignKey: "enrollmentId",
-        as: "enrollment",
-      });
+      // Grading.belongsTo(models.Enrollment, {
+      //   foreignKey: "enrollmentId",
+      //   as: "enrollment",
+      // });
 
       Grading.belongsTo(models.Grade, {
         foreignKey: "gradeId",

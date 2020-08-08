@@ -34,6 +34,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "statusId",
         as: "status",
       });
+
+      Enrollment.hasOne(models.Grading, {
+        foreignKey: "enrollmentId",
+        as: "grading",
+      });
     }
   }
 

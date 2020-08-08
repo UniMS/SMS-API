@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "academicYearId",
         as: "academicYear",
       });
+
+      Exam.hasMany(models.Grading, {
+        foreignKey: "examId",
+        as: "exam",
+      });
     }
   }
 
