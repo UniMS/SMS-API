@@ -44,6 +44,7 @@ exports.filterGradings = catchAsync(async (req, res) => {
   });
 });
 
+<<<<<<< HEAD
 exports.getStudentsCountBySubjectAndGrade = catchAsync(async (req, res) => {
   const { subjectId } = await models.Subject.findOne({
     where: {
@@ -92,5 +93,33 @@ exports.getStudentGPA = catchAsync(async (req, res, next) => {
   res.status(200).send({
     status: "success",
     enrollemnt,
+=======
+exports.updateGrading = catchAsync(async (req, res) => {
+  const grading = await models.Grading.update(req.body, {
+    where: {
+      gradingId: req.params.gradingId,
+    },
+  });
+  return res.status(200).json({
+    status: "success",
+    data: {
+      grading,
+    },
+  });
+});
+
+exports.deleteGrading = catchAsync(async (req, res) => {
+  const grading = await models.Grading.destroy({
+    where: {
+      gradingId: req.params.gradingId,
+    },
+  });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      grading,
+    },
+>>>>>>> a06965982c543bd7d9db6f672266dd39ad85822a
   });
 });
