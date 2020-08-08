@@ -181,6 +181,18 @@ exports.importWithCSV = catchAsync(async (req, res) => {
 
       metaData = _.fromPairs(metaData);
 
+      /*
+      [
+        ["academicYear", "2019..."]
+        ["attendanceYear", "2019..."]
+
+        {
+          academic_year: 2019,
+          attendance_year: 2019
+        }
+      ]
+      */
+
       const mapKeyMetaData = {
         academic_year: "academicYearId",
         attendance_year: "attendanceYearId",
