@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "majorId",
         as: "major",
       });
-
       Enrollment.belongsTo(models.Student, {
         foreignKey: "studentId",
         as: "student",
