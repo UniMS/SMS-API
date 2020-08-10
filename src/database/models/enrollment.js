@@ -29,14 +29,14 @@ module.exports = (sequelize, DataTypes) => {
         as: "attendanceYear",
       });
 
-      Enrollment.belongsTo(models.Status, {
-        foreignKey: "statusId",
-        as: "status",
-      });
-
       Enrollment.hasOne(models.Grading, {
         foreignKey: "enrollmentId",
         as: "grading",
+      });
+
+      Enrollment.hasOne(models.Remark, {
+        foreignKey: "remarkId",
+        as: "remark",
       });
     }
   }

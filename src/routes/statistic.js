@@ -27,4 +27,9 @@ router.get(
   statistics.getStudentsCountBySubjectAndGrade
 );
 
+router.get(
+  "/academic-year/:academicYearId/pass-fail-rate",
+  statistics.getPassFailRateInAcademicYear
+);
+
 module.exports = router;

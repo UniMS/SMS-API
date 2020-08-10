@@ -463,82 +463,52 @@ exports.deleteStudent = catchAsync(async (req, res) => {
   });
 });
 
-exports.getPassedRateofUniversity = catchAsync(async (req, res) => {
-  //get enrollment id for selected academic year
-  const enrollments = await models.Enrollment.findAll({
-    where: {
-      academicYearId: req.params.academicYearId,
-    },
-    attributes: ['enrollmentId']
-  });
-
-  //get all remark for all enrollmentId
-  const allRemark = await Promise.all(
-    enrollments.map(async(enrollment) => {
-      return await models.Grading.findOne({
-        where: {
-          enrollmentId: enrollment.enrollmentId,
-        },
-        raw: true,
-        attributes: ["remarkId"]
-      })
-    })
-  );
-  
-  //get passed and failed rate
-  const passed = ((allRemark.filter((remark) => { return remark.remarkId == 1} ).length)/allRemark.length)*100;
-  const passedWithCredit = ((allRemark.filter((remark) => { return remark.remarkId == 3} ).length)/allRemark.length)*100;
-  const failedRate = ((allRemark.filter((remark) => { return remark.remarkId == 2} ).length)/allRemark.length)*100;
-
-  const passedRate = passed + passedWithCredit;
-    
-  if ((!passed || !passedWithCredit) && !failedRate )
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
-  return res.status(200).json({
-    status: "success",
-    data: {
-      enrollments,
-      allRemark,
-      passedRate,
-      failedRate,
-    },
-  });
-});
-
 exports.getPassedRateofMajor = catchAsync(async (req, res) => {
   //get enrollment id for selected major and academic year
   const enrollments = await models.Enrollment.findAll({
     where: {
       academicYearId: req.params.academicYearId,
-      majorId: req.params.majorId
+      majorId: req.params.majorId,
     },
-    attributes: ['enrollmentId']
+    attributes: ["enrollmentId"],
   });
 
   //get all remark for all enrollmentId
   const allRemark = await Promise.all(
-    enrollments.map(async(enrollment) => {
+    enrollments.map(async (enrollment) => {
       return await models.Grading.findOne({
         where: {
           enrollmentId: enrollment.enrollmentId,
         },
         raw: true,
-        attributes: ["remarkId"]
-      })
+        attributes: ["remarkId"],
+      });
     })
   );
 
   //get passed and failed rate
-  const passed = ((allRemark.filter((remark) => { return remark.remarkId == 1} ).length)/allRemark.length)*100;
-  const passedWithCredit = ((allRemark.filter((remark) => { return remark.remarkId == 3} ).length)/allRemark.length)*100;
-  const failedRate = ((allRemark.filter((remark) => { return remark.remarkId == 2} ).length)/allRemark.length)*100;
+  const passed =
+    (allRemark.filter((remark) => {
+      return remark.remarkId == 1;
+    }).length /
+      allRemark.length) *
+    100;
+  const passedWithCredit =
+    (allRemark.filter((remark) => {
+      return remark.remarkId == 3;
+    }).length /
+      allRemark.length) *
+    100;
+  const failedRate =
+    (allRemark.filter((remark) => {
+      return remark.remarkId == 2;
+    }).length /
+      allRemark.length) *
+    100;
 
   const passedRate = passed + passedWithCredit;
-    
-  if ((!passed || !passedWithCredit) && !failedRate )
+
+  if ((!passed || !passedWithCredit) && !failedRate)
     return res.status(404).json({
       status: "fail",
       message: "No data!",
@@ -572,17 +542,16 @@ exports.updateStudent = catchAsync(async (req, res) => {
       studentId: req.params.studentId,
     },
     raw: true,
-    attributes: upload
-  })
+    attributes: upload,
+  });
 
   //delete existing photo
   Object.values(oldStudentData).map((photo) => {
     console.log(photo);
-    fs.unlink(path.join(`public/images/`,photo),(err) => {
+    fs.unlink(path.join(`public/images/`, photo), (err) => {
       console.log(err);
     });
-
-  })
+  });
 
   //upload student data
   const student = await models.Student.update(req.body, {
@@ -592,7 +561,7 @@ exports.updateStudent = catchAsync(async (req, res) => {
   });
   return res.status(200).json({
     status: "success",
-    data: { student }
+    data: { student },
   });
 });
 
@@ -604,17 +573,16 @@ exports.updateParent = catchAsync(async (req, res) => {
       parentId: req.params.parentId,
     },
     raw: true,
-    attributes: upload
-  })
+    attributes: upload,
+  });
 
   //delete existing photo
   Object.values(oldParentData).map((photo) => {
     console.log(photo);
-    fs.unlink(path.join(`public/images/`,photo),(err) => {
+    fs.unlink(path.join(`public/images/`, photo), (err) => {
       console.log(err);
     });
-
-  })
+  });
 
   //upload parent data
   const parent = await models.Parent.update(req.body, {
@@ -624,6 +592,6 @@ exports.updateParent = catchAsync(async (req, res) => {
   });
   return res.status(200).json({
     status: "success",
-    data: { parent }
+    data: { parent },
   });
 });
