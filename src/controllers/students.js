@@ -1,5 +1,4 @@
 const _ = require("lodash");
-const { Op } = require("sequelize");
 
 const fs = require("fs");
 const csv = require("fast-csv");
