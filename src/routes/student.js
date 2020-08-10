@@ -30,8 +30,16 @@ router.get("/:studentId/parents", students.getParent);
 router.get("/townships/:townshipId", students.getStudentsByTownshipId);
 router.get("/regions/:regionId", students.getStudentsByRegionId);
 
-router.route("/").post(uploadImages, resizeImages, students.addStudent);
-
 router.get("/:studentId/attendance-history", students.getAcademicHistories);
+
+router.delete("/:studentId", students.deleteStudent);
+
+router.get("/academic-year/:academicYearId/passed-failed-rate", students.getPassedRateofUniversity);
+router.get("/major/:majorId/academic-year/:academicYearId/passed-failed-rate", students.getPassedRateofMajor);
+
+router.use(uploadImages, resizeImages);
+router.route("/").post(students.addStudent);
+router.put("/:studentId/student",students.updateStudent);
+router.put("/:parentId/parent",students.updateParent);
 
 module.exports = router;

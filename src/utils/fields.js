@@ -17,6 +17,14 @@ exports.studentFields = [
   "ethnicityId",
 ];
 
+exports.studentUploadFields = [
+  "nrcFront",
+  "nrcBack",
+  "photo",
+  "wardRecommendationLetter",
+  "policeRecommendationLetter",
+]
+
 exports.parentFields = [
   "fatherNameMm",
   "fatherNameEn",
@@ -34,6 +42,13 @@ exports.parentFields = [
   "motherPhone",
   "parentAddress",
   "parentTownshipId",
+];
+
+exports.parentUploadFields = [
+  "fatherNrcFront",
+  "fatherNrcBack",
+  "motherNrcFront",
+  "motherNrcBack",
 ];
 
 exports.enrollmentFields = [
