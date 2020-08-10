@@ -34,11 +34,6 @@ router.get("/:studentId/attendance-history", students.getAcademicHistories);
 
 router.delete("/:studentId", students.deleteStudent);
 
-router.get(
-  "/major/:majorId/academic-year/:academicYearId/passed-failed-rate",
-  students.getPassedRateofMajor
-);
-
 router.use(uploadImages, resizeImages);
 router.route("/").post(students.addStudent);
 router.put("/:studentId/student", students.updateStudent);

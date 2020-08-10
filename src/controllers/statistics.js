@@ -1,6 +1,9 @@
 const _ = require("lodash");
 const models = require("../database/models");
 const catchAsync = require("../utils/catchAsync");
+const majors = require("../data/majors");
+
+const { Sequelize } = require("sequelize");
 
 /*
 --------------------------------------------
@@ -124,7 +127,7 @@ exports.getPassFailRateInAcademicYear = catchAsync(async (req, res) => {
   });
 
   // get all remarks for all enrollments
-  const remarkCount = await Promise.all(
+  const remarks = await Promise.all(
     enrollments.map(async (enrollment) => {
       return await models.Grading.count({
         where: {
@@ -137,7 +140,7 @@ exports.getPassFailRateInAcademicYear = catchAsync(async (req, res) => {
     })
   );
 
-  const failRate = (_.compact(remarkCount).length / enrollments.length) * 100;
+  const failRate = (_.compact(remarks).length / enrollments.length) * 100;
   const passRate = 100 - failRate;
 
   if (!passRate && !failRate)
@@ -155,3 +158,84 @@ exports.getPassFailRateInAcademicYear = catchAsync(async (req, res) => {
     },
   });
 });
+
+exports.getPassFailRateForAttendanceAndAcademicYear = catchAsync(
+  async (req, res) => {
+    // get enrollments for given academic year
+    const enrollments = await models.Enrollment.findAll({
+      where: {
+        academicYearId: req.params.academicYearId,
+        attendanceYearId: req.params.attendanceYearId,
+      },
+      // include: [
+      //   {
+      //     model: models.Major,
+      //     as: "major",
+      //     attributes: ["name"],
+      //   },
+      // ],
+      // attributes: [
+      //   "enrollmentId",
+      //   "status",
+      //   [Sequelize.fn("MIN", Sequelize.col("majorId")), "majorId"],
+      // ],
+      attributes: [
+        "enrollmentId",
+        "majorId",
+        [models.sequelize.fn("MIN", `Enrollment.majorId`), "majorId"],
+      ],
+      include: [
+        {
+          model: models.Major,
+          as: "major",
+          attributes: ["name"],
+        },
+      ],
+      group: "majorId",
+    });
+
+    // const enrollments = await models.sequelize.query(
+    //   `
+    // SELECT MIN(enrollment_id) AS enrollmentId, MIN(major_id) AS majorId
+    // FROM enrollments
+    // WHERE academic_year_id = 1 AND attendance_year_id = 5 GROUP BY major_id;`,
+    //   { type: models.sequelize.QueryTypes.SELECT }
+    // );
+
+    // const aaa = enrollments.map((enrollment) => {
+    //   if (enrollment.majorId === 1)
+    //     return [enrollment.major.name].push(enrollment.enrollmentId);
+    // });
+
+    // const filteredEnrollments = majors.map((major, index) => {
+    //   const obj = enrollments.filter((enrollment) => {
+    //     return enrollment.majorId == index + 1 ? enrollment.enrollmentId : "";
+    //   });
+
+    //   if (obj.length > 0) {
+    //     return { [major.name]: obj };
+    //   }
+    // });
+    return res.status(200).json({
+      status: "success",
+      data: {
+        enrollments,
+        // aaa,
+        // enroll,
+        // filteredEnrollments,
+      },
+    });
+  }
+);
+/*
+
+enrollments = [
+  {
+    "ict": [1, 2, 3]
+  }, 
+  {
+    "ece": [1, 2, 3]
+  }
+]
+
+*/

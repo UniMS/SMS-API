@@ -32,4 +32,9 @@ router.get(
   statistics.getPassFailRateInAcademicYear
 );
 
+router.get(
+  "/academic-year/:academicYearId/attendance-year/:attendanceYearId/pass-fail-rate",
+  statistics.getPassFailRateForAttendanceAndAcademicYear
+);
+
 module.exports = router;

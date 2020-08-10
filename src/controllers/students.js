@@ -463,67 +463,6 @@ exports.deleteStudent = catchAsync(async (req, res) => {
   });
 });
 
-exports.getPassedRateofMajor = catchAsync(async (req, res) => {
-  //get enrollment id for selected major and academic year
-  const enrollments = await models.Enrollment.findAll({
-    where: {
-      academicYearId: req.params.academicYearId,
-      majorId: req.params.majorId,
-    },
-    attributes: ["enrollmentId"],
-  });
-
-  //get all remark for all enrollmentId
-  const allRemark = await Promise.all(
-    enrollments.map(async (enrollment) => {
-      return await models.Grading.findOne({
-        where: {
-          enrollmentId: enrollment.enrollmentId,
-        },
-        raw: true,
-        attributes: ["remarkId"],
-      });
-    })
-  );
-
-  //get passed and failed rate
-  const passed =
-    (allRemark.filter((remark) => {
-      return remark.remarkId == 1;
-    }).length /
-      allRemark.length) *
-    100;
-  const passedWithCredit =
-    (allRemark.filter((remark) => {
-      return remark.remarkId == 3;
-    }).length /
-      allRemark.length) *
-    100;
-  const failedRate =
-    (allRemark.filter((remark) => {
-      return remark.remarkId == 2;
-    }).length /
-      allRemark.length) *
-    100;
-
-  const passedRate = passed + passedWithCredit;
-
-  if ((!passed || !passedWithCredit) && !failedRate)
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
-  return res.status(200).json({
-    status: "success",
-    data: {
-      enrollments,
-      allRemark,
-      passedRate,
-      failedRate,
-    },
-  });
-});
-
 // exports.addStudent = catchAsync(async (req, res) => {
 //   const student = await models.Student.create(_.pick(req.body, studentFields));
 //   const parent = await student.createParent(_.pick(req.body, parentFields));
