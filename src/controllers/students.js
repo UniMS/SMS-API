@@ -309,14 +309,29 @@ exports.getParent = catchAsync(async (req, res) => {
   });
 });
 
-exports.getAcademicHistories = catchAsync(async (req, res) => {
+exports.getAttendanceHistories = catchAsync(async (req, res) => {
   const histories = await models.Enrollment.findAll({
     where: {
       studentId: req.params.studentId,
     },
     include: [
-      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
+      {
+        model: models.AcademicYear,
+        as: "academicYear",
+        attributes: ["name"],
+      },
+      {
+        model: models.AttendanceYear,
+        as: "attendanceYear",
+        attributes: ["name"],
+      },
+      {
+        model: models.Status,
+        as: "status",
+        attributes: ["name"],
+      },
     ],
+    attributes: ["rollNo"],
   });
 
   if (!histories.length > 0)
@@ -324,6 +339,7 @@ exports.getAcademicHistories = catchAsync(async (req, res) => {
       status: "fail",
       message: "No data!",
     });
+
   return res.status(200).json({
     status: "success",
     data: {

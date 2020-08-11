@@ -20,12 +20,12 @@ router.get("/:studentId/parents", students.getParent);
 
 router.get("/:studentId/grading", students.getGradingByStudentId);
 
+router.get("/:studentId/attendance-history", students.getAttendanceHistories);
+
 // ----------------------------------------------------------------------------
 router.route("/").post(uploadImages, resizeImages, students.addStudent);
 
 router.get("/:studentId/parents", students.getParent);
-
-router.get("/:studentId/attendance-history", students.getAcademicHistories);
 
 router.delete("/:studentId", students.deleteStudent);
 
