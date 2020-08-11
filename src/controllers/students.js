@@ -348,51 +348,6 @@ exports.getAttendanceHistories = catchAsync(async (req, res) => {
   });
 });
 
-exports.getGradingByStudentId = catchAsync(async (req, res) => {
-  const grading = await models.Enrollment.findAll({
-    where: { studentId: req.params.studentId },
-    include: [
-      {
-        model: models.Grading,
-        as: "grading",
-        include: [
-          {
-            all: true,
-            nested: true,
-            attributes: { exclude: ["createdAt", "updatedAt"] },
-          },
-        ],
-      },
-    ],
-    attributes: {
-      exclude: [
-        "enrollmentId",
-        "createdAt",
-        "updatedAt",
-        "degreeId",
-        "majorId",
-        "studentId",
-        "academicYearId",
-        "attendanceYearId",
-        "rollNo",
-        "statusId",
-      ],
-    },
-  });
-
-  if (!grading)
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
-  return res.status(200).json({
-    status: "success",
-    data: {
-      grading,
-    },
-  });
-});
-
 // ------------------------------------------------------------------
 
 exports.addStudent = catchAsync(async (req, res) => {

@@ -10,4 +10,6 @@ router.get(
 router.put("/:gradingId", gradings.updateGrading);
 router.delete("/:gradingId", gradings.deleteGrading);
 
+router.get("/students/:studentId", gradings.getGradingsByStudentId);
+
 module.exports = router;
