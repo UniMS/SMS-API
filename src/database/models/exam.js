@@ -17,7 +17,12 @@ module.exports = (sequelize, DataTypes) => {
 
       Exam.hasMany(models.Grading, {
         foreignKey: "examId",
-        as: "exam",
+        as: "gradings",
+      });
+
+      Exam.hasMany(models.ExamResult, {
+        foreignKey: "examId",
+        as: "examResults",
       });
     }
   }

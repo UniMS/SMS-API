@@ -272,7 +272,7 @@ exports.getStudent = catchAsync(async (req, res) => {
     ],
   });
 
-  if (student.length < 0)
+  if (!(student.length > 0))
     return res.status(404).json({
       status: "fail",
       message: "No data!",
@@ -287,7 +287,7 @@ exports.getStudent = catchAsync(async (req, res) => {
 });
 
 exports.getParent = catchAsync(async (req, res) => {
-  const parent = await models.Parent.findAll({
+  const parent = await models.Parent.findOne({
     where: {
       studentId: req.params.studentId,
     },
@@ -301,6 +301,7 @@ exports.getParent = catchAsync(async (req, res) => {
       status: "fail",
       message: "No data!",
     });
+
   return res.status(200).json({
     status: "success",
     data: {

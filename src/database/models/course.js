@@ -24,6 +24,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "attendanceYearId",
         as: "attendanceYear",
       });
+
+      // Course.belongsToMany(models.ExamResult, {
+      //   foreignKey: "examResultId",
+      //   as: "examResult",
+      // });
     }
   }
 

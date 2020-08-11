@@ -3,30 +3,41 @@ const models = require("../database/models");
 const catchAsync = require("../utils/catchAsync");
 
 exports.filterExamResults = catchAsync(async (req, res) => {
-  const exam = await models.Exam.findOne({
+  const subjects = await models.Subject.findAll({
+    attributes: ["code", "name"],
+    include: [
+      {
+        model: models.Course,
+        as: "course",
+        where: {
+          academicYearId: req.params.academicYearId,
+          majorId: req.params.majorId,
+          attendanceYearId: req.params.attendanceYearId,
+        },
+        attributes: [],
+      },
+    ],
+  });
+
+  const examResults = await models.Enrollment.findAll({
     where: {
       academicYearId: req.params.academicYearId,
       majorId: req.params.majorId,
       attendanceYearId: req.params.attendanceYearId,
     },
-    attributes: ["examId"],
-  });
-
-  if (!exam)
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
-
-  const examResults = await models.ExamResult.findAll({
-    where: {
-      examId: exam.examId,
-    },
+    attributes: ["enrollmentId", "rollNo"],
     include: [
       {
-        all: true,
-        nested: true,
-        attributes: { exclude: ["createdAt", "updatedAt"] },
+        model: models.ExamResult,
+        as: "examResult",
+        attributes: ["gradeId"],
+        include: [
+          {
+            model: models.Grade,
+            as: "grade",
+            attributes: ["name"],
+          },
+        ],
       },
     ],
   });
@@ -40,6 +51,7 @@ exports.filterExamResults = catchAsync(async (req, res) => {
   return res.status(200).json({
     status: "success",
     data: {
+      subjects,
       examResults,
     },
   });
