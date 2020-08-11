@@ -58,6 +58,90 @@ exports.getStudentsCountByAcademicYearAndMajor = catchAsync(
   }
 );
 
+exports.getStudentsByTownshipIdAndAcademicYearId = catchAsync(
+  async (req, res) => {
+    const enrollments = await models.Enrollment.findAll({
+      where: {
+        academicYearId: req.params.academicYearId,
+      },
+      attributes: ["rollNo"],
+      include: [
+        {
+          model: models.Student,
+          as: "student",
+          attributes: { exclude: ["createdAt", "updatedAt"] },
+          include: [
+            { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
+          ],
+        },
+      ],
+    });
+
+    if (!enrollments)
+      return res.status(404).json({
+        status: "fail",
+        message: "No data!",
+      });
+
+    return res.status(200).json({
+      status: "success",
+      data: {
+        count: enrollments.length,
+        enrollments,
+      },
+    });
+  }
+);
+
+exports.getStudentsByRegionIdAndAcademicYearId = catchAsync(
+  async (req, res) => {
+    const enrollments = await models.Enrollment.findAll({
+      where: {
+        academicYearId: req.params.academicYearId,
+      },
+      attributes: ["rollNo"],
+      include: [
+        {
+          model: models.Student,
+          as: "student",
+          attributes: { exclude: ["createdAt", "updatedAt"] },
+          include: [
+            {
+              model: models.Township,
+              as: "township",
+              required: true,
+              attributes: { exclude: ["createdAt", "updatedAt"] },
+              include: [
+                {
+                  model: models.Region,
+                  as: "region",
+                  required: true,
+                  where: { regionId: req.params.regionId },
+                  attributes: { exclude: ["createdAt", "updatedAt"] },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+
+    if (enrollments.length <= 0)
+      return res.status(404).json({
+        status: "fail",
+        message: "No data!",
+      });
+
+    return res.status(200).json({
+      status: "success",
+      data: {
+        count: enrollments.length,
+        enrollments,
+      },
+    });
+  }
+);
+
 /*
 --------------------------------------------
 Grading and ExamResult Statistics

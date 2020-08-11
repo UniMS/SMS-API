@@ -18,17 +18,12 @@ router.get("/:studentId", students.getStudent);
 
 router.get("/:studentId/parents", students.getParent);
 
-router.get("/townships/:townshipId", students.getStudentsByTownshipId);
-router.get("/regions/:regionId", students.getStudentsByRegionId);
-
 router.get("/:studentId/grading", students.getGradingByStudentId);
 
 // ----------------------------------------------------------------------------
 router.route("/").post(uploadImages, resizeImages, students.addStudent);
 
 router.get("/:studentId/parents", students.getParent);
-router.get("/townships/:townshipId", students.getStudentsByTownshipId);
-router.get("/regions/:regionId", students.getStudentsByRegionId);
 
 router.get("/:studentId/attendance-history", students.getAcademicHistories);
 

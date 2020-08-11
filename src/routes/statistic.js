@@ -37,4 +37,13 @@ router.get(
   statistics.getPassFailRateForAttendanceAndAcademicYear
 );
 
+router.get(
+  "/students/academic-year/:academicYearId/townships/:townshipId",
+  statistics.getStudentsByTownshipIdAndAcademicYearId
+);
+router.get(
+  "/students/academic-year/:academicYearId/regions/:regionId",
+  statistics.getStudentsByRegionIdAndAcademicYearId
+);
+
 module.exports = router;

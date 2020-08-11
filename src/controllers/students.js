@@ -332,69 +332,6 @@ exports.getAcademicHistories = catchAsync(async (req, res) => {
   });
 });
 
-exports.getStudentsByTownshipId = catchAsync(async (req, res) => {
-  const students = await models.Student.findAll({
-    where: {
-      townshipId: req.params.townshipId,
-    },
-    include: [
-      {
-        all: true,
-        nested: true,
-        attributes: { exclude: ["createdAt", "updatedAt"] },
-      },
-    ],
-  });
-
-  if (!students)
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
-
-  return res.status(200).json({
-    status: "success",
-    data: {
-      students,
-    },
-  });
-});
-
-exports.getStudentsByRegionId = catchAsync(async (req, res) => {
-  const students = await models.Student.findAll({
-    include: [
-      {
-        model: models.Township,
-        as: "township",
-        required: true,
-        attributes: { exclude: ["createdAt", "updatedAt"] },
-        include: [
-          {
-            model: models.Region,
-            as: "region",
-            required: true,
-            where: { regionId: req.params.regionId },
-            attributes: { exclude: ["createdAt", "updatedAt"] },
-          },
-        ],
-      },
-    ],
-  });
-
-  if (!students.length)
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
-
-  return res.status(200).json({
-    status: "success",
-    data: {
-      students,
-    },
-  });
-});
-
 exports.getGradingByStudentId = catchAsync(async (req, res) => {
   const grading = await models.Enrollment.findAll({
     where: { studentId: req.params.studentId },
