@@ -167,23 +167,6 @@ exports.getPassFailRateForAttendanceAndAcademicYear = catchAsync(
         academicYearId: req.params.academicYearId,
         attendanceYearId: req.params.attendanceYearId,
       },
-      // include: [
-      //   {
-      //     model: models.Major,
-      //     as: "major",
-      //     attributes: ["name"],
-      //   },
-      // ],
-      // attributes: [
-      //   "enrollmentId",
-      //   "status",
-      //   [Sequelize.fn("MIN", Sequelize.col("majorId")), "majorId"],
-      // ],
-      attributes: [
-        "enrollmentId",
-        "majorId",
-        [models.sequelize.fn("MIN", `Enrollment.majorId`), "majorId"],
-      ],
       include: [
         {
           model: models.Major,
@@ -191,51 +174,52 @@ exports.getPassFailRateForAttendanceAndAcademicYear = catchAsync(
           attributes: ["name"],
         },
       ],
-      group: "majorId",
+      raw: true,
+      attributes: ["enrollmentId", "majorId"],
     });
 
-    // const enrollments = await models.sequelize.query(
-    //   `
-    // SELECT MIN(enrollment_id) AS enrollmentId, MIN(major_id) AS majorId
-    // FROM enrollments
-    // WHERE academic_year_id = 1 AND attendance_year_id = 5 GROUP BY major_id;`,
-    //   { type: models.sequelize.QueryTypes.SELECT }
-    // );
+    const groupedEnrollments = _.mapValues(
+      _.groupBy(enrollments, "major.name"),
+      (enrollmentList) =>
+        enrollmentList
+          .map((enrollment) => _.omit(enrollment, ["majorId", "major.name"]))
+          .map((enrollment) => {
+            return enrollment.enrollmentId;
+          })
+    );
 
-    // const aaa = enrollments.map((enrollment) => {
-    //   if (enrollment.majorId === 1)
-    //     return [enrollment.major.name].push(enrollment.enrollmentId);
-    // });
+    // get all remarks for all enrollments
+    const promises = _.keys(groupedEnrollments).map(async (major) => {
+      let result = await Promise.all(
+        groupedEnrollments[major].map(async (enrollmentId) => {
+          return await models.Grading.count({
+            where: {
+              enrollmentId: enrollmentId,
+              remarkId: 2,
+            },
+            distinct: true,
+            col: "enrollmentId",
+          });
+        })
+      );
+      const failRate = (_.compact(result).length / result.length) * 100;
+      const passRate = 100 - failRate;
+      return { [major]: { failRate, passRate } };
+    });
 
-    // const filteredEnrollments = majors.map((major, index) => {
-    //   const obj = enrollments.filter((enrollment) => {
-    //     return enrollment.majorId == index + 1 ? enrollment.enrollmentId : "";
-    //   });
+    const results = await Promise.all(promises);
 
-    //   if (obj.length > 0) {
-    //     return { [major.name]: obj };
-    //   }
-    // });
+    if (results.length <= 0)
+      return res.status(404).json({
+        status: "fail",
+        message: "No data!",
+      });
+
     return res.status(200).json({
       status: "success",
       data: {
-        enrollments,
-        // aaa,
-        // enroll,
-        // filteredEnrollments,
+        results,
       },
     });
   }
 );
-/*
-
-enrollments = [
-  {
-    "ict": [1, 2, 3]
-  }, 
-  {
-    "ece": [1, 2, 3]
-  }
-]
-
-*/
