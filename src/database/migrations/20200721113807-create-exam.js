@@ -54,10 +54,6 @@ module.exports = {
         },
         type: Sequelize.INTEGER,
       },
-      semester: {
-        allowNull: false,
-        type: Sequelize.TINYINT,
-      },
       heldIn: {
         allowNull: false,
         field: "held_in",

@@ -11,7 +11,7 @@ const gradings = _.range(1, 21).map((index) => {
     exam_id: _.random(1, 10),
     course_id: index,
     enrollment_id: index,
-    grade_id: _.random(1, 10),
+    grade_id: _.random(1, 9),
     remark_id: _.random(1, 3),
     created_at: new Date(),
     updated_at: new Date(),

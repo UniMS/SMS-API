@@ -5,8 +5,6 @@ const religions = require("../../data/religions");
 const rows = religions.map((religion) => {
   return {
     name: religion,
-    created_at: new Date(),
-    updated_at: new Date(),
   };
 });
 

@@ -1,64 +1,46 @@
 module.exports = [
   {
-    name: "B.E(IST)",
-    description: "Bechelor of Engineering (Information Science Technology)",
+    name: "B.E(Information Science and Technology)",
+    majorId: 2,
   },
   {
-    name: "B.E(CE)",
-    description: "Bechelor of Engineering (Computer Engineering)",
+    name: "B.E(Computer Engineering)",
+    majorId: 3,
   },
   {
-    name: "B.E(EcE)",
-    description:
-      "Bechelor of Engineering (Electronics and Communication Engineering)",
+    name: "M.E(Information Science and Technology)",
+    majorId: 2,
   },
   {
-    name: "B.E(Ame)",
-    description: "Bechelor of Engineering (Advanced Material Engineering)",
+    name: "M.E(Computer Engineering)",
+    majorId: 3,
   },
   {
-    name: "B.E(Pre)",
-    description: "Bechelor of Engineering (Precision Engineering)",
+    name: "Ph.D(Information Technology)",
+    majorId: 2,
   },
   {
-    name: "M.E(IST)",
-    description: "Master of Engineering (Information Science Technology)",
+    name: "B.E(Electronic Engineering)",
+    majorId: 4,
   },
   {
-    name: "M.E(CE)",
-    description: "Master of Engineering (Computer Engineering)",
+    name: "M.E(Electronic Engineering)",
+    majorId: 4,
   },
   {
-    name: "M.E(EcE)",
-    description:
-      "Master of Engineering (Electronics and Communication Engineering)",
+    name: "B.E(Mechanical Precision and Automation)",
+    majorId: 5,
   },
   {
-    name: "M.E(Ame)",
-    description: "Master of Engineering (Advanced Material Engineering)",
+    name: "M.E(Mechanical Precision and Automation)",
+    majorId: 5,
   },
   {
-    name: "M.E (Pre)",
-    description: "Master of Engineering (Precision Engineering)",
+    name: "B.E(Materials and Matellurgy)",
+    majorId: 6,
   },
   {
-    name: "PhD(IST)",
-    description: "PhD (Information Science Technology)",
-  },
-  {
-    name: "PhD(CE)",
-    description: "PhD (Computer Engineering)",
-  },
-  {
-    name: "PhD(EcE)",
-    description: "PhD (Electronics and Communication Engineering)",
-  },
-  {
-    name: "PhD(Ame)",
-    description: "PhD (Advanced Material Engineering",
-  },
-  {
-    name: "PhD(Pre)",
-    description: "PhD (Precision Engineering",
+    name: "M.E(Materials and Matellurgy)",
+    majorId: 6,
   },
 ];

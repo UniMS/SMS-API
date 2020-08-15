@@ -20,21 +20,18 @@ module.exports = (sequelize, DataTypes) => {
       },
       name: {
         allowNull: false,
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(50),
       },
-      description: {
+      majorId: {
         allowNull: false,
-        type: DataTypes.STRING,
-      },
-      createdAt: {
-        allowNull: false,
-        field: "created_at",
-        type: DataTypes.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        field: "updated_at",
-        type: DataTypes.DATE,
+        field: "major_id",
+        onDelete: "NO ACTION",
+        onUpdate: "CASCADE",
+        references: {
+          model: "major",
+          key: "major_id",
+        },
+        type: Sequelize.INTEGER,
       },
     },
     {

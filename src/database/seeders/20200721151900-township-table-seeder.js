@@ -6,8 +6,6 @@ let rows = townships.map((township, index) => {
   return {
     name: township.name,
     region_id: township.regionId,
-    created_at: new Date(),
-    updated_at: new Date(),
   };
 });
 

@@ -18,7 +18,7 @@ sequelize = new Sequelize(
     define: {
       charset: "utf8",
       collate: "utf8_general_ci",
-      timestamps: true,
+      timestamps: false, // omit createdAt and updatedAt
     },
   }
 );

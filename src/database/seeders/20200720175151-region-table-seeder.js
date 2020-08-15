@@ -5,8 +5,6 @@ const regions = require("../../data/regions");
 const rows = regions.map((region) => {
   return {
     name: region,
-    created_at: new Date(),
-    updated_at: new Date(),
   };
 });
 

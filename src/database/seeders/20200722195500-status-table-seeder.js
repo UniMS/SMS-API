@@ -5,8 +5,6 @@ const status = require("../../data/status");
 const rows = status.map((status) => {
   return {
     name: status,
-    created_at: new Date(),
-    updated_at: new Date(),
   };
 });
 

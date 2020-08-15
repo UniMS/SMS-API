@@ -12,21 +12,7 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING(20),
-      },
-      description: {
-        allowNull: true,
-        type: Sequelize.STRING,
-      },
-      createdAt: {
-        allowNull: false,
-        field: "created_at",
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        field: "updated_at",
-        type: Sequelize.DATE,
+        type: Sequelize.STRING(30),
       },
     });
   },

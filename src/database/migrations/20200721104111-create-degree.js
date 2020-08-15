@@ -12,21 +12,18 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(50),
       },
-      description: {
+      majorId: {
         allowNull: false,
-        type: Sequelize.STRING,
-      },
-      createdAt: {
-        allowNull: false,
-        field: "created_at",
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        field: "updated_at",
-        type: Sequelize.DATE,
+        field: "major_id",
+        onDelete: "NO ACTION",
+        onUpdate: "CASCADE",
+        references: {
+          model: "majors",
+          key: "major_id",
+        },
+        type: Sequelize.INTEGER,
       },
     });
   },

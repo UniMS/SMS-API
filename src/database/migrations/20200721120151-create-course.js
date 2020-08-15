@@ -58,11 +58,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TINYINT,
       },
-      peroidsInWeeks: {
-        allowNull: false,
-        field: "periods_in_weeks",
-        type: Sequelize.TINYINT,
-      },
       lecturesInHoursPerWeek: {
         allowNull: false,
         field: "lectures_in_hours_per_week",
@@ -76,11 +71,6 @@ module.exports = {
       distinctionMark: {
         allowNull: false,
         field: "distinction_mark",
-        type: Sequelize.TINYINT,
-      },
-      fullMark: {
-        allowNull: false,
-        field: "full_mark",
         type: Sequelize.TINYINT,
       },
       createdAt: {

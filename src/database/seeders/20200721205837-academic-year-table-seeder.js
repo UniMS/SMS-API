@@ -11,8 +11,6 @@ const academicYears = _.range(openedYear, currentYear + 1).map(
 const rows = academicYears.map((academicYear) => {
   return {
     name: academicYear,
-    created_at: new Date(),
-    updated_at: new Date(),
   };
 });
 

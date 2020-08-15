@@ -22,16 +22,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
       },
       name: DataTypes.STRING,
-      createdAt: {
-        allowNull: false,
-        field: "created_at",
-        type: DataTypes.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        field: "updated_at",
-        type: DataTypes.DATE,
-      },
     },
     {
       sequelize,

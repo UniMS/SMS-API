@@ -5,11 +5,10 @@ const faker = require("faker");
 
 const exams = _.range(1, 11).map((index) => {
   return {
-    degree_id: _.random(1, 15),
+    degree_id: _.random(1, 11),
     academic_year_id: index,
     attendance_year_id: index,
     major_id: _.random(1, 5),
-    semester: _.random(1, 2),
     held_in: faker.date.past(),
     created_at: new Date(),
     updated_at: new Date(),

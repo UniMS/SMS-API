@@ -80,10 +80,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         type: DataTypes.INTEGER,
       },
-      semester: {
-        allowNull: false,
-        type: DataTypes.TINYINT,
-      },
       heldIn: {
         allowNull: false,
         field: "held_in",

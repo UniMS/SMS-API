@@ -5,9 +5,7 @@ const degrees = require("../../data/degrees");
 const rows = degrees.map((degree) => {
   return {
     name: degree.name,
-    description: degree.description,
-    created_at: new Date(),
-    updated_at: new Date(),
+    major_id: degree.majorId,
   };
 });
 

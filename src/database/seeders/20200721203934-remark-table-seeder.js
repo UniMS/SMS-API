@@ -5,8 +5,6 @@ const remarks = require("../../data/remarks");
 const rows = remarks.map((remark) => {
   return {
     name: remark,
-    created_at: new Date(),
-    updated_at: new Date(),
   };
 });
 

@@ -5,8 +5,6 @@ const ethnicities = require("../../data/ethnicities");
 const rows = ethnicities.map((ethnicity) => {
   return {
     name: ethnicity,
-    created_at: new Date(),
-    updated_at: new Date(),
   };
 });
 

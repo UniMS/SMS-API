@@ -29,16 +29,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
         type: DataTypes.STRING,
       },
-      createdAt: {
-        allowNull: false,
-        field: "created_at",
-        type: DataTypes.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        field: "updated_at",
-        type: DataTypes.DATE,
-      },
     },
     {
       sequelize,

@@ -5,8 +5,6 @@ const roles = require("../../data/roles");
 const rows = roles.map((role) => {
   return {
     name: role,
-    created_at: new Date(),
-    updated_at: new Date(),
   };
 });
 

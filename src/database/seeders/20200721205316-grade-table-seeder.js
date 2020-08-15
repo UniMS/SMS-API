@@ -4,9 +4,9 @@ const grades = require("../../data/grades");
 
 const rows = grades.map((grade) => {
   return {
-    name: grade,
-    created_at: new Date(),
-    updated_at: new Date(),
+    name: grade.name,
+    min_mark: grade.minMark,
+    max_mark: grade.maxMark,
   };
 });
 

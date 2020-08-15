@@ -6,8 +6,6 @@ const rows = majors.map((major) => {
   return {
     name: major.name,
     description: major.description,
-    created_at: new Date(),
-    updated_at: new Date(),
   };
 });
 

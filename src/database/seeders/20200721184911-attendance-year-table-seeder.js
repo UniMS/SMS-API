@@ -5,8 +5,6 @@ const attendanceYears = require("../../data/attendanceYears");
 const rows = attendanceYears.map((year) => {
   return {
     name: year,
-    created_at: new Date(),
-    updated_at: new Date(),
   };
 });
 

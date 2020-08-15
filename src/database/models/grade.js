@@ -25,19 +25,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      mark: {
+      minMark: {
         allowNull: true,
-        type: DataTypes.TINYINT,
+        field: "min_mark",
+        type: Sequelize.TINYINT,
       },
-      createdAt: {
-        allowNull: false,
-        field: "created_at",
-        type: DataTypes.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        field: "updated_at",
-        type: DataTypes.DATE,
+      maxMark: {
+        allowNull: true,
+        field: "max_mark",
+        type: Sequelize.TINYINT,
       },
     },
     {

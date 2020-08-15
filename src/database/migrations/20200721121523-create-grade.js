@@ -14,19 +14,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      mark: {
-        allowNull: true,
+      minMark: {
+        allowNull: false,
+        field: "min_mark",
         type: Sequelize.TINYINT,
       },
-      createdAt: {
+      maxMark: {
         allowNull: false,
-        field: "created_at",
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        field: "updated_at",
-        type: Sequelize.DATE,
+        field: "max_mark",
+        type: Sequelize.TINYINT,
       },
     });
   },
