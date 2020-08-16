@@ -1,3 +1,4 @@
+const _ = require("lodash");
 const models = require("../database/models");
 const catchAsync = require("../utils/catchAsync");
 
@@ -93,6 +94,54 @@ exports.filterGradings = catchAsync(async (req, res) => {
     data: {
       subjects,
       result,
+    },
+  });
+});
+
+exports.getFinalYearGPA = catchAsync(async (req, res) => {
+  const gradings = await models.Enrollment.findAll({
+    where: {
+      academicYearId: req.params.academicYearId,
+      rollNo: req.params.rollNo,
+    },
+    attributes: ["enrollmentId"],
+    include: [
+      {
+        model: models.Grading,
+        as: "grading",
+        attributes: ["gradeId"],
+        include: [{ model: models.Grade, as: "grade", attributes: ["name"] }],
+      },
+    ],
+  });
+
+  let totalPoint = 0;
+  gradings.map((grading) => {
+    const grade = grading.grading.grade.name;
+    let point = 0;
+
+    if (grade === "A+" || grade === "A") point = 5;
+    else if (grade === "A-" || grade === "B+") point = 4.5;
+    else if (grade === "B") point = 4;
+    else if (grade === "B-" || grade === "C+") point = 3.5;
+    else if (grade === "C") point = 3;
+    else if (grade === "C-") point = 2.5;
+
+    totalPoint += point;
+  });
+
+  const finalYearGPA = _.round(totalPoint / gradings.length, 1);
+
+  if (!gradings)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      finalYearGPA,
     },
   });
 });

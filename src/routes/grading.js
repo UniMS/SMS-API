@@ -7,6 +7,11 @@ router.get(
   gradings.filterGradings
 );
 
+router.get(
+  "/academic-year/:academicYearId/roll-no/:rollNo",
+  gradings.getFinalYearGPA
+);
+
 router.put("/:gradingId", gradings.updateGrading);
 router.delete("/:gradingId", gradings.deleteGrading);
 
