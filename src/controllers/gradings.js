@@ -1,7 +1,7 @@
 const _ = require("lodash");
 const models = require("../database/models");
 const catchAsync = require("../utils/catchAsync");
-const calculateGPA = require("../utils/calculateGPA");
+const calculateGPA = require("../utils/calculateFinalYearGPA");
 
 exports.filterGradings = catchAsync(async (req, res) => {
   const exam = await models.Exam.findOne({
@@ -100,6 +100,8 @@ exports.filterGradings = catchAsync(async (req, res) => {
 });
 
 exports.getFinalYearGPA = catchAsync(async (req, res) => {
+  const academicYearId = req.params.academicYearId;
+  const rollNo = req.params.rollNo;
   if (academicYearId === 1 || academicYearId === 2 || academicYearId === 3)
     if (rollNo.startsWith("6"))
       return res.status(200).json({
@@ -109,8 +111,8 @@ exports.getFinalYearGPA = catchAsync(async (req, res) => {
 
   const gradings = await models.Enrollment.findAll({
     where: {
-      academicYearId: req.params.academicYearId,
-      rollNo: req.params.rollNo,
+      academicYearId: academicYearId,
+      rollNo,
     },
     attributes: ["enrollmentId"],
     include: [
@@ -121,9 +123,11 @@ exports.getFinalYearGPA = catchAsync(async (req, res) => {
         include: [{ model: models.Grade, as: "grade", attributes: ["name"] }],
       },
     ],
+    raw: true,
+    nest: true,
   });
 
-  const finalYearGPA = calculateGPA(gradings);
+  const finalYearGPA = calculateFinalYearGPA(gradings);
 
   if (!gradings)
     return res.status(404).json({
@@ -140,28 +144,97 @@ exports.getFinalYearGPA = catchAsync(async (req, res) => {
 });
 
 exports.getCumulativeGPA = catchAsync(async (req, res) => {
-  // get studentId where matches with given roll-no and academic year
-  const { studentId } = await models.Enrollment.findOne({
+  const academicYearId = req.params.academicYearId;
+  const rollNo = req.params.rollNo;
+
+  // get academic year for response
+  const academicYear = await models.AcademicYear.findOne({
     where: {
-      academicYearId: req.params.academicYearId,
-      rollNo: req.params.rollNo,
+      academicYearId,
+    },
+    attributes: ["name"],
+  });
+
+  // get studentId where matches with given roll-no and academic year
+  const student = await models.Enrollment.findOne({
+    where: {
+      academicYearId,
+      rollNo,
     },
     attributes: ["studentId"],
   });
 
+  if (!student)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
   // get enrollments where studentId
   const enrollments = await models.Enrollment.findAll({
     where: {
-      studentId,
+      studentId: student.studentId,
     },
     attributes: ["enrollmentId"],
   });
 
+  let gradings = [];
+  const promises = enrollments.map(async (enrollment) => {
+    const grading = await models.Grading.findAll({
+      where: {
+        enrollmentId: enrollment.enrollmentId,
+      },
+      attributes: [],
+      include: [
+        {
+          model: models.Grade,
+          as: "grade",
+          attributes: ["name"],
+        },
+        {
+          model: models.Remark,
+          as: "remark",
+          attributes: ["name"],
+        },
+      ],
+    });
+
+    gradings.push(grading);
+  });
+  await Promise.all(promises);
+
+  let passGradings = gradings.filter((arr) =>
+    arr.every((obj) => obj.remark.name !== "Fail")
+  );
+
+  let totalPoints = [];
+  passGradings.map((grading) => {
+    let totalPointsInYear = 0;
+
+    grading.map((g) => {
+      const grade = g.grade.name;
+      let point = 0;
+
+      if (grade === "A+" || grade === "A") point = 5;
+      else if (grade === "A-" || grade === "B+") point = 4.5;
+      else if (grade === "B") point = 4;
+      else if (grade === "B-" || grade === "C+") point = 3.5;
+      else if (grade === "C") point = 3;
+      else if (grade === "C-") point = 2.5;
+
+      totalPointsInYear += point;
+    });
+    totalPoints.push(totalPointsInYear);
+  });
+
+  const cumulativeGPA = _.round(_.sum(totalPoints) / totalPoints.length, 1);
+
   return res.status(200).json({
     status: "success",
     data: {
-      studentId,
-      enrollments,
+      academicYear,
+      rollNo,
+      cumulativeGPA,
     },
   });
 });
