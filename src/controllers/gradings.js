@@ -1,6 +1,7 @@
 const _ = require("lodash");
 const models = require("../database/models");
 const catchAsync = require("../utils/catchAsync");
+const calculateGPA = require("../utils/calculateGPA");
 
 exports.filterGradings = catchAsync(async (req, res) => {
   const exam = await models.Exam.findOne({
@@ -115,22 +116,7 @@ exports.getFinalYearGPA = catchAsync(async (req, res) => {
     ],
   });
 
-  let totalPoint = 0;
-  gradings.map((grading) => {
-    const grade = grading.grading.grade.name;
-    let point = 0;
-
-    if (grade === "A+" || grade === "A") point = 5;
-    else if (grade === "A-" || grade === "B+") point = 4.5;
-    else if (grade === "B") point = 4;
-    else if (grade === "B-" || grade === "C+") point = 3.5;
-    else if (grade === "C") point = 3;
-    else if (grade === "C-") point = 2.5;
-
-    totalPoint += point;
-  });
-
-  const finalYearGPA = _.round(totalPoint / gradings.length, 1);
+  const finalYearGPA = calculateGPA(gradings);
 
   if (!gradings)
     return res.status(404).json({
