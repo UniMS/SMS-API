@@ -100,6 +100,13 @@ exports.filterGradings = catchAsync(async (req, res) => {
 });
 
 exports.getFinalYearGPA = catchAsync(async (req, res) => {
+  if (academicYearId === 1 || academicYearId === 2 || academicYearId === 3)
+    if (rollNo.startsWith("6"))
+      return res.status(200).json({
+        status: "fail",
+        message: "Invalid academic year and roll-no.",
+      });
+
   const gradings = await models.Enrollment.findAll({
     where: {
       academicYearId: req.params.academicYearId,
