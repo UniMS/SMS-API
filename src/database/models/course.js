@@ -24,11 +24,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "attendanceYearId",
         as: "attendanceYear",
       });
-
-      // Course.belongsToMany(models.ExamResult, {
-      //   foreignKey: "examResultId",
-      //   as: "examResult",
-      // });
     }
   }
 
@@ -89,11 +84,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.TINYINT,
       },
-      peroidsInWeeks: {
-        allowNull: false,
-        field: "periods_in_weeks",
-        type: DataTypes.TINYINT,
-      },
       lecturesInHoursPerWeek: {
         allowNull: false,
         field: "lectures_in_hours_per_week",
@@ -104,14 +94,14 @@ module.exports = (sequelize, DataTypes) => {
         field: "labs_fields_drawings_in_hours_per_week",
         type: DataTypes.TINYINT,
       },
+      passMark: {
+        allowNull: false,
+        field: "pass_mark",
+        type: DataTypes.TINYINT,
+      },
       distinctionMark: {
         allowNull: false,
         field: "distinction_mark",
-        type: DataTypes.TINYINT,
-      },
-      fullMark: {
-        allowNull: false,
-        field: "full_mark",
         type: DataTypes.TINYINT,
       },
       createdAt: {

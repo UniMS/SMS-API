@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "major",
           key: "major_id",
         },
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
       },
     },
     {

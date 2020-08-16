@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("gradings", {
-      examResultId: {
+      gradingId: {
         allowNull: false,
         autoIncrement: true,
         field: "grading_id",

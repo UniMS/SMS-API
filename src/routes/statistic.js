@@ -18,11 +18,6 @@ router.get(
 );
 
 router.get(
-  "/exam-results/academic-year/:academicYearId/attendance-year/:attendanceYearId/major/:majorId/count",
-  statistics.getStudentsCountBySubjectAndGrade
-);
-
-router.get(
   "/grades/academic-year/:academicYearId/attendance-year/:attendanceYearId/major/:majorId/count",
   statistics.getStudentsCountBySubjectAndGrade
 );

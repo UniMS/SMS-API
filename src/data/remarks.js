@@ -1,1 +1,1 @@
-module.exports = ["Fail", "Pass", "Pass with credit", "Pass with distinction"];
+module.exports = ["Fail", "Pass", "Pass with credit"];

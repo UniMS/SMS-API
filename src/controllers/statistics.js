@@ -161,10 +161,7 @@ exports.getStudentsCountBySubjectAndGrade = catchAsync(async (req, res) => {
     attributes: ["courseId"],
   });
 
-  const Model =
-    req.originalUrl.split("/")[3] === "grades"
-      ? { name: "Grading", id: "gradeId" }
-      : { name: "ExamResult", id: "examResultId" };
+  const Model = { name: "Grading", id: "gradeId" };
 
   const promises = courses.map(async (course) => {
     return await models[Model.name].findAll({

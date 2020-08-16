@@ -28,12 +28,12 @@ module.exports = (sequelize, DataTypes) => {
       minMark: {
         allowNull: true,
         field: "min_mark",
-        type: Sequelize.TINYINT,
+        type: DataTypes.TINYINT,
       },
       maxMark: {
         allowNull: true,
         field: "max_mark",
-        type: Sequelize.TINYINT,
+        type: DataTypes.TINYINT,
       },
     },
     {

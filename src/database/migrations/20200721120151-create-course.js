@@ -68,6 +68,11 @@ module.exports = {
         field: "labs_fields_drawings_in_hours_per_week",
         type: Sequelize.TINYINT,
       },
+      passMark: {
+        allowNull: false,
+        field: "pass_mark",
+        type: Sequelize.TINYINT,
+      },
       distinctionMark: {
         allowNull: false,
         field: "distinction_mark",

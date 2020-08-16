@@ -17,20 +17,72 @@ exports.filterGradings = catchAsync(async (req, res) => {
       message: "No data!",
     });
 
-  const gradings = await models.Grading.findAll({
+  const subjects = await models.Course.findAll({
     where: {
-      examId: exam.examId,
+      academicYearId: req.params.academicYearId,
+      majorId: req.params.majorId,
+      attendanceYearId: req.params.attendanceYearId,
     },
+    attributes: [],
     include: [
       {
-        all: true,
-        nested: true,
+        model: models.Subject,
+        as: "subject",
         attributes: { exclude: ["createdAt", "updatedAt"] },
       },
     ],
   });
 
-  if (!gradings)
+  const gradings = await models.Grading.findAll({
+    where: {
+      examId: exam.examId,
+    },
+    attributes: ["gradingId"],
+    include: [
+      {
+        model: models.Enrollment,
+        as: "enrollment",
+        attributes: ["enrollmentId", "rollNo"],
+      },
+      {
+        model: models.Grade,
+        as: "grade",
+        attributes: ["name"],
+      },
+    ],
+    raw: true,
+    nest: true,
+  });
+
+  const enrollmentById = {};
+  const gradesByEnrollmentId = {};
+
+  gradings.forEach((grading) => {
+    if (!gradesByEnrollmentId[grading.enrollment.enrollmentId]) {
+      gradesByEnrollmentId[grading.enrollment.enrollmentId] = [
+        grading.grade.name,
+      ];
+    } else {
+      gradesByEnrollmentId[grading.enrollment.enrollmentId].push(
+        grading.grade.name
+      );
+    }
+
+    if (!enrollmentById[grading.enrollment.enrollmentId]) {
+      enrollmentById[grading.enrollment.enrollmentId] = {
+        ...grading.enrollment,
+      };
+    }
+  });
+
+  const result = {
+    gradings: Object.values(enrollmentById).map((enrollment) => ({
+      ...enrollment,
+      grades: gradesByEnrollmentId[enrollment.enrollmentId],
+    })),
+  };
+
+  if (!result)
     return res.status(404).json({
       status: "fail",
       message: "No data!",
@@ -39,7 +91,8 @@ exports.filterGradings = catchAsync(async (req, res) => {
   return res.status(200).json({
     status: "success",
     data: {
-      gradings,
+      subjects,
+      result,
     },
   });
 });

@@ -7,6 +7,7 @@ const courses = _.range(1, 31).map((index) => {
     semester: Math.floor(Math.random() * 2),
     lectures_in_hours_per_week: 3,
     labs_fields_drawings_in_hours_per_week: 3,
+    pass_mark: _.sample([40, 50]),
     distinction_mark: 80,
     major_id: _.random(1, 6),
     subject_id: index,
