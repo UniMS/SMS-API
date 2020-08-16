@@ -7,14 +7,28 @@ router.get(
   gradings.filterGradings
 );
 
+/*
+--------------------------------------------
+GPA
+--------------------------------------------
+*/
 router.get(
-  "/academic-year/:academicYearId/roll-no/:rollNo",
+  "/academic-year/:academicYearId/roll-no/:rollNo/gpa",
   gradings.getFinalYearGPA
 );
 
+router.get(
+  "/academic-year/:academicYearId/roll-no/:rollNo/cumulative-gpa",
+  gradings.getCumulativeGPA
+);
+
+/*
+--------------------------------------------
+Basic CRUD
+--------------------------------------------
+*/
+router.get("/students/:studentId", gradings.getGradingsByStudentId);
 router.put("/:gradingId", gradings.updateGrading);
 router.delete("/:gradingId", gradings.deleteGrading);
-
-router.get("/students/:studentId", gradings.getGradingsByStudentId);
 
 module.exports = router;

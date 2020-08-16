@@ -132,6 +132,33 @@ exports.getFinalYearGPA = catchAsync(async (req, res) => {
   });
 });
 
+exports.getCumulativeGPA = catchAsync(async (req, res) => {
+  // get studentId where matches with given roll-no and academic year
+  const { studentId } = await models.Enrollment.findOne({
+    where: {
+      academicYearId: req.params.academicYearId,
+      rollNo: req.params.rollNo,
+    },
+    attributes: ["studentId"],
+  });
+
+  // get enrollments where studentId
+  const enrollments = await models.Enrollment.findAll({
+    where: {
+      studentId,
+    },
+    attributes: ["enrollmentId"],
+  });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      studentId,
+      enrollments,
+    },
+  });
+});
+
 exports.updateGrading = catchAsync(async (req, res) => {
   const grading = await models.Grading.update(req.body, {
     where: {
