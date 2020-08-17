@@ -186,6 +186,48 @@ exports.getStudentsByTownshipAcademicYearAndAttendanceYear = catchAsync(
   }
 );
 
+// students by academic year + attendance year + major + township
+exports.getStudentsByTownshipAcademicYearAttendanceYearAndMajor = catchAsync(
+  async (req, res) => {
+    const students = await models.Enrollment.findAll({
+      where: {
+        academicYearId: req.params.academicYearId,
+        attendanceYearId: req.params.attendanceYearId,
+        majorId: req.params.majorId,
+      },
+      attributes: ["rollNo"],
+      include: [
+        {
+          model: models.Student,
+          as: "student",
+          attributes: ["nameMm", "nameEn"],
+          include: [
+            {
+              model: models.Parent,
+              as: "parent",
+              attributes: ["fatherNameMm", "fatherNameEn", "fatherNrc"],
+            },
+          ],
+        },
+      ],
+    });
+
+    if (!students)
+      return res.status(404).json({
+        status: "fail",
+        message: "No data!",
+      });
+
+    return res.status(200).json({
+      status: "success",
+      data: {
+        count: students.length,
+        students,
+      },
+    });
+  }
+);
+
 // students by academic year and region
 exports.getStudentsByRegionIdAndAcademicYearId = catchAsync(
   async (req, res) => {
