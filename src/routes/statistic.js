@@ -4,19 +4,9 @@ const statistics = require("../controllers/statistics");
 
 /*
 --------------------------------------------
-Sdutent Statistics
+Sdutent Grading Statistics
 --------------------------------------------
 */
-router.get(
-  "/students/academic-year/:academicYearId/count",
-  statistics.getStudentsCountByAcademicYear
-);
-
-router.get(
-  "/students/academic-year/:academicYearId/major/:majorId/count",
-  statistics.getStudentsCountByAcademicYearAndMajor
-);
-
 router.get(
   "/grades/academic-year/:academicYearId/attendance-year/:attendanceYearId/major/:majorId/count",
   statistics.getStudentsCountBySubjectAndGrade
@@ -32,10 +22,31 @@ router.get(
   statistics.getPassFailRateForAttendanceAndAcademicYear
 );
 
+/*
+--------------------------------------------
+Sdutent Statistics
+--------------------------------------------
+*/
+router.get(
+  "/students/academic-year/:academicYearId/count",
+  statistics.getStudentsCountByAcademicYear
+);
+
+router.get(
+  "/students/academic-year/:academicYearId/major/:majorId/count",
+  statistics.getStudentsCountByAcademicYearAndMajor
+);
+
 router.get(
   "/students/academic-year/:academicYearId/townships/:townshipId",
-  statistics.getStudentsByTownshipIdAndAcademicYearId
+  statistics.getStudentsByTownshipAndAcademicYear
 );
+
+router.get(
+  "/students/academic-year/:academicYearId/major/:majorId/townships/:townshipId",
+  statistics.getStudentsByTownshipAcademicYearAndMajor
+);
+
 router.get(
   "/students/academic-year/:academicYearId/regions/:regionId",
   statistics.getStudentsByRegionIdAndAcademicYearId

@@ -11,6 +11,7 @@ Sdutent Statistics
 --------------------------------------------
 */
 
+// total students in each academic year
 exports.getStudentsCountByAcademicYear = catchAsync(async (req, res) => {
   const studentsCount = await models.Enrollment.count({
     where: {
@@ -33,6 +34,7 @@ exports.getStudentsCountByAcademicYear = catchAsync(async (req, res) => {
   });
 });
 
+// total students in each academic year and major
 exports.getStudentsCountByAcademicYearAndMajor = catchAsync(
   async (req, res) => {
     const studentsCount = await models.Enrollment.count({
@@ -58,26 +60,71 @@ exports.getStudentsCountByAcademicYearAndMajor = catchAsync(
   }
 );
 
-exports.getStudentsByTownshipIdAndAcademicYearId = catchAsync(
+// students by academic year + township
+exports.getStudentsByTownshipAndAcademicYear = catchAsync(async (req, res) => {
+  const students = await models.Enrollment.findAll({
+    where: {
+      academicYearId: req.params.academicYearId,
+    },
+    attributes: ["rollNo"],
+    include: [
+      {
+        model: models.Student,
+        as: "student",
+        attributes: ["nameMm", "nameEn"],
+        include: [
+          {
+            model: models.Parent,
+            as: "parent",
+            attributes: ["fatherNameMm", "fatherNameEn", "fatherNrc"],
+          },
+        ],
+      },
+    ],
+  });
+
+  if (!students)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      count: students.length,
+      students,
+    },
+  });
+});
+
+// students by academic year + major + township
+exports.getStudentsByTownshipAcademicYearAndMajor = catchAsync(
   async (req, res) => {
-    const enrollments = await models.Enrollment.findAll({
+    console.log("hehee");
+    const students = await models.Enrollment.findAll({
       where: {
         academicYearId: req.params.academicYearId,
+        majorId: req.params.majorId,
       },
       attributes: ["rollNo"],
       include: [
         {
           model: models.Student,
           as: "student",
-          attributes: { exclude: ["createdAt", "updatedAt"] },
+          attributes: ["nameMm", "nameEn"],
           include: [
-            { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
+            {
+              model: models.Parent,
+              as: "parent",
+              attributes: ["fatherNameMm", "fatherNameEn", "fatherNrc"],
+            },
           ],
         },
       ],
     });
 
-    if (!enrollments)
+    if (!students)
       return res.status(404).json({
         status: "fail",
         message: "No data!",
@@ -86,13 +133,14 @@ exports.getStudentsByTownshipIdAndAcademicYearId = catchAsync(
     return res.status(200).json({
       status: "success",
       data: {
-        count: enrollments.length,
-        enrollments,
+        count: students.length,
+        students,
       },
     });
   }
 );
 
+// students by academic year and region
 exports.getStudentsByRegionIdAndAcademicYearId = catchAsync(
   async (req, res) => {
     const enrollments = await models.Enrollment.findAll({
