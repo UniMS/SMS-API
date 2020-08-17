@@ -48,6 +48,11 @@ router.get(
 );
 
 router.get(
+  "/students/academic-year/:academicYearId/attendance-year/:attendanceYearId/townships/:townshipId",
+  statistics.getStudentsByTownshipAcademicYearAndAttendanceYear
+);
+
+router.get(
   "/students/academic-year/:academicYearId/regions/:regionId",
   statistics.getStudentsByRegionIdAndAcademicYearId
 );
