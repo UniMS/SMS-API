@@ -62,4 +62,9 @@ router.get(
   statistics.getStudentsByRegionAndAcademicYear
 );
 
+router.get(
+  "/students/academic-year/:academicYearId/major/:majorId/regions/:regionId",
+  statistics.getStudentsByRegionAndMajor
+);
+
 module.exports = router;

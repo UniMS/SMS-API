@@ -230,7 +230,7 @@ exports.getStudentsByTownshipAcademicYearAttendanceYearAndMajor = catchAsync(
 
 // students by academic year + region
 exports.getStudentsByRegionAndAcademicYear = catchAsync(async (req, res) => {
-  const enrollments = await models.Enrollment.findAll({
+  const students = await models.Enrollment.findAll({
     where: {
       academicYearId: req.params.academicYearId,
     },
@@ -261,7 +261,7 @@ exports.getStudentsByRegionAndAcademicYear = catchAsync(async (req, res) => {
     ],
   });
 
-  if (enrollments.length <= 0)
+  if (students.length <= 0)
     return res.status(404).json({
       status: "fail",
       message: "No data!",
@@ -270,8 +270,57 @@ exports.getStudentsByRegionAndAcademicYear = catchAsync(async (req, res) => {
   return res.status(200).json({
     status: "success",
     data: {
-      count: enrollments.length,
-      enrollments,
+      count: students.length,
+      enrollments: students,
+    },
+  });
+});
+
+// students by academic year + major + region
+exports.getStudentsByRegionAndMajor = catchAsync(async (req, res) => {
+  const students = await models.Enrollment.findAll({
+    where: {
+      academicYearId: req.params.academicYearId,
+      majorId: req.params.majorId,
+    },
+    attributes: ["rollNo"],
+    include: [
+      {
+        model: models.Student,
+        as: "student",
+        attributes: ["nameMm", "nameEn"],
+        include: [
+          {
+            model: models.Township,
+            as: "township",
+            required: true,
+            attributes: ["name"],
+            include: [
+              {
+                model: models.Region,
+                as: "region",
+                required: true,
+                where: { regionId: req.params.regionId },
+                attributes: ["name"],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  });
+
+  if (students.length <= 0)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      count: students.length,
+      enrollments: students,
     },
   });
 });
