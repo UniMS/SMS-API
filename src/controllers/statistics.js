@@ -701,3 +701,74 @@ exports.getPassFailRateForAcademicYearAndAttendanceYear = catchAsync(
     });
   }
 );
+
+// get pass/fail rate for academic year + major + attendance year (2019-2020, ICT, first year)
+exports.getPassFailRateForAcademicYearAttendanceYearAndMajor = catchAsync(
+  async (req, res) => {
+    // get major for response
+    const major = await models.Major.findOne({
+      where: {
+        majorId: req.params.majorId,
+      },
+      attributes: ["name"],
+    });
+
+    // get attendance year for response
+    const attendanceYear = await models.AttendanceYear.findOne({
+      where: {
+        attendanceYearId: req.params.attendanceYearId,
+      },
+      attributes: ["name"],
+    });
+
+    // get enrollments for given academic year and major
+    const enrollments = await models.Enrollment.findAll({
+      where: {
+        academicYearId: req.params.academicYearId,
+        majorId: req.params.majorId,
+        attendanceYearId: req.params.attendanceYearId,
+      },
+      attributes: ["enrollmentId"],
+    });
+
+    // get all remarks for all enrollments
+    const uniqueRemarkCount = [];
+
+    const promises = enrollments.map(async (enrollment) => {
+      const result = await models.Grading.count({
+        where: {
+          enrollmentId: enrollment.enrollmentId,
+          remarkId: 1, // fail
+        },
+        distinct: true,
+        col: "enrollmentId",
+      });
+
+      uniqueRemarkCount.push(result);
+    });
+
+    await Promise.all(promises);
+
+    const failRate = _.round(
+      (_.compact(uniqueRemarkCount).length / uniqueRemarkCount.length) * 100,
+      2
+    );
+    const passRate = 100 - failRate;
+
+    if (enrollments.length <= 0)
+      return res.status(404).json({
+        status: "fail",
+        message: "No data!",
+      });
+
+    return res.status(200).json({
+      status: "success",
+      data: {
+        major,
+        attendanceYear,
+        failRate,
+        passRate,
+      },
+    });
+  }
+);

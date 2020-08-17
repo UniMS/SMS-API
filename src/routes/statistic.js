@@ -27,6 +27,11 @@ router.get(
   statistics.getPassFailRateForAcademicYearAndAttendanceYear
 );
 
+router.get(
+  "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/pass-fail-rate",
+  statistics.getPassFailRateForAcademicYearAttendanceYearAndMajor
+);
+
 /*
 --------------------------------------------
 Sdutent Count Statistics
