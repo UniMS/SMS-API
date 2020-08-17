@@ -1,13 +1,10 @@
 const _ = require("lodash");
 const models = require("../database/models");
 const catchAsync = require("../utils/catchAsync");
-const majors = require("../data/majors");
-
-const { Sequelize } = require("sequelize");
 
 /*
 --------------------------------------------
-Sdutent Statistics
+Sdutent Count Statistics
 --------------------------------------------
 */
 
@@ -34,12 +31,39 @@ exports.getStudentsCountByAcademicYear = catchAsync(async (req, res) => {
   });
 });
 
-// total students in each academic year and major
+// total students in each academic year + major
 exports.getStudentsCountByAcademicYearAndMajor = catchAsync(
   async (req, res) => {
     const studentsCount = await models.Enrollment.count({
       where: {
         academicYearId: req.params.academicYearId,
+        majorId: req.params.majorId,
+      },
+    });
+
+    if (!studentsCount) {
+      return res.status(404).json({
+        status: "fail",
+        message: "No data!",
+      });
+    }
+
+    return res.status(200).send({
+      status: "success",
+      data: {
+        count: studentsCount,
+      },
+    });
+  }
+);
+
+// total students in each academic year + attendance year + major
+exports.getStudentsCountByAcademicYearAttendanceYearAndMajor = catchAsync(
+  async (req, res) => {
+    const studentsCount = await models.Enrollment.count({
+      where: {
+        academicYearId: req.params.academicYearId,
+        attendanceYearId: req.params.attendanceYearId,
         majorId: req.params.majorId,
       },
     });

@@ -24,7 +24,7 @@ router.get(
 
 /*
 --------------------------------------------
-Sdutent Statistics
+Sdutent Count Statistics
 --------------------------------------------
 */
 router.get(
@@ -37,6 +37,16 @@ router.get(
   statistics.getStudentsCountByAcademicYearAndMajor
 );
 
+router.get(
+  "/students/academic-year/:academicYearId/attendance-year/:attendanceYearId/major/:majorId/count",
+  statistics.getStudentsCountByAcademicYearAttendanceYearAndMajor
+);
+
+/*
+--------------------------------------------
+Township/Region Statistics
+--------------------------------------------
+*/
 router.get(
   "/students/academic-year/:academicYearId/townships/:townshipId",
   statistics.getStudentsByTownshipAndAcademicYear
