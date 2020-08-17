@@ -24,6 +24,16 @@ router.get(
 
 /*
 --------------------------------------------
+Marks
+--------------------------------------------
+*/
+router.get(
+  "/academic-year/:academicYearId/roll-no/:rollNo/all-marks",
+  gradings.getAllYearMarks
+);
+
+/*
+--------------------------------------------
 Basic CRUD
 --------------------------------------------
 */

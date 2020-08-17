@@ -99,6 +99,11 @@ exports.filterGradings = catchAsync(async (req, res) => {
   });
 });
 
+/*
+--------------------------------------------
+GPA
+--------------------------------------------
+*/
 exports.getFinalYearGPA = catchAsync(async (req, res) => {
   const academicYearId = req.params.academicYearId;
   const rollNo = req.params.rollNo;
@@ -235,6 +240,88 @@ exports.getCumulativeGPA = catchAsync(async (req, res) => {
       academicYear,
       rollNo,
       cumulativeGPA,
+    },
+  });
+});
+
+/*
+--------------------------------------------
+Marks
+--------------------------------------------
+*/
+exports.getAllYearMarks = catchAsync(async (req, res) => {
+  const student = await models.Enrollment.findOne({
+    where: {
+      academicYearId: req.params.academicYearId,
+      rollNo: req.params.rollNo,
+    },
+    include: [{ model: models.Student, as: "student", attributes: ["nameEn"] }],
+    attributes: ["studentId"],
+  });
+
+  if (!student)
+    return res.status(200).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  const enrollments = await models.Enrollment.findAll({
+    where: {
+      studentId: student.studentId,
+    },
+    include: [
+      {
+        model: models.Degree,
+        as: "degree",
+        attributes: ["name"],
+      },
+      {
+        model: models.AcademicYear,
+        as: "academicYear",
+        attributes: ["name"],
+      },
+      {
+        model: models.AttendanceYear,
+        as: "attendanceYear",
+        attributes: ["name"],
+      },
+    ],
+    attributes: ["enrollmentId"],
+  });
+
+  const promises = enrollments.map(async (enrollment) => {
+    const marks = await models.Grading.findAll({
+      where: {
+        enrollmentId: enrollment.enrollmentId,
+      },
+      include: [
+        {
+          model: models.Course,
+          as: "course",
+          attributes: ["courseId"],
+          include: [
+            {
+              model: models.Subject,
+              as: "subject",
+              attributes: ["name"],
+            },
+          ],
+        },
+      ],
+      attributes: ["enrollmentId", "mark"],
+    });
+
+    return marks;
+  });
+
+  const results = await Promise.all(promises);
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      student,
+      enrollments,
+      results,
     },
   });
 });
