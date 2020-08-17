@@ -64,7 +64,12 @@ router.get(
 
 router.get(
   "/students/academic-year/:academicYearId/major/:majorId/regions/:regionId",
-  statistics.getStudentsByRegionAndMajor
+  statistics.getStudentsByRegionAcademicYearAndMajor
+);
+
+router.get(
+  "/students/academic-year/:academicYearId/attendance-year/:attendanceYearId/regions/:regionId",
+  statistics.getStudentsByRegionAcademicYearAndAttendanceYear
 );
 
 module.exports = router;
