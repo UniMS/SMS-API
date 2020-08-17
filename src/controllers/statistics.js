@@ -503,7 +503,22 @@ exports.getStudentsCountBySubjectAndGrade = catchAsync(async (req, res) => {
   });
 });
 
-exports.getPassFailRateInAcademicYear = catchAsync(async (req, res) => {
+// get pass/fail rate for academic year (2019-2020)
+exports.getPassFailRateForAcademicYear = catchAsync(async (req, res) => {
+  // get academic year for response
+  const academicYear = await models.AcademicYear.findOne({
+    where: {
+      academicYearId: req.params.academicYearId,
+    },
+    attributes: ["name"],
+  });
+
+  if (!academicYear)
+    return res.status(404).json({
+      status: "fail",
+      message: "Invalid input",
+    });
+
   // get enrollments for given academic year
   const enrollments = await models.Enrollment.findAll({
     where: {
@@ -512,20 +527,13 @@ exports.getPassFailRateInAcademicYear = catchAsync(async (req, res) => {
     attributes: ["enrollmentId"],
   });
 
-  const academicYear = await models.AcademicYear.findOne({
-    where: {
-      academicYearId: req.params.academicYearId,
-    },
-    attributes: ["name"],
-  });
-
   // get all remarks for all enrollments
   const remarks = await Promise.all(
     enrollments.map(async (enrollment) => {
       return await models.Grading.count({
         where: {
           enrollmentId: enrollment.enrollmentId,
-          remarkId: 2,
+          remarkId: 1, // fail
         },
         distinct: true,
         col: "enrollmentId",
@@ -533,7 +541,10 @@ exports.getPassFailRateInAcademicYear = catchAsync(async (req, res) => {
     })
   );
 
-  const failRate = (_.compact(remarks).length / enrollments.length) * 100;
+  const failRate = _.round(
+    (_.compact(remarks).length / enrollments.length) * 100,
+    2
+  );
   const passRate = 100 - failRate;
 
   if (!passRate && !failRate)
@@ -552,9 +563,80 @@ exports.getPassFailRateInAcademicYear = catchAsync(async (req, res) => {
   });
 });
 
-exports.getPassFailRateForAttendanceAndAcademicYear = catchAsync(
+// get pass/fail rate for academic year + major (2019-2020, ICT, get all ICT attendance year)
+exports.getPassFailRateForAcademicYearAndMajor = catchAsync(
   async (req, res) => {
-    // get enrollments for given academic year
+    // get enrollments for given academic year and major
+    const enrollments = await models.Enrollment.findAll({
+      where: {
+        academicYearId: req.params.academicYearId,
+        majorId: req.params.majorId,
+      },
+      include: [
+        {
+          model: models.AttendanceYear,
+          as: "attendanceYear",
+          attributes: ["name"],
+        },
+      ],
+      raw: true,
+    });
+
+    const groupedEnrollments = _.mapValues(
+      _.groupBy(enrollments, "attendanceYear.name"),
+      (enrollmentList) =>
+        enrollmentList
+          .map((enrollment) =>
+            _.omit(enrollment, ["attendanceYearId", "attendanceYear.name"])
+          )
+          .map((enrollment) => {
+            return enrollment.enrollmentId;
+          })
+    );
+
+    // get all remarks for all enrollments
+    const promises = _.keys(groupedEnrollments).map(async (attendanceYear) => {
+      let result = await Promise.all(
+        groupedEnrollments[attendanceYear].map(async (enrollmentId) => {
+          return await models.Grading.count({
+            where: {
+              enrollmentId,
+              remarkId: 1, // fail
+            },
+            distinct: true,
+            col: "enrollmentId",
+          });
+        })
+      );
+      const failRate = _.round(
+        (_.compact(result).length / result.length) * 100,
+        2
+      );
+      const passRate = 100 - failRate;
+      return { [attendanceYear]: { failRate, passRate } };
+    });
+
+    const results = await Promise.all(promises);
+
+    if (results.length <= 0)
+      return res.status(404).json({
+        status: "fail",
+        message: "No data!",
+      });
+
+    return res.status(200).json({
+      status: "success",
+      data: {
+        results,
+      },
+    });
+  }
+);
+
+// get pass/fail rate for academic year + attendance year (2019-2020, first year, get all major of first year)
+exports.getPassFailRateForAcademicYearAndAttendanceYear = catchAsync(
+  async (req, res) => {
+    // get enrollments for given academic year and attendance year
     const enrollments = await models.Enrollment.findAll({
       where: {
         academicYearId: req.params.academicYearId,
@@ -588,14 +670,17 @@ exports.getPassFailRateForAttendanceAndAcademicYear = catchAsync(
           return await models.Grading.count({
             where: {
               enrollmentId: enrollmentId,
-              remarkId: 2,
+              remarkId: 1, // fail
             },
             distinct: true,
             col: "enrollmentId",
           });
         })
       );
-      const failRate = (_.compact(result).length / result.length) * 100;
+      const failRate = _.round(
+        (_.compact(result).length / result.length) * 100,
+        2
+      );
       const passRate = 100 - failRate;
       return { [major]: { failRate, passRate } };
     });

@@ -14,12 +14,17 @@ router.get(
 
 router.get(
   "/academic-year/:academicYearId/pass-fail-rate",
-  statistics.getPassFailRateInAcademicYear
+  statistics.getPassFailRateForAcademicYear
+);
+
+router.get(
+  "/academic-year/:academicYearId/major/:majorId/pass-fail-rate",
+  statistics.getPassFailRateForAcademicYearAndMajor
 );
 
 router.get(
   "/academic-year/:academicYearId/attendance-year/:attendanceYearId/pass-fail-rate",
-  statistics.getPassFailRateForAttendanceAndAcademicYear
+  statistics.getPassFailRateForAcademicYearAndAttendanceYear
 );
 
 /*
