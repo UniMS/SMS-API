@@ -59,7 +59,7 @@ router.get(
 
 router.get(
   "/students/academic-year/:academicYearId/regions/:regionId",
-  statistics.getStudentsByRegionIdAndAcademicYearId
+  statistics.getStudentsByRegionAndAcademicYear
 );
 
 module.exports = router;
