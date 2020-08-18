@@ -1,7 +1,7 @@
 const _ = require("lodash");
+const { Op } = require("sequelize");
 const models = require("../database/models");
 const catchAsync = require("../utils/catchAsync");
-const calculateGPA = require("../utils/calculateFinalYearGPA");
 
 exports.filterGradings = catchAsync(async (req, res) => {
   const exam = await models.Exam.findOne({
@@ -244,16 +244,33 @@ exports.getCumulativeGPA = catchAsync(async (req, res) => {
   });
 });
 
-/*
+/**
 --------------------------------------------
 Marks
 --------------------------------------------
 */
-exports.getAllYearMarks = catchAsync(async (req, res) => {
+/**
+ * @generateMarks generates mark certificate. Generating marks cam be done by 2 options:
+ * * 1 - for from-year to to-year -> /degree/1/from/2/to/4/roll-no/4IST-44/all-marks
+ * * 2 - for x year               -> /degree/1/from/2/to/2/roll-no/3IST-33/all-marks
+ *
+ * * 1 - for from-year to to-year (from 2015-2016 to 2019-2020, 6IST-70)
+ * @params from-year ၏ academic year, to-year ၏ academic year နှင့် to-year တွင်တက်ရောက်ခဲ့သော ခုံနံပတ်
+ *
+ * * 2 - for x year
+ * @params x year ၏ academic year နှင့် ၎င်းနှစ်တွင် တက်ရောက်ခဲ့သော ခုံနံပတ်
+ */
+exports.generateMarks = catchAsync(async (req, res) => {
+  const degreeId = req.params.degreeId;
+  const fromAcademicYearId = req.params.fromAcademicYearId;
+  const toAcademicYearId = req.params.toAcademicYearId;
+  const rollNo = req.params.rollNo;
+
   const student = await models.Enrollment.findOne({
     where: {
-      academicYearId: req.params.academicYearId,
-      rollNo: req.params.rollNo,
+      degreeId,
+      academicYearId: toAcademicYearId,
+      rollNo,
     },
     include: [{ model: models.Student, as: "student", attributes: ["nameEn"] }],
     attributes: ["studentId"],
@@ -265,10 +282,33 @@ exports.getAllYearMarks = catchAsync(async (req, res) => {
       message: "No data!",
     });
 
-  const enrollments = await models.Enrollment.findAll({
-    where: {
+  const f = parseInt(fromAcademicYearId);
+  const t = parseInt(toAcademicYearId);
+  let where = {};
+  // * 1 - for from-year to to-year (from 2015-2016 to 2019-2020, 6IST-70)
+  if (f < t) {
+    const academicYears = _.range(f, t + 1).map((r) => ({ academicYearId: r }));
+    where = {
+      degreeId,
       studentId: student.studentId,
-    },
+      [Op.or]: academicYears,
+    };
+  }
+  // * 2 - for x year
+  else if (f === t)
+    where = {
+      degreeId,
+      studentId: student.studentId,
+      academicYearId: fromAcademicYearId,
+    };
+  else
+    return res.status(200).json({
+      status: "fail",
+      message: "Invalid data",
+    });
+
+  const enrollments = await models.Enrollment.findAll({
+    where,
     include: [
       {
         model: models.Degree,
@@ -287,6 +327,8 @@ exports.getAllYearMarks = catchAsync(async (req, res) => {
       },
     ],
     attributes: ["enrollmentId"],
+    raw: true,
+    nest: true,
   });
 
   const promises = enrollments.map(async (enrollment) => {

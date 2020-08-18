@@ -28,10 +28,12 @@ Marks
 --------------------------------------------
 */
 router.get(
-  "/academic-year/:academicYearId/roll-no/:rollNo/all-marks",
-  gradings.getAllYearMarks
+  "/degree/:degreeId/from/:fromAcademicYearId/to/:toAcademicYearId/roll-no/:rollNo/all-marks",
+  gradings.generateMarks
 );
-
+// 1 year - x year -> /degree/1/from/1/to/4/roll-no/4IST-44/all-marks
+// x year - x year -> /degree/1/from/2/to/4/roll-no/4IST-44/all-marks
+// 2 year          -> /degree/1/from/2/to/2/roll-no/3IST-33/all-marks
 /*
 --------------------------------------------
 Basic CRUD
