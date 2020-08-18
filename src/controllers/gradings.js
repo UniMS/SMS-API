@@ -3,6 +3,16 @@ const { Op } = require("sequelize");
 const models = require("../database/models");
 const catchAsync = require("../utils/catchAsync");
 
+/**
+ * * verified
+ * @filterGradings filters gradings by academic year, major and attendance year.
+ *
+ * filter လုပ်မယ့် academic year, major နဲ့ attendance year တို့နဲ့ @exam table မှာရှာပြီး examId ယူ.
+ * examId နဲ့ @grading table မှာ ထပ်ရှာပြီး rollNo နဲ့ Grade ယူ.
+ * UI မှာပြဖို့ subjects တွေကိုလည်း ဝင်လာတဲ့ academic year, major နဲ့ attendance year နဲ့တိုက်ပြီး @courses table ကတဆင့် @subjects ကယူ.
+ *
+ * @params academicYearId, majorId, attendanceYearId
+ */
 exports.filterGradings = catchAsync(async (req, res) => {
   const exam = await models.Exam.findOne({
     where: {
@@ -19,6 +29,7 @@ exports.filterGradings = catchAsync(async (req, res) => {
       message: "No data!",
     });
 
+  // get subjects for response
   const subjects = await models.Course.findAll({
     where: {
       academicYearId: req.params.academicYearId,
@@ -104,10 +115,22 @@ exports.filterGradings = catchAsync(async (req, res) => {
 GPA
 --------------------------------------------
 */
+/**
+ * * verified
+ * @getFinalYearGAP returns final year GAP. It needs two parametrs: academic year and roll no.
+ * ! rollno must be final year rollno.
+ *
+ * ဝင်လာတဲ့ academic year နဲ့ roll no နဲ့ကို @enrollments table မှာရှာပြီး enrollmentId ယူ.
+ * enrollmentId နဲ့ @gradings table မှာ grade တွေယူ.
+ * ရလာတဲ့ grades တွေကို range နဲ့ပြန်တွက်. @calculateFinalYearGPA
+ *
+ * @params academicYearId, rollNo
+ */
 exports.getFinalYearGPA = catchAsync(async (req, res) => {
   const academicYearId = req.params.academicYearId;
   const rollNo = req.params.rollNo;
-  if (academicYearId === 1 || academicYearId === 2 || academicYearId === 3)
+
+  if (academicYearId == 1 || academicYearId == 2 || academicYearId == 3)
     if (rollNo.startsWith("6"))
       return res.status(200).json({
         status: "fail",
@@ -148,6 +171,19 @@ exports.getFinalYearGPA = catchAsync(async (req, res) => {
   });
 });
 
+/**
+ * * verified
+ * @getCumulativeGPA returns cumulative GPA. It needs two parameters: academic year and roll no.
+ * ! rollno must be final year rollno.
+ *
+ * ဝင်လာတဲ့ academic year နဲ့ roll no နဲ့ကို @enrollments table မှာရှာပြီး studentId ယူ.
+ * studentId နဲ့ @enrollments table မှာ enrollmentIds တွေယူ. (ဒီကျောင်းသားတက်ခဲ့တဲ့ enrollmentId တွေရ.)
+ * ရလာတဲ့ enrollmentId တစ်ခုချင်းအတွက် ရခဲ့တဲ့ gradings တွေနဲ့ remark (Fail, Pass, Pass with credit) တွေကို @gradings table မှာရှာ.
+ * ရလာတဲ့ တစ်နှစ်ချင်းစီ gradings တွေထဲမှာ Fail တဲ့တစ်ဘာသာပါရင် အဲ့နှစ် gradings တစ်ခုလုံးကို ဖြုတ်. (အောင်တဲ့နှစ်ရဲ့ gradings တွေပဲရ.)
+ * အောင်တဲ့နှစ်တွေရဲ့ gradings တွေရလာပြီဆိုရင် တစ်နှစ်ချင်းစီအတွက် grades တွေကို range နဲ့ ပြန်တွက်. @totalPoints
+ *
+ * @params academicYearId, rollNo
+ */
 exports.getCumulativeGPA = catchAsync(async (req, res) => {
   const academicYearId = req.params.academicYearId;
   const rollNo = req.params.rollNo;
@@ -246,19 +282,41 @@ exports.getCumulativeGPA = catchAsync(async (req, res) => {
 
 /**
 --------------------------------------------
+Gradings
+--------------------------------------------
+*/
+
+exports.generateGradings = catchAsync(async (req, res) => {});
+
+/**
+--------------------------------------------
 Marks
 --------------------------------------------
 */
 /**
  * @generateMarks generates mark certificate. Generating marks cam be done by 2 options:
- * * 1 - for from-year to to-year -> /degree/1/from/2/to/4/roll-no/4IST-44/all-marks
- * * 2 - for x year               -> /degree/1/from/2/to/2/roll-no/3IST-33/all-marks
+ * * 1 - for from-academic-year to to-academic-year -> /degree/1/from/2/to/4/roll-no/4IST-44/all-marks
+ * * 2 - for x-academic-year                        -> /degree/1/from/2/to/2/roll-no/3IST-33/all-marks
  *
- * * 1 - for from-year to to-year (from 2015-2016 to 2019-2020, 6IST-70)
- * @params from-year ၏ academic year, to-year ၏ academic year နှင့် to-year တွင်တက်ရောက်ခဲ့သော ခုံနံပတ်
+ * db logic တူတဲ့အတွက် option ၂ ခုလုံးကို method တစ်ခုထဲမှာ ပေါင်းရေးထားပါတယ်. condition ကတော့ မတူတဲ့အတွက် @where object ကိုတော့ condition ပေါ်မူတည်ပြီး ပြောင်းရပါတယ်.
+ * from-academic-year နဲ့ to-academic-year နဲ့မှာ to-academic-year က ကြီးရင် option 1 ဖြစ်. တူရင် option 2 ဖြစ်. ငယ်ရင် invalid ဖြစ်.
  *
- * * 2 - for x year
- * @params x year ၏ academic year နှင့် ၎င်းနှစ်တွင် တက်ရောက်ခဲ့သော ခုံနံပတ်
+ * option 1 - က နှစ်-range နဲ့ ထုတ်မှာမလို့ ဝင်လာတဲ့ from/to academic year တွေအရ range array ဆောက်. (e.g. from 2015-2016 to 2019-2020 ဆိုရင် (ကျောင်းစဖွင့်တဲ့ နှစ် 2010-2011 က db မှာ 1 ဆိုတော့) [6, 7, 8, 9, 10] ရ. )
+ * 1 - ဝင်လာတဲ့ degreeId,
+ * 2 - <to-academic-year နဲ့ to-academic-year မှာတက်ခဲ့တဲ့ rollno> တို့ကိုသုံးပြီး @enrollments table ကနေယူထားတဲ့ studentId,
+ * 3 - ဝင်လာတဲ့ from/to academic-year တွေအရ academic-year range array.
+ *
+ * option 2 - က တစ်နှစ်စာပဲထုတ်မှာမလို့ option 1 က ၃ချက်ရဲ့အောက်ဆုံးအချက်နေရာမှာ ဝင်လာတဲ့x-academic-yearကို တန်းထည့်.
+ *
+ * အဲ့ conditions တွေနဲ့ @enrollments table မှာ enrollmentIds တွေရ.
+ * ရတဲ့ enrollmentIds တွေနဲ့ @gradings table မှာ အမှတ်တွေယူ.
+ *
+ * * 1 - for from-academic-year to to-academic-year (from 2015-2016 to 2019-2020, 6IST-70)
+ * @params degree, from-academic-year, to-academic-year နှင့် to-academic-year တွင်တက်ရောက်ခဲ့သော ခုံနံပတ်
+ * ! rollno must be to-academic-year's rollno.
+ *
+ * * 2 - for x-academic-year
+ * @params degree, x-academic-year နှင့် ၎င်းနှစ်တွင် တက်ရောက်ခဲ့သော ခုံနံပတ်
  */
 exports.generateMarks = catchAsync(async (req, res) => {
   const degreeId = req.params.degreeId;
@@ -285,7 +343,7 @@ exports.generateMarks = catchAsync(async (req, res) => {
   const f = parseInt(fromAcademicYearId);
   const t = parseInt(toAcademicYearId);
   let where = {};
-  // * 1 - for from-year to to-year (from 2015-2016 to 2019-2020, 6IST-70)
+  // * 1 - for for from-academic-year to to-academic-year
   if (f < t) {
     const academicYears = _.range(f, t + 1).map((r) => ({ academicYearId: r }));
     where = {
