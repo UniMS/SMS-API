@@ -285,8 +285,156 @@ exports.getCumulativeGPA = catchAsync(async (req, res) => {
 Gradings
 --------------------------------------------
 */
+/**
+ * * verified
+ * @generateGradings returns passing gradings. Generating gradings can be done by 2 options:
+ * * 1 - for from-academic-year to to-academic-year -> /degree/1/from/2/to/4/roll-no/4IST-44
+ * * 2 - for x-academic-year                        -> /degree/1/from/2/to/2/roll-no/3IST-33
+ *
+ * db logic တူတဲ့အတွက် option ၂ ခုလုံးကို method တစ်ခုထဲမှာ ပေါင်းရေးထားပါတယ်. condition ကတော့ မတူတဲ့အတွက် @where object ကိုတော့ condition ပေါ်မူတည်ပြီး ပြောင်းရပါတယ်.
+ * from-academic-year နဲ့ to-academic-year နဲ့မှာ to-academic-year က ကြီးရင် option 1 ဖြစ်. တူရင် option 2 ဖြစ်. ငယ်ရင် invalid ဖြစ်.
+ *
+ * option 1 - က နှစ်-range နဲ့ ထုတ်မှာမလို့ ဝင်လာတဲ့ from/to academic year တွေအရ range array ဆောက်. (e.g. from 2015-2016 to 2019-2020 ဆိုရင် (ကျောင်းစဖွင့်တဲ့ နှစ် 2010-2011 က db မှာ 1 ဆိုတော့) [6, 7, 8, 9, 10] ရ. )
+ * 1 - ဝင်လာတဲ့ degreeId,
+ * 2 - <to-academic-year နဲ့ to-academic-year မှာတက်ခဲ့တဲ့ rollno> တို့ကိုသုံးပြီး @enrollments table ကနေယူထားတဲ့ studentId,
+ * 3 - ဝင်လာတဲ့ from/to academic-year တွေအရ academic-year range array.
+ *
+ * option 2 - က တစ်နှစ်စာပဲထုတ်မှာမလို့ option 1 က ၃အချက်ရဲ့အောက်ဆုံးအချက်နေရာမှာ ဝင်လာတဲ့x-academic-yearကို တန်းထည့်.
+ *
+ * အဲ့ conditions တွေနဲ့ @enrollments table မှာ enrollmentIds တွေရ.
+ * ရလာတဲ့ enrollmentId တစ်ခုချင်းအတွက် ရခဲ့တဲ့ grades တွေနဲ့ remark (Fail, Pass, Pass with credit) တွေကို @gradings table မှာရှာ.
+ * ရလာတဲ့ တစ်နှစ်ချင်းစီ gradings တွေထဲမှာ Fail တဲ့တစ်ဘာသာပါရင် အဲ့နှစ် gradings တစ်ခုလုံးကို ဖြုတ်. (အောင်တဲ့နှစ်ရဲ့ gradings တွေပဲရ.)
+ *
+ * Option 1
+ * @params degree, from-academic-year, to-academic-year နှင့် to-academic-year တွင်တက်ရောက်ခဲ့သော ခုံနံပတ်
+ *
+ * Option 2
+ * @params degree, x-academic-year နှင့် ၎င်းနှစ်တွင် တက်ရောက်ခဲ့သော ခုံနံပတ်
+ */
+exports.generateGradings = catchAsync(async (req, res) => {
+  const degreeId = req.params.degreeId;
+  const fromAcademicYearId = req.params.fromAcademicYearId;
+  const toAcademicYearId = req.params.toAcademicYearId;
+  const rollNo = req.params.rollNo;
 
-exports.generateGradings = catchAsync(async (req, res) => {});
+  const student = await models.Enrollment.findOne({
+    where: {
+      degreeId,
+      academicYearId: toAcademicYearId,
+      rollNo,
+    },
+    include: [{ model: models.Student, as: "student", attributes: ["nameEn"] }],
+    attributes: ["studentId"],
+  });
+
+  if (!student)
+    return res.status(200).json({
+      status: "fail",
+      message: "No data!",
+    });
+  // ok - 1
+
+  const from = parseInt(fromAcademicYearId);
+  const to = parseInt(toAcademicYearId);
+  let where = {};
+  // * option 1 - for for from-academic-year to to-academic-year
+  if (from < to) {
+    const academicYears = _.range(from, to + 1).map((r) => ({
+      academicYearId: r,
+    }));
+    where = {
+      degreeId,
+      studentId: student.studentId,
+      [Op.or]: academicYears,
+    };
+  }
+  // * option 2 - for x-academic-year
+  else if (from === to)
+    where = {
+      degreeId,
+      studentId: student.studentId,
+      academicYearId: fromAcademicYearId,
+    };
+  else
+    return res.status(200).json({
+      status: "fail",
+      message: "Invalid data",
+    });
+
+  const enrollments = await models.Enrollment.findAll({
+    where,
+    include: [
+      {
+        model: models.Degree,
+        as: "degree",
+        attributes: ["name"],
+      },
+      {
+        model: models.AcademicYear,
+        as: "academicYear",
+        attributes: ["name"],
+      },
+      {
+        model: models.AttendanceYear,
+        as: "attendanceYear",
+        attributes: ["name"],
+      },
+    ],
+    attributes: ["enrollmentId"],
+    raw: true,
+    nest: true,
+  }); // ok - 2
+
+  const promises = enrollments.map(async (enrollment) => {
+    const grades = await models.Grading.findAll({
+      where: {
+        enrollmentId: enrollment.enrollmentId,
+      },
+      attributes: ["enrollmentId", "gradeId", "remarkId"],
+      include: [
+        {
+          model: models.Course,
+          as: "course",
+          attributes: ["courseId"],
+          include: [
+            {
+              model: models.Subject,
+              as: "subject",
+              attributes: ["name"],
+            },
+          ],
+        },
+        {
+          model: models.Grade,
+          as: "grade",
+          attributes: ["name"],
+        },
+        {
+          model: models.Remark,
+          as: "remark",
+          attributes: ["name"],
+        },
+      ],
+    });
+
+    return grades;
+  });
+
+  const gradings = await Promise.all(promises); // ok - 3
+
+  let passGradings = gradings.filter((arr) =>
+    arr.every((obj) => obj.remark.name !== "Fail")
+  );
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      student,
+      enrollments,
+      passGradings,
+    },
+  });
+});
 
 /**
 --------------------------------------------
@@ -306,7 +454,7 @@ Marks
  * 2 - <to-academic-year နဲ့ to-academic-year မှာတက်ခဲ့တဲ့ rollno> တို့ကိုသုံးပြီး @enrollments table ကနေယူထားတဲ့ studentId,
  * 3 - ဝင်လာတဲ့ from/to academic-year တွေအရ academic-year range array.
  *
- * option 2 - က တစ်နှစ်စာပဲထုတ်မှာမလို့ option 1 က ၃ချက်ရဲ့အောက်ဆုံးအချက်နေရာမှာ ဝင်လာတဲ့x-academic-yearကို တန်းထည့်.
+ * option 2 - က တစ်နှစ်စာပဲထုတ်မှာမလို့ option 1 က ၃အချက်ရဲ့အောက်ဆုံးအချက်နေရာမှာ ဝင်လာတဲ့x-academic-yearကို တန်းထည့်.
  *
  * အဲ့ conditions တွေနဲ့ @enrollments table မှာ enrollmentIds တွေရ.
  * ရတဲ့ enrollmentIds တွေနဲ့ @gradings table မှာ အမှတ်တွေယူ.
@@ -340,20 +488,22 @@ exports.generateMarks = catchAsync(async (req, res) => {
       message: "No data!",
     });
 
-  const f = parseInt(fromAcademicYearId);
-  const t = parseInt(toAcademicYearId);
+  const from = parseInt(fromAcademicYearId);
+  const to = parseInt(toAcademicYearId);
   let where = {};
   // * 1 - for for from-academic-year to to-academic-year
-  if (f < t) {
-    const academicYears = _.range(f, t + 1).map((r) => ({ academicYearId: r }));
+  if (from < to) {
+    const academicYears = _.range(from, to + 1).map((r) => ({
+      academicYearId: r,
+    }));
     where = {
       degreeId,
       studentId: student.studentId,
       [Op.or]: academicYears,
     };
   }
-  // * 2 - for x year
-  else if (f === t)
+  // * 2 - for x-academic-year
+  else if (from === to)
     where = {
       degreeId,
       studentId: student.studentId,
