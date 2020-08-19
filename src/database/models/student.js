@@ -9,12 +9,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "townshipId",
         as: "township",
         targetKey: "townshipId",
-      }); //ok
+      });
 
-      Student.belongsTo(models.Ethnicity, {
-        foreignKey: "ethnicityId",
-        as: "ethnicity",
-        targetKey: "ethnicityId",
+      Student.belongsToMany(models.Ethnicity, {
+        through: "student_ethnicities",
+        as: "ethnicities",
+        foreignKey: "student_id",
       });
 
       Student.belongsTo(models.Religion, {
