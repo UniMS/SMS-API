@@ -312,6 +312,82 @@ exports.getStudent = catchAsync(async (req, res) => {
   });
 });
 
+exports.updateStudent = catchAsync(async (req, res) => {
+  const upload = Object.keys(_.pick(req.body, studentUploadFields));
+  //search old student data for deleting
+  const oldStudentData = await models.Student.findOne({
+    where: {
+      studentId: req.params.studentId,
+    },
+    raw: true,
+    attributes: upload,
+  });
+
+  //delete existing photo
+  Object.values(oldStudentData).map((photo) => {
+    console.log(photo);
+    fs.unlink(path.join(`public/images/`, photo), (err) => {
+      console.log(err);
+    });
+  });
+
+  //upload student data
+  const student = await models.Student.update(req.body, {
+    where: {
+      studentId: req.params.studentId,
+    },
+  });
+  return res.status(200).json({
+    status: "success",
+    data: { student },
+  });
+});
+
+/**
+ * * verified
+ * @getAttendanceHistories get attendance history of a student.
+ *
+ * @params studentId
+ */
+exports.getAttendanceHistories = catchAsync(async (req, res) => {
+  const studentId = req.params.studentId;
+
+  const histories = await models.Enrollment.findAll({
+    where: { studentId },
+    include: [
+      {
+        model: models.AcademicYear,
+        as: "academicYear",
+        attributes: ["name"],
+      },
+      {
+        model: models.AttendanceYear,
+        as: "attendanceYear",
+        attributes: ["name"],
+      },
+      {
+        model: models.Status,
+        as: "status",
+        attributes: ["name"],
+      },
+    ],
+    attributes: ["rollNo"],
+  });
+
+  if (!histories.length)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
+    });
+
+  return res.status(200).json({
+    status: "success",
+    data: {
+      histories,
+    },
+  });
+});
+
 /**
  * * verified
  * @getParent gets parent information with the given studentId.
@@ -350,76 +426,6 @@ exports.getParent = catchAsync(async (req, res) => {
     data: {
       parent,
     },
-  });
-});
-
-exports.getAttendanceHistories = catchAsync(async (req, res) => {
-  const histories = await models.Enrollment.findAll({
-    where: {
-      studentId: req.params.studentId,
-    },
-    include: [
-      {
-        model: models.AcademicYear,
-        as: "academicYear",
-        attributes: ["name"],
-      },
-      {
-        model: models.AttendanceYear,
-        as: "attendanceYear",
-        attributes: ["name"],
-      },
-      {
-        model: models.Status,
-        as: "status",
-        attributes: ["name"],
-      },
-    ],
-    attributes: ["rollNo"],
-  });
-
-  if (!histories.length > 0)
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
-
-  return res.status(200).json({
-    status: "success",
-    data: {
-      histories,
-    },
-  });
-});
-
-exports.updateStudent = catchAsync(async (req, res) => {
-  const upload = Object.keys(_.pick(req.body, studentUploadFields));
-  //search old student data for deleting
-  const oldStudentData = await models.Student.findOne({
-    where: {
-      studentId: req.params.studentId,
-    },
-    raw: true,
-    attributes: upload,
-  });
-
-  //delete existing photo
-  Object.values(oldStudentData).map((photo) => {
-    console.log(photo);
-    fs.unlink(path.join(`public/images/`, photo), (err) => {
-      console.log(err);
-    });
-  });
-
-  //upload student data
-  const student = await models.Student.update(req.body, {
-    where: {
-      studentId: req.params.studentId,
-    },
-  });
-  return res.status(200).json({
-    status: "success",
-    data: { student },
   });
 });
 

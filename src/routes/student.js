@@ -29,12 +29,11 @@ router.get(
 router.get("/:studentId", students.getStudent);
 
 /**
- * * verified
- * @getParent gets parent information with the given studentId.
+ * @updateStudent updates student information.
  *
  * @params studentId
  */
-router.get("/:studentId/parents", students.getParent);
+router.put("/:studentId/student", students.updateStudent);
 
 /**
  * * verified
@@ -45,11 +44,12 @@ router.get("/:studentId/parents", students.getParent);
 router.get("/:studentId/attendance-history", students.getAttendanceHistories);
 
 /**
- * @updateStudent updates student information.
+ * * verified
+ * @getParent gets parent information with the given studentId.
  *
  * @params studentId
  */
-router.put("/:studentId/student", students.updateStudent);
+router.get("/:studentId/parents", students.getParent);
 
 /**
  * @updateParent updates parent information.
