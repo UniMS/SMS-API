@@ -3,14 +3,16 @@ const _ = require("lodash");
 const fs = require("fs");
 const csv = require("fast-csv");
 const path = require("path");
+const { moveFile } = require("../utils/moveFile");
+const uploadImages = require("../middlewares/uploadStudentImages");
 
 const models = require("../database/models");
 const catchAsync = require("../utils/catchAsync");
 const {
-  studentUploadFields,
-  parentUploadFields,
   studentFields,
+  studentImageAttributes,
   parentFields,
+  parentUploadFields,
   enrollmentFields,
   csvStudentDataEntryFields,
 } = require("../utils/fields");
@@ -312,34 +314,82 @@ exports.getStudent = catchAsync(async (req, res) => {
   });
 });
 
+exports.updateStudentImages = uploadImages;
+
+// docs ရေးပါ.
 exports.updateStudent = catchAsync(async (req, res) => {
-  const upload = Object.keys(_.pick(req.body, studentUploadFields));
-  //search old student data for deleting
-  const oldStudentData = await models.Student.findOne({
-    where: {
-      studentId: req.params.studentId,
-    },
-    raw: true,
-    attributes: upload,
-  });
+  const studentId = req.params.studentId;
 
-  //delete existing photo
-  Object.values(oldStudentData).map((photo) => {
-    console.log(photo);
-    fs.unlink(path.join(`public/images/`, photo), (err) => {
-      console.log(err);
+  const student = await models.Student.findByPk(studentId);
+  if (!student)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
     });
+
+  const updatingAttributes = Object.keys(_.pick(req.body, studentFields));
+  const updatingImageAttributes = _.intersection(
+    updatingAttributes,
+    studentImageAttributes
+  );
+
+  // image moving to history/
+  if (updatingImageAttributes.length > 0) {
+    const oldStudentImages = await models.Student.findOne({
+      where: { studentId },
+      raw: true,
+      attributes: updatingImageAttributes,
+    });
+
+    // move existing photos to history
+    for (const key in oldStudentImages) {
+      const path = `public/images/present`;
+      const dist = `public/images/history/`;
+      moveFile(`${path}/${oldStudentImages[key]}`, dist);
+    }
+  }
+
+  // update student data
+  const hasUpdated = await models.Student.update(req.body, {
+    where: { studentId },
   });
 
-  //upload student data
-  const student = await models.Student.update(req.body, {
-    where: {
-      studentId: req.params.studentId,
-    },
+  if (!hasUpdated)
+    return res.status(500).json({
+      status: "fail",
+      message: "Something is not right.",
+    });
+
+  const updatedStudent = await models.Student.findByPk(studentId, {
+    attributes: { exclude: ["createdAt", "updatedAt"] },
+    include: [
+      {
+        model: models.Township,
+        as: "township",
+        attributes: ["name"],
+        include: [
+          {
+            model: models.Region,
+            as: "region",
+            attributes: ["name"],
+          },
+        ],
+      },
+      {
+        model: models.Religion,
+        as: "religion",
+        attributes: ["name"],
+      },
+      {
+        model: models.Ethnicity,
+        as: "ethnicities",
+        attributes: ["name"],
+      },
+    ],
   });
   return res.status(200).json({
     status: "success",
-    data: { student },
+    data: updatedStudent,
   });
 });
 

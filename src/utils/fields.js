@@ -17,13 +17,13 @@ exports.studentFields = [
   "ethnicityId",
 ];
 
-exports.studentUploadFields = [
+exports.studentImageAttributes = [
   "nrcFront",
   "nrcBack",
   "photo",
   "wardRecommendationLetter",
   "policeRecommendationLetter",
-]
+];
 
 exports.parentFields = [
   "fatherNameMm",

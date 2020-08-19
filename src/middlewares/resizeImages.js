@@ -5,19 +5,28 @@ const catchAsync = require("../utils/catchAsync");
 
 module.exports = catchAsync(async (req, res, next) => {
   if (!req.files) return next();
+
   await Promise.all(
-    _.values(req.files).map(async (file, index) => {
-      let name = `image-${faker.random.uuid()}.jpeg`;
+    _.values(req.files).map(async (file) => {
       let { fieldname, buffer } = file[0];
-      let width = fieldname === "photo" ? 500 : 640;
-      let height = fieldname === "photo" ? 500 : 320;
+
+      let type;
+      if (fieldname === "photo") type = "student";
+      else if (fieldname === "nrcFront") type = "nrc-front";
+      else if (fieldname === "nrcBack") type = "nrc-back";
+      else if (fieldname === "wardRecommendationLetter") type = "ward";
+      else if (fieldname === "policeRecommendationLetter") type = "police";
+
+      const fileName = `${type}-${req.params.studentId}-${Date.now()}.jpeg`;
+
       await sharp(buffer)
-        .resize(width, height)
         .toFormat("jpeg")
-        .jpeg({ quality: 90 })
-        .toFile(`public/images/${name}`);
-      req.body[fieldname] = name;
+        .jpeg({ quality: 70 })
+        .toFile(`public/images/present/${fileName}`);
+
+      req.body[fieldname] = fileName;
     })
   );
+
   next();
 });
