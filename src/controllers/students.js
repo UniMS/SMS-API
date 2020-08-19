@@ -259,21 +259,40 @@ exports.filterStudents = catchAsync(async (req, res) => {
   });
 });
 
+/**
+ * @getStudent gets a student with the given studentId.
+ *
+ * @params studentId
+ */
 exports.getStudent = catchAsync(async (req, res) => {
+  const studentId = req.params.studentId;
+
   const student = await models.Student.findOne({
-    where: {
-      studentId: req.params.studentId,
-    },
+    where: { studentId },
+    attributes: { exclude: ["createdAt", "updatedAt"] },
     include: [
       {
-        all: true,
-        nested: true,
-        attributes: { exclude: ["createdAt", "updatedAt"] },
+        model: models.Township,
+        as: "township",
+        attributes: ["name"],
+        include: [
+          {
+            model: models.Region,
+            as: "region",
+            attributes: ["name"],
+          },
+        ],
+      },
+      {
+        model: models.Religion,
+        as: "religion",
+        attributes: ["name"],
       },
     ],
+    nest: true,
   });
 
-  if (!(student.length > 0))
+  if (!student)
     return res.status(404).json({
       status: "fail",
       message: "No data!",
