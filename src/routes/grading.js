@@ -53,7 +53,5 @@ Basic CRUD
 --------------------------------------------
 */
 router.get("/students/:studentId", gradings.getGradingsByStudentId);
-router.put("/:gradingId", gradings.updateGrading);
-router.delete("/:gradingId", gradings.deleteGrading);
 
 module.exports = router;

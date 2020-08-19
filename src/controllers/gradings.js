@@ -576,35 +576,6 @@ exports.generateMarks = catchAsync(async (req, res) => {
   });
 });
 
-exports.updateGrading = catchAsync(async (req, res) => {
-  const grading = await models.Grading.update(req.body, {
-    where: {
-      gradingId: req.params.gradingId,
-    },
-  });
-  return res.status(200).json({
-    status: "success",
-    data: {
-      grading,
-    },
-  });
-});
-
-exports.deleteGrading = catchAsync(async (req, res) => {
-  const grading = await models.Grading.destroy({
-    where: {
-      gradingId: req.params.gradingId,
-    },
-  });
-
-  return res.status(200).json({
-    status: "success",
-    data: {
-      grading,
-    },
-  });
-});
-
 exports.getGradingsByStudentId = catchAsync(async (req, res) => {
   const enrollments = await models.Enrollment.findAll({
     where: { studentId: req.params.studentId },
