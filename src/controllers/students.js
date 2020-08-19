@@ -288,6 +288,11 @@ exports.getStudent = catchAsync(async (req, res) => {
         as: "religion",
         attributes: ["name"],
       },
+      {
+        model: models.Ethnicity,
+        as: "ethnicities",
+        attributes: ["name"],
+      },
     ],
     nest: true,
   });
