@@ -575,3 +575,38 @@ exports.generateMarks = catchAsync(async (req, res) => {
     },
   });
 });
+
+/**
+ * @generateApprovalLetter
+ * * 1 - attending
+ * * 2 - passing
+ *
+ * @params academicYearId, rollNo, type (attending || passing)
+ */
+exports.generateApprovalLetter = catchAsync(async (req, res) => {
+  const academicYearId = req.params.academicYearId;
+  const rollNo = req.params.rollNo;
+  const type = req.query.type;
+
+  if (type !== "attending" && type !== "passing")
+    return res.status(400).json({
+      status: "fail",
+      message: "Invalid type to generate.",
+    });
+
+  const enrollment = await models.Enrollment.findOne({
+    where: {
+      academicYearId,
+      rollNo,
+    },
+    attributes: ["enrollmentId"],
+  });
+
+  if (enrollment) {
+    return res.status(200).json({
+      status: "success",
+      type,
+      message: "The requested values are valid.",
+    });
+  }
+});

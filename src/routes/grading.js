@@ -61,4 +61,17 @@ router.get(
   gradings.generateMarks
 );
 
+/**
+--------------------------------------------
+Approval Letter of Attending and Passing
+--------------------------------------------
+ * @generateApprovalLetter checks if roll-no in academic year exists.
+ * * 1 - attending
+ * * 2 - passing
+ */
+router.get(
+  "/degree/:degreeId/academic-year/:academicYearId/roll-no/:rollNo/approval",
+  gradings.generateApprovalLetter
+);
+
 module.exports = router;
