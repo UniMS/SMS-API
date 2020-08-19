@@ -260,6 +260,7 @@ exports.filterStudents = catchAsync(async (req, res) => {
 });
 
 /**
+ * * verified
  * @getStudent gets a student with the given studentId.
  *
  * @params studentId
@@ -311,13 +312,30 @@ exports.getStudent = catchAsync(async (req, res) => {
   });
 });
 
+/**
+ * * verified
+ * @getParent gets parent information with the given studentId.
+ *
+ * @params studentId
+ */
 exports.getParent = catchAsync(async (req, res) => {
+  const studentId = req.params.studentId;
+
   const parent = await models.Parent.findOne({
-    where: {
-      studentId: req.params.studentId,
-    },
+    where: { studentId },
     include: [
-      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
+      {
+        model: models.Township,
+        as: "parentTownship",
+        attributes: ["name"],
+        include: [
+          {
+            model: models.Region,
+            as: "region",
+            attributes: ["name"],
+          },
+        ],
+      },
     ],
   });
 
