@@ -210,41 +210,41 @@ function getHeaders(csvData, headers) {
   return result;
 }
 
-exports.getStudentGPA = catchAsync(async (req, res, next) => {
-  const enrollemnt = await models.Enrollment.findOne({
-    where: {
-      studentId: req.params.studentId,
-      attendanceYearId: req.params.attendanceYearId,
-    },
-    include: [
-      {
-        model: models.Grading,
-        as: "grading",
-      },
-    ],
-    attributes: {
-      exclude: ["createdAt", "updatedAt"],
-    },
-  });
-  res.status(200).send({
-    status: "success",
-    enrollemnt,
-  });
-});
-
+/**
+ * * verified
+ * @filterStudents filters students according to academic year, major and attendance yera.
+ *
+ * @params academicYearId, majorId, attendanceYearId
+ */
 exports.filterStudents = catchAsync(async (req, res) => {
+  const academicYearId = req.params.academicYearId;
+  const majorId = req.params.majorId;
+  const attendanceYearId = req.params.attendanceYearId;
+
   const students = await models.Enrollment.findAll({
     where: {
-      academicYearId: req.params.academicYearId,
-      majorId: req.params.majorId,
-      attendanceYearId: req.params.attendanceYearId,
+      academicYearId,
+      majorId,
+      attendanceYearId,
     },
+    attributes: [],
     include: [
-      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
+      {
+        model: models.Student,
+        as: "student",
+        attributes: ["studentId", "nameEn", "nrc", "gender", "phone"],
+        include: [
+          {
+            model: models.Parent,
+            as: "parent",
+            attributes: ["parentId", "fatherNameEn", "fatherNrc"],
+          },
+        ],
+      },
     ],
   });
 
-  if (!students.length > 0)
+  if (!students.length)
     return res.status(404).json({
       status: "fail",
       message: "No data!",
@@ -253,6 +253,7 @@ exports.filterStudents = catchAsync(async (req, res) => {
   return res.status(200).json({
     status: "success",
     data: {
+      count: students.length,
       students,
     },
   });
@@ -348,39 +349,6 @@ exports.getAttendanceHistories = catchAsync(async (req, res) => {
     },
   });
 });
-
-// ------------------------------------------------------------------
-
-exports.addStudent = catchAsync(async (req, res) => {
-  const student = await models.Student.create(_.pick(req.body, studentFields));
-  const parent = await student.createParent(_.pick(req.body, parentFields));
-  res.status(201).send({
-    status: "success",
-    student,
-    parent,
-  });
-});
-
-exports.deleteStudent = catchAsync(async (req, res) => {
-  await models.Student.destroy({
-    where: {
-      studentId: req.params.studentId,
-    },
-  });
-  return res.status(200).json({
-    status: "success",
-  });
-});
-
-// exports.addStudent = catchAsync(async (req, res) => {
-//   const student = await models.Student.create(_.pick(req.body, studentFields));
-//   const parent = await student.createParent(_.pick(req.body, parentFields));
-//   res.status(201).send({
-//     status: "success",
-//     student,
-//     parent,
-//   });
-// });
 
 exports.updateStudent = catchAsync(async (req, res) => {
   const upload = Object.keys(_.pick(req.body, studentUploadFields));
