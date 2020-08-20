@@ -33,7 +33,11 @@ router.get(
 router.get("/:studentId", students.getStudent);
 
 /**
+ * ! needs error handling in utils/uploadImage
  * @updateStudent updates student information.
+ *
+ * @middleware uploadStudentImages inside /src/middlewares/uploadImages
+ * @middleware resizeImages inside /src/middlewares/uploadImages
  *
  * @params studentId
  */
@@ -61,10 +65,11 @@ router.get("/:studentId/attendance-history", students.getAttendanceHistories);
 router.get("/:studentId/parents", students.getParent);
 
 /**
+ * ! needs error handling in utils/uploadImage
  * @updateParent updates parent information.
  *
- * @middleware uploadImages inside /src/middlewares
- * @middleware resizeImages inside /src/middlewares
+ * @middleware uploadParentImages inside /src/middlewares/uploadImages
+ * @middleware resizeImages inside /src/middlewares/uploadImages
  *
  * @params parentId
  */
