@@ -1,4 +1,4 @@
-exports.studentFields = [
+exports.studentAttributes = [
   "nameEn",
   "nameMm",
   "nrc",
@@ -25,7 +25,7 @@ exports.studentImageAttributes = [
   "policeRecommendationLetter",
 ];
 
-exports.parentFields = [
+exports.parentAttributes = [
   "fatherNameMm",
   "fatherNameEn",
   "fatherNrc",
@@ -44,7 +44,7 @@ exports.parentFields = [
   "parentTownshipId",
 ];
 
-exports.parentUploadFields = [
+exports.parentImageAttributes = [
   "fatherNrcFront",
   "fatherNrcBack",
   "motherNrcFront",

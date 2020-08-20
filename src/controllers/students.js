@@ -9,10 +9,10 @@ const uploadImages = require("../middlewares/uploadImages");
 const models = require("../database/models");
 const catchAsync = require("../utils/catchAsync");
 const {
-  studentFields,
+  studentAttributes,
+  parentAttributes,
   studentImageAttributes,
-  parentFields,
-  parentUploadFields,
+  parentImageAttributes,
   enrollmentFields,
   csvStudentDataEntryFields,
 } = require("../utils/fields");
@@ -318,12 +318,12 @@ exports.getStudent = catchAsync(async (req, res) => {
  * * verified
  * @updateStudent updates a student personal informaiton with the given studentId.
  *
- * find the student with the given studentId if it is there.
+ * find the @student with the given studentId if it is there.
  * req.body ထဲမှာ image related attributes တွေပါလား စစ်. ပါရင် ဆွဲထုတ်.
- * ပါတဲ့ image related attributes တွေရဲ့ name ကိုလည်း studentId ပေါ်မူတည်ပြီး db ကဆွဲထုတ်. image names တွေရလာ.
- * image names တွေနဲ့ public/images/present ထဲမှာရှာပြီး public/images/history ထဲရွေ့.
- * req.file နဲ့ ဝင်လာတဲ့ ပုံအသစ်တွေကို multer memoryStorage နဲ့ buffer ပြောင်း. (diskStorag နဲ့ folder ထဲကိုတန်းသိမ်းလို့ရပေမဲ့ sharp နဲ့ resolution ချုံ့ဖို့ buffer ပြောင်းရ.)
- * ပုံတွေကို fieldName အရ rename လုပ်ပြီး public/images/present ထဲထည့်
+ * ပါတဲ့ image related attributes တွေရဲ့ name ကို @student ထဲကနေ pick. image names တွေရလာ.
+ * image names တွေနဲ့ public/images/ ထဲမှာရှာပြီး public/images/history ထဲရွေ့.
+ * req.file နဲ့ ဝင်လာတဲ့ ပုံအသစ်တွေကို multer memoryStorage နဲ့ buffer ပြောင်း. (diskStorage နဲ့ folder ထဲကိုတန်းသိမ်းလို့ရပေမဲ့ sharp နဲ့ resolution ချုံ့ဖို့ buffer ပြောင်းရ.)
+ * ပုံတွေကို fieldName အရ rename လုပ်ပြီး public/images ထဲထည့်
  * ပုံနာမည်တွေရယ် အခြား textfields တွေကို update လုပ်.
  * studentId နဲ့ ပြန်ရှာပြီး response ပြန်.
  *
@@ -339,25 +339,23 @@ exports.updateStudent = catchAsync(async (req, res) => {
       message: "No data!",
     });
 
-  const updatingAttributes = Object.keys(_.pick(req.body, studentFields));
+  const updatingAttributes = Object.keys(_.pick(req.body, studentAttributes));
   const updatingImageAttributes = _.intersection(
     updatingAttributes,
     studentImageAttributes
   );
 
-  // image moving to history dir
+  // update မှာ image attributes များပါလာမလား စစ်.
   if (updatingImageAttributes.length > 0) {
-    const oldStudentImages = await models.Student.findOne({
-      where: { studentId },
-      raw: true,
-      attributes: updatingImageAttributes,
-    });
+    const studentOldImages = _.pick(student, studentImageAttributes);
 
-    // move existing photos to history
-    for (const key in oldStudentImages) {
-      const path = `public/images/present`;
-      const dist = `public/images/history/`;
-      moveFile(`${path}/${oldStudentImages[key]}`, dist);
+    // ပါလာရင် မူရင်းဟာတွေကို history ထဲကို ရွေ့
+    if (studentOldImages.length !== 0) {
+      for (const key in studentOldImages) {
+        const path = `public/images`;
+        const dist = `public/images/history`;
+        moveFile(`${path}/${studentOldImages[key]}`, dist);
+      }
     }
   }
 
@@ -491,33 +489,81 @@ exports.getParent = catchAsync(async (req, res) => {
   });
 });
 
+/**
+ * * verified
+ * @updateParent updates a parent personal informaiton with the given parentId.
+ *
+ * find the @parent with the given parentId if it is there.
+ * req.body ထဲမှာ image related attributes တွေပါလား စစ်. ပါရင် ဆွဲထုတ်.
+ * ပါတဲ့ image related attributes တွေရဲ့ name ကို @parent ထဲကနေ pick. image names တွေရလာ.
+ * image names တွေနဲ့ public/images/ ထဲမှာရှာပြီး public/images/history ထဲရွေ့.
+ * req.file နဲ့ ဝင်လာတဲ့ ပုံအသစ်တွေကို multer memoryStorage နဲ့ buffer ပြောင်း. (diskStorage နဲ့ folder ထဲကိုတန်းသိမ်းလို့ရပေမဲ့ sharp နဲ့ resolution ချုံ့ဖို့ buffer ပြောင်းရ.)
+ * ပုံတွေကို fieldName အရ rename လုပ်ပြီး public/images ထဲထည့်
+ * ပုံနာမည်တွေရယ် အခြား textfields တွေကို update လုပ်.
+ * parentId နဲ့ ပြန်ရှာပြီး response ပြန်.
+ *
+ * @params parentId
+ */
 exports.updateParent = catchAsync(async (req, res) => {
-  const upload = Object.keys(_.pick(req.body, parentUploadFields));
-  //search old parent data for deleting
-  const oldParentData = await models.Parent.findOne({
-    where: {
-      parentId: req.params.parentId,
-    },
-    raw: true,
-    attributes: upload,
-  });
+  const parentId = req.params.parentId;
 
-  //delete existing photo
-  Object.values(oldParentData).map((photo) => {
-    console.log(photo);
-    fs.unlink(path.join(`public/images/`, photo), (err) => {
-      console.log(err);
+  const parent = await models.Parent.findByPk(parentId);
+  if (!parent)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
     });
+
+  const updatingAttributes = Object.keys(_.pick(req.body, parentAttributes));
+  const updatingImageAttributes = _.intersection(
+    updatingAttributes,
+    parentImageAttributes
+  );
+
+  // update မှာ image attributes များပါလာမလား စစ်.
+  if (updatingImageAttributes.length > 0) {
+    const parentOldImages = _.pick(parent, parentImageAttributes);
+
+    // ပါလာရင် မူရင်းဟာတွေကို history ထဲကို ရွေ့
+    if (parentOldImages.length !== 0) {
+      for (const key in parentOldImages) {
+        const path = `public/images`;
+        const dist = `public/images/history`;
+        moveFile(`${path}/${parentOldImages[key]}`, dist);
+      }
+    }
+  }
+
+  // update parent data
+  const hasUpdated = await models.Parent.update(req.body, {
+    where: { parentId },
   });
 
-  //upload parent data
-  const parent = await models.Parent.update(req.body, {
-    where: {
-      parentId: req.params.parentId,
-    },
+  if (!hasUpdated)
+    return res.status(500).json({
+      status: "fail",
+      message: "Something is not right.",
+    });
+
+  const updatedParent = await models.Parent.findByPk(parentId, {
+    attributes: { exclude: ["createdAt", "updatedAt"] },
+    include: [
+      {
+        model: models.Township,
+        as: "parentTownship",
+        attributes: ["name"],
+        include: [
+          {
+            model: models.Region,
+            as: "region",
+            attributes: ["name"],
+          },
+        ],
+      },
+    ],
   });
   return res.status(200).json({
     status: "success",
-    data: { parent },
+    data: updatedParent,
   });
 });

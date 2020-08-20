@@ -1,7 +1,7 @@
 const _ = require("lodash");
-const faker = require("faker");
 const sharp = require("sharp");
 const catchAsync = require("../utils/catchAsync");
+const getPrefix = require("../utils/prefixUploadImages");
 
 module.exports = catchAsync(async (req, res, next) => {
   if (!req.files) return next();
@@ -10,19 +10,16 @@ module.exports = catchAsync(async (req, res, next) => {
     _.values(req.files).map(async (file) => {
       let { fieldname, buffer } = file[0];
 
-      let prefix;
-      if (fieldname === "nrcFront") prefix = "nrc-front";
-      else if (fieldname === "nrcBack") prefix = "nrc-back";
-      else if (fieldname === "photo") prefix = "student";
-      else if (fieldname === "wardRecommendationLetter") prefix = "ward";
-      else if (fieldname === "policeRecommendationLetter") prefix = "police";
+      const prefix = getPrefix(req.originalUrl, fieldname);
 
-      const fileName = `${prefix}-${req.params.studentId}-${Date.now()}.jpeg`;
+      const fileName = `${prefix}-${
+        req.params.studentId || req.params.parentId
+      }-${Date.now()}-${_.uniqueId()}.jpeg`;
 
       await sharp(buffer)
         .toFormat("jpeg")
         .jpeg({ quality: 70 })
-        .toFile(`public/images/present/${fileName}`);
+        .toFile(`public/images/${fileName}`);
 
       req.body[fieldname] = fileName;
     })
