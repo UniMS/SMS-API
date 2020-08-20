@@ -316,7 +316,21 @@ exports.getStudent = catchAsync(async (req, res) => {
 
 exports.updateStudentImages = uploadImages;
 
-// docs ရေးပါ.
+/**
+ * * verified
+ * @updateStudent updates a student personal informaiton with the given studentId.
+ *
+ * find the student with the given studentId if it is there.
+ * req.body ထဲမှာ image related attributes တွေပါလား စစ်. ပါရင် ဆွဲထုတ်.
+ * ပါတဲ့ image related attributes တွေရဲ့ name ကိုလည်း studentId ပေါ်မူတည်ပြီး db ကဆွဲထုတ်. image names တွေရလာ.
+ * image names တွေနဲ့ public/images/present ထဲမှာရှာပြီး public/images/history ထဲရွေ့.
+ * req.file နဲ့ ဝင်လာတဲ့ ပုံအသစ်တွေကို multer memoryStorage နဲ့ buffer ပြောင်း. (diskStorag နဲ့ folder ထဲကိုတန်းသိမ်းလို့ရပေမဲ့ sharp နဲ့ resolution ချုံ့ဖို့ buffer ပြောင်းရ.)
+ * ပုံတွေကို fieldName အရ rename လုပ်ပြီး public/images/present ထဲထည့်
+ * ပုံနာမည်တွေရယ် အခြား textfields တွေကို update လုပ်.
+ * studentId နဲ့ ပြန်ရှာပြီး response ပြန်.
+ *
+ * @params studentId
+ */
 exports.updateStudent = catchAsync(async (req, res) => {
   const studentId = req.params.studentId;
 
@@ -333,7 +347,7 @@ exports.updateStudent = catchAsync(async (req, res) => {
     studentImageAttributes
   );
 
-  // image moving to history/
+  // image moving to history dir
   if (updatingImageAttributes.length > 0) {
     const oldStudentImages = await models.Student.findOne({
       where: { studentId },
