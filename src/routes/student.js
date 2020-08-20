@@ -1,13 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const students = require("../controllers/students");
-// const uploadImages = require("../middlewares/uploadImages");
+const {
+  uploadStudentImages,
+  uploadParentImages,
+} = require("../middlewares/uploadImages");
+
 const resizeImages = require("../middlewares/resizeImages");
 
 const multer = require("multer");
 const upload = multer({ dest: "tmp/csv/" });
-
-// router.use(uploadImages, resizeImages);
 
 router.route("/csv").post(upload.single("file"), students.importWithCSV);
 
@@ -37,7 +39,7 @@ router.get("/:studentId", students.getStudent);
  */
 router.put(
   "/:studentId",
-  students.updateStudentImages,
+  uploadStudentImages,
   resizeImages,
   students.updateStudent
 );
@@ -61,10 +63,16 @@ router.get("/:studentId/parents", students.getParent);
 /**
  * @updateParent updates parent information.
  *
+ * @middleware uploadImages inside /src/middlewares
+ * @middleware resizeImages inside /src/middlewares
+ *
  * @params parentId
  */
-router.put("/:parentId/parent", students.updateParent);
-
-// ----------------------------------------------------------------------------
+router.put(
+  "/:parentId/parent",
+  uploadParentImages,
+  resizeImages,
+  students.updateParent
+);
 
 module.exports = router;

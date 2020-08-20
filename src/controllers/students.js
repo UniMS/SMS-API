@@ -4,7 +4,7 @@ const fs = require("fs");
 const csv = require("fast-csv");
 const path = require("path");
 const { moveFile } = require("../utils/moveFile");
-const uploadImages = require("../middlewares/uploadStudentImages");
+const uploadImages = require("../middlewares/uploadImages");
 
 const models = require("../database/models");
 const catchAsync = require("../utils/catchAsync");
@@ -313,8 +313,6 @@ exports.getStudent = catchAsync(async (req, res) => {
     },
   });
 });
-
-exports.updateStudentImages = uploadImages;
 
 /**
  * * verified

@@ -10,14 +10,14 @@ module.exports = catchAsync(async (req, res, next) => {
     _.values(req.files).map(async (file) => {
       let { fieldname, buffer } = file[0];
 
-      let type;
-      if (fieldname === "photo") type = "student";
-      else if (fieldname === "nrcFront") type = "nrc-front";
-      else if (fieldname === "nrcBack") type = "nrc-back";
-      else if (fieldname === "wardRecommendationLetter") type = "ward";
-      else if (fieldname === "policeRecommendationLetter") type = "police";
+      let prefix;
+      if (fieldname === "nrcFront") prefix = "nrc-front";
+      else if (fieldname === "nrcBack") prefix = "nrc-back";
+      else if (fieldname === "photo") prefix = "student";
+      else if (fieldname === "wardRecommendationLetter") prefix = "ward";
+      else if (fieldname === "policeRecommendationLetter") prefix = "police";
 
-      const fileName = `${type}-${req.params.studentId}-${Date.now()}.jpeg`;
+      const fileName = `${prefix}-${req.params.studentId}-${Date.now()}.jpeg`;
 
       await sharp(buffer)
         .toFormat("jpeg")
