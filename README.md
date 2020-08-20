@@ -16,7 +16,12 @@ API for Student Management System
 
 6. `sequelize db:seed:all`
 
-7. `npm run dev`
+7. Create `/public/images/history/` & `/public/images/present/` inside the root of the folder.
+   In Linux and Mac, you can run the following command.
+   
+   `mkdir -p /public/images/history/` and also `mkdir -p /public/images/present`.
+
+8. `npm run dev`
 
 ## Documentation
 
