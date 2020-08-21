@@ -5,7 +5,22 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Major extends Model {
     static associate(models) {
-      // define association here
+      Major.hasMany(models.Enrollment, {
+        foreignKey: "enrollmentId",
+        as: "enrollment",
+      });
+
+      Major.belongsToMany(models.AttendanceYear, {
+        through: "majors_attendance_years",
+        as: "attendanceYears",
+        foreignKey: "major_id",
+      });
+
+      // Student.belongsToMany(models.Ethnicity, {
+      //   through: "student_ethnicities",
+      //   as: "ethnicities",
+      //   foreignKey: "student_id",
+      // });
     }
   }
 

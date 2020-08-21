@@ -1,23 +1,29 @@
 const _ = require("lodash");
-const faker = require("faker");
 const sharp = require("sharp");
 const catchAsync = require("../utils/catchAsync");
+const getPrefix = require("../utils/prefixUploadImages");
 
 module.exports = catchAsync(async (req, res, next) => {
   if (!req.files) return next();
+
   await Promise.all(
-    _.values(req.files).map(async (file, index) => {
-      let name = `image-${faker.random.uuid()}.jpeg`;
+    _.values(req.files).map(async (file) => {
       let { fieldname, buffer } = file[0];
-      let width = fieldname === "photo" ? 500 : 640;
-      let height = fieldname === "photo" ? 500 : 320;
+
+      const prefix = getPrefix(req.originalUrl, fieldname);
+
+      const fileName = `${prefix}-${
+        req.params.studentId || req.params.parentId
+      }-${Date.now()}-${_.uniqueId()}.jpeg`;
+
       await sharp(buffer)
-        .resize(width, height)
         .toFormat("jpeg")
-        .jpeg({ quality: 90 })
-        .toFile(`public/images/${name}`);
-      req.body[fieldname] = name;
+        .jpeg({ quality: 70 })
+        .toFile(`public/images/${fileName}`);
+
+      req.body[fieldname] = fileName;
     })
   );
+
   next();
 });

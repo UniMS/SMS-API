@@ -3,14 +3,16 @@ const _ = require("lodash");
 const fs = require("fs");
 const csv = require("fast-csv");
 const path = require("path");
+const { moveFile } = require("../utils/moveFile");
+const uploadImages = require("../middlewares/uploadImages");
 
 const models = require("../database/models");
 const catchAsync = require("../utils/catchAsync");
 const {
-  studentUploadFields,
-  parentUploadFields,
-  studentFields,
-  parentFields,
+  studentAttributes,
+  parentAttributes,
+  studentImageAttributes,
+  parentImageAttributes,
   enrollmentFields,
   csvStudentDataEntryFields,
 } = require("../utils/fields");
@@ -210,41 +212,70 @@ function getHeaders(csvData, headers) {
   return result;
 }
 
-exports.getStudentGPA = catchAsync(async (req, res, next) => {
-  const enrollemnt = await models.Enrollment.findOne({
-    where: {
-      studentId: req.params.studentId,
-      attendanceYearId: req.params.attendanceYearId,
-    },
+/**
+ * * verified
+ * @filterStudents filters students according to ONLY academic year.
+ *
+ * @params academicYearId
+ */
+exports.filterStudents = catchAsync(async (req, res) => {
+  const academicYearId = req.params.academicYearId;
+
+  let students = await models.Major.findAll({
+    attributes: ["majorId", "name"],
     include: [
       {
-        model: models.Grading,
-        as: "grading",
+        model: models.AttendanceYear,
+        as: "attendanceYears",
+        attributes: ["name"],
+        include: [
+          {
+            model: models.Enrollment,
+            where: {
+              academicYearId,
+            },
+            as: "enrollments",
+            attributes: ["attendanceYearId", "rollNo"],
+            include: [
+              {
+                model: models.Student,
+                as: "student",
+                attributes: [
+                  "studentId",
+                  "nameEn",
+                  "nrc",
+                  "gender",
+                  "phone",
+                  "address",
+                ],
+                include: [
+                  {
+                    model: models.Parent,
+                    as: "parent",
+                    attributes: ["parentId", "fatherNameEn", "fatherNrc"],
+                  },
+                  {
+                    model: models.Township,
+                    as: "township",
+                    attributes: ["name"],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       },
     ],
-    attributes: {
-      exclude: ["createdAt", "updatedAt"],
-    },
-  });
-  res.status(200).send({
-    status: "success",
-    enrollemnt,
-  });
-});
-
-exports.filterStudents = catchAsync(async (req, res) => {
-  const students = await models.Enrollment.findAll({
-    where: {
-      academicYearId: req.params.academicYearId,
-      majorId: req.params.majorId,
-      attendanceYearId: req.params.attendanceYearId,
-    },
-    include: [
-      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
-    ],
   });
 
-  if (!students.length > 0)
+  students = _.compact(
+    students.map((student) => {
+      if (student.attendanceYears.length === 0) delete student;
+      else return student;
+    })
+  );
+
+  if (!students.length)
     return res.status(404).json({
       status: "fail",
       message: "No data!",
@@ -253,26 +284,52 @@ exports.filterStudents = catchAsync(async (req, res) => {
   return res.status(200).json({
     status: "success",
     data: {
+      count: students.length,
       students,
     },
   });
 });
 
+/**
+ * * verified
+ * @getStudent gets a student with the given studentId.
+ *
+ * @params studentId
+ */
 exports.getStudent = catchAsync(async (req, res) => {
+  const studentId = req.params.studentId;
+
   const student = await models.Student.findOne({
-    where: {
-      studentId: req.params.studentId,
-    },
+    where: { studentId },
+    attributes: { exclude: ["createdAt", "updatedAt"] },
     include: [
       {
-        all: true,
-        nested: true,
-        attributes: { exclude: ["createdAt", "updatedAt"] },
+        model: models.Township,
+        as: "township",
+        attributes: ["name"],
+        include: [
+          {
+            model: models.Region,
+            as: "region",
+            attributes: ["name"],
+          },
+        ],
+      },
+      {
+        model: models.Religion,
+        as: "religion",
+        attributes: ["name"],
+      },
+      {
+        model: models.Ethnicity,
+        as: "ethnicities",
+        attributes: ["name"],
       },
     ],
+    nest: true,
   });
 
-  if (!(student.length > 0))
+  if (!student)
     return res.status(404).json({
       status: "fail",
       message: "No data!",
@@ -286,35 +343,106 @@ exports.getStudent = catchAsync(async (req, res) => {
   });
 });
 
-exports.getParent = catchAsync(async (req, res) => {
-  const parent = await models.Parent.findOne({
-    where: {
-      studentId: req.params.studentId,
-    },
-    include: [
-      { all: true, attributes: { exclude: ["createdAt", "updatedAt"] } },
-    ],
-  });
+/**
+ * * verified
+ * @updateStudent updates a student personal informaiton with the given studentId.
+ *
+ * find the @student with the given studentId if it is there.
+ * req.body ထဲမှာ image related attributes တွေပါလား စစ်. ပါရင် ဆွဲထုတ်.
+ * ပါတဲ့ image related attributes တွေရဲ့ name ကို @student ထဲကနေ pick. image names တွေရလာ.
+ * image names တွေနဲ့ public/images/ ထဲမှာရှာပြီး public/images/history ထဲရွေ့.
+ * req.file နဲ့ ဝင်လာတဲ့ ပုံအသစ်တွေကို multer memoryStorage နဲ့ buffer ပြောင်း. (diskStorage နဲ့ folder ထဲကိုတန်းသိမ်းလို့ရပေမဲ့ sharp နဲ့ resolution ချုံ့ဖို့ buffer ပြောင်းရ.)
+ * ပုံတွေကို fieldName အရ rename လုပ်ပြီး public/images ထဲထည့်
+ * ပုံနာမည်တွေရယ် အခြား textfields တွေကို update လုပ်.
+ * studentId နဲ့ ပြန်ရှာပြီး response ပြန်.
+ *
+ * @params studentId
+ */
+exports.updateStudent = catchAsync(async (req, res) => {
+  const studentId = req.params.studentId;
 
-  if (!parent)
+  const student = await models.Student.findByPk(studentId);
+  if (!student)
     return res.status(404).json({
       status: "fail",
       message: "No data!",
     });
 
+  const updatingAttributes = Object.keys(_.pick(req.body, studentAttributes));
+  const updatingImageAttributes = _.intersection(
+    updatingAttributes,
+    studentImageAttributes
+  );
+
+  // update မှာ image attributes များပါလာမလား စစ်.
+  if (updatingImageAttributes.length > 0) {
+    const studentOldImages = _.pick(student, studentImageAttributes);
+
+    // ပါလာရင် မူရင်းဟာတွေကို history ထဲကို ရွေ့
+    if (studentOldImages.length !== 0) {
+      for (const key in studentOldImages) {
+        const path = `public/images`;
+        const dist = `public/images/history`;
+        moveFile(`${path}/${studentOldImages[key]}`, dist);
+      }
+    }
+  }
+
+  // update student data
+  const hasUpdated = await models.Student.update(req.body, {
+    where: { studentId },
+  });
+
+  if (!hasUpdated)
+    return res.status(500).json({
+      status: "fail",
+      message: "Something is not right.",
+    });
+
+  const updatedStudent = await models.Student.findByPk(studentId, {
+    attributes: { exclude: ["createdAt", "updatedAt"] },
+    include: [
+      {
+        model: models.Township,
+        as: "township",
+        attributes: ["name"],
+        include: [
+          {
+            model: models.Region,
+            as: "region",
+            attributes: ["name"],
+          },
+        ],
+      },
+      {
+        model: models.Religion,
+        as: "religion",
+        attributes: ["name"],
+      },
+      {
+        model: models.Ethnicity,
+        as: "ethnicities",
+        attributes: ["name"],
+      },
+    ],
+  });
   return res.status(200).json({
     status: "success",
-    data: {
-      parent,
-    },
+    data: updatedStudent,
   });
 });
 
+/**
+ * * verified
+ * @getAttendanceHistories get attendance history of a student.
+ *
+ * @params studentId
+ */
 exports.getAttendanceHistories = catchAsync(async (req, res) => {
+  const studentId = req.params.studentId;
+
   const histories = await models.Enrollment.findAll({
-    where: {
-      studentId: req.params.studentId,
-    },
+    where: { studentId },
     include: [
       {
         model: models.AcademicYear,
@@ -335,7 +463,7 @@ exports.getAttendanceHistories = catchAsync(async (req, res) => {
     attributes: ["rollNo"],
   });
 
-  if (!histories.length > 0)
+  if (!histories.length)
     return res.status(404).json({
       status: "fail",
       message: "No data!",
@@ -349,97 +477,122 @@ exports.getAttendanceHistories = catchAsync(async (req, res) => {
   });
 });
 
-// ------------------------------------------------------------------
+/**
+ * * verified
+ * @getParent gets parent information with the given studentId.
+ *
+ * @params studentId
+ */
+exports.getParent = catchAsync(async (req, res) => {
+  const studentId = req.params.studentId;
 
-exports.addStudent = catchAsync(async (req, res) => {
-  const student = await models.Student.create(_.pick(req.body, studentFields));
-  const parent = await student.createParent(_.pick(req.body, parentFields));
-  res.status(201).send({
-    status: "success",
-    student,
-    parent,
-  });
-});
-
-exports.deleteStudent = catchAsync(async (req, res) => {
-  await models.Student.destroy({
-    where: {
-      studentId: req.params.studentId,
-    },
-  });
-  return res.status(200).json({
-    status: "success",
-  });
-});
-
-// exports.addStudent = catchAsync(async (req, res) => {
-//   const student = await models.Student.create(_.pick(req.body, studentFields));
-//   const parent = await student.createParent(_.pick(req.body, parentFields));
-//   res.status(201).send({
-//     status: "success",
-//     student,
-//     parent,
-//   });
-// });
-
-exports.updateStudent = catchAsync(async (req, res) => {
-  const upload = Object.keys(_.pick(req.body, studentUploadFields));
-  //search old student data for deleting
-  const oldStudentData = await models.Student.findOne({
-    where: {
-      studentId: req.params.studentId,
-    },
-    raw: true,
-    attributes: upload,
+  const parent = await models.Parent.findOne({
+    where: { studentId },
+    include: [
+      {
+        model: models.Township,
+        as: "parentTownship",
+        attributes: ["name"],
+        include: [
+          {
+            model: models.Region,
+            as: "region",
+            attributes: ["name"],
+          },
+        ],
+      },
+    ],
   });
 
-  //delete existing photo
-  Object.values(oldStudentData).map((photo) => {
-    console.log(photo);
-    fs.unlink(path.join(`public/images/`, photo), (err) => {
-      console.log(err);
+  if (!parent)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
     });
-  });
 
-  //upload student data
-  const student = await models.Student.update(req.body, {
-    where: {
-      studentId: req.params.studentId,
-    },
-  });
   return res.status(200).json({
     status: "success",
-    data: { student },
+    data: {
+      parent,
+    },
   });
 });
 
+/**
+ * * verified
+ * @updateParent updates a parent personal informaiton with the given parentId.
+ *
+ * find the @parent with the given parentId if it is there.
+ * req.body ထဲမှာ image related attributes တွေပါလား စစ်. ပါရင် ဆွဲထုတ်.
+ * ပါတဲ့ image related attributes တွေရဲ့ name ကို @parent ထဲကနေ pick. image names တွေရလာ.
+ * image names တွေနဲ့ public/images/ ထဲမှာရှာပြီး public/images/history ထဲရွေ့.
+ * req.file နဲ့ ဝင်လာတဲ့ ပုံအသစ်တွေကို multer memoryStorage နဲ့ buffer ပြောင်း. (diskStorage နဲ့ folder ထဲကိုတန်းသိမ်းလို့ရပေမဲ့ sharp နဲ့ resolution ချုံ့ဖို့ buffer ပြောင်းရ.)
+ * ပုံတွေကို fieldName အရ rename လုပ်ပြီး public/images ထဲထည့်
+ * ပုံနာမည်တွေရယ် အခြား textfields တွေကို update လုပ်.
+ * parentId နဲ့ ပြန်ရှာပြီး response ပြန်.
+ *
+ * @params parentId
+ */
 exports.updateParent = catchAsync(async (req, res) => {
-  const upload = Object.keys(_.pick(req.body, parentUploadFields));
-  //search old parent data for deleting
-  const oldParentData = await models.Parent.findOne({
-    where: {
-      parentId: req.params.parentId,
-    },
-    raw: true,
-    attributes: upload,
-  });
+  const parentId = req.params.parentId;
 
-  //delete existing photo
-  Object.values(oldParentData).map((photo) => {
-    console.log(photo);
-    fs.unlink(path.join(`public/images/`, photo), (err) => {
-      console.log(err);
+  const parent = await models.Parent.findByPk(parentId);
+  if (!parent)
+    return res.status(404).json({
+      status: "fail",
+      message: "No data!",
     });
+
+  const updatingAttributes = Object.keys(_.pick(req.body, parentAttributes));
+  const updatingImageAttributes = _.intersection(
+    updatingAttributes,
+    parentImageAttributes
+  );
+
+  // update မှာ image attributes များပါလာမလား စစ်.
+  if (updatingImageAttributes.length > 0) {
+    const parentOldImages = _.pick(parent, parentImageAttributes);
+
+    // ပါလာရင် မူရင်းဟာတွေကို history ထဲကို ရွေ့
+    if (parentOldImages.length !== 0) {
+      for (const key in parentOldImages) {
+        const path = `public/images`;
+        const dist = `public/images/history`;
+        moveFile(`${path}/${parentOldImages[key]}`, dist);
+      }
+    }
+  }
+
+  // update parent data
+  const hasUpdated = await models.Parent.update(req.body, {
+    where: { parentId },
   });
 
-  //upload parent data
-  const parent = await models.Parent.update(req.body, {
-    where: {
-      parentId: req.params.parentId,
-    },
+  if (!hasUpdated)
+    return res.status(500).json({
+      status: "fail",
+      message: "Something is not right.",
+    });
+
+  const updatedParent = await models.Parent.findByPk(parentId, {
+    attributes: { exclude: ["createdAt", "updatedAt"] },
+    include: [
+      {
+        model: models.Township,
+        as: "parentTownship",
+        attributes: ["name"],
+        include: [
+          {
+            model: models.Region,
+            as: "region",
+            attributes: ["name"],
+          },
+        ],
+      },
+    ],
   });
   return res.status(200).json({
     status: "success",
-    data: { parent },
+    data: updatedParent,
   });
 });

@@ -2,43 +2,76 @@ const express = require("express");
 const router = express.Router();
 const gradings = require("../controllers/gradings");
 
+/**
+--------------------------------------------
+Filter Gradings
+--------------------------------------------
+ * @filterGradings returns lists of gradings which is respect to given academic year, major and attendance year.
+ */
 router.get(
   "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId",
   gradings.filterGradings
 );
 
-/*
+/**
 --------------------------------------------
-GPA
+Final Year GPA
 --------------------------------------------
-*/
+ * @getFinalYearGPA generates final year GAP.
+ */
 router.get(
   "/academic-year/:academicYearId/roll-no/:rollNo/gpa",
   gradings.getFinalYearGPA
 );
 
+/**
+--------------------------------------------
+CumulativeGPA
+--------------------------------------------
+ * @getCumulativeGPA generates cumulative GAP which is all-academic-year-GPA.
+ */
 router.get(
   "/academic-year/:academicYearId/roll-no/:rollNo/cumulative-gpa",
   gradings.getCumulativeGPA
 );
 
-/*
+/**
 --------------------------------------------
-Marks
+Grading Document
 --------------------------------------------
-*/
+ * @generateGradings generates grading document.
+ * * 1 - for from-academic-year to to-academic-year -> /degree/1/from/2/to/4/roll-no/4IST-44
+ * * 2 - for x-academic-year                        -> /degree/1/from/2/to/2/roll-no/3IST-33
+ */
 router.get(
-  "/academic-year/:academicYearId/roll-no/:rollNo/all-marks",
-  gradings.getAllYearMarks
+  "/degree/:degreeId/from/:fromAcademicYearId/to/:toAcademicYearId/roll-no/:rollNo",
+  gradings.generateGradings
 );
 
-/*
+/**
 --------------------------------------------
-Basic CRUD
+Marks Certificate
 --------------------------------------------
-*/
-router.get("/students/:studentId", gradings.getGradingsByStudentId);
-router.put("/:gradingId", gradings.updateGrading);
-router.delete("/:gradingId", gradings.deleteGrading);
+ * @generateMarks generates mark certificate.
+ * * 1 - for from-academic-year to to-academic-year -> /degree/1/from/2/to/4/roll-no/4IST-44/all-marks
+ * * 2 - for x-academic-year                        -> /degree/1/from/2/to/2/roll-no/3IST-33/all-marks
+ */
+router.get(
+  "/degree/:degreeId/from/:fromAcademicYearId/to/:toAcademicYearId/roll-no/:rollNo/all-marks",
+  gradings.generateMarks
+);
+
+/**
+--------------------------------------------
+Approval Letter of Attending and Passing
+--------------------------------------------
+ * @generateApprovalLetter checks if roll-no in academic year exists.
+ * * 1 - attending
+ * * 2 - passing
+ */
+router.get(
+  "/degree/:degreeId/academic-year/:academicYearId/roll-no/:rollNo/approval",
+  gradings.generateApprovalLetter
+);
 
 module.exports = router;
