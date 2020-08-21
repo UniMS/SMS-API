@@ -83,7 +83,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       entranceDate: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
       address: {
         allowNull: false,
