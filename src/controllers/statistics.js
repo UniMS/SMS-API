@@ -4,67 +4,18 @@ const catchAsync = require("../utils/catchAsync");
 
 /*
 --------------------------------------------
-Sdutent Count Statistics
+Student Count Statistics
 --------------------------------------------
 */
-
-// total students in each academic year
-exports.getStudentsCountByAcademicYear = catchAsync(async (req, res) => {
-  const studentsCount = await models.Enrollment.count({
-    where: {
-      academicYearId: req.params.academicYearId,
-    },
-  });
-
-  if (!studentsCount) {
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
-  }
-
-  return res.status(200).send({
-    status: "success",
-    data: {
-      count: studentsCount,
-    },
-  });
-});
-
-// total students in each academic year + major
-exports.getStudentsCountByAcademicYearAndMajor = catchAsync(
-  async (req, res) => {
-    const studentsCount = await models.Enrollment.count({
-      where: {
-        academicYearId: req.params.academicYearId,
-        majorId: req.params.majorId,
-      },
-    });
-
-    if (!studentsCount) {
-      return res.status(404).json({
-        status: "fail",
-        message: "No data!",
-      });
-    }
-
-    return res.status(200).send({
-      status: "success",
-      data: {
-        count: studentsCount,
-      },
-    });
-  }
-);
 
 // total students in each academic year + attendance year + major
 exports.getStudentsCountByAcademicYearAttendanceYearAndMajor = catchAsync(
   async (req, res) => {
     const studentsCount = await models.Enrollment.count({
       where: {
-        academicYearId: req.params.academicYearId,
-        attendanceYearId: req.params.attendanceYearId,
-        majorId: req.params.majorId,
+        academicYearId: req.query.academicYearId,
+        attendanceYearId: req.query.attendanceYearId,
+        majorId: req.query.majorId,
       },
     });
 
@@ -90,252 +41,41 @@ Township/Region Statistics
 --------------------------------------------
 */
 
-// students by academic year + township
-exports.getStudentsByTownshipAndAcademicYear = catchAsync(async (req, res) => {
-  const students = await models.Enrollment.findAll({
-    where: {
-      academicYearId: req.params.academicYearId,
-    },
-    attributes: ["rollNo"],
-    include: [
-      {
-        model: models.Student,
-        as: "student",
-        attributes: ["nameMm", "nameEn"],
-        include: [
-          {
-            model: models.Parent,
-            as: "parent",
-            attributes: ["fatherNameMm", "fatherNameEn", "fatherNrc"],
-          },
-        ],
-      },
-    ],
-  });
-
-  if (!students)
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
-
-  return res.status(200).json({
-    status: "success",
-    data: {
-      count: students.length,
-      students,
-    },
-  });
-});
-
-// students by academic year + major + township
-exports.getStudentsByTownshipAcademicYearAndMajor = catchAsync(
-  async (req, res) => {
-    const students = await models.Enrollment.findAll({
-      where: {
-        academicYearId: req.params.academicYearId,
-        majorId: req.params.majorId,
-      },
-      attributes: ["rollNo"],
-      include: [
-        {
-          model: models.Student,
-          as: "student",
-          attributes: ["nameMm", "nameEn"],
-          include: [
-            {
-              model: models.Parent,
-              as: "parent",
-              attributes: ["fatherNameMm", "fatherNameEn", "fatherNrc"],
-            },
-          ],
-        },
-      ],
-    });
-
-    if (!students)
-      return res.status(404).json({
-        status: "fail",
-        message: "No data!",
-      });
-
-    return res.status(200).json({
-      status: "success",
-      data: {
-        count: students.length,
-        students,
-      },
-    });
-  }
-);
-
-// students by academic year + attendance year + township
-exports.getStudentsByTownshipAcademicYearAndAttendanceYear = catchAsync(
-  async (req, res) => {
-    const students = await models.Enrollment.findAll({
-      where: {
-        academicYearId: req.params.academicYearId,
-        attendanceYearId: req.params.attendanceYearId,
-      },
-      attributes: ["rollNo"],
-      include: [
-        {
-          model: models.Student,
-          as: "student",
-          attributes: ["nameMm", "nameEn"],
-          include: [
-            {
-              model: models.Parent,
-              as: "parent",
-              attributes: ["fatherNameMm", "fatherNameEn", "fatherNrc"],
-            },
-          ],
-        },
-      ],
-    });
-
-    if (!students)
-      return res.status(404).json({
-        status: "fail",
-        message: "No data!",
-      });
-
-    return res.status(200).json({
-      status: "success",
-      data: {
-        count: students.length,
-        students,
-      },
-    });
-  }
-);
-
 // students by academic year + attendance year + major + township
 exports.getStudentsByTownshipAcademicYearAttendanceYearAndMajor = catchAsync(
   async (req, res) => {
-    const students = await models.Enrollment.findAll({
+    const townships = await models.Township.findAll({
       where: {
-        academicYearId: req.params.academicYearId,
-        attendanceYearId: req.params.attendanceYearId,
-        majorId: req.params.majorId,
+        townshipId: req.params.townshipId,
       },
-      attributes: ["rollNo"],
+      attributes: ["name"],
       include: [
         {
           model: models.Student,
-          as: "student",
-          attributes: ["nameMm", "nameEn"],
+          as: "students",
+          attributes: ["studentId","nameMm", "nameEn","nrc"],
           include: [
             {
               model: models.Parent,
               as: "parent",
               attributes: ["fatherNameMm", "fatherNameEn", "fatherNrc"],
             },
-          ],
-        },
-      ],
-    });
-
-    if (!students)
-      return res.status(404).json({
-        status: "fail",
-        message: "No data!",
-      });
-
-    return res.status(200).json({
-      status: "success",
-      data: {
-        count: students.length,
-        students,
-      },
-    });
-  }
-);
-
-// students by academic year + region
-exports.getStudentsByRegionAndAcademicYear = catchAsync(async (req, res) => {
-  const students = await models.Enrollment.findAll({
-    where: {
-      academicYearId: req.params.academicYearId,
-    },
-    attributes: ["rollNo"],
-    include: [
-      {
-        model: models.Student,
-        as: "student",
-        attributes: ["nameMm", "nameEn"],
-        include: [
-          {
-            model: models.Township,
-            as: "township",
-            required: true,
-            attributes: ["name"],
-            include: [
-              {
-                model: models.Region,
-                as: "region",
-                required: true,
-                where: { regionId: req.params.regionId },
-                attributes: ["name"],
+            {
+              model: models.Enrollment,
+              as: "enrollment",
+              attributes: ["rollNo"],
+              where: {
+                academicYearId: req.query.academicYearId,
+                attendanceYearId: req.query.attendanceYearId,
+                majorId: req.query.majorId,
               },
-            ],
-          },
-        ],
-      },
-    ],
-  });
-
-  if (students.length <= 0)
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
-
-  return res.status(200).json({
-    status: "success",
-    data: {
-      count: students.length,
-      enrollments: students,
-    },
-  });
-});
-
-// students by academic year + major + region
-exports.getStudentsByRegionAcademicYearAndMajor = catchAsync(
-  async (req, res) => {
-    const students = await models.Enrollment.findAll({
-      where: {
-        academicYearId: req.params.academicYearId,
-        majorId: req.params.majorId,
-      },
-      attributes: ["rollNo"],
-      include: [
-        {
-          model: models.Student,
-          as: "student",
-          attributes: ["nameMm", "nameEn"],
-          include: [
-            {
-              model: models.Township,
-              as: "township",
-              required: true,
-              attributes: ["name"],
-              include: [
-                {
-                  model: models.Region,
-                  as: "region",
-                  required: true,
-                  where: { regionId: req.params.regionId },
-                  attributes: ["name"],
-                },
-              ],
             },
           ],
         },
       ],
     });
 
-    if (students.length <= 0)
+    if (!townships)
       return res.status(404).json({
         status: "fail",
         message: "No data!",
@@ -344,59 +84,7 @@ exports.getStudentsByRegionAcademicYearAndMajor = catchAsync(
     return res.status(200).json({
       status: "success",
       data: {
-        count: students.length,
-        enrollments: students,
-      },
-    });
-  }
-);
-
-// students by academic year + attendance year + region
-exports.getStudentsByRegionAcademicYearAndAttendanceYear = catchAsync(
-  async (req, res) => {
-    const students = await models.Enrollment.findAll({
-      where: {
-        academicYearId: req.params.academicYearId,
-        attendanceYearId: req.params.attendanceYearId,
-      },
-      attributes: ["rollNo"],
-      include: [
-        {
-          model: models.Student,
-          as: "student",
-          attributes: ["nameMm", "nameEn"],
-          include: [
-            {
-              model: models.Township,
-              as: "township",
-              required: true,
-              attributes: ["name"],
-              include: [
-                {
-                  model: models.Region,
-                  as: "region",
-                  required: true,
-                  where: { regionId: req.params.regionId },
-                  attributes: ["name"],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    });
-
-    if (students.length <= 0)
-      return res.status(404).json({
-        status: "fail",
-        message: "No data!",
-      });
-
-    return res.status(200).json({
-      status: "success",
-      data: {
-        count: students.length,
-        enrollments: students,
+        townships,
       },
     });
   }
@@ -405,40 +93,49 @@ exports.getStudentsByRegionAcademicYearAndAttendanceYear = catchAsync(
 // students by academic year + attendance year + major + region
 exports.getStudentsByRegionAcademicYearAttendanceYearAndMajor = catchAsync(
   async (req, res) => {
-    const students = await models.Enrollment.findAll({
-      where: {
-        academicYearId: req.params.academicYearId,
-        attendanceYearId: req.params.attendanceYearId,
-        majorId: req.params.majorId,
-      },
-      attributes: ["rollNo"],
+    const regions = await models.Region.findAll({
+      where: { regionId: req.params.regionId },
+      attributes: ["name"],
       include: [
         {
-          model: models.Student,
-          as: "student",
-          attributes: ["nameMm", "nameEn"],
+          model: models.Township,
+          as: "township",
+          required: true,
+          attributes: ["name"],    
           include: [
             {
-              model: models.Township,
-              as: "township",
-              required: true,
-              attributes: ["name"],
+              model: models.Student,
+              as: "students",
+              attributes: ["studentId","nameMm", "nameEn","nrc"],
               include: [
                 {
-                  model: models.Region,
-                  as: "region",
-                  required: true,
-                  where: { regionId: req.params.regionId },
-                  attributes: ["name"],
+                  model: models.Parent,
+                  as: "parent",
+                  attributes: ["fatherNameMm", "fatherNameEn", "fatherNrc"],
+                },
+                {
+                  model: models.Enrollment,
+                  as: "enrollment",
+                  attributes: ["rollNo"],
+                  where: {
+                    academicYearId: req.query.academicYearId,
+                    attendanceYearId: req.query.attendanceYearId,
+                    majorId: req.query.majorId,
+                  },
                 },
               ],
             },
-          ],
+          ]
         },
       ],
     });
 
-    if (students.length <= 0)
+    const results = _.compact(regions[0].township.map(t => {
+      if (t.students.length === 0) delete t;
+      else return t;
+    }));
+
+    if (results.length <= 0)
       return res.status(404).json({
         status: "fail",
         message: "No data!",
@@ -447,8 +144,146 @@ exports.getStudentsByRegionAcademicYearAttendanceYearAndMajor = catchAsync(
     return res.status(200).json({
       status: "success",
       data: {
-        count: students.length,
-        enrollments: students,
+        results,
+      },
+    });
+  }
+);
+
+/*
+--------------------------------------------
+Religion/Ethnicity/Gender Statistics
+--------------------------------------------
+*/
+
+// students by academic year + attendance year + major + religion
+exports.getStudentsByReligionAcademicYearAttendanceYearAndMajor = catchAsync(
+  async (req, res) => {
+    const religions = await models.Religion.findAll({
+      where: {
+        religionId: req.params.religionId,
+      },
+      attributes: ["name"],
+      include: [
+        {
+          model: models.Student,
+          as: "student",
+          attributes: ["studentId","nameMm", "nameEn","nrc"],
+          include: [
+            {
+              model: models.Parent,
+              as: "parent",
+              attributes: ["fatherNameMm", "fatherNameEn", "fatherNrc"],
+            },
+            {
+              model: models.Enrollment,
+              as: "enrollment",
+              attributes: ["rollNo"],
+              where: {
+                academicYearId: req.query.academicYearId,
+                attendanceYearId: req.query.attendanceYearId,
+                majorId: req.query.majorId,
+              },
+            },
+          ],
+        },
+      ],
+    });
+
+    if (!religions)
+      return res.status(404).json({
+        status: "fail",
+        message: "No data!",
+      });
+
+    return res.status(200).json({
+      status: "success",
+      data: {
+        religions,
+      },
+    });
+  }
+);
+
+// students by academic year + attendance year + major + ethnicity
+exports.getStudentsByEthnicityAcademicYearAttendanceYearAndMajor = catchAsync(
+  async (req, res) => {
+    const ethnicity = await models.Student.findAll({
+      attributes: ["studentId","nameMm", "nameEn","nrc","gender"],
+      where: {
+        gender: req.params.gender,
+      },
+      include: [
+        {
+          model: models.Parent,
+          as: "parent",
+          attributes: ["fatherNameMm", "fatherNameEn", "fatherNrc"],
+        },
+        {
+          model: models.Enrollment,
+          as: "enrollment",
+          attributes: ["rollNo"],
+          where: {
+            academicYearId: req.query.academicYearId,
+            attendanceYearId: req.query.attendanceYearId,
+            majorId: req.query.majorId,
+          },
+        },
+      ],
+    });
+
+    if (!gender)
+      return res.status(404).json({
+        status: "fail",
+        message: "No data!",
+      });
+
+    return res.status(200).json({
+      status: "success",
+      data: {
+        gender,
+      },
+    });
+  }
+);
+
+// students by academic year + attendance year + major + gender
+exports.getStudentsByGenderAcademicYearAttendanceYearAndMajor = catchAsync(
+  async (req, res) => {
+    const gender = await models.Student.findAll({
+      attributes: ["studentId","nameMm", "nameEn","nrc","gender"],
+      where: {
+        gender: req.params.gender,
+      },
+      include: [
+        {
+          model: models.Parent,
+          as: "parent",
+          attributes: ["fatherNameMm", "fatherNameEn", "fatherNrc"],
+        },
+        {
+          model: models.Enrollment,
+          as: "enrollment",
+          attributes: ["rollNo"],
+          where: {
+            academicYearId: req.query.academicYearId,
+            attendanceYearId: req.query.attendanceYearId,
+            majorId: req.query.majorId,
+          },
+        },
+      ],
+    });
+
+    if (!gender)
+      return res.status(404).json({
+        status: "fail",
+        message: "No data!",
+      });
+
+    return res.status(200).json({
+      status: "success",
+      data: {
+        gender,
       },
     });
   }
@@ -702,31 +537,16 @@ exports.getPassFailRateForAcademicYearAndAttendanceYear = catchAsync(
   }
 );
 
-// get pass/fail rate for academic year + major + attendance year (2019-2020, ICT, first year)
+// get pass/fail rate for academic year | major | attendance year (2019-2020, ICT, first year)
 exports.getPassFailRateForAcademicYearAttendanceYearAndMajor = catchAsync(
   async (req, res) => {
-    // get major for response
-    const major = await models.Major.findOne({
-      where: {
-        majorId: req.params.majorId,
-      },
-      attributes: ["name"],
-    });
-
-    // get attendance year for response
-    const attendanceYear = await models.AttendanceYear.findOne({
-      where: {
-        attendanceYearId: req.params.attendanceYearId,
-      },
-      attributes: ["name"],
-    });
 
     // get enrollments for given academic year and major
     const enrollments = await models.Enrollment.findAll({
       where: {
-        academicYearId: req.params.academicYearId,
-        majorId: req.params.majorId,
-        attendanceYearId: req.params.attendanceYearId,
+        academicYearId: req.query.academicYearId,
+        majorId: req.query.majorId,
+        attendanceYearId: req.query.attendanceYearId,
       },
       attributes: ["enrollmentId"],
     });

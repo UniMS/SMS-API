@@ -5,13 +5,13 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Township extends Model {
     static associate(models) {
-      Township.belongsTo(models.Region, {
+      Township.hasOne(models.Region, {
         foreignKey: "regionId",
         as: "region",
       }); // Ok
 
       Township.hasMany(models.Student, {
-        foreignKey: "studentId",
+        foreignKey: "townshipId",
         as: "students",
         // sourceKey: "name",
       });

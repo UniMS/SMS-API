@@ -28,6 +28,11 @@ module.exports = (sequelize, DataTypes) => {
         as: "parent",
         sourceKey: "studentId",
       });
+
+      Student.belongsTo(models.Enrollment, {
+        foreignKey: "studentId",
+        as: "enrollment",
+      });
     }
   }
 

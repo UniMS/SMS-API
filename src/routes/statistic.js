@@ -4,7 +4,7 @@ const statistics = require("../controllers/statistics");
 
 /*
 --------------------------------------------
-Sdutent Grading Statistics
+Student Grading Statistics
 --------------------------------------------
 */
 router.get(
@@ -34,21 +34,12 @@ router.get(
 
 /*
 --------------------------------------------
-Sdutent Count Statistics
+Student Count Statistics
 --------------------------------------------
 */
-router.get(
-  "/students/academic-year/:academicYearId/count",
-  statistics.getStudentsCountByAcademicYear
-);
 
 router.get(
-  "/students/academic-year/:academicYearId/major/:majorId/count",
-  statistics.getStudentsCountByAcademicYearAndMajor
-);
-
-router.get(
-  "/students/academic-year/:academicYearId/attendance-year/:attendanceYearId/major/:majorId/count",
+  "/students/count?",
   statistics.getStudentsCountByAcademicYearAttendanceYearAndMajor
 );
 
@@ -57,44 +48,31 @@ router.get(
 Township/Region Statistics
 --------------------------------------------
 */
-router.get(
-  "/students/academic-year/:academicYearId/townships/:townshipId",
-  statistics.getStudentsByTownshipAndAcademicYear
-);
 
 router.get(
-  "/students/academic-year/:academicYearId/major/:majorId/townships/:townshipId",
-  statistics.getStudentsByTownshipAcademicYearAndMajor
-);
-
-router.get(
-  "/students/academic-year/:academicYearId/attendance-year/:attendanceYearId/townships/:townshipId",
-  statistics.getStudentsByTownshipAcademicYearAndAttendanceYear
-);
-
-router.get(
-  "/students/academic-year/:academicYearId/attendance-year/:attendanceYearId/major/:majorId/townships/:townshipId",
+  "/students/townships/:townshipId",
   statistics.getStudentsByTownshipAcademicYearAttendanceYearAndMajor
 );
 
 router.get(
-  "/students/academic-year/:academicYearId/regions/:regionId",
-  statistics.getStudentsByRegionAndAcademicYear
-);
-
-router.get(
-  "/students/academic-year/:academicYearId/major/:majorId/regions/:regionId",
-  statistics.getStudentsByRegionAcademicYearAndMajor
-);
-
-router.get(
-  "/students/academic-year/:academicYearId/attendance-year/:attendanceYearId/regions/:regionId",
-  statistics.getStudentsByRegionAcademicYearAndAttendanceYear
-);
-
-router.get(
-  "/students/academic-year/:academicYearId/attendance-year/:attendanceYearId/major/:majorId/regions/:regionId",
+  "/students/regions/:regionId",
   statistics.getStudentsByRegionAcademicYearAttendanceYearAndMajor
+);
+
+/*
+--------------------------------------------
+Religion/Ethnicity/Gender Statistics
+--------------------------------------------
+*/
+
+router.get(
+  "/students/religions/:religionId",
+  statistics.getStudentsByReligionAcademicYearAttendanceYearAndMajor
+);
+
+router.get(
+  "/students/gender/:gender",
+  statistics.getStudentsByGenderAcademicYearAttendanceYearAndMajor
 );
 
 module.exports = router;
