@@ -92,7 +92,7 @@ module.exports = (sequelize, DataTypes) => {
       hostelName: {
         allowNull: true,
         field: "hostel_name",
-        type: Sequelize.STRING(50),
+        type: DataTypes.STRING(50),
       },
       hostelAddress: {
         allowNull: true,
