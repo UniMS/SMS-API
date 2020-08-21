@@ -40,11 +40,6 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      // entranceNo: {
-      //   allowNull: false,
-      //   field: "entrance_no",
-      //   type: DataTypes.STRING(30),
-      // },
       nameEn: {
         allowNull: false,
         field: "name_en",
@@ -81,9 +76,18 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING(30),
       },
+      entranceDate: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
       address: {
         allowNull: false,
         type: DataTypes.STRING(255),
+      },
+      hostelName: {
+        allowNull: true,
+        field: "hostel_name",
+        type: Sequelize.STRING(50),
       },
       hostelAddress: {
         allowNull: true,
@@ -96,15 +100,6 @@ module.exports = (sequelize, DataTypes) => {
         references: {
           model: "townships",
           key: "township_id",
-        },
-        type: DataTypes.INTEGER,
-      },
-      ethnicityId: {
-        allowNull: false,
-        field: "ethnicity_id",
-        references: {
-          model: "ethnicities",
-          key: "ethnicity_id",
         },
         type: DataTypes.INTEGER,
       },

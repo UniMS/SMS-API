@@ -46,9 +46,18 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(30),
       },
+      entranceDate: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
       address: {
         allowNull: false,
         type: Sequelize.STRING(255),
+      },
+      hostelName: {
+        allowNull: true,
+        field: "hostel_name",
+        type: Sequelize.STRING(50),
       },
       hostelAddress: {
         allowNull: true,
@@ -63,17 +72,6 @@ module.exports = {
         references: {
           model: "townships",
           key: "township_id",
-        },
-        type: Sequelize.INTEGER,
-      },
-      ethnicityId: {
-        allowNull: false,
-        field: "ethnicity_id",
-        onDelete: "NO ACTION",
-        onUpdate: "CASCADE",
-        references: {
-          model: "ethnicities",
-          key: "ethnicity_id",
         },
         type: Sequelize.INTEGER,
       },
