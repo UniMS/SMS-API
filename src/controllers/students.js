@@ -214,37 +214,66 @@ function getHeaders(csvData, headers) {
 
 /**
  * * verified
- * @filterStudents filters students according to academic year, major and attendance yera.
+ * @filterStudents filters students according to ONLY academic year.
  *
- * @params academicYearId, majorId, attendanceYearId
+ * @params academicYearId
  */
 exports.filterStudents = catchAsync(async (req, res) => {
   const academicYearId = req.params.academicYearId;
-  const majorId = req.params.majorId;
-  const attendanceYearId = req.params.attendanceYearId;
 
-  const students = await models.Enrollment.findAll({
-    where: {
-      academicYearId,
-      majorId,
-      attendanceYearId,
-    },
-    attributes: [],
+  let students = await models.Major.findAll({
+    attributes: ["majorId", "name"],
     include: [
       {
-        model: models.Student,
-        as: "student",
-        attributes: ["studentId", "nameEn", "nrc", "gender", "phone"],
+        model: models.AttendanceYear,
+        as: "attendanceYears",
+        attributes: ["name"],
         include: [
           {
-            model: models.Parent,
-            as: "parent",
-            attributes: ["parentId", "fatherNameEn", "fatherNrc"],
+            model: models.Enrollment,
+            where: {
+              academicYearId,
+            },
+            as: "enrollments",
+            attributes: ["attendanceYearId", "rollNo"],
+            include: [
+              {
+                model: models.Student,
+                as: "student",
+                attributes: [
+                  "studentId",
+                  "nameEn",
+                  "nrc",
+                  "gender",
+                  "phone",
+                  "address",
+                ],
+                include: [
+                  {
+                    model: models.Parent,
+                    as: "parent",
+                    attributes: ["parentId", "fatherNameEn", "fatherNrc"],
+                  },
+                  {
+                    model: models.Township,
+                    as: "township",
+                    attributes: ["name"],
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
     ],
   });
+
+  students = _.compact(
+    students.map((student) => {
+      if (student.attendanceYears.length === 0) delete student;
+      else return student;
+    })
+  );
 
   if (!students.length)
     return res.status(404).json({

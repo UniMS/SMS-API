@@ -20,7 +20,7 @@ router.route("/csv").post(upload.single("file"), students.importWithCSV);
  * @params academicYearId, majorId, attendanceYearId
  */
 router.get(
-  "/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId",
+  "/academic-year/:academicYearId",
   students.filterStudents
 );
 

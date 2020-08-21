@@ -5,7 +5,16 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class AttendanceYear extends Model {
     static associate(models) {
-      // define association here
+      AttendanceYear.belongsToMany(models.Major, {
+        through: "majors_attendance_years",
+        as: "majors",
+        foreignKey: "attendance_year_id",
+      });
+
+      AttendanceYear.hasMany(models.Enrollment, {
+        as: "enrollments",
+        foreignKey: "attendance_year_id",
+      });
     }
   }
 

@@ -1,4 +1,5 @@
 module.exports = [
+  "admin",
   "official",
   "office",
   "ict_hod",
