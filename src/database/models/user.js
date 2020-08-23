@@ -1,6 +1,7 @@
 'use strict';
 
 const Joi = require('joi');
+
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
@@ -32,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       password: {
         allowNull: false,
-        type: DataTypes.STRING(1024),
+        type: DataTypes.STRING(255),
       },
       roleId: {
         allowNull: false,
@@ -44,12 +45,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
       },
       createdAt: {
-        allowNull: false,
         field: 'created_at',
         type: DataTypes.DATE,
       },
       updatedAt: {
-        allowNull: false,
         field: 'updated_at',
         type: DataTypes.DATE,
       },
@@ -61,18 +60,27 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  User.beforeCreate((user) => {
+    user.createdAt = new Date();
+    user.updatedAt = new Date();
+  });
+
+  User.beforeUpdate((user) => {
+    user.updatedAt = new Date();
+  });
+
   return User;
 };
 
 function validateUser(user) {
-  const schema = {
+  const schema = Joi.object({
     name: Joi.string().min(5).max(30).required(),
     username: Joi.string().min(5).max(50).required().email(),
     password: Joi.string().min(8).max(255).required(),
     roleId: Joi.number().required(),
-  };
+  });
 
-  return Joi.validate(user, schema);
+  return schema.validate(user);
 }
 
-exports.validate = validateUser;
+module.exports.validate = validateUser;
