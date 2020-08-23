@@ -27,6 +27,11 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: "AcademicYear",
       tableName: "academic_years",
+      getterMethods: {
+        academicYearId: function () {
+          return this.academicYearId;
+        },
+      },
     }
   );
 

@@ -8,6 +8,8 @@ const rows = attendanceYears.map((year) => {
   };
 });
 
+console.log(rows);
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.sequelize.query(

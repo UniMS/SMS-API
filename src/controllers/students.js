@@ -1,21 +1,14 @@
-const _ = require("lodash");
+const _ = require('lodash');
 
-const fs = require("fs");
-const csv = require("fast-csv");
-const path = require("path");
-const { moveFile } = require("../utils/moveFile");
-const uploadImages = require("../middlewares/uploadImages");
+const fs = require('fs');
+const csv = require('fast-csv');
+const path = require('path');
+const { moveFile } = require('../utils/moveFile');
+const uploadImages = require('../middlewares/uploadImages');
 
-const models = require("../database/models");
-const catchAsync = require("../utils/catchAsync");
-const {
-  studentAttributes,
-  parentAttributes,
-  studentImageAttributes,
-  parentImageAttributes,
-  enrollmentFields,
-  csvStudentDataEntryFields,
-} = require("../utils/fields");
+const models = require('../database/models');
+const catchAsync = require('../utils/catchAsync');
+const { csvStudentHeaders, csvStudentAttributes, csvParentAttributes, csvEnrollmentAttributes, studentAttributes, parentAttributes, studentImageAttributes, parentImageAttributes } = require('../utils/fields');
 
 exports.importWithCSV = catchAsync(async (req, res) => {
   let metaData = [];
@@ -24,183 +17,249 @@ exports.importWithCSV = catchAsync(async (req, res) => {
   let stdData = [];
   let myd = [];
 
+  if (!req.file.mimetype.includes('csv'))
+    return res.status(400).send({
+      status: 'fail',
+      message: 'Invalid input.',
+    });
+
+  const originalName = req.file.originalname;
+  const filename = originalName.split('.')[0].split('_');
+  const academicYearName = filename[0];
+  const attendanceYearName = filename[1];
+  const majorName = filename[2];
+
+  const academicYear = await models.AcademicYear.findOne({
+    where: { name: academicYearName },
+    attributes: ['academicYearId'],
+    raw: true,
+  });
+
+  const attendanceYear = await models.AttendanceYear.findOne({
+    where: { name: attendanceYearName },
+    attributes: ['attendanceYearId'],
+    raw: true,
+  });
+
+  const major = await models.Major.findOne({
+    where: { name: majorName },
+    attributes: ['majorId'],
+    raw: true,
+  });
+
+  if (!academicYear || !attendanceYear || !major)
+    return res.status(400).send({
+      status: 'fail',
+      message: 'Invalid file name.',
+    });
+
   fs.createReadStream(req.file.path)
-    .pipe(
-      csv.parse({
-        trim: true,
-      })
-    )
-    .on("error", (error) => console.error(error))
-    .on("data", (row) => {
-      csvData.push(_.compact(row));
+    .pipe(csv.parse({ trim: true, headers: csvStudentHeaders, renameHeaders: true }))
+    .on('error', (error) => console.log(error))
+    .on('data', (row) => {
+      // * reading csv rows
+      csvData.push(row);
     })
-    .on("end", async () => {
+    .on('end', () => {
       fs.unlinkSync(req.file.path);
 
-      metaData = csvData.splice(2, 4);
+      // * preparing csv object into structured object
+      const result = [];
+      csvData.map((data) => {
+        let enrollment = _.pick(data, csvEnrollmentAttributes);
+        enrollment = {
+          ...enrollment,
+          academicYearId: academicYear.academicYearId,
+          attendanceYearId: attendanceYear.attendanceYearId,
+          majorId: major.majorId,
+        };
+        const student = _.pick(data, csvStudentAttributes);
+        const parent = _.pick(data, csvParentAttributes);
 
-      metaData = _.fromPairs(metaData);
-
-      /*
-      [
-        ["academicYear", "2019..."]
-        ["attendanceYear", "2019..."]
-
-        {
-          academic_year: 2019,
-          attendance_year: 2019
-        }
-      ]
-      */
-
-      const mapKeyMetaData = {
-        academic_year: "academicYearId",
-        attendance_year: "attendanceYearId",
-        major: "majorId",
-        degree: "degreeId",
-      };
-
-      metaData = _.mapKeys(metaData, function (value, key) {
-        return mapKeyMetaData[key];
+        result.push({ student, parent, enrollment });
       });
 
-      studentData = csvData.splice(4);
+      // * getting ids for foreign keys
+      // const townships =
+    });
 
-      const formattedData = getHeaders(studentData, csvStudentDataEntryFields);
+  // fs.createReadStream(req.file.path)
+  //   .pipe(
+  //     csv.parse({
+  //       trim: true,
+  //     })
+  //   )
+  //   .on("error", (error) => console.error(error))
+  //   .on("data", (row) => {
+  //     csvData.push(_.compact(row));
+  //   })
+  //   .on("end", async () => {
+  //     fs.unlinkSync(req.file.path);
 
-      const ee = formattedData.map((data) => {
-        return { ...data, ...metaData, remarkId: 1 };
-      });
+  //     metaData = csvData.splice(2, 4);
 
-      const data = ee.map((data) => {
-        const student = _.pick(data, studentFields);
-        const parent = _.pick(data, parentFields);
-        const enrollment = _.pick(data, enrollmentFields);
-        return [student, parent, enrollment];
-      });
+  //     metaData = _.fromPairs(metaData);
 
-      const insertedData = [];
+  //     /*
+  //     [
+  //       ["academicYear", "2019..."]
+  //       ["attendanceYear", "2019..."]
 
-      const promises = data.map(async (d) => {
-        const township = d[0].townshipId;
-        const ethnicity = d[0].ethnicityId;
-        const religion = d[0].religionId;
-        const parentTownship = d[1].parentTownshipId;
+  //       {
+  //         academic_year: 2019,
+  //         attendance_year: 2019
+  //       }
+  //     ]
+  //     */
 
-        console.log("--------------");
-        console.log(d);
-        console.log("--------------");
+  //     const mapKeyMetaData = {
+  //       academic_year: "academicYearId",
+  //       attendance_year: "attendanceYearId",
+  //       major: "majorId",
+  //       degree: "degreeId",
+  //     };
 
-        const studentData = _.pick(d[0], [
-          "nameEn",
-          "nameMm",
-          "nrc",
-          "gender",
-          "birthday",
-          "phone",
-          "address",
-          "hostelAddress",
-        ]);
+  //     metaData = _.mapKeys(metaData, function (value, key) {
+  //       return mapKeyMetaData[key];
+  //     });
 
-        studentData.gender = studentData.gender === "Male" ? 0 : 1;
+  //     studentData = csvData.splice(4);
 
-        // get townshipId
-        // const { townshipId } = await models.Township.findOne({
-        //   where: {
-        //     name: township,
-        //   },
-        //   attributes: ["townshipId"],
-        //   raw: true,
-        // });
+  //     const formattedData = getHeaders(studentData, csvStudentDataEntryFields);
 
-        // get parentTownshipId
-        // const { townshipId: parentTownshipId } = await models.Township.findOne({
-        //   where: {
-        //     name: parentTownship,
-        //   },
-        //   attributes: ["townshipId"],
-        //   raw: true,
-        // });
+  //     const ee = formattedData.map((data) => {
+  //       return { ...data, ...metaData, remarkId: 1 };
+  //     });
 
-        // get ethnicityId
-        // const { ethnicityId } = await models.Ethnicity.findOne({
-        //   where: {
-        //     name: ethnicity,
-        //   },
-        //   attributes: ["ethnicityId"],
-        //   raw: true,
-        // });
+  //     const data = ee.map((data) => {
+  //       const student = _.pick(data, studentFields);
+  //       const parent = _.pick(data, parentFields);
+  //       const enrollment = _.pick(data, enrollmentFields);
+  //       return [student, parent, enrollment];
+  //     });
 
-        // get religinoId
-        // const { religionId } = await models.Religion.findOne({
-        //   where: {
-        //     name: religion,
-        //   },
-        //   attributes: ["religionId"],
-        //   raw: true,
-        // });
+  //     const insertedData = [];
 
-        // prepare student data with above ids
-        // const student = {
-        //   ...d[0],
-        //   gender,
-        //   townshipId,
-        //   ethnicityId,
-        //   religionId,
-        // };
-        // insert student data
-        let std = await models.Student.create(
-          {
-            nameEn: "Htet Phyo Naing",
-            nameMm: "ထက်ဖြိုးနိုင်",
-            nrc: "1/MaMaMa(N) 222222",
-            gender: 0,
-            birthday: "2020-07-30",
-            phone: "11111111111",
-            address: "address1",
-            hostelAddress: "hostel addr 1",
-            townshipId: 1,
-            ethnicityId: 2,
-            religionId: 2,
-            parent: [{ ...d[1], parentTownshipId: 1 }],
-            // enrollment: [{ ...d[2] }],
-          },
-          { include: ["parent"] }
-        );
+  //     const promises = data.map(async (d) => {
+  //       const township = d[0].townshipId;
+  //       const ethnicity = d[0].ethnicityId;
+  //       const religion = d[0].religionId;
+  //       const parentTownship = d[1].parentTownshipId;
 
-        // prepare parent data with above ids and lastInserted studnet Id
-        // const parent = {
-        //   ...d[1],
-        //   parentTownshipId,
-        //   studentId: std.studentId,
-        // };
-        // insert parent data
-        // await models.Parent.create(parent);
+  //       console.log("--------------");
+  //       console.log(d);
+  //       console.log("--------------");
 
-        // get inserted student and parent data
-        const mydata = await models.Student.findOne({
-          where: {
-            studentId: std.studentId,
-          },
-          include: [
-            {
-              all: true,
-              nested: true,
-              attributes: { exclude: ["createdAt", "updatedAt"] },
-            },
-          ],
-        });
+  //       const studentData = _.pick(d[0], [
+  //         "nameEn",
+  //         "nameMm",
+  //         "nrc",
+  //         "gender",
+  //         "birthday",
+  //         "phone",
+  //         "address",
+  //         "hostelAddress",
+  //       ]);
 
-        insertedData.push(mydata);
-      }); // end data.map
+  //       studentData.gender = studentData.gender === "Male" ? 0 : 1;
 
-      await Promise.all(promises);
+  //       // get townshipId
+  //       // const { townshipId } = await models.Township.findOne({
+  //       //   where: {
+  //       //     name: township,
+  //       //   },
+  //       //   attributes: ["townshipId"],
+  //       //   raw: true,
+  //       // });
 
-      return res.status(201).send({
-        status: "success",
-        insertedData,
-      });
-    }); // end readstream
+  //       // get parentTownshipId
+  //       // const { townshipId: parentTownshipId } = await models.Township.findOne({
+  //       //   where: {
+  //       //     name: parentTownship,
+  //       //   },
+  //       //   attributes: ["townshipId"],
+  //       //   raw: true,
+  //       // });
+
+  //       // get ethnicityId
+  //       // const { ethnicityId } = await models.Ethnicity.findOne({
+  //       //   where: {
+  //       //     name: ethnicity,
+  //       //   },
+  //       //   attributes: ["ethnicityId"],
+  //       //   raw: true,
+  //       // });
+
+  //       // get religinoId
+  //       // const { religionId } = await models.Religion.findOne({
+  //       //   where: {
+  //       //     name: religion,
+  //       //   },
+  //       //   attributes: ["religionId"],
+  //       //   raw: true,
+  //       // });
+
+  //       // prepare student data with above ids
+  //       // const student = {
+  //       //   ...d[0],
+  //       //   gender,
+  //       //   townshipId,
+  //       //   ethnicityId,
+  //       //   religionId,
+  //       // };
+  //       // insert student data
+  //       let std = await models.Student.create(
+  //         {
+  //           nameEn: "Htet Phyo Naing",
+  //           nameMm: "ထက်ဖြိုးနိုင်",
+  //           nrc: "1/MaMaMa(N) 222222",
+  //           gender: 0,
+  //           birthday: "2020-07-30",
+  //           phone: "11111111111",
+  //           address: "address1",
+  //           hostelAddress: "hostel addr 1",
+  //           townshipId: 1,
+  //           ethnicityId: 2,
+  //           religionId: 2,
+  //           parent: [{ ...d[1], parentTownshipId: 1 }],
+  //           // enrollment: [{ ...d[2] }],
+  //         },
+  //         { include: ["parent"] }
+  //       );
+
+  //       // prepare parent data with above ids and lastInserted studnet Id
+  //       // const parent = {
+  //       //   ...d[1],
+  //       //   parentTownshipId,
+  //       //   studentId: std.studentId,
+  //       // };
+  //       // insert parent data
+  //       // await models.Parent.create(parent);
+
+  //       // get inserted student and parent data
+  //       const mydata = await models.Student.findOne({
+  //         where: {
+  //           studentId: std.studentId,
+  //         },
+  //         include: [
+  //           {
+  //             all: true,
+  //             nested: true,
+  //             attributes: { exclude: ["createdAt", "updatedAt"] },
+  //           },
+  //         ],
+  //       });
+
+  //       insertedData.push(mydata);
+  //     }); // end data.map
+
+  //     await Promise.all(promises);
+
+  //     return res.status(201).send({
+  //       status: "success",
+  //       insertedData,
+  //     });
+  //   });
 });
 
 function getHeaders(csvData, headers) {
@@ -222,42 +281,35 @@ exports.filterStudents = catchAsync(async (req, res) => {
   const academicYearId = req.params.academicYearId;
 
   let students = await models.Major.findAll({
-    attributes: ["majorId", "name"],
+    attributes: ['majorId', 'name'],
     include: [
       {
         model: models.AttendanceYear,
-        as: "attendanceYears",
-        attributes: ["name"],
+        as: 'attendanceYears',
+        attributes: ['name'],
         include: [
           {
             model: models.Enrollment,
             where: {
               academicYearId,
             },
-            as: "enrollments",
-            attributes: ["attendanceYearId", "rollNo"],
+            as: 'enrollments',
+            attributes: ['attendanceYearId', 'rollNo'],
             include: [
               {
                 model: models.Student,
-                as: "student",
-                attributes: [
-                  "studentId",
-                  "nameEn",
-                  "nrc",
-                  "gender",
-                  "phone",
-                  "address",
-                ],
+                as: 'student',
+                attributes: ['studentId', 'nameEn', 'nrc', 'gender', 'phone', 'address'],
                 include: [
                   {
                     model: models.Parent,
-                    as: "parent",
-                    attributes: ["parentId", "fatherNameEn", "fatherNrc"],
+                    as: 'parent',
+                    attributes: ['parentId', 'fatherNameEn', 'fatherNrc'],
                   },
                   {
                     model: models.Township,
-                    as: "township",
-                    attributes: ["name"],
+                    as: 'township',
+                    attributes: ['name'],
                   },
                 ],
               },
@@ -277,12 +329,12 @@ exports.filterStudents = catchAsync(async (req, res) => {
 
   if (!students.length)
     return res.status(404).json({
-      status: "fail",
-      message: "No data!",
+      status: 'fail',
+      message: 'No data!',
     });
 
   return res.status(200).json({
-    status: "success",
+    status: 'success',
     data: {
       count: students.length,
       students,
@@ -301,46 +353,31 @@ exports.getStudent = catchAsync(async (req, res) => {
 
   const student = await models.Student.findOne({
     where: { studentId },
-    attributes: { exclude: ["createdAt", "updatedAt"] },
+    attributes: { exclude: ['createdAt', 'updatedAt'] },
     include: [
       {
         model: models.Township,
-        as: "township",
-        attributes: ["name"],
-        include: [
-          {
-            model: models.Region,
-            as: "region",
-            attributes: ["name"],
-          },
-        ],
+        as: 'township',
+        attributes: ['name'],
+        include: [{ model: models.Region, as: 'region', attributes: ['name'] }],
       },
       {
         model: models.Religion,
-        as: "religion",
-        attributes: ["name"],
+        as: 'religion',
+        attributes: ['name'],
       },
       {
         model: models.Ethnicity,
-        as: "ethnicities",
-        attributes: ["name"],
+        as: 'ethnicities',
+        attributes: ['name'],
       },
     ],
     nest: true,
   });
 
-  if (!student)
-    return res.status(404).json({
-      status: "fail",
-      message: "No data!",
-    });
+  if (!student) return res.status(404).json({ status: 'fail', message: 'No data!' });
 
-  return res.status(200).json({
-    status: "success",
-    data: {
-      student,
-    },
-  });
+  return res.status(200).json({ status: 'success', data: { student } });
 });
 
 /**
@@ -364,15 +401,12 @@ exports.updateStudent = catchAsync(async (req, res) => {
   const student = await models.Student.findByPk(studentId);
   if (!student)
     return res.status(404).json({
-      status: "fail",
-      message: "No data!",
+      status: 'fail',
+      message: 'No data!',
     });
 
   const updatingAttributes = Object.keys(_.pick(req.body, studentAttributes));
-  const updatingImageAttributes = _.intersection(
-    updatingAttributes,
-    studentImageAttributes
-  );
+  const updatingImageAttributes = _.intersection(updatingAttributes, studentImageAttributes);
 
   // update မှာ image attributes များပါလာမလား စစ်.
   if (updatingImageAttributes.length > 0) {
@@ -395,39 +429,39 @@ exports.updateStudent = catchAsync(async (req, res) => {
 
   if (!hasUpdated)
     return res.status(500).json({
-      status: "fail",
-      message: "Something is not right.",
+      status: 'fail',
+      message: 'Something is not right.',
     });
 
   const updatedStudent = await models.Student.findByPk(studentId, {
-    attributes: { exclude: ["createdAt", "updatedAt"] },
+    attributes: { exclude: ['createdAt', 'updatedAt'] },
     include: [
       {
         model: models.Township,
-        as: "township",
-        attributes: ["name"],
+        as: 'township',
+        attributes: ['name'],
         include: [
           {
             model: models.Region,
-            as: "region",
-            attributes: ["name"],
+            as: 'region',
+            attributes: ['name'],
           },
         ],
       },
       {
         model: models.Religion,
-        as: "religion",
-        attributes: ["name"],
+        as: 'religion',
+        attributes: ['name'],
       },
       {
         model: models.Ethnicity,
-        as: "ethnicities",
-        attributes: ["name"],
+        as: 'ethnicities',
+        attributes: ['name'],
       },
     ],
   });
   return res.status(200).json({
-    status: "success",
+    status: 'success',
     data: updatedStudent,
   });
 });
@@ -446,31 +480,31 @@ exports.getAttendanceHistories = catchAsync(async (req, res) => {
     include: [
       {
         model: models.AcademicYear,
-        as: "academicYear",
-        attributes: ["name"],
+        as: 'academicYear',
+        attributes: ['name'],
       },
       {
         model: models.AttendanceYear,
-        as: "attendanceYear",
-        attributes: ["name"],
+        as: 'attendanceYear',
+        attributes: ['name'],
       },
       {
         model: models.Status,
-        as: "status",
-        attributes: ["name"],
+        as: 'status',
+        attributes: ['name'],
       },
     ],
-    attributes: ["rollNo"],
+    attributes: ['rollNo'],
   });
 
   if (!histories.length)
     return res.status(404).json({
-      status: "fail",
-      message: "No data!",
+      status: 'fail',
+      message: 'No data!',
     });
 
   return res.status(200).json({
-    status: "success",
+    status: 'success',
     data: {
       histories,
     },
@@ -491,13 +525,13 @@ exports.getParent = catchAsync(async (req, res) => {
     include: [
       {
         model: models.Township,
-        as: "parentTownship",
-        attributes: ["name"],
+        as: 'parentTownship',
+        attributes: ['name'],
         include: [
           {
             model: models.Region,
-            as: "region",
-            attributes: ["name"],
+            as: 'region',
+            attributes: ['name'],
           },
         ],
       },
@@ -506,12 +540,12 @@ exports.getParent = catchAsync(async (req, res) => {
 
   if (!parent)
     return res.status(404).json({
-      status: "fail",
-      message: "No data!",
+      status: 'fail',
+      message: 'No data!',
     });
 
   return res.status(200).json({
-    status: "success",
+    status: 'success',
     data: {
       parent,
     },
@@ -539,15 +573,12 @@ exports.updateParent = catchAsync(async (req, res) => {
   const parent = await models.Parent.findByPk(parentId);
   if (!parent)
     return res.status(404).json({
-      status: "fail",
-      message: "No data!",
+      status: 'fail',
+      message: 'No data!',
     });
 
   const updatingAttributes = Object.keys(_.pick(req.body, parentAttributes));
-  const updatingImageAttributes = _.intersection(
-    updatingAttributes,
-    parentImageAttributes
-  );
+  const updatingImageAttributes = _.intersection(updatingAttributes, parentImageAttributes);
 
   // update မှာ image attributes များပါလာမလား စစ်.
   if (updatingImageAttributes.length > 0) {
@@ -570,29 +601,29 @@ exports.updateParent = catchAsync(async (req, res) => {
 
   if (!hasUpdated)
     return res.status(500).json({
-      status: "fail",
-      message: "Something is not right.",
+      status: 'fail',
+      message: 'Something is not right.',
     });
 
   const updatedParent = await models.Parent.findByPk(parentId, {
-    attributes: { exclude: ["createdAt", "updatedAt"] },
+    attributes: { exclude: ['createdAt', 'updatedAt'] },
     include: [
       {
         model: models.Township,
-        as: "parentTownship",
-        attributes: ["name"],
+        as: 'parentTownship',
+        attributes: ['name'],
         include: [
           {
             model: models.Region,
-            as: "region",
-            attributes: ["name"],
+            as: 'region',
+            attributes: ['name'],
           },
         ],
       },
     ],
   });
   return res.status(200).json({
-    status: "success",
+    status: 'success',
     data: updatedParent,
   });
 });

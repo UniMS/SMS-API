@@ -1,3 +1,6 @@
+/**
+ * @student attributes
+ */
 exports.studentAttributes = [
   "nameEn",
   "nameMm",
@@ -7,7 +10,9 @@ exports.studentAttributes = [
   "gender",
   "birthday",
   "phone",
+  "entranceDate",
   "address",
+  "hostelName",
   "hostelAddress",
   "photo",
   "wardRecommendationLetter",
@@ -17,14 +22,9 @@ exports.studentAttributes = [
   "ethnicityId",
 ];
 
-exports.studentImageAttributes = [
-  "nrcFront",
-  "nrcBack",
-  "photo",
-  "wardRecommendationLetter",
-  "policeRecommendationLetter",
-];
-
+/**
+ * @parent attributes
+ */
 exports.parentAttributes = [
   "fatherNameMm",
   "fatherNameEn",
@@ -44,35 +44,10 @@ exports.parentAttributes = [
   "parentTownshipId",
 ];
 
-exports.parentImageAttributes = [
-  "fatherNrcFront",
-  "fatherNrcBack",
-  "motherNrcFront",
-  "motherNrcBack",
-];
-
-exports.enrollmentFields = [
-  "degreeId",
-  "majorId",
-  "academicYearId",
-  "attendanceYearId",
-  "rollNo",
-  "remarkId",
-];
-
-exports.uploadFields = [
-  { name: "nrcFront", maxCount: 1 },
-  { name: "nrcBack", maxCount: 1 },
-  { name: "photo", maxCount: 1 },
-  { name: "fatherNrcFront", maxCount: 1 },
-  { name: "fatherNrcBack", maxCount: 1 },
-  { name: "motherNrcFront", maxCount: 1 },
-  { name: "motherNrcBack", maxCount: 1 },
-  { name: "wardRecommendationLetter", maxCount: 1 },
-  { name: "policeRecommendationLetter", maxCount: 1 },
-];
-
-exports.csvStudentDataEntryFields = [
+/**
+ * csv @student import headers
+ */
+exports.csvStudentHeaders = [
   "rollNo",
   "nameEn",
   "nameMm",
@@ -80,11 +55,14 @@ exports.csvStudentDataEntryFields = [
   "gender",
   "birthday",
   "phone",
-  "religionId",
-  "ethnicityId",
-  "regionId",
-  "townshipId",
+  "religion",
+  "ethnicity1",
+  "ethnicity2",
+  undefined,
+  "township",
+  "entranceDate",
   "address",
+  "hostelName",
   "hostelAddress",
   "fatherNameEn",
   "fatherNameMm",
@@ -96,7 +74,77 @@ exports.csvStudentDataEntryFields = [
   "motherNrc",
   "motherJob",
   "motherPhone",
-  "parentRegionId",
-  "parentTownshipId",
+  undefined,
+  "parentTownship",
   "parentAddress",
+];
+
+/**
+ * csv @student attributes
+ */
+exports.csvStudentAttributes = [
+  "nameEn",
+  "nameMm",
+  "nrc",
+  "gender",
+  "birthday",
+  "phone",
+  "religion",
+  "ethnicity1",
+  "ethnicity2",
+  undefined,
+  "township",
+  "entranceDate",
+  "address",
+  "hostelName",
+  "hostelAddress",
+];
+
+/**
+ * csv @parent attributes
+ */
+exports.csvParentAttributes = [
+  "fatherNameMm",
+  "fatherNameEn",
+  "fatherNrc",
+  "fatherJob",
+  "fatherPhone",
+  "motherNameMm",
+  "motherNameEn",
+  "motherNrc",
+  "motherJob",
+  "motherPhone",
+  "parentAddress",
+  "parentTownship",
+];
+
+/**
+ * csv @enrollment attributes
+ */
+exports.csvEnrollmentAttributes = [
+  "academicYearId",
+  "attendanceYearId",
+  "majorId",
+  "rollNo",
+];
+
+/**
+ * Student @Image Attributes
+ */
+exports.studentImageAttributes = [
+  "nrcFront",
+  "nrcBack",
+  "photo",
+  "wardRecommendationLetter",
+  "policeRecommendationLetter",
+];
+
+/**
+ * Parent @Image Attributes
+ */
+exports.parentImageAttributes = [
+  "fatherNrcFront",
+  "fatherNrcBack",
+  "motherNrcFront",
+  "motherNrcBack",
 ];
