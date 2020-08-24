@@ -29,3 +29,13 @@ exports.register = catchAsync(async (req, res) => {
     .status(200)
     .json({ status: 'success', data: _.pick(user, ['userId', 'name', 'username']) });
 });
+
+/**
+ * Get current user information
+ */
+exports.getMe = catchAsync(async (req, res) => {
+  let user = await User.findByPk(req.user.userId);
+  user = _.pick(user, ['name', 'username', 'roleId']);
+
+  return res.status(200).json({ status: 'success', data: { user } });
+});

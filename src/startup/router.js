@@ -11,8 +11,8 @@ module.exports = function (app) {
    * ! ORDER matters
    */
   app.use('/api/users', user);
-  app.use('/api/auth', authentication);
-  // app.use(authentication); // <- enable when all're done.
+  app.use('/api/auth', auth);
+  app.use(authentication); // <- enable when all're done.
 
   /**
    * * System Related Routes
