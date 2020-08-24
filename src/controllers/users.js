@@ -1,6 +1,4 @@
 const _ = require('lodash');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 const { User } = require('../database/models');
 const { validate } = require('../database/models/user');
 const catchAsync = require('../utils/catchAsync');
