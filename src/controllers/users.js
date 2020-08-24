@@ -1,9 +1,16 @@
 const _ = require('lodash');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { User } = require('../database/models');
 const { validate } = require('../database/models/user');
 const catchAsync = require('../utils/catchAsync');
 
+/**
+ * Register a new user
+ * * Have loggedin right after registered.
+ *
+ * @params name, username:email, password, roleId
+ */
 exports.register = catchAsync(async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).json({ status: 'fail', message: error.details[0].message });
@@ -16,5 +23,10 @@ exports.register = catchAsync(async (req, res) => {
   user.password = await bcrypt.hash(user.password, salt);
   await user.save();
 
-  return res.status(200).json({ status: 'success', data: _.pick(user, ['userId', 'name', 'username']) });
+  const token = jwt.sign({ userId: user.userId, username: user.username, roleId: user.roleId }, process.env.JWT_PRIVATE_KEY);
+
+  return res
+    .header('x-auth-token', token)
+    .status(200)
+    .json({ status: 'success', data: _.pick(user, ['userId', 'name', 'username']) });
 });
