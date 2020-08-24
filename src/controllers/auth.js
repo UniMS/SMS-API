@@ -15,7 +15,7 @@ exports.login = catchAsync(async (req, res) => {
   const validPassword = await bcrypt.compare(req.body.password, user.password);
   if (!validPassword) return res.status(400).json('Invalid email or password.');
 
-  const token = jwt.sign({ userId: user.userId, username: user.username, roleId: user.roleId }, 'happy');
+  const token = jwt.sign({ userId: user.userId, username: user.username, roleId: user.roleId }, process.env.JWT_PRIVATE_KEY);
 
   return res.send(token);
 });
