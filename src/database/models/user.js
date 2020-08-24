@@ -1,6 +1,8 @@
 'use strict';
 
 const Joi = require('joi');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const { Model } = require('sequelize');
 
@@ -68,6 +70,20 @@ module.exports = (sequelize, DataTypes) => {
   User.beforeUpdate((user) => {
     user.updatedAt = new Date();
   });
+
+  User.prototype.hashPassword = async function (password) {
+    const salt = await bcrypt.genSalt(10);
+    return await bcrypt.hash(password, salt);
+  };
+
+  User.prototype.validatePassword = async function (password) {
+    return await bcrypt.compare(password, this.password);
+  };
+
+  User.prototype.generateAuthToken = function () {
+    const token = jwt.sign({ userId: this.userId, username: this.username, roleId: this.roleId }, process.env.JWT_PRIVATE_KEY);
+    return token;
+  };
 
   return User;
 };

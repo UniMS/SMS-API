@@ -19,11 +19,10 @@ exports.register = catchAsync(async (req, res) => {
   if (user) return res.status(400).json('User already registered');
 
   user = User.build(_.pick(req.body, ['name', 'username', 'password', 'roleId']));
-  const salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(user.password, salt);
+  user.password = await user.hashPassword(user.password);
   await user.save();
 
-  const token = jwt.sign({ userId: user.userId, username: user.username, roleId: user.roleId }, process.env.JWT_PRIVATE_KEY);
+  const token = user.generateAuthToken();
 
   return res
     .header('x-auth-token', token)
