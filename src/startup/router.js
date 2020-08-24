@@ -8,6 +8,7 @@ const auth = require('../routes/auth');
 module.exports = function (app) {
   /**
    * * Auth Routes
+   * ! ORDER matters
    */
   app.use('/api/users', user);
   app.use('/api/auth', authentication);
