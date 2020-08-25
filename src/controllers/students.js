@@ -8,7 +8,16 @@ const uploadImages = require('../middlewares/uploadImages');
 
 const models = require('../database/models');
 const catchAsync = require('../utils/catchAsync');
-const { csvStudentHeaders, csvStudentAttributes, csvParentAttributes, csvEnrollmentAttributes, studentAttributes, parentAttributes, studentImageAttributes, parentImageAttributes } = require('../utils/fields');
+const {
+  csvStudentHeaders,
+  csvStudentAttributes,
+  csvParentAttributes,
+  csvEnrollmentAttributes,
+  studentAttributes,
+  parentAttributes,
+  studentImageAttributes,
+  parentImageAttributes,
+} = require('../utils/fields');
 
 exports.importWithCSV = catchAsync(async (req, res) => {
   let metaData = [];

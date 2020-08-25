@@ -1,17 +1,21 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const students = require("../controllers/students");
+const office = require('../middlewares/office');
+const hod = require('../middlewares/hod');
+const students = require('../controllers/students');
 const {
   uploadStudentImages,
   uploadParentImages,
-} = require("../middlewares/uploadImages");
+} = require('../middlewares/uploadImages');
 
-const resizeImages = require("../middlewares/resizeImages");
+const resizeImages = require('../middlewares/resizeImages');
 
-const multer = require("multer");
-const upload = multer({ dest: "tmp/csv/" });
+const multer = require('multer');
+const upload = multer({ dest: 'tmp/csv/' });
 
-router.route("/csv").post(upload.single("file"), students.importWithCSV);
+router
+  .route('/csv')
+  .post(upload.single('file'), office, students.importWithCSV);
 
 /**
  * * verified
@@ -19,10 +23,7 @@ router.route("/csv").post(upload.single("file"), students.importWithCSV);
  *
  * @params academicYearId, majorId, attendanceYearId
  */
-router.get(
-  "/academic-year/:academicYearId",
-  students.filterStudents
-);
+router.get('/academic-year/:academicYearId', hod, students.filterStudents);
 
 /**
  * * verified
@@ -30,7 +31,7 @@ router.get(
  *
  * @params studentId
  */
-router.get("/:studentId", students.getStudent);
+router.get('/:studentId', hod, students.getStudent);
 
 /**
  * ! needs error handling in utils/uploadImage
@@ -42,7 +43,8 @@ router.get("/:studentId", students.getStudent);
  * @params studentId
  */
 router.put(
-  "/:studentId",
+  '/:studentId',
+  office,
   uploadStudentImages,
   resizeImages,
   students.updateStudent
@@ -54,7 +56,11 @@ router.put(
  *
  * @params studentId
  */
-router.get("/:studentId/attendance-history", students.getAttendanceHistories);
+router.get(
+  '/:studentId/attendance-history',
+  hod,
+  students.getAttendanceHistories
+);
 
 /**
  * * verified
@@ -62,7 +68,7 @@ router.get("/:studentId/attendance-history", students.getAttendanceHistories);
  *
  * @params studentId
  */
-router.get("/:studentId/parents", students.getParent);
+router.get('/:studentId/parents', hod, students.getParent);
 
 /**
  * ! needs error handling in utils/uploadImage
@@ -74,7 +80,8 @@ router.get("/:studentId/parents", students.getParent);
  * @params parentId
  */
 router.put(
-  "/:parentId/parent",
+  '/:parentId/parent',
+  office,
   uploadParentImages,
   resizeImages,
   students.updateParent

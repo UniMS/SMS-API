@@ -1,42 +1,37 @@
-"use strict";
+'use strict';
 
-const { Model } = require("sequelize");
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Student extends Model {
     static associate(models) {
       Student.belongsTo(models.Township, {
-        foreignKey: "townshipId",
-        as: "township",
-        targetKey: "townshipId",
+        foreignKey: 'townshipId',
+        as: 'township',
+        targetKey: 'townshipId',
       });
 
       Student.belongsToMany(models.Ethnicity, {
-        through: "student_ethnicities",
-        as: "ethnicities",
-        foreignKey: "student_id",
+        through: 'student_ethnicities',
+        as: 'ethnicities',
+        foreignKey: 'student_id',
       });
 
       Student.belongsTo(models.Religion, {
-        foreignKey: "religionId",
-        as: "religion",
-        targetKey: "religionId",
+        foreignKey: 'religionId',
+        as: 'religion',
+        targetKey: 'religionId',
       });
 
       Student.hasOne(models.Parent, {
-        foreignKey: "studentId",
-        as: "parent",
-        sourceKey: "studentId",
+        foreignKey: 'studentId',
+        as: 'parent',
+        sourceKey: 'studentId',
       });
 
       Student.belongsTo(models.Enrollment, {
-        foreignKey: "studentId",
-        as: "enrollment",
-      });
-
-      Student.belongsTo(models.Major, {
-        foreignKey: "majorId",
-        as: "student",
+        foreignKey: 'studentId',
+        as: 'enrollment',
       });
     }
   }
@@ -46,18 +41,18 @@ module.exports = (sequelize, DataTypes) => {
       studentId: {
         allowNull: false,
         autoIncrement: true,
-        field: "student_id",
+        field: 'student_id',
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
       nameEn: {
         allowNull: false,
-        field: "name_en",
+        field: 'name_en',
         type: DataTypes.STRING(50),
       },
       nameMm: {
         allowNull: false,
-        field: "name_mm",
+        field: 'name_mm',
         type: DataTypes.STRING(50),
       },
       nrc: {
@@ -66,12 +61,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       nrcFront: {
         allowNull: true,
-        field: "nrc_front",
+        field: 'nrc_front',
         type: DataTypes.STRING(50),
       },
       nrcBack: {
         allowNull: true,
-        field: "nrc_back",
+        field: 'nrc_back',
         type: DataTypes.STRING(50),
       },
       gender: {
@@ -96,29 +91,29 @@ module.exports = (sequelize, DataTypes) => {
       },
       hostelName: {
         allowNull: true,
-        field: "hostel_name",
+        field: 'hostel_name',
         type: DataTypes.STRING(50),
       },
       hostelAddress: {
         allowNull: true,
-        field: "hostel_address",
+        field: 'hostel_address',
         type: DataTypes.STRING(255),
       },
       townshipId: {
         allowNull: false,
-        field: "township_id",
+        field: 'township_id',
         references: {
-          model: "townships",
-          key: "township_id",
+          model: 'townships',
+          key: 'township_id',
         },
         type: DataTypes.INTEGER,
       },
       religionId: {
         allowNull: false,
-        field: "religion_id",
+        field: 'religion_id',
         references: {
-          model: "religons",
-          key: "religion_id",
+          model: 'religons',
+          key: 'religion_id',
         },
         type: DataTypes.INTEGER,
       },
@@ -128,29 +123,29 @@ module.exports = (sequelize, DataTypes) => {
       },
       wardRecommendationLetter: {
         allowNull: true,
-        field: "ward_recommendation_letter",
+        field: 'ward_recommendation_letter',
         type: DataTypes.STRING(50),
       },
       policeRecommendationLetter: {
         allowNull: true,
-        field: "police_recommendation_letter",
+        field: 'police_recommendation_letter',
         type: DataTypes.STRING(50),
       },
       createdAt: {
         allowNull: false,
-        field: "created_at",
+        field: 'created_at',
         type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
-        field: "updated_at",
+        field: 'updated_at',
         type: DataTypes.DATE,
       },
     },
     {
       sequelize,
-      modelName: "Student",
-      tableName: "students",
+      modelName: 'Student',
+      tableName: 'students',
     }
   );
   return Student;

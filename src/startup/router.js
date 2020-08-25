@@ -13,7 +13,7 @@ module.exports = function (app) {
    */
   app.use('/api/users', user);
   app.use('/api/auth', auth);
-  // app.use(authentication); // <- enable when all business logic are done.
+  app.use(authentication); // <- enable when all business logic are done.
 
   /**
    * * System Related Routes
@@ -21,7 +21,7 @@ module.exports = function (app) {
   app.use('/api/students', student);
   app.use('/api/gradings', grading);
 
-  // app.use(official); // <- enable when all statistics implementations are done.
+  app.use(official); // <- enable when all statistics implementations are done.
   app.use('/api/statistics', statistic);
 
   app.all('*', (req, res, next) => {
