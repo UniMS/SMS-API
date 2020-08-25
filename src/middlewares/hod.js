@@ -22,7 +22,5 @@ module.exports = function (req, res, next) {
   else if (roleId === 6) req.majors = [5];
   else if (roleId === 7) req.majors = [6];
 
-  console.log(req.majors);
-
   next();
 };
