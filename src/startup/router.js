@@ -24,10 +24,10 @@ module.exports = function (app) {
   app.use(official); // <- enable when all statistics implementations are done.
   app.use('/api/statistics', statistic);
 
-  app.all('*', (req, res, next) => {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Undefined route!',
-    });
-  });
+  // app.all('*', (req, res, next) => {
+  //   return res.status(404).json({
+  //     status: 'fail',
+  //     message: 'Undefined routee!',
+  //   });
+  // });
 };

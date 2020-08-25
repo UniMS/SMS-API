@@ -15,12 +15,14 @@ module.exports = function (req, res, next) {
    * 6      |  pre_hod    |  Pre(5)
    * 7      |  ame_hod    |  Ame(6)
    */
-  if (roleId === 1 || roleId === 2) next();
-  else if (roleId === 3) req.major.majorId = [1, 2];
-  else if (roleId === 4) req.major.majorId = 3;
-  else if (roleId === 5) req.major.majorId = 4;
-  else if (roleId === 6) req.major.majorId = 5;
-  else if (roleId === 7) req.major.majorId = 6;
+  if (roleId === 1 || roleId === 2) req.majors = [1, 2, 3, 4, 5, 6];
+  else if (roleId === 3) req.majors = [1, 2];
+  else if (roleId === 4) req.majors = [3];
+  else if (roleId === 5) req.majors = [4];
+  else if (roleId === 6) req.majors = [5];
+  else if (roleId === 7) req.majors = [6];
+
+  console.log(req.majors);
 
   next();
 };

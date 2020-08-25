@@ -1,5 +1,5 @@
 const _ = require('lodash');
-
+const { Op } = require('sequelize');
 const fs = require('fs');
 const csv = require('fast-csv');
 const path = require('path');
@@ -63,7 +63,9 @@ exports.importWithCSV = catchAsync(async (req, res) => {
     });
 
   fs.createReadStream(req.file.path)
-    .pipe(csv.parse({ trim: true, headers: csvStudentHeaders, renameHeaders: true }))
+    .pipe(
+      csv.parse({ trim: true, headers: csvStudentHeaders, renameHeaders: true })
+    )
     .on('error', (error) => console.log(error))
     .on('data', (row) => {
       // * reading csv rows
@@ -289,7 +291,18 @@ function getHeaders(csvData, headers) {
 exports.filterStudents = catchAsync(async (req, res) => {
   const academicYearId = req.params.academicYearId;
 
+  if (!req.majors)
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Something went wrong!',
+    });
+
+  const where = {
+    [Op.or]: req.majors.map((majorId) => ({ majorId: majorId })),
+  };
+
   let students = await models.Major.findAll({
+    where,
     attributes: ['majorId', 'name'],
     include: [
       {
@@ -308,7 +321,14 @@ exports.filterStudents = catchAsync(async (req, res) => {
               {
                 model: models.Student,
                 as: 'student',
-                attributes: ['studentId', 'nameEn', 'nrc', 'gender', 'phone', 'address'],
+                attributes: [
+                  'studentId',
+                  'nameEn',
+                  'nrc',
+                  'gender',
+                  'phone',
+                  'address',
+                ],
                 include: [
                   {
                     model: models.Parent,
@@ -384,7 +404,8 @@ exports.getStudent = catchAsync(async (req, res) => {
     nest: true,
   });
 
-  if (!student) return res.status(404).json({ status: 'fail', message: 'No data!' });
+  if (!student)
+    return res.status(404).json({ status: 'fail', message: 'No data!' });
 
   return res.status(200).json({ status: 'success', data: { student } });
 });
@@ -415,7 +436,10 @@ exports.updateStudent = catchAsync(async (req, res) => {
     });
 
   const updatingAttributes = Object.keys(_.pick(req.body, studentAttributes));
-  const updatingImageAttributes = _.intersection(updatingAttributes, studentImageAttributes);
+  const updatingImageAttributes = _.intersection(
+    updatingAttributes,
+    studentImageAttributes
+  );
 
   // update မှာ image attributes များပါလာမလား စစ်.
   if (updatingImageAttributes.length > 0) {
@@ -587,7 +611,10 @@ exports.updateParent = catchAsync(async (req, res) => {
     });
 
   const updatingAttributes = Object.keys(_.pick(req.body, parentAttributes));
-  const updatingImageAttributes = _.intersection(updatingAttributes, parentImageAttributes);
+  const updatingImageAttributes = _.intersection(
+    updatingAttributes,
+    parentImageAttributes
+  );
 
   // update မှာ image attributes များပါလာမလား စစ်.
   if (updatingImageAttributes.length > 0) {
