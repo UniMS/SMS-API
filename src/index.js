@@ -6,9 +6,9 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
-require('./startup/jwt')(); // <- enable when all business logic are done.
+require('./startup/jwt')();
 require('./startup/router')(app);
-require('./middlewares/error');
+require('./middlewares/error')(app);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, console.log(`Server started on port ${PORT}...`));
