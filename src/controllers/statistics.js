@@ -1,8 +1,6 @@
 const _ = require('lodash');
 const models = require('../database/models');
-const catchAsync = require('../utils/catchAsync');
 const { Op } = require('sequelize');
-const grading = require('../database/models/grading');
 
 /*
 --------------------------------------------
@@ -11,7 +9,7 @@ Student Count Statistics
 */
 
 // total students in each academic year
-exports.getStudentsCountByAcademicYear = catchAsync(async (req, res) => {
+exports.getStudentsCountByAcademicYear = async (req, res) => {
   const studentsCount = await models.Enrollment.count({
     where: {
       academicYearId: req.params.academicYearId,
@@ -31,7 +29,7 @@ exports.getStudentsCountByAcademicYear = catchAsync(async (req, res) => {
       count: studentsCount,
     },
   });
-});
+};
 
 /*
 --------------------------------------------
@@ -40,7 +38,7 @@ Township/Region Statistics
 */
 
 // students by academic year + township
-exports.getStudentsByTownshipAcademicYear = catchAsync(async (req, res) => {
+exports.getStudentsByTownshipAcademicYear = async (req, res) => {
   const academicYear = await models.AcademicYear.findOne({
     where: {
       academicYearId: req.params.academicYearId,
@@ -95,10 +93,10 @@ exports.getStudentsByTownshipAcademicYear = catchAsync(async (req, res) => {
       townships,
     },
   });
-});
+};
 
 // students by academic year + region
-exports.getStudentsByRegionAcademicYear = catchAsync(async (req, res) => {
+exports.getStudentsByRegionAcademicYear = async (req, res) => {
   const academicYear = await models.AcademicYear.findOne({
     where: {
       academicYearId: req.params.academicYearId,
@@ -166,7 +164,7 @@ exports.getStudentsByRegionAcademicYear = catchAsync(async (req, res) => {
       results,
     },
   });
-});
+};
 
 /*
 --------------------------------------------
@@ -175,7 +173,7 @@ Religion/Ethnicity/Gender Statistics
 */
 
 // students by academic year + religion
-exports.getStudentsByReligionAcademicYear = catchAsync(async (req, res) => {
+exports.getStudentsByReligionAcademicYear = async (req, res) => {
   const academicYear = await models.AcademicYear.findOne({
     where: {
       academicYearId: req.params.academicYearId,
@@ -230,10 +228,10 @@ exports.getStudentsByReligionAcademicYear = catchAsync(async (req, res) => {
       religions,
     },
   });
-});
+};
 
 // students by academic year + ethnicity
-exports.getStudentsByEthnicityAcademicYear = catchAsync(async (req, res) => {
+exports.getStudentsByEthnicityAcademicYear = async (req, res) => {
   const academicYear = await models.AcademicYear.findOne({
     where: {
       academicYearId: req.params.academicYearId,
@@ -291,10 +289,10 @@ exports.getStudentsByEthnicityAcademicYear = catchAsync(async (req, res) => {
       ethnicity,
     },
   });
-});
+};
 
 // students by academic year + gender
-exports.getStudentsByGenderAcademicYear = catchAsync(async (req, res) => {
+exports.getStudentsByGenderAcademicYear = async (req, res) => {
   const academicYear = await models.AcademicYear.findOne({
     where: {
       academicYearId: req.params.academicYearId,
@@ -341,7 +339,7 @@ exports.getStudentsByGenderAcademicYear = catchAsync(async (req, res) => {
       gender,
     },
   });
-});
+};
 
 /*
 --------------------------------------------
@@ -352,7 +350,7 @@ Grading and ExamResult Statistics
 - 2019-2020 6th year -> IST -> AI -> A+ -> 20 
 - 2019-2020 6th year -> IST -> AI -> A  -> 35 ...
 */
-exports.getStudentsCountBySubjectAndGrade = catchAsync(async (req, res) => {
+exports.getStudentsCountBySubjectAndGrade = async (req, res) => {
   const courses = await models.Course.findAll({
     where: {
       academicYearId: req.params.academicYearId,
@@ -369,7 +367,10 @@ exports.getStudentsCountBySubjectAndGrade = catchAsync(async (req, res) => {
       where: {
         courseId: course.courseId,
       },
-      attributes: ['gradeId', [models.sequelize.fn('COUNT', `${Model.name}.${Model.id}`), 'count']],
+      attributes: [
+        'gradeId',
+        [models.sequelize.fn('COUNT', `${Model.name}.${Model.id}`), 'count'],
+      ],
       include: [
         {
           model: models.Grade,
@@ -387,10 +388,10 @@ exports.getStudentsCountBySubjectAndGrade = catchAsync(async (req, res) => {
     status: 'success',
     data: results,
   });
-});
+};
 
 // get pass/fail rate for academic year (2019-2020)
-// exports.getPassFailRateForAcademicYear = catchAsync(async (req, res) => {
+// exports.getPassFailRateForAcademicYear = async (req, res) => {
 //   // get academic year for response
 //   const academicYear = await models.AcademicYear.findOne({
 //     where: {
@@ -450,7 +451,7 @@ exports.getStudentsCountBySubjectAndGrade = catchAsync(async (req, res) => {
 // });
 
 // get pass/fail rate for academic year + major (2019-2020, ICT, get all ICT attendance year)
-// exports.getPassFailRateForAcademicYearAndMajor = catchAsync(
+// exports.getPassFailRateForAcademicYearAndMajor =
 //   async (req, res) => {
 //     // get enrollments for given academic year and major
 //     const enrollments = await models.Enrollment.findAll({
@@ -520,7 +521,7 @@ exports.getStudentsCountBySubjectAndGrade = catchAsync(async (req, res) => {
 // );
 
 // get pass/fail rate for academic year + attendance year (2019-2020, first year, get all major of first year)
-// exports.getPassFailRateForAcademicYearAndAttendanceYear = catchAsync(
+// exports.getPassFailRateForAcademicYearAndAttendanceYear =
 //   async (req, res) => {
 //     // get enrollments for given academic year and attendance year
 //     const enrollments = await models.Enrollment.findAll({
@@ -589,7 +590,7 @@ exports.getStudentsCountBySubjectAndGrade = catchAsync(async (req, res) => {
 // );
 
 // get pass/fail rate for academic year | major | attendance year (2019-2020, ICT, first year)
-exports.getPassFailRateForAcademicYear = catchAsync(async (req, res) => {
+exports.getPassFailRateForAcademicYear = async (req, res) => {
   // get enrollments for given academic year
   let enrollments = await models.Major.findAll({
     attributes: ['majorId', 'name'],
@@ -651,4 +652,4 @@ exports.getPassFailRateForAcademicYear = catchAsync(async (req, res) => {
       enrollments,
     },
   });
-});
+};

@@ -7,7 +7,6 @@ const { moveFile } = require('../utils/moveFile');
 const uploadImages = require('../middlewares/uploadImages');
 
 const models = require('../database/models');
-const catchAsync = require('../utils/catchAsync');
 const {
   csvStudentHeaders,
   csvStudentAttributes,
@@ -19,7 +18,7 @@ const {
   parentImageAttributes,
 } = require('../utils/fields');
 
-exports.importWithCSV = catchAsync(async (req, res) => {
+exports.importWithCSV = async (req, res) => {
   let metaData = [];
   let csvData = [];
   let studentData = [];
@@ -271,7 +270,7 @@ exports.importWithCSV = catchAsync(async (req, res) => {
   //       insertedData,
   //     });
   //   });
-});
+};
 
 function getHeaders(csvData, headers) {
   let result = {};
@@ -288,7 +287,7 @@ function getHeaders(csvData, headers) {
  *
  * @params academicYearId
  */
-exports.filterStudents = catchAsync(async (req, res) => {
+exports.filterStudents = async (req, res) => {
   const academicYearId = req.params.academicYearId;
 
   if (!req.majors)
@@ -369,7 +368,7 @@ exports.filterStudents = catchAsync(async (req, res) => {
       students,
     },
   });
-});
+};
 
 /**
  * * verified
@@ -377,7 +376,7 @@ exports.filterStudents = catchAsync(async (req, res) => {
  *
  * @params studentId
  */
-exports.getStudent = catchAsync(async (req, res) => {
+exports.getStudent = async (req, res) => {
   const studentId = req.params.studentId;
 
   const student = await models.Student.findOne({
@@ -408,7 +407,7 @@ exports.getStudent = catchAsync(async (req, res) => {
     return res.status(404).json({ status: 'fail', message: 'No data!' });
 
   return res.status(200).json({ status: 'success', data: { student } });
-});
+};
 
 /**
  * * verified
@@ -425,7 +424,7 @@ exports.getStudent = catchAsync(async (req, res) => {
  *
  * @params studentId
  */
-exports.updateStudent = catchAsync(async (req, res) => {
+exports.updateStudent = async (req, res) => {
   const studentId = req.params.studentId;
 
   const student = await models.Student.findByPk(studentId);
@@ -497,7 +496,7 @@ exports.updateStudent = catchAsync(async (req, res) => {
     status: 'success',
     data: updatedStudent,
   });
-});
+};
 
 /**
  * * verified
@@ -505,7 +504,7 @@ exports.updateStudent = catchAsync(async (req, res) => {
  *
  * @params studentId
  */
-exports.getAttendanceHistories = catchAsync(async (req, res) => {
+exports.getAttendanceHistories = async (req, res) => {
   const studentId = req.params.studentId;
 
   const histories = await models.Enrollment.findAll({
@@ -542,7 +541,7 @@ exports.getAttendanceHistories = catchAsync(async (req, res) => {
       histories,
     },
   });
-});
+};
 
 /**
  * * verified
@@ -550,7 +549,7 @@ exports.getAttendanceHistories = catchAsync(async (req, res) => {
  *
  * @params studentId
  */
-exports.getParent = catchAsync(async (req, res) => {
+exports.getParent = async (req, res) => {
   const studentId = req.params.studentId;
 
   const parent = await models.Parent.findOne({
@@ -583,7 +582,7 @@ exports.getParent = catchAsync(async (req, res) => {
       parent,
     },
   });
-});
+};
 
 /**
  * * verified
@@ -600,7 +599,7 @@ exports.getParent = catchAsync(async (req, res) => {
  *
  * @params parentId
  */
-exports.updateParent = catchAsync(async (req, res) => {
+exports.updateParent = async (req, res) => {
   const parentId = req.params.parentId;
 
   const parent = await models.Parent.findByPk(parentId);
@@ -662,4 +661,4 @@ exports.updateParent = catchAsync(async (req, res) => {
     status: 'success',
     data: updatedParent,
   });
-});
+};

@@ -1,7 +1,6 @@
-const _ = require("lodash");
-const { Op } = require("sequelize");
-const models = require("../database/models");
-const catchAsync = require("../utils/catchAsync");
+const _ = require('lodash');
+const { Op } = require('sequelize');
+const models = require('../database/models');
 
 /**
  * * verified
@@ -13,20 +12,20 @@ const catchAsync = require("../utils/catchAsync");
  *
  * @params academicYearId, majorId, attendanceYearId
  */
-exports.filterGradings = catchAsync(async (req, res) => {
+exports.filterGradings = async (req, res) => {
   const exam = await models.Exam.findOne({
     where: {
       academicYearId: req.params.academicYearId,
       majorId: req.params.majorId,
       attendanceYearId: req.params.attendanceYearId,
     },
-    attributes: ["examId"],
+    attributes: ['examId'],
   });
 
   if (!exam)
     return res.status(404).json({
-      status: "fail",
-      message: "No data!",
+      status: 'fail',
+      message: 'No data!',
     });
 
   // get subjects for response
@@ -40,8 +39,8 @@ exports.filterGradings = catchAsync(async (req, res) => {
     include: [
       {
         model: models.Subject,
-        as: "subject",
-        attributes: { exclude: ["createdAt", "updatedAt"] },
+        as: 'subject',
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
       },
     ],
   });
@@ -50,17 +49,17 @@ exports.filterGradings = catchAsync(async (req, res) => {
     where: {
       examId: exam.examId,
     },
-    attributes: ["gradingId"],
+    attributes: ['gradingId'],
     include: [
       {
         model: models.Enrollment,
-        as: "enrollment",
-        attributes: ["enrollmentId", "rollNo"],
+        as: 'enrollment',
+        attributes: ['enrollmentId', 'rollNo'],
       },
       {
         model: models.Grade,
-        as: "grade",
-        attributes: ["name"],
+        as: 'grade',
+        attributes: ['name'],
       },
     ],
     raw: true,
@@ -97,18 +96,18 @@ exports.filterGradings = catchAsync(async (req, res) => {
 
   if (!result)
     return res.status(404).json({
-      status: "fail",
-      message: "No data!",
+      status: 'fail',
+      message: 'No data!',
     });
 
   return res.status(200).json({
-    status: "success",
+    status: 'success',
     data: {
       subjects,
       result,
     },
   });
-});
+};
 
 /*
 --------------------------------------------
@@ -126,15 +125,15 @@ GPA
  *
  * @params academicYearId, rollNo
  */
-exports.getFinalYearGPA = catchAsync(async (req, res) => {
+exports.getFinalYearGPA = async (req, res) => {
   const academicYearId = req.params.academicYearId;
   const rollNo = req.params.rollNo;
 
   if (academicYearId == 1 || academicYearId == 2 || academicYearId == 3)
-    if (rollNo.startsWith("6"))
+    if (rollNo.startsWith('6'))
       return res.status(200).json({
-        status: "fail",
-        message: "Invalid academic year and roll-no.",
+        status: 'fail',
+        message: 'Invalid academic year and roll-no.',
       });
 
   const gradings = await models.Enrollment.findAll({
@@ -142,13 +141,13 @@ exports.getFinalYearGPA = catchAsync(async (req, res) => {
       academicYearId: academicYearId,
       rollNo,
     },
-    attributes: ["enrollmentId"],
+    attributes: ['enrollmentId'],
     include: [
       {
         model: models.Grading,
-        as: "grading",
-        attributes: ["gradeId"],
-        include: [{ model: models.Grade, as: "grade", attributes: ["name"] }],
+        as: 'grading',
+        attributes: ['gradeId'],
+        include: [{ model: models.Grade, as: 'grade', attributes: ['name'] }],
       },
     ],
     raw: true,
@@ -159,17 +158,17 @@ exports.getFinalYearGPA = catchAsync(async (req, res) => {
 
   if (!gradings)
     return res.status(404).json({
-      status: "fail",
-      message: "No data!",
+      status: 'fail',
+      message: 'No data!',
     });
 
   return res.status(200).json({
-    status: "success",
+    status: 'success',
     data: {
       finalYearGPA,
     },
   });
-});
+};
 
 /**
  * * verified
@@ -184,7 +183,7 @@ exports.getFinalYearGPA = catchAsync(async (req, res) => {
  *
  * @params academicYearId, rollNo
  */
-exports.getCumulativeGPA = catchAsync(async (req, res) => {
+exports.getCumulativeGPA = async (req, res) => {
   const academicYearId = req.params.academicYearId;
   const rollNo = req.params.rollNo;
 
@@ -193,7 +192,7 @@ exports.getCumulativeGPA = catchAsync(async (req, res) => {
     where: {
       academicYearId,
     },
-    attributes: ["name"],
+    attributes: ['name'],
   });
 
   // get studentId where matches with given roll-no and academic year
@@ -202,13 +201,13 @@ exports.getCumulativeGPA = catchAsync(async (req, res) => {
       academicYearId,
       rollNo,
     },
-    attributes: ["studentId"],
+    attributes: ['studentId'],
   });
 
   if (!student)
     return res.status(404).json({
-      status: "fail",
-      message: "No data!",
+      status: 'fail',
+      message: 'No data!',
     });
 
   // get enrollments where studentId
@@ -216,7 +215,7 @@ exports.getCumulativeGPA = catchAsync(async (req, res) => {
     where: {
       studentId: student.studentId,
     },
-    attributes: ["enrollmentId"],
+    attributes: ['enrollmentId'],
   });
 
   let gradings = [];
@@ -229,13 +228,13 @@ exports.getCumulativeGPA = catchAsync(async (req, res) => {
       include: [
         {
           model: models.Grade,
-          as: "grade",
-          attributes: ["name"],
+          as: 'grade',
+          attributes: ['name'],
         },
         {
           model: models.Remark,
-          as: "remark",
-          attributes: ["name"],
+          as: 'remark',
+          attributes: ['name'],
         },
       ],
     });
@@ -245,7 +244,7 @@ exports.getCumulativeGPA = catchAsync(async (req, res) => {
   await Promise.all(promises);
 
   let passGradings = gradings.filter((arr) =>
-    arr.every((obj) => obj.remark.name !== "Fail")
+    arr.every((obj) => obj.remark.name !== 'Fail')
   );
 
   let totalPoints = [];
@@ -256,12 +255,12 @@ exports.getCumulativeGPA = catchAsync(async (req, res) => {
       const grade = g.grade.name;
       let point = 0;
 
-      if (grade === "A+" || grade === "A") point = 5;
-      else if (grade === "A-" || grade === "B+") point = 4.5;
-      else if (grade === "B") point = 4;
-      else if (grade === "B-" || grade === "C+") point = 3.5;
-      else if (grade === "C") point = 3;
-      else if (grade === "C-") point = 2.5;
+      if (grade === 'A+' || grade === 'A') point = 5;
+      else if (grade === 'A-' || grade === 'B+') point = 4.5;
+      else if (grade === 'B') point = 4;
+      else if (grade === 'B-' || grade === 'C+') point = 3.5;
+      else if (grade === 'C') point = 3;
+      else if (grade === 'C-') point = 2.5;
 
       totalPointsInYear += point;
     });
@@ -271,14 +270,14 @@ exports.getCumulativeGPA = catchAsync(async (req, res) => {
   const cumulativeGPA = _.round(_.sum(totalPoints) / totalPoints.length, 1);
 
   return res.status(200).json({
-    status: "success",
+    status: 'success',
     data: {
       academicYear,
       rollNo,
       cumulativeGPA,
     },
   });
-});
+};
 
 /**
 --------------------------------------------
@@ -311,7 +310,7 @@ Gradings
  * Option 2
  * @params degree, x-academic-year နှင့် ၎င်းနှစ်တွင် တက်ရောက်ခဲ့သော ခုံနံပတ်
  */
-exports.generateGradings = catchAsync(async (req, res) => {
+exports.generateGradings = async (req, res) => {
   const degreeId = req.params.degreeId;
   const fromAcademicYearId = req.params.fromAcademicYearId;
   const toAcademicYearId = req.params.toAcademicYearId;
@@ -323,14 +322,14 @@ exports.generateGradings = catchAsync(async (req, res) => {
       academicYearId: toAcademicYearId,
       rollNo,
     },
-    include: [{ model: models.Student, as: "student", attributes: ["nameEn"] }],
-    attributes: ["studentId"],
+    include: [{ model: models.Student, as: 'student', attributes: ['nameEn'] }],
+    attributes: ['studentId'],
   });
 
   if (!student)
     return res.status(200).json({
-      status: "fail",
-      message: "No data!",
+      status: 'fail',
+      message: 'No data!',
     });
   // ok - 1
 
@@ -357,8 +356,8 @@ exports.generateGradings = catchAsync(async (req, res) => {
     };
   else
     return res.status(200).json({
-      status: "fail",
-      message: "Invalid data",
+      status: 'fail',
+      message: 'Invalid data',
     });
 
   const enrollments = await models.Enrollment.findAll({
@@ -366,21 +365,21 @@ exports.generateGradings = catchAsync(async (req, res) => {
     include: [
       {
         model: models.Degree,
-        as: "degree",
-        attributes: ["name"],
+        as: 'degree',
+        attributes: ['name'],
       },
       {
         model: models.AcademicYear,
-        as: "academicYear",
-        attributes: ["name"],
+        as: 'academicYear',
+        attributes: ['name'],
       },
       {
         model: models.AttendanceYear,
-        as: "attendanceYear",
-        attributes: ["name"],
+        as: 'attendanceYear',
+        attributes: ['name'],
       },
     ],
-    attributes: ["enrollmentId"],
+    attributes: ['enrollmentId'],
     raw: true,
     nest: true,
   }); // ok - 2
@@ -390,29 +389,29 @@ exports.generateGradings = catchAsync(async (req, res) => {
       where: {
         enrollmentId: enrollment.enrollmentId,
       },
-      attributes: ["enrollmentId", "gradeId", "remarkId"],
+      attributes: ['enrollmentId', 'gradeId', 'remarkId'],
       include: [
         {
           model: models.Course,
-          as: "course",
-          attributes: ["courseId"],
+          as: 'course',
+          attributes: ['courseId'],
           include: [
             {
               model: models.Subject,
-              as: "subject",
-              attributes: ["name"],
+              as: 'subject',
+              attributes: ['name'],
             },
           ],
         },
         {
           model: models.Grade,
-          as: "grade",
-          attributes: ["name"],
+          as: 'grade',
+          attributes: ['name'],
         },
         {
           model: models.Remark,
-          as: "remark",
-          attributes: ["name"],
+          as: 'remark',
+          attributes: ['name'],
         },
       ],
     });
@@ -423,18 +422,18 @@ exports.generateGradings = catchAsync(async (req, res) => {
   const gradings = await Promise.all(promises); // ok - 3
 
   let passGradings = gradings.filter((arr) =>
-    arr.every((obj) => obj.remark.name !== "Fail")
+    arr.every((obj) => obj.remark.name !== 'Fail')
   );
 
   return res.status(200).json({
-    status: "success",
+    status: 'success',
     data: {
       student,
       enrollments,
       passGradings,
     },
   });
-});
+};
 
 /**
 --------------------------------------------
@@ -466,7 +465,7 @@ Marks
  * * 2 - for x-academic-year
  * @params degree, x-academic-year နှင့် ၎င်းနှစ်တွင် တက်ရောက်ခဲ့သော ခုံနံပတ်
  */
-exports.generateMarks = catchAsync(async (req, res) => {
+exports.generateMarks = async (req, res) => {
   const degreeId = req.params.degreeId;
   const fromAcademicYearId = req.params.fromAcademicYearId;
   const toAcademicYearId = req.params.toAcademicYearId;
@@ -478,14 +477,14 @@ exports.generateMarks = catchAsync(async (req, res) => {
       academicYearId: toAcademicYearId,
       rollNo,
     },
-    include: [{ model: models.Student, as: "student", attributes: ["nameEn"] }],
-    attributes: ["studentId"],
+    include: [{ model: models.Student, as: 'student', attributes: ['nameEn'] }],
+    attributes: ['studentId'],
   });
 
   if (!student)
     return res.status(200).json({
-      status: "fail",
-      message: "No data!",
+      status: 'fail',
+      message: 'No data!',
     });
 
   const from = parseInt(fromAcademicYearId);
@@ -511,8 +510,8 @@ exports.generateMarks = catchAsync(async (req, res) => {
     };
   else
     return res.status(200).json({
-      status: "fail",
-      message: "Invalid data",
+      status: 'fail',
+      message: 'Invalid data',
     });
 
   const enrollments = await models.Enrollment.findAll({
@@ -520,21 +519,21 @@ exports.generateMarks = catchAsync(async (req, res) => {
     include: [
       {
         model: models.Degree,
-        as: "degree",
-        attributes: ["name"],
+        as: 'degree',
+        attributes: ['name'],
       },
       {
         model: models.AcademicYear,
-        as: "academicYear",
-        attributes: ["name"],
+        as: 'academicYear',
+        attributes: ['name'],
       },
       {
         model: models.AttendanceYear,
-        as: "attendanceYear",
-        attributes: ["name"],
+        as: 'attendanceYear',
+        attributes: ['name'],
       },
     ],
-    attributes: ["enrollmentId"],
+    attributes: ['enrollmentId'],
     raw: true,
     nest: true,
   });
@@ -547,18 +546,18 @@ exports.generateMarks = catchAsync(async (req, res) => {
       include: [
         {
           model: models.Course,
-          as: "course",
-          attributes: ["courseId"],
+          as: 'course',
+          attributes: ['courseId'],
           include: [
             {
               model: models.Subject,
-              as: "subject",
-              attributes: ["name"],
+              as: 'subject',
+              attributes: ['name'],
             },
           ],
         },
       ],
-      attributes: ["enrollmentId", "mark"],
+      attributes: ['enrollmentId', 'mark'],
     });
 
     return marks;
@@ -567,14 +566,14 @@ exports.generateMarks = catchAsync(async (req, res) => {
   const results = await Promise.all(promises);
 
   return res.status(200).json({
-    status: "success",
+    status: 'success',
     data: {
       student,
       enrollments,
       results,
     },
   });
-});
+};
 
 /**
  * @generateApprovalLetter
@@ -583,15 +582,15 @@ exports.generateMarks = catchAsync(async (req, res) => {
  *
  * @params academicYearId, rollNo, type (attending || passing)
  */
-exports.generateApprovalLetter = catchAsync(async (req, res) => {
+exports.generateApprovalLetter = async (req, res) => {
   const academicYearId = req.params.academicYearId;
   const rollNo = req.params.rollNo;
   const type = req.query.type;
 
-  if (type !== "attending" && type !== "passing")
+  if (type !== 'attending' && type !== 'passing')
     return res.status(400).json({
-      status: "fail",
-      message: "Invalid type to generate.",
+      status: 'fail',
+      message: 'Invalid type to generate.',
     });
 
   const enrollment = await models.Enrollment.findOne({
@@ -599,14 +598,14 @@ exports.generateApprovalLetter = catchAsync(async (req, res) => {
       academicYearId,
       rollNo,
     },
-    attributes: ["enrollmentId"],
+    attributes: ['enrollmentId'],
   });
 
   if (enrollment) {
     return res.status(200).json({
-      status: "success",
+      status: 'success',
       type,
-      message: "The requested values are valid.",
+      message: 'The requested values are valid.',
     });
   }
-});
+};
