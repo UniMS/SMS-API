@@ -1,0 +1,1224 @@
+{
+  error: Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.
+      at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+      at internal/main/run_main_module.js:17:47,
+  level: 'error',
+  message: 'uncaughtException: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  stack: 'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  exception: true,
+  date: 'Thu Aug 27 2020 11:19:47 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 15052,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46624768,
+      heapTotal: 15478784,
+      heapUsed: 10483040,
+      external: 1725559,
+      arrayBuffers: 418900
+    }
+  },
+  os: { loadavg: [ 1.7666015625, 1.2294921875, 1.12109375 ], uptime: 3349 },
+  trace: [
+    {
+      column: 11,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/jwt.js',
+      function: 'module.exports',
+      line: 3,
+      method: 'exports',
+      native: false
+    },
+    {
+      column: 25,
+      file: '/home/hello-world/Thesis/SMS-API/src/index.js',
+      function: null,
+      line: 11,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'internal/modules/run_main.js',
+      function: 'Function.executeUserEntryPoint [as runMain]',
+      line: 71,
+      method: 'executeUserEntryPoint [as runMain]',
+      native: false
+    },
+    {
+      column: 47,
+      file: 'internal/main/run_main_module.js',
+      function: null,
+      line: 17,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-08-27 11:19:47'
+}
+{
+  error: Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.
+      at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+      at internal/main/run_main_module.js:17:47,
+  level: 'error',
+  message: 'uncaughtException: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  stack: 'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  exception: true,
+  date: 'Thu Aug 27 2020 11:20:12 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 15105,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46374912,
+      heapTotal: 15478784,
+      heapUsed: 10332224,
+      external: 1717367,
+      arrayBuffers: 410708
+    }
+  },
+  os: {
+    loadavg: [ 1.80615234375, 1.27685546875, 1.13916015625 ],
+    uptime: 3374
+  },
+  trace: [
+    {
+      column: 11,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/jwt.js',
+      function: 'module.exports',
+      line: 3,
+      method: 'exports',
+      native: false
+    },
+    {
+      column: 25,
+      file: '/home/hello-world/Thesis/SMS-API/src/index.js',
+      function: null,
+      line: 11,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'internal/modules/run_main.js',
+      function: 'Function.executeUserEntryPoint [as runMain]',
+      line: 71,
+      method: 'executeUserEntryPoint [as runMain]',
+      native: false
+    },
+    {
+      column: 47,
+      file: 'internal/main/run_main_module.js',
+      function: null,
+      line: 17,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-08-27 11:20:12'
+}
+{
+  error: Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.
+      at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+      at internal/main/run_main_module.js:17:47,
+  level: 'error',
+  message: 'uncaughtException: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  stack: 'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  exception: true,
+  date: 'Thu Aug 27 2020 11:20:18 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 15126,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46084096,
+      heapTotal: 15740928,
+      heapUsed: 10339024,
+      external: 1717367,
+      arrayBuffers: 410708
+    }
+  },
+  os: {
+    loadavg: [ 1.7412109375, 1.27197265625, 1.13818359375 ],
+    uptime: 3381
+  },
+  trace: [
+    {
+      column: 11,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/jwt.js',
+      function: 'module.exports',
+      line: 3,
+      method: 'exports',
+      native: false
+    },
+    {
+      column: 25,
+      file: '/home/hello-world/Thesis/SMS-API/src/index.js',
+      function: null,
+      line: 11,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'internal/modules/run_main.js',
+      function: 'Function.executeUserEntryPoint [as runMain]',
+      line: 71,
+      method: 'executeUserEntryPoint [as runMain]',
+      native: false
+    },
+    {
+      column: 47,
+      file: 'internal/main/run_main_module.js',
+      function: null,
+      line: 17,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-08-27 11:20:18'
+}
+{
+  error: Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.
+      at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+      at internal/main/run_main_module.js:17:47,
+  level: 'error',
+  message: 'uncaughtException: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  stack: 'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  exception: true,
+  date: 'Thu Aug 27 2020 11:20:22 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 15146,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46854144,
+      heapTotal: 15740928,
+      heapUsed: 10477928,
+      external: 1717367,
+      arrayBuffers: 410708
+    }
+  },
+  os: { loadavg: [ 1.6015625, 1.25048828125, 1.1318359375 ], uptime: 3385 },
+  trace: [
+    {
+      column: 11,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/jwt.js',
+      function: 'module.exports',
+      line: 3,
+      method: 'exports',
+      native: false
+    },
+    {
+      column: 25,
+      file: '/home/hello-world/Thesis/SMS-API/src/index.js',
+      function: null,
+      line: 11,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'internal/modules/run_main.js',
+      function: 'Function.executeUserEntryPoint [as runMain]',
+      line: 71,
+      method: 'executeUserEntryPoint [as runMain]',
+      native: false
+    },
+    {
+      column: 47,
+      file: 'internal/main/run_main_module.js',
+      function: null,
+      line: 17,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-08-27 11:20:22'
+}
+{
+  error: Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.
+      at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+      at internal/main/run_main_module.js:17:47,
+  level: 'error',
+  message: 'uncaughtException: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  stack: 'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  exception: true,
+  date: 'Thu Aug 27 2020 11:20:59 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 15203,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46297088,
+      heapTotal: 15478784,
+      heapUsed: 10332656,
+      external: 1709175,
+      arrayBuffers: 402516
+    }
+  },
+  os: {
+    loadavg: [ 1.97265625, 1.36767578125, 1.1748046875 ],
+    uptime: 3421
+  },
+  trace: [
+    {
+      column: 11,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/jwt.js',
+      function: 'module.exports',
+      line: 3,
+      method: 'exports',
+      native: false
+    },
+    {
+      column: 25,
+      file: '/home/hello-world/Thesis/SMS-API/src/index.js',
+      function: null,
+      line: 11,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'internal/modules/run_main.js',
+      function: 'Function.executeUserEntryPoint [as runMain]',
+      line: 71,
+      method: 'executeUserEntryPoint [as runMain]',
+      native: false
+    },
+    {
+      column: 47,
+      file: 'internal/main/run_main_module.js',
+      function: null,
+      line: 17,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-08-27 11:20:59'
+}
+{
+  error: Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.
+      at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+      at internal/main/run_main_module.js:17:47,
+  level: 'error',
+  message: 'uncaughtException: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  stack: 'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  exception: true,
+  date: 'Thu Aug 27 2020 11:21:11 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 15230,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46182400,
+      heapTotal: 15740928,
+      heapUsed: 10468448,
+      external: 1717367,
+      arrayBuffers: 410708
+    }
+  },
+  os: {
+    loadavg: [ 1.6767578125, 1.33203125, 1.16650390625 ],
+    uptime: 3434
+  },
+  trace: [
+    {
+      column: 11,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/jwt.js',
+      function: 'module.exports',
+      line: 3,
+      method: 'exports',
+      native: false
+    },
+    {
+      column: 25,
+      file: '/home/hello-world/Thesis/SMS-API/src/index.js',
+      function: null,
+      line: 11,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'internal/modules/run_main.js',
+      function: 'Function.executeUserEntryPoint [as runMain]',
+      line: 71,
+      method: 'executeUserEntryPoint [as runMain]',
+      native: false
+    },
+    {
+      column: 47,
+      file: 'internal/main/run_main_module.js',
+      function: null,
+      line: 17,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-08-27 11:21:11'
+}
+{
+  error: Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.
+      at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+      at internal/main/run_main_module.js:17:47,
+  level: 'error',
+  message: 'uncaughtException: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  stack: 'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  exception: true,
+  date: 'Thu Aug 27 2020 11:21:15 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 15254,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46583808,
+      heapTotal: 16003072,
+      heapUsed: 10485888,
+      external: 1709175,
+      arrayBuffers: 402516
+    }
+  },
+  os: {
+    loadavg: [ 1.6767578125, 1.33203125, 1.16650390625 ],
+    uptime: 3437
+  },
+  trace: [
+    {
+      column: 11,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/jwt.js',
+      function: 'module.exports',
+      line: 3,
+      method: 'exports',
+      native: false
+    },
+    {
+      column: 25,
+      file: '/home/hello-world/Thesis/SMS-API/src/index.js',
+      function: null,
+      line: 11,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'internal/modules/run_main.js',
+      function: 'Function.executeUserEntryPoint [as runMain]',
+      line: 71,
+      method: 'executeUserEntryPoint [as runMain]',
+      native: false
+    },
+    {
+      column: 47,
+      file: 'internal/main/run_main_module.js',
+      function: null,
+      line: 17,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-08-27 11:21:15'
+}
+{
+  error: Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.
+      at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+      at internal/main/run_main_module.js:17:47,
+  level: 'error',
+  message: 'uncaughtException: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  stack: 'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  exception: true,
+  date: 'Thu Aug 27 2020 11:21:24 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 15277,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46542848,
+      heapTotal: 16003072,
+      heapUsed: 10391888,
+      external: 1709175,
+      arrayBuffers: 402516
+    }
+  },
+  os: {
+    loadavg: [ 1.64013671875, 1.3369140625, 1.17041015625 ],
+    uptime: 3446
+  },
+  trace: [
+    {
+      column: 11,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/jwt.js',
+      function: 'module.exports',
+      line: 3,
+      method: 'exports',
+      native: false
+    },
+    {
+      column: 25,
+      file: '/home/hello-world/Thesis/SMS-API/src/index.js',
+      function: null,
+      line: 11,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'internal/modules/run_main.js',
+      function: 'Function.executeUserEntryPoint [as runMain]',
+      line: 71,
+      method: 'executeUserEntryPoint [as runMain]',
+      native: false
+    },
+    {
+      column: 47,
+      file: 'internal/main/run_main_module.js',
+      function: null,
+      line: 17,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-08-27 11:21:24'
+}
+{
+  error: Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.
+      at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+      at internal/main/run_main_module.js:17:47,
+  level: 'error',
+  message: 'uncaughtException: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  stack: 'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  exception: true,
+  date: 'Thu Aug 27 2020 11:21:33 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 15379,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46272512,
+      heapTotal: 15740928,
+      heapUsed: 10475464,
+      external: 1717367,
+      arrayBuffers: 410708
+    }
+  },
+  os: {
+    loadavg: [ 1.61572265625, 1.34228515625, 1.17431640625 ],
+    uptime: 3455
+  },
+  trace: [
+    {
+      column: 11,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/jwt.js',
+      function: 'module.exports',
+      line: 3,
+      method: 'exports',
+      native: false
+    },
+    {
+      column: 25,
+      file: '/home/hello-world/Thesis/SMS-API/src/index.js',
+      function: null,
+      line: 11,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'internal/modules/run_main.js',
+      function: 'Function.executeUserEntryPoint [as runMain]',
+      line: 71,
+      method: 'executeUserEntryPoint [as runMain]',
+      native: false
+    },
+    {
+      column: 47,
+      file: 'internal/main/run_main_module.js',
+      function: null,
+      line: 17,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-08-27 11:21:33'
+}
+{
+  error: Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.
+      at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+      at internal/main/run_main_module.js:17:47,
+  level: 'error',
+  message: 'uncaughtException: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  stack: 'Error: FATAL ERROR: JWT_PRIVATE_KEY is not defined.\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/jwt.js:3:11)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:11:25)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  exception: true,
+  date: 'Thu Aug 27 2020 11:21:59 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 15428,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46383104,
+      heapTotal: 15740928,
+      heapUsed: 10321368,
+      external: 1709175,
+      arrayBuffers: 402516
+    }
+  },
+  os: {
+    loadavg: [ 1.26171875, 1.28173828125, 1.1591796875 ],
+    uptime: 3481
+  },
+  trace: [
+    {
+      column: 11,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/jwt.js',
+      function: 'module.exports',
+      line: 3,
+      method: 'exports',
+      native: false
+    },
+    {
+      column: 25,
+      file: '/home/hello-world/Thesis/SMS-API/src/index.js',
+      function: null,
+      line: 11,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'internal/modules/run_main.js',
+      function: 'Function.executeUserEntryPoint [as runMain]',
+      line: 71,
+      method: 'executeUserEntryPoint [as runMain]',
+      native: false
+    },
+    {
+      column: 47,
+      file: 'internal/main/run_main_module.js',
+      function: null,
+      line: 17,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-08-27 11:21:59'
+}

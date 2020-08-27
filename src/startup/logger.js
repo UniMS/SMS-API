@@ -3,7 +3,10 @@ const { combine, timestamp, prettyPrint } = format;
 
 module.exports = function () {
   const logger = createLogger({
-    format: combine(timestamp(), prettyPrint()),
+    format: combine(
+      timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+      prettyPrint()
+    ),
     transports: [
       new transports.File({
         level: 'error',
@@ -17,11 +20,18 @@ module.exports = function () {
   });
 
   logger.exceptions.handle(
-    new transports.File({ filename: './src/logs/exceptions.log' })
+    new transports.File({
+      format: timestamp('YYYY-MM-DD HH:mm:ss'),
+      filename: './src/logs/exceptions.log',
+    }),
+    new transports.Console()
   );
 
   logger.rejections.handle(
-    new transports.File({ filename: './src/logs/rejections.log' })
+    new transports.File({
+      format: timestamp('YYYY-MM-DD HH:mm:ss'),
+      filename: './src/logs/rejections.log',
+    })
   );
 
   return logger;
