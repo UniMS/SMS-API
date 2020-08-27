@@ -7,6 +7,8 @@ const { Sequelize, DataTypes } = require('sequelize');
 const basename = path.basename(__filename);
 const db = {};
 
+const logger = require('../../startup/logger')();
+
 const ENV = config[process.env.NODE_ENV];
 
 let sequelize;
@@ -22,8 +24,12 @@ sequelize = new Sequelize(ENV.database, ENV.username, ENV.password, {
 
 sequelize
   .authenticate()
-  .then(() => console.log(`Connected to the database.😅👌`))
+  .then(() => {
+    logger.info('Connected to the database.😅👌');
+    console.log('Connected to the database.😅👌');
+  })
   .catch((error) => {
+    logger.error('Unable to connect to the database.🌚😌\n', error);
     console.log(`Unable to connect to the database.🌚😌\n`, error);
     process.exit(1);
   });

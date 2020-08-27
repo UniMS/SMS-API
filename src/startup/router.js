@@ -5,7 +5,6 @@ const user = require('../routes/user');
 const auth = require('../routes/auth');
 const authentication = require('../middlewares/auth');
 const official = require('../middlewares/official');
-const AppError = require('../utils/globalErrorHandler');
 
 module.exports = function (app) {
   app.use('/api/users', user);
@@ -13,5 +12,5 @@ module.exports = function (app) {
   app.use('/api/students', authentication, student);
   app.use('/api/gradings', authentication, grading);
   app.use('/api/statistics', authentication, official, statistic);
-  app.all('*', (req, res, next) => next(new AppError(404, `Undefined Route!`)));
+  app.all('*', (req, res, next) => next(new Error(`Undefined Route!`)));
 };
