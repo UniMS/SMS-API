@@ -1,13 +1,15 @@
-require('express-async-errors');
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const app = express();
+const morgan = require('morgan');
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
-require('./startup/logger')();
+const logger = require('./startup/logger')();
+app.use(morgan('combined', { stream: logger.stream }));
+
 require('./startup/jwt')();
 require('./startup/router')(app);
 require('./middlewares/error')(app);

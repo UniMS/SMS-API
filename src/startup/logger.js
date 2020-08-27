@@ -1,3 +1,4 @@
+require('express-async-errors');
 const { createLogger, format, transports } = require('winston');
 const { combine, timestamp, prettyPrint } = format;
 
@@ -33,6 +34,12 @@ module.exports = function () {
       filename: './src/logs/rejections.log',
     })
   );
+
+  logger.stream = {
+    write: function (message) {
+      logger.info(message);
+    },
+  };
 
   return logger;
 };
