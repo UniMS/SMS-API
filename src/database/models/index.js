@@ -25,7 +25,7 @@ sequelize = new Sequelize(ENV.database, ENV.username, ENV.password, {
 sequelize
   .authenticate()
   .then(() => {
-    logger.info('Connected to the database.😅👌');
+    // logger.info('Connected to the database.😅👌');
     console.log('Connected to the database.😅👌');
   })
   .catch((error) => {
