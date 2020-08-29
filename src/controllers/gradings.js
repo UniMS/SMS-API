@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const { Op } = require('sequelize');
 const models = require('../database/models');
+const calculateFinalYearGPA = require('../utils/calculateFinalYearGPA');
 
 /**
  * * verified
@@ -141,7 +142,7 @@ exports.getFinalYearGPA = async (req, res) => {
       academicYearId: academicYearId,
       rollNo,
     },
-    attributes: ['enrollmentId'],
+    attributes: [],
     include: [
       {
         model: models.Grading,
@@ -156,7 +157,7 @@ exports.getFinalYearGPA = async (req, res) => {
 
   const finalYearGPA = calculateFinalYearGPA(gradings);
 
-  if (!gradings)
+  if (!gradings.length)
     return res.status(404).json({
       status: 'fail',
       message: 'No data!',
@@ -166,6 +167,7 @@ exports.getFinalYearGPA = async (req, res) => {
     status: 'success',
     data: {
       finalYearGPA,
+      gradings,
     },
   });
 };

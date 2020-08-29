@@ -4,7 +4,7 @@
   "description": "Api for Student Management System",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose --watch",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "db:makemigrations": "./node_modules/sequelize-auto-migrations/bin/makemigration.js"

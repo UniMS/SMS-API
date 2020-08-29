@@ -1,0 +1,67 @@
+{
+  level: 'error',
+  message: 'calculateFinalYearGPA is not defined calculateFinalYearGPA is not defined',
+  stack: 'ReferenceError: calculateFinalYearGPA is not defined\n' +
+    '    at exports.getFinalYearGPA (/home/hello-world/Thesis/SMS-API/src/controllers/gradings.js:157:24)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:97:5)',
+  timestamp: '2020-08-29 00:00:19'
+}
+{
+  name: 'SequelizeEagerLoadingError',
+  level: 'error',
+  message: "Grading is associated to Enrollment using an alias. You've included an alias (g), but it does not match the alias(es) defined in your association (grading). Grading is associated to Enrollment using an alias. You've included an alias (g), but it does not match the alias(es) defined in your association (grading).",
+  stack: "SequelizeEagerLoadingError: Grading is associated to Enrollment using an alias. You've included an alias (g), but it does not match the alias(es) defined in your association (grading).\n" +
+    '    at Function._getIncludedAssociation (/home/hello-world/Thesis/SMS-API/node_modules/sequelize/lib/model.js:719:15)\n' +
+    '    at Function._validateIncludedElement (/home/hello-world/Thesis/SMS-API/node_modules/sequelize/lib/model.js:614:53)\n' +
+    '    at /home/hello-world/Thesis/SMS-API/node_modules/sequelize/lib/model.js:509:37\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at Function._validateIncludedElements (/home/hello-world/Thesis/SMS-API/node_modules/sequelize/lib/model.js:504:39)\n' +
+    '    at Function.findAll (/home/hello-world/Thesis/SMS-API/node_modules/sequelize/lib/model.js:1711:12)\n' +
+    '    at async exports.getFinalYearGPA (/home/hello-world/Thesis/SMS-API/src/controllers/gradings.js:140:20)',
+  timestamp: '2020-08-29 00:15:40'
+}
+{
+  level: 'error',
+  message: 'gradings.map is not a function gradings.map is not a function',
+  stack: 'TypeError: gradings.map is not a function\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/utils/calculateFinalYearGPA.js:11:12)\n' +
+    '    at exports.getFinalYearGPA (/home/hello-world/Thesis/SMS-API/src/controllers/gradings.js:158:24)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:97:5)',
+  timestamp: '2020-08-29 00:19:13'
+}
+{
+  level: 'error',
+  message: 'gradings.map is not a function gradings.map is not a function',
+  stack: 'TypeError: gradings.map is not a function\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/utils/calculateFinalYearGPA.js:11:12)\n' +
+    '    at exports.getFinalYearGPA (/home/hello-world/Thesis/SMS-API/src/controllers/gradings.js:158:24)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:97:5)',
+  timestamp: '2020-08-29 00:19:22'
+}
+{
+  level: 'error',
+  message: 'gradings.map is not a function gradings.map is not a function',
+  stack: 'TypeError: gradings.map is not a function\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/utils/calculateFinalYearGPA.js:12:12)\n' +
+    '    at exports.getFinalYearGPA (/home/hello-world/Thesis/SMS-API/src/controllers/gradings.js:158:24)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:97:5)',
+  timestamp: '2020-08-29 00:22:20'
+}
+{
+  level: 'error',
+  message: 'Expected to get an array, got function Number() { [native code] }  Expected to get an array, got function Number() { [native code] } ',
+  stack: 'Error: Expected to get an array, got function Number() { [native code] } \n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/utils/calculateFinalYearGPA.js:10:11)\n' +
+    '    at exports.getFinalYearGPA (/home/hello-world/Thesis/SMS-API/src/controllers/gradings.js:158:24)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:97:5)',
+  timestamp: '2020-08-29 00:23:10'
+}
+{
+  level: 'error',
+  message: 'Expected to get an array, got number  Expected to get an array, got number ',
+  stack: 'Error: Expected to get an array, got number \n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/utils/calculateFinalYearGPA.js:10:11)\n' +
+    '    at exports.getFinalYearGPA (/home/hello-world/Thesis/SMS-API/src/controllers/gradings.js:158:24)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:97:5)',
+  timestamp: '2020-08-29 00:24:21'
+}

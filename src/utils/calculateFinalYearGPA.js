@@ -1,19 +1,15 @@
-const _ = require("lodash");
+const _ = require('lodash');
+const getGPAPoint = require('./getGPAPoint');
 
 module.exports = function (gradings) {
   let totalPoint = 0;
 
-  gradings.map((grading) => {
+  if (gradings.constructor !== Array)
+    throw new Error(`Expected to get an array, got ${typeof gradings}.`);
+
+  gradings.forEach((grading) => {
     const grade = grading.grading.grade.name;
-    let point = 0;
-
-    if (grade === "A+" || grade === "A") point = 5;
-    else if (grade === "A-" || grade === "B+") point = 4.5;
-    else if (grade === "B") point = 4;
-    else if (grade === "B-" || grade === "C+") point = 3.5;
-    else if (grade === "C") point = 3;
-    else if (grade === "C-") point = 2.5;
-
+    const point = getGPAPoint(grade);
     totalPoint += point;
   });
 
