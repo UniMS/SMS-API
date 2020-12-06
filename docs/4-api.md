@@ -102,7 +102,7 @@
 | NO. | Method | Routes                                                                                                    | Description                              
                  |
 | --- | ------ | --------------------------------------------------------------------------------------------------------- | ---------------------------------------                  
-                 |
+---------------- |
 | 1   | GET    | `/statistics/grades/academic-year/:academicYearId/attendance-year/:attendanceYearId/major/:majorId/count` | Get students count by `subject` and `grade`          |
 | 2   | GET    | `/statistics/academic-year/:academicYearId/pass-fail-rate`                                                | Get Pass,Fail Rate for academic year                             
                  |
