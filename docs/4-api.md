@@ -46,8 +46,9 @@
 
 ### Filter
 
-| NO. | Method | Routes                                                                                                        | Description                                                                     | Remark |
-| --- | ------ | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------ |
+| NO. | Method | Routes                                                                                                        | Description 
+                                               |Remark |
+| --- | ------ | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------ |
 | 20  | GET    | `/exam-results/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId`                | Filter exam results by `academic-year`, `major` and `attendance-year`           | ✔      |
 | 21  | GET    | `/exam-results/academic-year/:academicYearId/major/:majorId/attendance-year/:attendanceYearId/remark/:remark` | Filter exam-results by `academic-year`, `major`, `attendance-year` and `remark` | ✔      |
 
