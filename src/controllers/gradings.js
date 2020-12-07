@@ -155,13 +155,13 @@ exports.getFinalYearGPA = async (req, res) => {
     nest: true,
   });
 
-  const finalYearGPA = calculateFinalYearGPA(gradings);
-
   if (!gradings.length)
     return res.status(404).json({
       status: 'fail',
       message: 'No data!',
     });
+
+  const finalYearGPA = calculateFinalYearGPA(gradings);
 
   return res.status(200).json({
     status: 'success',
