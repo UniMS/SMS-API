@@ -1,43 +1,43 @@
-"use strict";
+'use strict';
 
-const { Model } = require("sequelize");
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Enrollment extends Model {
     static associate(models) {
       Enrollment.belongsTo(models.Degree, {
-        foreignKey: "degreeId",
-        as: "degree",
+        foreignKey: 'degreeId',
+        as: 'degree',
       });
 
       Enrollment.belongsTo(models.Major, {
-        foreignKey: "majorId",
-        as: "major",
+        foreignKey: 'majorId',
+        as: 'major',
       });
-      
+
       Enrollment.belongsTo(models.Student, {
-        foreignKey: "studentId",
-        as: "student",
+        foreignKey: 'studentId',
+        as: 'student',
       });
 
       Enrollment.belongsTo(models.AcademicYear, {
-        foreignKey: "academicYearId",
-        as: "academicYear",
+        foreignKey: 'academicYearId',
+        as: 'academicYear',
       });
 
       Enrollment.belongsTo(models.AttendanceYear, {
-        foreignKey: "attendanceYearId",
-        as: "attendanceYear",
+        foreignKey: 'attendanceYearId',
+        as: 'attendanceYear',
       });
 
       Enrollment.belongsTo(models.Status, {
-        foreignKey: "statusId",
-        as: "status",
+        foreignKey: 'statusId',
+        as: 'status',
       });
 
       Enrollment.hasOne(models.Grading, {
-        foreignKey: "enrollmentId",
-        as: "grading",
+        foreignKey: 'enrollmentId',
+        as: 'grading',
       });
     }
   }
@@ -47,96 +47,96 @@ module.exports = (sequelize, DataTypes) => {
       enrollmentId: {
         allowNull: false,
         autoIncrement: true,
-        field: "enrollment_id",
+        field: 'enrollment_id',
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
       degreeId: {
-        allowNull: false,
-        field: "degree_id",
-        onDelete: "NO ACTION",
-        onUpdate: "CASCADE",
+        allowNull: true,
+        field: 'degree_id',
+        onDelete: 'NO ACTION',
+        onUpdate: 'CASCADE',
         references: {
-          model: "degrees",
-          key: "degree_id",
+          model: 'degrees',
+          key: 'degree_id',
         },
         type: DataTypes.INTEGER,
       },
       majorId: {
         allowNull: false,
-        field: "major_id",
-        onDelete: "NO ACTION",
-        onUpdate: "CASCADE",
+        field: 'major_id',
+        onDelete: 'NO ACTION',
+        onUpdate: 'CASCADE',
         references: {
-          model: "majors",
-          key: "major_id",
+          model: 'majors',
+          key: 'major_id',
         },
         type: DataTypes.INTEGER,
       },
       studentId: {
         allowNull: false,
-        field: "student_id",
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
+        field: 'student_id',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
         references: {
-          model: "students",
-          key: "student_id",
+          model: 'students',
+          key: 'student_id',
         },
         type: DataTypes.INTEGER,
       },
       academicYearId: {
         allowNull: false,
-        field: "academic_year_id",
-        onDelete: "NO ACTION",
-        onUpdate: "CASCADE",
+        field: 'academic_year_id',
+        onDelete: 'NO ACTION',
+        onUpdate: 'CASCADE',
         references: {
-          model: "academic_years",
-          key: "academic_year_id",
+          model: 'academic_years',
+          key: 'academic_year_id',
         },
         type: DataTypes.INTEGER,
       },
       attendanceYearId: {
         allowNull: false,
-        field: "attendance_year_id",
-        onDelete: "NO ACTION",
-        onUpdate: "CASCADE",
+        field: 'attendance_year_id',
+        onDelete: 'NO ACTION',
+        onUpdate: 'CASCADE',
         references: {
-          model: "attendance_years",
-          key: "attendance_year_id",
+          model: 'attendance_years',
+          key: 'attendance_year_id',
         },
         type: DataTypes.INTEGER,
       },
       rollNo: {
         allowNull: false,
-        field: "roll_no",
+        field: 'roll_no',
         type: DataTypes.STRING,
       },
       statusId: {
         allowNull: false,
-        field: "status_id",
-        onDelete: "NO ACTION",
-        onUpdate: "CASCADE",
+        field: 'status_id',
+        onDelete: 'NO ACTION',
+        onUpdate: 'CASCADE',
         references: {
-          model: "status",
-          key: "status_id",
+          model: 'status',
+          key: 'status_id',
         },
         type: DataTypes.INTEGER,
       },
       createdAt: {
         allowNull: false,
-        field: "created_at",
+        field: 'created_at',
         type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
-        field: "updated_at",
+        field: 'updated_at',
         type: DataTypes.DATE,
       },
     },
     {
       sequelize,
-      modelName: "Enrollment",
-      tableName: "enrollments",
+      modelName: 'Enrollment',
+      tableName: 'enrollments',
     }
   );
 

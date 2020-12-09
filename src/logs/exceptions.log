@@ -1,0 +1,2037 @@
+{
+  error: ReferenceError: students is not defined
+      at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/router.js:13:28)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:14:28)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+      at internal/main/run_main_module.js:17:47,
+  level: 'error',
+  message: 'uncaughtException: students is not defined\n' +
+    'ReferenceError: students is not defined\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/router.js:13:28)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:14:28)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  stack: 'ReferenceError: students is not defined\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/router.js:13:28)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:14:28)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  exception: true,
+  date: 'Wed Dec 09 2020 13:49:44 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 5546,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 96432128,
+      heapTotal: 52453376,
+      heapUsed: 29582840,
+      external: 2224742,
+      arrayBuffers: 799202
+    }
+  },
+  os: { loadavg: [ 1.0546875, 1.3505859375, 1.33251953125 ], uptime: 1208 },
+  trace: [
+    {
+      column: 28,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/router.js',
+      function: 'module.exports',
+      line: 13,
+      method: 'exports',
+      native: false
+    },
+    {
+      column: 28,
+      file: '/home/hello-world/Thesis/SMS-API/src/index.js',
+      function: null,
+      line: 14,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'internal/modules/run_main.js',
+      function: 'Function.executeUserEntryPoint [as runMain]',
+      line: 71,
+      method: 'executeUserEntryPoint [as runMain]',
+      native: false
+    },
+    {
+      column: 47,
+      file: 'internal/main/run_main_module.js',
+      function: null,
+      line: 17,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 13:49:44'
+}
+{
+  error: ReferenceError: students is not defined
+      at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/router.js:13:28)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:14:28)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)
+      at internal/main/run_main_module.js:17:47,
+  level: 'error',
+  message: 'uncaughtException: students is not defined\n' +
+    'ReferenceError: students is not defined\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/router.js:13:28)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:14:28)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  stack: 'ReferenceError: students is not defined\n' +
+    '    at module.exports (/home/hello-world/Thesis/SMS-API/src/startup/router.js:13:28)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/index.js:14:28)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:71:12)\n' +
+    '    at internal/main/run_main_module.js:17:47',
+  exception: true,
+  date: 'Wed Dec 09 2020 13:49:44 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 5546,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 96792576,
+      heapTotal: 52453376,
+      heapUsed: 29802904,
+      external: 2233176,
+      arrayBuffers: 807596
+    }
+  },
+  os: { loadavg: [ 1.0546875, 1.3505859375, 1.33251953125 ], uptime: 1208 },
+  trace: [
+    {
+      column: 28,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/router.js',
+      function: 'module.exports',
+      line: 13,
+      method: 'exports',
+      native: false
+    },
+    {
+      column: 28,
+      file: '/home/hello-world/Thesis/SMS-API/src/index.js',
+      function: null,
+      line: 14,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'internal/modules/run_main.js',
+      function: 'Function.executeUserEntryPoint [as runMain]',
+      line: 71,
+      method: 'executeUserEntryPoint [as runMain]',
+      native: false
+    },
+    {
+      column: 47,
+      file: 'internal/main/run_main_module.js',
+      function: null,
+      line: 17,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 13:49:44'
+}
+{
+  error: ReferenceError: academicYear is not defined
+      at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27
+      at Array.map (<anonymous>)
+      at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)
+      at CsvParserStream.emit (events.js:315:20)
+      at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)
+      at endReadableNT (_stream_readable.js:1224:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21),
+  level: 'error',
+  message: 'uncaughtException: academicYear is not defined\n' +
+    'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  stack: 'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  exception: true,
+  date: 'Wed Dec 09 2020 15:00:55 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 11598,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 83419136,
+      heapTotal: 27451392,
+      heapUsed: 22972624,
+      external: 1549690,
+      arrayBuffers: 107980
+    }
+  },
+  os: { loadavg: [ 1.41796875, 1.107421875, 0.94091796875 ], uptime: 5480 },
+  trace: [
+    {
+      column: 27,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 67,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'Array.map',
+      line: null,
+      method: 'map',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 63,
+      method: null,
+      native: false
+    },
+    {
+      column: 20,
+      file: 'events.js',
+      function: 'CsvParserStream.emit',
+      line: 315,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 23,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js',
+      function: 'CsvParserStream.emit',
+      line: 45,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 12,
+      file: '_stream_readable.js',
+      function: 'endReadableNT',
+      line: 1224,
+      method: null,
+      native: false
+    },
+    {
+      column: 21,
+      file: 'internal/process/task_queues.js',
+      function: 'processTicksAndRejections',
+      line: 84,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 15:00:55'
+}
+{
+  error: ReferenceError: academicYear is not defined
+      at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27
+      at Array.map (<anonymous>)
+      at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)
+      at CsvParserStream.emit (events.js:315:20)
+      at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)
+      at endReadableNT (_stream_readable.js:1224:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21),
+  level: 'error',
+  message: 'uncaughtException: academicYear is not defined\n' +
+    'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  stack: 'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  exception: true,
+  date: 'Wed Dec 09 2020 15:00:55 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 11598,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 83886080,
+      heapTotal: 27451392,
+      heapUsed: 23123464,
+      external: 1557946,
+      arrayBuffers: 116196
+    }
+  },
+  os: { loadavg: [ 1.41796875, 1.107421875, 0.94091796875 ], uptime: 5480 },
+  trace: [
+    {
+      column: 27,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 67,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'Array.map',
+      line: null,
+      method: 'map',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 63,
+      method: null,
+      native: false
+    },
+    {
+      column: 20,
+      file: 'events.js',
+      function: 'CsvParserStream.emit',
+      line: 315,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 23,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js',
+      function: 'CsvParserStream.emit',
+      line: 45,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 12,
+      file: '_stream_readable.js',
+      function: 'endReadableNT',
+      line: 1224,
+      method: null,
+      native: false
+    },
+    {
+      column: 21,
+      file: 'internal/process/task_queues.js',
+      function: 'processTicksAndRejections',
+      line: 84,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 15:00:55'
+}
+{
+  error: ReferenceError: academicYear is not defined
+      at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27
+      at Array.map (<anonymous>)
+      at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)
+      at CsvParserStream.emit (events.js:315:20)
+      at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)
+      at endReadableNT (_stream_readable.js:1224:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21),
+  level: 'error',
+  message: 'uncaughtException: academicYear is not defined\n' +
+    'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  stack: 'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  exception: true,
+  date: 'Wed Dec 09 2020 15:00:55 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 11598,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 83886080,
+      heapTotal: 27451392,
+      heapUsed: 23199984,
+      external: 1566138,
+      arrayBuffers: 124388
+    }
+  },
+  os: { loadavg: [ 1.41796875, 1.107421875, 0.94091796875 ], uptime: 5480 },
+  trace: [
+    {
+      column: 27,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 67,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'Array.map',
+      line: null,
+      method: 'map',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 63,
+      method: null,
+      native: false
+    },
+    {
+      column: 20,
+      file: 'events.js',
+      function: 'CsvParserStream.emit',
+      line: 315,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 23,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js',
+      function: 'CsvParserStream.emit',
+      line: 45,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 12,
+      file: '_stream_readable.js',
+      function: 'endReadableNT',
+      line: 1224,
+      method: null,
+      native: false
+    },
+    {
+      column: 21,
+      file: 'internal/process/task_queues.js',
+      function: 'processTicksAndRejections',
+      line: 84,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 15:00:55'
+}
+{
+  error: ReferenceError: academicYear is not defined
+      at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27
+      at Array.map (<anonymous>)
+      at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)
+      at CsvParserStream.emit (events.js:315:20)
+      at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)
+      at endReadableNT (_stream_readable.js:1224:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21),
+  level: 'error',
+  message: 'uncaughtException: academicYear is not defined\n' +
+    'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  stack: 'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  exception: true,
+  date: 'Wed Dec 09 2020 15:01:13 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 11851,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 109666304,
+      heapTotal: 56287232,
+      heapUsed: 35154224,
+      external: 1551610,
+      arrayBuffers: 107980
+    }
+  },
+  os: {
+    loadavg: [ 1.26416015625, 1.0859375, 0.93603515625 ],
+    uptime: 5497
+  },
+  trace: [
+    {
+      column: 27,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 67,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'Array.map',
+      line: null,
+      method: 'map',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 63,
+      method: null,
+      native: false
+    },
+    {
+      column: 20,
+      file: 'events.js',
+      function: 'CsvParserStream.emit',
+      line: 315,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 23,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js',
+      function: 'CsvParserStream.emit',
+      line: 45,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 12,
+      file: '_stream_readable.js',
+      function: 'endReadableNT',
+      line: 1224,
+      method: null,
+      native: false
+    },
+    {
+      column: 21,
+      file: 'internal/process/task_queues.js',
+      function: 'processTicksAndRejections',
+      line: 84,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 15:01:13'
+}
+{
+  error: ReferenceError: academicYear is not defined
+      at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27
+      at Array.map (<anonymous>)
+      at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)
+      at CsvParserStream.emit (events.js:315:20)
+      at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)
+      at endReadableNT (_stream_readable.js:1224:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21),
+  level: 'error',
+  message: 'uncaughtException: academicYear is not defined\n' +
+    'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  stack: 'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  exception: true,
+  date: 'Wed Dec 09 2020 15:01:13 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 11851,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 110231552,
+      heapTotal: 56287232,
+      heapUsed: 35305456,
+      external: 1559866,
+      arrayBuffers: 116196
+    }
+  },
+  os: {
+    loadavg: [ 1.26416015625, 1.0859375, 0.93603515625 ],
+    uptime: 5497
+  },
+  trace: [
+    {
+      column: 27,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 67,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'Array.map',
+      line: null,
+      method: 'map',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 63,
+      method: null,
+      native: false
+    },
+    {
+      column: 20,
+      file: 'events.js',
+      function: 'CsvParserStream.emit',
+      line: 315,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 23,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js',
+      function: 'CsvParserStream.emit',
+      line: 45,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 12,
+      file: '_stream_readable.js',
+      function: 'endReadableNT',
+      line: 1224,
+      method: null,
+      native: false
+    },
+    {
+      column: 21,
+      file: 'internal/process/task_queues.js',
+      function: 'processTicksAndRejections',
+      line: 84,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 15:01:13'
+}
+{
+  error: ReferenceError: academicYear is not defined
+      at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27
+      at Array.map (<anonymous>)
+      at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)
+      at CsvParserStream.emit (events.js:315:20)
+      at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)
+      at endReadableNT (_stream_readable.js:1224:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21),
+  level: 'error',
+  message: 'uncaughtException: academicYear is not defined\n' +
+    'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  stack: 'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:67:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:63:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  exception: true,
+  date: 'Wed Dec 09 2020 15:01:13 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 11851,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 110231552,
+      heapTotal: 56287232,
+      heapUsed: 35382456,
+      external: 1568058,
+      arrayBuffers: 124388
+    }
+  },
+  os: {
+    loadavg: [ 1.26416015625, 1.0859375, 0.93603515625 ],
+    uptime: 5497
+  },
+  trace: [
+    {
+      column: 27,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 67,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'Array.map',
+      line: null,
+      method: 'map',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 63,
+      method: null,
+      native: false
+    },
+    {
+      column: 20,
+      file: 'events.js',
+      function: 'CsvParserStream.emit',
+      line: 315,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 23,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js',
+      function: 'CsvParserStream.emit',
+      line: 45,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 12,
+      file: '_stream_readable.js',
+      function: 'endReadableNT',
+      line: 1224,
+      method: null,
+      native: false
+    },
+    {
+      column: 21,
+      file: 'internal/process/task_queues.js',
+      function: 'processTicksAndRejections',
+      line: 84,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 15:01:13'
+}
+{
+  error: ReferenceError: academicYear is not defined
+      at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:70:27
+      at Array.map (<anonymous>)
+      at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:66:19)
+      at CsvParserStream.emit (events.js:315:20)
+      at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)
+      at endReadableNT (_stream_readable.js:1224:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21),
+  level: 'error',
+  message: 'uncaughtException: academicYear is not defined\n' +
+    'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:70:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:66:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  stack: 'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:70:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:66:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  exception: true,
+  date: 'Wed Dec 09 2020 15:03:36 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 12190,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 106717184,
+      heapTotal: 55599104,
+      heapUsed: 29472448,
+      external: 1551610,
+      arrayBuffers: 107980
+    }
+  },
+  os: { loadavg: [ 0.77685546875, 0.9453125, 0.90234375 ], uptime: 5641 },
+  trace: [
+    {
+      column: 27,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 70,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'Array.map',
+      line: null,
+      method: 'map',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 66,
+      method: null,
+      native: false
+    },
+    {
+      column: 20,
+      file: 'events.js',
+      function: 'CsvParserStream.emit',
+      line: 315,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 23,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js',
+      function: 'CsvParserStream.emit',
+      line: 45,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 12,
+      file: '_stream_readable.js',
+      function: 'endReadableNT',
+      line: 1224,
+      method: null,
+      native: false
+    },
+    {
+      column: 21,
+      file: 'internal/process/task_queues.js',
+      function: 'processTicksAndRejections',
+      line: 84,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 15:03:36'
+}
+{
+  error: ReferenceError: academicYear is not defined
+      at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:70:27
+      at Array.map (<anonymous>)
+      at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:66:19)
+      at CsvParserStream.emit (events.js:315:20)
+      at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)
+      at endReadableNT (_stream_readable.js:1224:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21),
+  level: 'error',
+  message: 'uncaughtException: academicYear is not defined\n' +
+    'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:70:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:66:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  stack: 'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:70:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:66:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  exception: true,
+  date: 'Wed Dec 09 2020 15:03:36 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 12190,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 107298816,
+      heapTotal: 55599104,
+      heapUsed: 29686968,
+      external: 1559866,
+      arrayBuffers: 116196
+    }
+  },
+  os: { loadavg: [ 0.77685546875, 0.9453125, 0.90234375 ], uptime: 5641 },
+  trace: [
+    {
+      column: 27,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 70,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'Array.map',
+      line: null,
+      method: 'map',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 66,
+      method: null,
+      native: false
+    },
+    {
+      column: 20,
+      file: 'events.js',
+      function: 'CsvParserStream.emit',
+      line: 315,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 23,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js',
+      function: 'CsvParserStream.emit',
+      line: 45,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 12,
+      file: '_stream_readable.js',
+      function: 'endReadableNT',
+      line: 1224,
+      method: null,
+      native: false
+    },
+    {
+      column: 21,
+      file: 'internal/process/task_queues.js',
+      function: 'processTicksAndRejections',
+      line: 84,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 15:03:36'
+}
+{
+  error: ReferenceError: academicYear is not defined
+      at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:70:27
+      at Array.map (<anonymous>)
+      at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:66:19)
+      at CsvParserStream.emit (events.js:315:20)
+      at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)
+      at endReadableNT (_stream_readable.js:1224:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21),
+  level: 'error',
+  message: 'uncaughtException: academicYear is not defined\n' +
+    'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:70:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:66:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  stack: 'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:70:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:66:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  exception: true,
+  date: 'Wed Dec 09 2020 15:03:36 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 12190,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 107298816,
+      heapTotal: 55599104,
+      heapUsed: 29766944,
+      external: 1568058,
+      arrayBuffers: 124388
+    }
+  },
+  os: { loadavg: [ 0.77685546875, 0.9453125, 0.90234375 ], uptime: 5641 },
+  trace: [
+    {
+      column: 27,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 70,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'Array.map',
+      line: null,
+      method: 'map',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 66,
+      method: null,
+      native: false
+    },
+    {
+      column: 20,
+      file: 'events.js',
+      function: 'CsvParserStream.emit',
+      line: 315,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 23,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js',
+      function: 'CsvParserStream.emit',
+      line: 45,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 12,
+      file: '_stream_readable.js',
+      function: 'endReadableNT',
+      line: 1224,
+      method: null,
+      native: false
+    },
+    {
+      column: 21,
+      file: 'internal/process/task_queues.js',
+      function: 'processTicksAndRejections',
+      line: 84,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 15:03:36'
+}
+{
+  error: ReferenceError: academicYear is not defined
+      at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:72:27
+      at Array.map (<anonymous>)
+      at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:68:19)
+      at CsvParserStream.emit (events.js:315:20)
+      at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)
+      at endReadableNT (_stream_readable.js:1224:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21),
+  level: 'error',
+  message: 'uncaughtException: academicYear is not defined\n' +
+    'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:72:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:68:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  stack: 'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:72:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:68:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  exception: true,
+  date: 'Wed Dec 09 2020 15:04:10 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 12303,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 106397696,
+      heapTotal: 55599104,
+      heapUsed: 29505520,
+      external: 1551610,
+      arrayBuffers: 107980
+    }
+  },
+  os: {
+    loadavg: [ 1.01513671875, 0.99560546875, 0.92041015625 ],
+    uptime: 5674
+  },
+  trace: [
+    {
+      column: 27,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 72,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'Array.map',
+      line: null,
+      method: 'map',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 68,
+      method: null,
+      native: false
+    },
+    {
+      column: 20,
+      file: 'events.js',
+      function: 'CsvParserStream.emit',
+      line: 315,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 23,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js',
+      function: 'CsvParserStream.emit',
+      line: 45,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 12,
+      file: '_stream_readable.js',
+      function: 'endReadableNT',
+      line: 1224,
+      method: null,
+      native: false
+    },
+    {
+      column: 21,
+      file: 'internal/process/task_queues.js',
+      function: 'processTicksAndRejections',
+      line: 84,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 15:04:10'
+}
+{
+  error: ReferenceError: academicYear is not defined
+      at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:72:27
+      at Array.map (<anonymous>)
+      at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:68:19)
+      at CsvParserStream.emit (events.js:315:20)
+      at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)
+      at endReadableNT (_stream_readable.js:1224:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21),
+  level: 'error',
+  message: 'uncaughtException: academicYear is not defined\n' +
+    'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:72:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:68:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  stack: 'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:72:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:68:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  exception: true,
+  date: 'Wed Dec 09 2020 15:04:10 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 12303,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 107040768,
+      heapTotal: 55599104,
+      heapUsed: 29660872,
+      external: 1559866,
+      arrayBuffers: 116196
+    }
+  },
+  os: {
+    loadavg: [ 1.01513671875, 0.99560546875, 0.92041015625 ],
+    uptime: 5674
+  },
+  trace: [
+    {
+      column: 27,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 72,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'Array.map',
+      line: null,
+      method: 'map',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 68,
+      method: null,
+      native: false
+    },
+    {
+      column: 20,
+      file: 'events.js',
+      function: 'CsvParserStream.emit',
+      line: 315,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 23,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js',
+      function: 'CsvParserStream.emit',
+      line: 45,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 12,
+      file: '_stream_readable.js',
+      function: 'endReadableNT',
+      line: 1224,
+      method: null,
+      native: false
+    },
+    {
+      column: 21,
+      file: 'internal/process/task_queues.js',
+      function: 'processTicksAndRejections',
+      line: 84,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 15:04:10'
+}
+{
+  error: ReferenceError: academicYear is not defined
+      at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:72:27
+      at Array.map (<anonymous>)
+      at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:68:19)
+      at CsvParserStream.emit (events.js:315:20)
+      at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)
+      at endReadableNT (_stream_readable.js:1224:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21),
+  level: 'error',
+  message: 'uncaughtException: academicYear is not defined\n' +
+    'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:72:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:68:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  stack: 'ReferenceError: academicYear is not defined\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/controllers/students.js:72:27\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at CsvParserStream.<anonymous> (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:68:19)\n' +
+    '    at CsvParserStream.emit (events.js:315:20)\n' +
+    '    at CsvParserStream.emit (/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js:45:23)\n' +
+    '    at endReadableNT (_stream_readable.js:1224:12)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:84:21)',
+  exception: true,
+  date: 'Wed Dec 09 2020 15:04:10 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 12303,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 107040768,
+      heapTotal: 55599104,
+      heapUsed: 29738944,
+      external: 1568058,
+      arrayBuffers: 124388
+    }
+  },
+  os: {
+    loadavg: [ 1.01513671875, 0.99560546875, 0.92041015625 ],
+    uptime: 5674
+  },
+  trace: [
+    {
+      column: 27,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 72,
+      method: null,
+      native: false
+    },
+    {
+      column: null,
+      file: null,
+      function: 'Array.map',
+      line: null,
+      method: 'map',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js',
+      function: null,
+      line: 68,
+      method: null,
+      native: false
+    },
+    {
+      column: 20,
+      file: 'events.js',
+      function: 'CsvParserStream.emit',
+      line: 315,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 23,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/@fast-csv/parse/build/src/CsvParserStream.js',
+      function: 'CsvParserStream.emit',
+      line: 45,
+      method: 'emit',
+      native: false
+    },
+    {
+      column: 12,
+      file: '_stream_readable.js',
+      function: 'endReadableNT',
+      line: 1224,
+      method: null,
+      native: false
+    },
+    {
+      column: 21,
+      file: 'internal/process/task_queues.js',
+      function: 'processTicksAndRejections',
+      line: 84,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 15:04:10'
+}
+{
+  error: /home/hello-world/Thesis/SMS-API/src/controllers/students.js:68
+          if (student.gender == 'Male') return { ...student.gender: 0 };
+                                                                  ^
+  
+  SyntaxError: Unexpected token ':'
+      at wrapSafe (internal/modules/cjs/loader.js:1116:16)
+      at Module._compile (internal/modules/cjs/loader.js:1164:27)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10),
+  level: 'error',
+  message: "uncaughtException: Unexpected token ':'\n" +
+    '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:68\n' +
+    "        if (student.gender == 'Male') return { ...student.gender: 0 };\n" +
+    '                                                                ^\n' +
+    '\n' +
+    "SyntaxError: Unexpected token ':'\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  stack: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:68\n' +
+    "        if (student.gender == 'Male') return { ...student.gender: 0 };\n" +
+    '                                                                ^\n' +
+    '\n' +
+    "SyntaxError: Unexpected token ':'\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  exception: true,
+  date: 'Wed Dec 09 2020 16:22:45 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 20096,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46235648,
+      heapTotal: 16789504,
+      heapUsed: 8089472,
+      external: 1351508,
+      arrayBuffers: 44849
+    }
+  },
+  os: {
+    loadavg: [ 2.091796875, 1.92529296875, 1.65478515625 ],
+    uptime: 10390
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'wrapSafe',
+      line: 1116,
+      method: null,
+      native: false
+    },
+    {
+      column: 27,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1164,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 18,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 5,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 16:22:45'
+}
+{
+  error: /home/hello-world/Thesis/SMS-API/src/controllers/students.js:50
+      (attributes: { exclude: ['createdAt', 'updatedAt'] })
+                 ^
+  
+  SyntaxError: Unexpected token ':'
+      at wrapSafe (internal/modules/cjs/loader.js:1116:16)
+      at Module._compile (internal/modules/cjs/loader.js:1164:27)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10),
+  level: 'error',
+  message: "uncaughtException: Unexpected token ':'\n" +
+    '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:50\n' +
+    "    (attributes: { exclude: ['createdAt', 'updatedAt'] })\n" +
+    '               ^\n' +
+    '\n' +
+    "SyntaxError: Unexpected token ':'\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  stack: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:50\n' +
+    "    (attributes: { exclude: ['createdAt', 'updatedAt'] })\n" +
+    '               ^\n' +
+    '\n' +
+    "SyntaxError: Unexpected token ':'\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  exception: true,
+  date: 'Wed Dec 09 2020 16:36:30 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 21831,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 47300608,
+      heapTotal: 16265216,
+      heapUsed: 8074448,
+      external: 1351616,
+      arrayBuffers: 44957
+    }
+  },
+  os: {
+    loadavg: [ 1.45263671875, 1.431640625, 1.5126953125 ],
+    uptime: 11215
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'wrapSafe',
+      line: 1116,
+      method: null,
+      native: false
+    },
+    {
+      column: 27,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1164,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 18,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 5,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 16:36:30'
+}
+{
+  error: /home/hello-world/Thesis/SMS-API/src/controllers/students.js:59
+    const religionsList = await models.Township.findAll({
+          ^
+  
+  SyntaxError: Identifier 'religionsList' has already been declared
+      at wrapSafe (internal/modules/cjs/loader.js:1116:16)
+      at Module._compile (internal/modules/cjs/loader.js:1164:27)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10),
+  level: 'error',
+  message: "uncaughtException: Identifier 'religionsList' has already been declared\n" +
+    '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:59\n' +
+    '  const religionsList = await models.Township.findAll({\n' +
+    '        ^\n' +
+    '\n' +
+    "SyntaxError: Identifier 'religionsList' has already been declared\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  stack: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:59\n' +
+    '  const religionsList = await models.Township.findAll({\n' +
+    '        ^\n' +
+    '\n' +
+    "SyntaxError: Identifier 'religionsList' has already been declared\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  exception: true,
+  date: 'Wed Dec 09 2020 16:48:37 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 23377,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46804992,
+      heapTotal: 16527360,
+      heapUsed: 8184344,
+      external: 1352159,
+      arrayBuffers: 45500
+    }
+  },
+  os: {
+    loadavg: [ 1.04345703125, 1.205078125, 1.39306640625 ],
+    uptime: 11942
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'wrapSafe',
+      line: 1116,
+      method: null,
+      native: false
+    },
+    {
+      column: 27,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1164,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 18,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 5,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    }
+  ],
+  timestamp: '2020-12-09 16:48:37'
+}

@@ -190,3 +190,163 @@
   level: 'info',
   timestamp: '2020-08-29 11:42:11'
 }
+{
+  message: '::1 - - [09/Dec/2020:07:13:49 +0000] "POST /api/students/csv HTTP/1.1" 401 63 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 13:43:49'
+}
+{
+  message: '::1 - - [09/Dec/2020:07:14:30 +0000] "POST /api/students/csv HTTP/1.1" 401 63 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 13:44:30'
+}
+{
+  message: '::1 - - [09/Dec/2020:07:14:49 +0000] "POST /api/auth HTTP/1.1" 200 176 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 13:44:49'
+}
+{
+  message: '::1 - - [09/Dec/2020:07:14:58 +0000] "GET /api/users/me HTTP/1.1" 200 100 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 13:44:58'
+}
+{
+  message: '::1 - - [09/Dec/2020:07:15:25 +0000] "POST /api/students/csv HTTP/1.1" 401 63 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 13:45:25'
+}
+{
+  message: '::1 - - [09/Dec/2020:07:16:11 +0000] "POST /api/students/csv HTTP/1.1" 403 43 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 13:46:11'
+}
+{
+  message: '::1 - - [09/Dec/2020:07:16:36 +0000] "POST /api/auth HTTP/1.1" 200 176 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 13:46:36'
+}
+{
+  message: '::1 - - [09/Dec/2020:07:17:00 +0000] "POST /api/students/csv HTTP/1.1" 400 44 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 13:47:00'
+}
+{
+  message: '::1 - - [09/Dec/2020:07:17:28 +0000] "POST /api/students/csv HTTP/1.1" 403 43 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 13:47:28'
+}
+{
+  message: '::1 - - [09/Dec/2020:07:18:33 +0000] "POST /api/students/csv HTTP/1.1" 401 63 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 13:48:33'
+}
+{
+  message: '::1 - - [09/Dec/2020:07:18:58 +0000] "POST /api/students/csv HTTP/1.1" 401 63 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 13:48:58'
+}
+{
+  message: '::1 - - [09/Dec/2020:07:20:56 +0000] "POST /api/students/csv HTTP/1.1" - - "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 13:50:56'
+}
+{
+  message: '::1 - - [09/Dec/2020:07:22:41 +0000] "POST /api/students/csv HTTP/1.1" - - "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 13:52:41'
+}
+{
+  level: 'error',
+  message: 'Undefined Route! Undefined Route!',
+  stack: 'Error: Undefined Route!\n' +
+    '    at /home/hello-world/Thesis/SMS-API/src/startup/router.js:16:41\n' +
+    '    at newFn (/home/hello-world/Thesis/SMS-API/node_modules/express-async-errors/index.js:16:20)\n' +
+    '    at Layer.handle [as handle_request] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/layer.js:95:5)\n' +
+    '    at next (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:137:13)\n' +
+    '    at next (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:131:14)\n' +
+    '    at next (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:131:14)\n' +
+    '    at next (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:131:14)\n' +
+    '    at next (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:131:14)\n' +
+    '    at next (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:131:14)\n' +
+    '    at next (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:131:14)',
+  timestamp: '2020-12-09 14:28:44'
+}
+{
+  message: '::1 - - [09/Dec/2020:07:58:44 +0000] "POST /students/csv/academicYear/6/major/1/attendanceYear/1 HTTP/1.1" 500 72 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 14:28:44'
+}
+{
+  message: '::1 - - [09/Dec/2020:07:59:47 +0000] "POST /api/students/csv/academicYear/6/major/1/attendanceYear/1 HTTP/1.1" - - "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 14:29:47'
+}
+{
+  name: 'SequelizeAccessDeniedError',
+  parent: Error: Access denied for user ''@'localhost' (using password: YES)
+      at Packet.asError (/home/hello-world/Thesis/SMS-API/node_modules/mysql2/lib/packets/packet.js:712:17)
+      at ClientHandshake.execute (/home/hello-world/Thesis/SMS-API/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/home/hello-world/Thesis/SMS-API/node_modules/mysql2/lib/connection.js:417:32)
+      at PacketParser.onPacket (/home/hello-world/Thesis/SMS-API/node_modules/mysql2/lib/connection.js:75:12)
+      at PacketParser.executeStart (/home/hello-world/Thesis/SMS-API/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/home/hello-world/Thesis/SMS-API/node_modules/mysql2/lib/connection.js:82:25)
+      at Socket.emit (events.js:315:20)
+      at addChunk (_stream_readable.js:302:12)
+      at readableAddChunk (_stream_readable.js:278:9)
+      at Socket.Readable.push (_stream_readable.js:217:10) {
+    code: 'ER_ACCESS_DENIED_ERROR',
+    errno: 1045,
+    sqlState: '28000',
+    sqlMessage: "Access denied for user ''@'localhost' (using password: YES)"
+  },
+  original: Error: Access denied for user ''@'localhost' (using password: YES)
+      at Packet.asError (/home/hello-world/Thesis/SMS-API/node_modules/mysql2/lib/packets/packet.js:712:17)
+      at ClientHandshake.execute (/home/hello-world/Thesis/SMS-API/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/home/hello-world/Thesis/SMS-API/node_modules/mysql2/lib/connection.js:417:32)
+      at PacketParser.onPacket (/home/hello-world/Thesis/SMS-API/node_modules/mysql2/lib/connection.js:75:12)
+      at PacketParser.executeStart (/home/hello-world/Thesis/SMS-API/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/home/hello-world/Thesis/SMS-API/node_modules/mysql2/lib/connection.js:82:25)
+      at Socket.emit (events.js:315:20)
+      at addChunk (_stream_readable.js:302:12)
+      at readableAddChunk (_stream_readable.js:278:9)
+      at Socket.Readable.push (_stream_readable.js:217:10) {
+    code: 'ER_ACCESS_DENIED_ERROR',
+    errno: 1045,
+    sqlState: '28000',
+    sqlMessage: "Access denied for user ''@'localhost' (using password: YES)"
+  },
+  level: 'error',
+  message: 'Unable to connect to the database.🌚😌\n' +
+    " Access denied for user ''@'localhost' (using password: YES)",
+  stack: "SequelizeAccessDeniedError: Access denied for user ''@'localhost' (using password: YES)\n" +
+    '    at ConnectionManager.connect (/home/hello-world/Thesis/SMS-API/node_modules/sequelize/lib/dialects/mysql/connection-manager.js:118:17)\n' +
+    '    at processTicksAndRejections (internal/process/task_queues.js:97:5)\n' +
+    '    at async ConnectionManager._connect (/home/hello-world/Thesis/SMS-API/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:318:24)\n' +
+    '    at async /home/hello-world/Thesis/SMS-API/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:250:32\n' +
+    '    at async ConnectionManager.getConnection (/home/hello-world/Thesis/SMS-API/node_modules/sequelize/lib/dialects/abstract/connection-manager.js:280:7)\n' +
+    '    at async /home/hello-world/Thesis/SMS-API/node_modules/sequelize/lib/sequelize.js:613:26\n' +
+    '    at async Sequelize.authenticate (/home/hello-world/Thesis/SMS-API/node_modules/sequelize/lib/sequelize.js:867:5)',
+  timestamp: '2020-12-09 15:39:39'
+}
+{
+  message: '::1 - - [09/Dec/2020:09:36:31 +0000] "POST /api/students/csv/academicYear/6/major/1/attendanceYear/1 HTTP/1.1" - - "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 16:06:31'
+}
+{
+  level: 'error',
+  message: "Cannot read property 'findAll' of undefined Cannot read property 'findAll' of undefined",
+  stack: "TypeError: Cannot read property 'findAll' of undefined\n" +
+    '    at exports.importWithCSV (/home/hello-world/Thesis/SMS-API/src/controllers/students.js:49:44)\n' +
+    '    at newFn (/home/hello-world/Thesis/SMS-API/node_modules/express-async-errors/index.js:16:20)\n' +
+    '    at Layer.handle [as handle_request] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/layer.js:95:5)\n' +
+    '    at next (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:137:13)\n' +
+    '    at Immediate.<anonymous> (/home/hello-world/Thesis/SMS-API/node_modules/multer/lib/make-middleware.js:53:37)\n' +
+    '    at processImmediate (internal/timers.js:458:21)',
+  timestamp: '2020-12-09 16:37:07'
+}
+{
+  message: '::1 - - [09/Dec/2020:10:07:07 +0000] "POST /api/students/csv/academicYear/6/major/1/attendanceYear/1 HTTP/1.1" 500 72 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2020-12-09 16:37:07'
+}

@@ -18,71 +18,113 @@ const {
   parentImageAttributes,
 } = require('../utils/fields');
 
+// always assuming that this functionality is only for importing first* year students
 exports.importWithCSV = async (req, res) => {
   let metaData = [];
-  let csvData = [];
+  let csvStudents = [];
   let studentData = [];
   let stdData = [];
   let myd = [];
 
+  const academicYearId = req.params.academicYearId;
+  const attendanceYearId = req.params.attendanceYearId;
+  const majorId = req.params.majorId;
+
+  // if academic year or attendance year or major did not include
+  if (!academicYearId || !attendanceYearId || !majorId)
+    return res.status(400).send({
+      status: 'fail',
+      message:
+        'Invalid Operation! Please choose academic year, attendance year or major.',
+    });
+
+  // if invalid file type
   if (!req.file.mimetype.includes('csv'))
     return res.status(400).send({
       status: 'fail',
-      message: 'Invalid input.',
+      message: 'Invalid input. Only CSV files are allowned.',
     });
 
-  const originalName = req.file.originalname;
-  const filename = originalName.split('.')[0].split('_');
-  const academicYearName = filename[0];
-  const attendanceYearName = filename[1];
-  const majorName = filename[2];
-
-  const academicYear = await models.AcademicYear.findOne({
-    where: { name: academicYearName },
-    attributes: ['academicYearId'],
+  // get religions from database
+  const religionsList = await models.Religion.findAll({
+    attributes: { exclude: ['createdAt', 'updatedAt'] },
     raw: true,
   });
 
-  const attendanceYear = await models.AttendanceYear.findOne({
-    where: { name: attendanceYearName },
-    attributes: ['attendanceYearId'],
+  // get ethnicities from database
+  const ethnicitiesList = await models.Ethnicity.findAll({
+    attributes: { exclude: ['createdAt', 'updatedAt'] },
     raw: true,
   });
 
-  const major = await models.Major.findOne({
-    where: { name: majorName },
-    attributes: ['majorId'],
+  // get townships from database
+  const townshipsList = await models.Township.findAll({
+    attributes: { exclude: ['createdAt', 'updatedAt'] },
     raw: true,
   });
-
-  if (!academicYear || !attendanceYear || !major)
-    return res.status(400).send({
-      status: 'fail',
-      message: 'Invalid file name.',
-    });
 
   fs.createReadStream(req.file.path)
     .pipe(
-      csv.parse({ trim: true, headers: csvStudentHeaders, renameHeaders: true })
+      csv.parse({
+        ignoreEmpty: true,
+        trim: true,
+        headers: csvStudentHeaders,
+        renameHeaders: true,
+      })
     )
     .on('error', (error) => console.log(error))
     .on('data', (row) => {
-      // * reading csv rows
-      csvData.push(row);
+      // parsing and storing rows
+      csvStudents.push(row);
     })
     .on('end', () => {
       fs.unlinkSync(req.file.path);
 
+      // gender ( Male -> 0, Female -> 1)
+      csvStudents.map((student) => {
+        if (student.gender == 'Male') return (student.gender = 0);
+        else if (student.gender == 'Female') return (student.gender = 1);
+        return student;
+      });
+
+      csvStudents.map((student) => {
+        // religion ( Buddhism -> 1)
+        religionsList.find((element) => {
+          if (student.religion === element.name)
+            return (student.religion = element.religionId);
+        });
+
+        // ethnicity 1 and ethnicity 2 ( Ahu -> 1)
+        ethnicitiesList.find((element) => {
+          if (student.ethnicity1 === element.name)
+            return (student.ethnicity1 = element.ethnicityId);
+
+          if (student.ethnicity2 === element.name)
+            return (student.ethnicity2 = element.ethnicityId);
+        });
+
+        // township ( Myanaung -> 1)
+        townshipsList.find((element) => {
+          if (student.township === element.name)
+            return (student.township = element.townshipId);
+        });
+      });
+
+      console.log(csvStudents);
+
       // * preparing csv object into structured object
       const result = [];
-      csvData.map((data) => {
+      csvStudents.map((data) => {
         let enrollment = _.pick(data, csvEnrollmentAttributes);
+
         enrollment = {
           ...enrollment,
-          academicYearId: academicYear.academicYearId,
-          attendanceYearId: attendanceYear.attendanceYearId,
-          majorId: major.majorId,
+          academicYearId,
+          attendanceYearId,
+          majorId,
+          statusId: 1, // always assuming that this functionality is only for importing first year students
         };
+
         const student = _.pick(data, csvStudentAttributes);
         const parent = _.pick(data, csvParentAttributes);
 

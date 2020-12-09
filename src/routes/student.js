@@ -13,9 +13,15 @@ const resizeImages = require('../middlewares/resizeImages');
 const multer = require('multer');
 const upload = multer({ dest: 'tmp/csv/' });
 
+// router
+//   .route('/csv')
+//   .post(upload.single('file'), office, students.importWithCSV); // uncomment if you want to apply auth
+
 router
-  .route('/csv')
-  .post(upload.single('file'), office, students.importWithCSV);
+  .route(
+    '/csv/academicYear/:academicYearId/major/:majorId/attendanceYear/:attendanceYearId'
+  )
+  .post(upload.single('file'), students.importWithCSV);
 
 /**
  * * verified
