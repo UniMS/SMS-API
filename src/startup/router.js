@@ -9,8 +9,7 @@ const official = require('../middlewares/official');
 module.exports = function (app) {
   app.use('/api/users', user);
   app.use('/api/auth', auth);
-  // app.use('/api/students', authentication, student); // uncomment if you want to apply auth
-  app.use('/api/students', student);
+  app.use('/api/students', authentication, student);
   app.use('/api/gradings', authentication, grading);
   app.use('/api/statistics', authentication, official, statistic);
   app.all('*', (req, res, next) => next(new Error(`Undefined Route!`)));

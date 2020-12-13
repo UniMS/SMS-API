@@ -2035,3 +2035,1945 @@
   ],
   timestamp: '2020-12-09 16:48:37'
 }
+{
+  error: Error: Route.get() requires a callback function but got a [object Undefined]
+      at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)
+      at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:32:8)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17),
+  level: 'error',
+  message: 'uncaughtException: Route.get() requires a callback function but got a [object Undefined]\n' +
+    'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:32:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  stack: 'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:32:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  exception: true,
+  date: 'Sun Dec 13 2020 23:11:30 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 26705,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 97390592,
+      heapTotal: 52453376,
+      heapUsed: 28976224,
+      external: 2166357,
+      arrayBuffers: 740817
+    }
+  },
+  os: {
+    loadavg: [ 1.0029296875, 1.30224609375, 1.22802734375 ],
+    uptime: 20553
+  },
+  trace: [
+    {
+      column: 15,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js',
+      function: 'Route.<computed> [as get]',
+      line: 202,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js',
+      function: 'Function.proto.<computed> [as get]',
+      line: 510,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 8,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 32,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 17,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/router.js',
+      function: null,
+      line: 1,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-13 23:11:30'
+}
+{
+  error: Error: Route.get() requires a callback function but got a [object Undefined]
+      at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)
+      at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:32:8)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17),
+  level: 'error',
+  message: 'uncaughtException: Route.get() requires a callback function but got a [object Undefined]\n' +
+    'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:32:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  stack: 'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:32:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  exception: true,
+  date: 'Sun Dec 13 2020 23:11:30 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 26705,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 98050048,
+      heapTotal: 52453376,
+      heapUsed: 29212984,
+      external: 2177499,
+      arrayBuffers: 751919
+    }
+  },
+  os: {
+    loadavg: [ 1.0029296875, 1.30224609375, 1.22802734375 ],
+    uptime: 20553
+  },
+  trace: [
+    {
+      column: 15,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js',
+      function: 'Route.<computed> [as get]',
+      line: 202,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js',
+      function: 'Function.proto.<computed> [as get]',
+      line: 510,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 8,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 32,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 17,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/router.js',
+      function: null,
+      line: 1,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-13 23:11:30'
+}
+{
+  error: Error: Route.get() requires a callback function but got a [object Undefined]
+      at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)
+      at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:38:8)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17),
+  level: 'error',
+  message: 'uncaughtException: Route.get() requires a callback function but got a [object Undefined]\n' +
+    'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:38:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  stack: 'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:38:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  exception: true,
+  date: 'Sun Dec 13 2020 23:11:36 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 26735,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 95653888,
+      heapTotal: 52453376,
+      heapUsed: 29060456,
+      external: 2171677,
+      arrayBuffers: 746137
+    }
+  },
+  os: {
+    loadavg: [ 1.2431640625, 1.34716796875, 1.2431640625 ],
+    uptime: 20559
+  },
+  trace: [
+    {
+      column: 15,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js',
+      function: 'Route.<computed> [as get]',
+      line: 202,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js',
+      function: 'Function.proto.<computed> [as get]',
+      line: 510,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 8,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 38,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 17,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/router.js',
+      function: null,
+      line: 1,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-13 23:11:36'
+}
+{
+  error: Error: Route.get() requires a callback function but got a [object Undefined]
+      at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)
+      at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:38:8)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17),
+  level: 'error',
+  message: 'uncaughtException: Route.get() requires a callback function but got a [object Undefined]\n' +
+    'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:38:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  stack: 'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:38:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  exception: true,
+  date: 'Sun Dec 13 2020 23:11:36 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 26735,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 96350208,
+      heapTotal: 52453376,
+      heapUsed: 29297136,
+      external: 2182817,
+      arrayBuffers: 757237
+    }
+  },
+  os: {
+    loadavg: [ 1.2431640625, 1.34716796875, 1.2431640625 ],
+    uptime: 20559
+  },
+  trace: [
+    {
+      column: 15,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js',
+      function: 'Route.<computed> [as get]',
+      line: 202,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js',
+      function: 'Function.proto.<computed> [as get]',
+      line: 510,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 8,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 38,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 17,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/router.js',
+      function: null,
+      line: 1,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-13 23:11:36'
+}
+{
+  error: Error: Route.get() requires a callback function but got a [object Undefined]
+      at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)
+      at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:38:8)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17),
+  level: 'error',
+  message: 'uncaughtException: Route.get() requires a callback function but got a [object Undefined]\n' +
+    'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:38:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  stack: 'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:38:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  exception: true,
+  date: 'Sun Dec 13 2020 23:11:38 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 26757,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 95744000,
+      heapTotal: 52715520,
+      heapUsed: 29065512,
+      external: 2171677,
+      arrayBuffers: 746137
+    }
+  },
+  os: {
+    loadavg: [ 1.2431640625, 1.34716796875, 1.2431640625 ],
+    uptime: 20561
+  },
+  trace: [
+    {
+      column: 15,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js',
+      function: 'Route.<computed> [as get]',
+      line: 202,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js',
+      function: 'Function.proto.<computed> [as get]',
+      line: 510,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 8,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 38,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 17,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/router.js',
+      function: null,
+      line: 1,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-13 23:11:38'
+}
+{
+  error: Error: Route.get() requires a callback function but got a [object Undefined]
+      at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)
+      at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:38:8)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17),
+  level: 'error',
+  message: 'uncaughtException: Route.get() requires a callback function but got a [object Undefined]\n' +
+    'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:38:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  stack: 'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:38:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  exception: true,
+  date: 'Sun Dec 13 2020 23:11:38 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 26757,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 96382976,
+      heapTotal: 52715520,
+      heapUsed: 29302192,
+      external: 2182817,
+      arrayBuffers: 757237
+    }
+  },
+  os: {
+    loadavg: [ 1.2431640625, 1.34716796875, 1.2431640625 ],
+    uptime: 20561
+  },
+  trace: [
+    {
+      column: 15,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js',
+      function: 'Route.<computed> [as get]',
+      line: 202,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js',
+      function: 'Function.proto.<computed> [as get]',
+      line: 510,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 8,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 38,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 17,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/router.js',
+      function: null,
+      line: 1,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-13 23:11:38'
+}
+{
+  error: Error: Route.get() requires a callback function but got a [object Undefined]
+      at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)
+      at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:39:8)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17),
+  level: 'error',
+  message: 'uncaughtException: Route.get() requires a callback function but got a [object Undefined]\n' +
+    'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:39:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  stack: 'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:39:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  exception: true,
+  date: 'Sun Dec 13 2020 23:11:52 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 26790,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 95969280,
+      heapTotal: 52453376,
+      heapUsed: 28975424,
+      external: 2166357,
+      arrayBuffers: 740817
+    }
+  },
+  os: {
+    loadavg: [ 0.96728515625, 1.2802734375, 1.22265625 ],
+    uptime: 20574
+  },
+  trace: [
+    {
+      column: 15,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js',
+      function: 'Route.<computed> [as get]',
+      line: 202,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js',
+      function: 'Function.proto.<computed> [as get]',
+      line: 510,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 8,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 39,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 17,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/router.js',
+      function: null,
+      line: 1,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-13 23:11:52'
+}
+{
+  error: Error: Route.get() requires a callback function but got a [object Undefined]
+      at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)
+      at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:39:8)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17),
+  level: 'error',
+  message: 'uncaughtException: Route.get() requires a callback function but got a [object Undefined]\n' +
+    'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:39:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  stack: 'Error: Route.get() requires a callback function but got a [object Undefined]\n' +
+    '    at Route.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js:202:15)\n' +
+    '    at Function.proto.<computed> [as get] (/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js:510:19)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:39:8)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/startup/router.js:1:17)',
+  exception: true,
+  date: 'Sun Dec 13 2020 23:11:52 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 26790,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 96284672,
+      heapTotal: 52453376,
+      heapUsed: 29212136,
+      external: 2177493,
+      arrayBuffers: 751913
+    }
+  },
+  os: {
+    loadavg: [ 0.96728515625, 1.2802734375, 1.22265625 ],
+    uptime: 20574
+  },
+  trace: [
+    {
+      column: 15,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/route.js',
+      function: 'Route.<computed> [as get]',
+      line: 202,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 19,
+      file: '/home/hello-world/Thesis/SMS-API/node_modules/express/lib/router/index.js',
+      function: 'Function.proto.<computed> [as get]',
+      line: 510,
+      method: '<computed> [as get]',
+      native: false
+    },
+    {
+      column: 8,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 39,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 17,
+      file: '/home/hello-world/Thesis/SMS-API/src/startup/router.js',
+      function: null,
+      line: 1,
+      method: null,
+      native: false
+    }
+  ],
+  timestamp: '2020-12-13 23:11:52'
+}
+{
+  error: /home/hello-world/Thesis/SMS-API/src/controllers/students.js:429
+    console.log('------------');
+           ^
+  
+  SyntaxError: Unexpected token '.'
+      at wrapSafe (internal/modules/cjs/loader.js:1116:16)
+      at Module._compile (internal/modules/cjs/loader.js:1164:27)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10),
+  level: 'error',
+  message: "uncaughtException: Unexpected token '.'\n" +
+    '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:429\n' +
+    "  console.log('------------');\n" +
+    '         ^\n' +
+    '\n' +
+    "SyntaxError: Unexpected token '.'\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  stack: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:429\n' +
+    "  console.log('------------');\n" +
+    '         ^\n' +
+    '\n' +
+    "SyntaxError: Unexpected token '.'\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  exception: true,
+  date: 'Sun Dec 13 2020 23:40:39 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 29614,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46936064,
+      heapTotal: 16789504,
+      heapUsed: 8214056,
+      external: 1364189,
+      arrayBuffers: 57530
+    }
+  },
+  os: {
+    loadavg: [ 1.93017578125, 1.38427734375, 1.24072265625 ],
+    uptime: 22301
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'wrapSafe',
+      line: 1116,
+      method: null,
+      native: false
+    },
+    {
+      column: 27,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1164,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 18,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 5,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    }
+  ],
+  timestamp: '2020-12-13 23:40:39'
+}
+{
+  error: /home/hello-world/Thesis/SMS-API/src/controllers/students.js:380
+    let students = await models.Major.findAll({
+        ^
+  
+  SyntaxError: Identifier 'students' has already been declared
+      at wrapSafe (internal/modules/cjs/loader.js:1116:16)
+      at Module._compile (internal/modules/cjs/loader.js:1164:27)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10),
+  level: 'error',
+  message: "uncaughtException: Identifier 'students' has already been declared\n" +
+    '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:380\n' +
+    '  let students = await models.Major.findAll({\n' +
+    '      ^\n' +
+    '\n' +
+    "SyntaxError: Identifier 'students' has already been declared\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  stack: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:380\n' +
+    '  let students = await models.Major.findAll({\n' +
+    '      ^\n' +
+    '\n' +
+    "SyntaxError: Identifier 'students' has already been declared\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  exception: true,
+  date: 'Sun Dec 13 2020 23:45:27 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 30136,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46948352,
+      heapTotal: 16527360,
+      heapUsed: 8291328,
+      external: 1364038,
+      arrayBuffers: 57379
+    }
+  },
+  os: {
+    loadavg: [ 1.02587890625, 1.16357421875, 1.1796875 ],
+    uptime: 22590
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'wrapSafe',
+      line: 1116,
+      method: null,
+      native: false
+    },
+    {
+      column: 27,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1164,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 18,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 5,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    }
+  ],
+  timestamp: '2020-12-13 23:45:27'
+}
+{
+  error: /home/hello-world/Thesis/SMS-API/src/controllers/students.js:343
+      [Op.or]: { majorId }),
+                          ^
+  
+  SyntaxError: Unexpected token ')'
+      at wrapSafe (internal/modules/cjs/loader.js:1116:16)
+      at Module._compile (internal/modules/cjs/loader.js:1164:27)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10),
+  level: 'error',
+  message: "uncaughtException: Unexpected token ')'\n" +
+    '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:343\n' +
+    '    [Op.or]: { majorId }),\n' +
+    '                        ^\n' +
+    '\n' +
+    "SyntaxError: Unexpected token ')'\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  stack: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:343\n' +
+    '    [Op.or]: { majorId }),\n' +
+    '                        ^\n' +
+    '\n' +
+    "SyntaxError: Unexpected token ')'\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  exception: true,
+  date: 'Sun Dec 13 2020 23:46:11 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 30234,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 47005696,
+      heapTotal: 16003072,
+      heapUsed: 8254200,
+      external: 1364090,
+      arrayBuffers: 57431
+    }
+  },
+  os: {
+    loadavg: [ 1.08447265625, 1.15869140625, 1.17822265625 ],
+    uptime: 22633
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'wrapSafe',
+      line: 1116,
+      method: null,
+      native: false
+    },
+    {
+      column: 27,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1164,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 18,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 5,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    }
+  ],
+  timestamp: '2020-12-13 23:46:11'
+}
+{
+  error: /home/hello-world/Thesis/SMS-API/src/controllers/students.js:343
+    if (parseInt(majorId) == NaN))
+                                 ^
+  
+  SyntaxError: Unexpected token ')'
+      at wrapSafe (internal/modules/cjs/loader.js:1116:16)
+      at Module._compile (internal/modules/cjs/loader.js:1164:27)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10),
+  level: 'error',
+  message: "uncaughtException: Unexpected token ')'\n" +
+    '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:343\n' +
+    '  if (parseInt(majorId) == NaN))\n' +
+    '                               ^\n' +
+    '\n' +
+    "SyntaxError: Unexpected token ')'\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  stack: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:343\n' +
+    '  if (parseInt(majorId) == NaN))\n' +
+    '                               ^\n' +
+    '\n' +
+    "SyntaxError: Unexpected token ')'\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  exception: true,
+  date: 'Mon Dec 14 2020 00:12:59 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 34488,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 47337472,
+      heapTotal: 16789504,
+      heapUsed: 8266744,
+      external: 1362846,
+      arrayBuffers: 56187
+    }
+  },
+  os: { loadavg: [ 2.6376953125, 2.44677734375, 1.71875 ], uptime: 24242 },
+  trace: [
+    {
+      column: 16,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'wrapSafe',
+      line: 1116,
+      method: null,
+      native: false
+    },
+    {
+      column: 27,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1164,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 18,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 5,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    }
+  ],
+  timestamp: '2020-12-14 00:12:59'
+}
+{
+  error: /home/hello-world/Thesis/SMS-API/src/controllers/students.js:344
+      return res.status(403).json({
+      ^^^^^^
+  
+  SyntaxError: Unexpected token 'return'
+      at wrapSafe (internal/modules/cjs/loader.js:1116:16)
+      at Module._compile (internal/modules/cjs/loader.js:1164:27)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)
+      at Module.load (internal/modules/cjs/loader.js:1049:32)
+      at Function.Module._load (internal/modules/cjs/loader.js:937:14)
+      at Module.require (internal/modules/cjs/loader.js:1089:19)
+      at require (internal/modules/cjs/helpers.js:73:18)
+      at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)
+      at Module._compile (internal/modules/cjs/loader.js:1200:30)
+      at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10),
+  level: 'error',
+  message: "uncaughtException: Unexpected token 'return'\n" +
+    '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:344\n' +
+    '    return res.status(403).json({\n' +
+    '    ^^^^^^\n' +
+    '\n' +
+    "SyntaxError: Unexpected token 'return'\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  stack: '/home/hello-world/Thesis/SMS-API/src/controllers/students.js:344\n' +
+    '    return res.status(403).json({\n' +
+    '    ^^^^^^\n' +
+    '\n' +
+    "SyntaxError: Unexpected token 'return'\n" +
+    '    at wrapSafe (internal/modules/cjs/loader.js:1116:16)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1164:27)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)\n' +
+    '    at Module.load (internal/modules/cjs/loader.js:1049:32)\n' +
+    '    at Function.Module._load (internal/modules/cjs/loader.js:937:14)\n' +
+    '    at Module.require (internal/modules/cjs/loader.js:1089:19)\n' +
+    '    at require (internal/modules/cjs/helpers.js:73:18)\n' +
+    '    at Object.<anonymous> (/home/hello-world/Thesis/SMS-API/src/routes/student.js:5:18)\n' +
+    '    at Module._compile (internal/modules/cjs/loader.js:1200:30)\n' +
+    '    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1220:10)',
+  exception: true,
+  date: 'Mon Dec 14 2020 00:15:05 GMT+0630 (Myanmar Time)',
+  process: {
+    pid: 34897,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/hello-world/Thesis/SMS-API',
+    execPath: '/usr/local/bin/node',
+    version: 'v14.4.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/home/hello-world/Thesis/SMS-API/src/index.js'
+    ],
+    memoryUsage: {
+      rss: 46706688,
+      heapTotal: 16265216,
+      heapUsed: 8226896,
+      external: 1362908,
+      arrayBuffers: 56249
+    }
+  },
+  os: {
+    loadavg: [ 2.72216796875, 2.4521484375, 1.80859375 ],
+    uptime: 24368
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'wrapSafe',
+      line: 1116,
+      method: null,
+      native: false
+    },
+    {
+      column: 27,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1164,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.load',
+      line: 1049,
+      method: 'load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._load',
+      line: 937,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 19,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module.require',
+      line: 1089,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 18,
+      file: 'internal/modules/cjs/helpers.js',
+      function: 'require',
+      line: 73,
+      method: null,
+      native: false
+    },
+    {
+      column: 18,
+      file: '/home/hello-world/Thesis/SMS-API/src/routes/student.js',
+      function: null,
+      line: 5,
+      method: null,
+      native: false
+    },
+    {
+      column: 30,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._compile',
+      line: 1200,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'internal/modules/cjs/loader.js',
+      function: 'Module._extensions..js',
+      line: 1220,
+      method: '.js',
+      native: false
+    }
+  ],
+  timestamp: '2020-12-14 00:15:05'
+}

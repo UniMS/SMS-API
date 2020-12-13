@@ -325,11 +325,92 @@ function getHeaders(csvData, headers) {
 
 /**
  * * verified
- * @filterStudents filters students according to ONLY academic year.
+ * @filterStudents filters students according to academic year and major
+ *
+ * @params academicYearId and majorId
+ */
+exports.filterStudents = async (req, res) => {
+  const accessableMajors = req.majors;
+  const academicYearId = req.params.academicYearId;
+  const majorId = req.params.majorId;
+
+  if (!accessableMajors)
+    return res.status(404).json({
+      status: 'fail',
+      message:
+        "Something went wrong! DEV_MSG: You didn't login or didn't have sufficient authority to perform this functionality.",
+    });
+
+  if (isNaN(parseInt(majorId)) || !accessableMajors.includes(parseInt(majorId)))
+    return res.status(403).json({
+      status: 'fail',
+      message:
+        'Something went wrong! DEV_MSG: You are requesting unauthorized data with insufficient role.',
+    });
+
+  let students = await models.AttendanceYear.findAll({
+    include: [
+      {
+        model: models.Enrollment,
+        where: {
+          academicYearId,
+          majorId,
+        },
+        as: 'enrollments',
+        attributes: ['rollNo'],
+        include: [
+          {
+            model: models.Student,
+            as: 'student',
+            attributes: [
+              'studentId',
+              'nameEn',
+              'nrc',
+              'gender',
+              'phone',
+              'address',
+            ],
+            include: [
+              {
+                model: models.Parent,
+                as: 'parent',
+                attributes: ['parentId', 'fatherNameEn', 'fatherNrc'],
+              },
+              {
+                model: models.Township,
+                as: 'township',
+                attributes: ['name'],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  });
+
+  if (!students.length)
+    return res.status(404).json({
+      status: 'fail',
+      message: 'No data!',
+    });
+
+  return res.status(200).json({
+    status: 'success',
+    data: {
+      count: students.length,
+      students,
+    },
+  });
+};
+
+/**
+ * ! deprecated
+ * * verified
+ * @filterStudentsByAcademicYear filters students according to ONLY academic year.
  *
  * @params academicYearId
  */
-exports.filterStudents = async (req, res) => {
+exports.filterStudentsByAcademicYear = async (req, res) => {
   const academicYearId = req.params.academicYearId;
 
   if (!req.majors)

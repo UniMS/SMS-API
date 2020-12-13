@@ -13,23 +13,36 @@ const resizeImages = require('../middlewares/resizeImages');
 const multer = require('multer');
 const upload = multer({ dest: 'tmp/csv/' });
 
-// router
-//   .route('/csv')
-//   .post(upload.single('file'), office, students.importWithCSV); // uncomment if you want to apply auth
-
 router
   .route(
     '/csv/academicYear/:academicYearId/major/:majorId/attendanceYear/:attendanceYearId'
   )
-  .post(upload.single('file'), students.importWithCSV);
+  .post(upload.single('file'), office, students.importWithCSV);
 
 /**
  * * verified
- * @filterStudents filters students according to academic year, major and attendance yera.
+ * @filterStudents filters students according to academic year and major
  *
- * @params academicYearId, majorId, attendanceYearId
+ * @params academicYearId, majorId
  */
-router.get('/academic-year/:academicYearId', hod, students.filterStudents);
+router.get(
+  '/academic-year/:academicYearId/major/:majorId',
+  hod,
+  students.filterStudents
+);
+
+/**
+ * ! deprecated
+ * * verified
+ * @filterStudentsByAcademicYear filters students according to academic year
+ *
+ * @params academicYearId
+ */
+router.get(
+  '/academic-year/:academicYearId',
+  hod,
+  students.filterStudentsByAcademicYear
+);
 
 /**
  * * verified

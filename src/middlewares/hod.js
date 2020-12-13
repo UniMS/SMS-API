@@ -1,7 +1,12 @@
 module.exports = function (req, res, next) {
   const roleId = req.user.roleId;
   if (!roleId)
-    return res.status(403).json({ status: 'fail', message: 'Access denied' });
+    return res
+      .status(403)
+      .json({
+        status: 'fail',
+        message: "Access denied. DEV_MSG: You didn't login.",
+      });
 
   /**
    * * Role-Based Access Control
