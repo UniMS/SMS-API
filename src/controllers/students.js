@@ -360,6 +360,11 @@ exports.filterStudents = async (req, res) => {
         attributes: ['rollNo'],
         include: [
           {
+            model: models.Status,
+            as: 'status',
+            attributes: ['name'],
+          },
+          {
             model: models.Student,
             as: 'student',
             attributes: [
@@ -369,6 +374,7 @@ exports.filterStudents = async (req, res) => {
               'gender',
               'phone',
               'address',
+              'hostelAddress',
             ],
             include: [
               {
