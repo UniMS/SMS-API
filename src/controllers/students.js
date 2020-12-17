@@ -513,6 +513,34 @@ exports.getStudent = async (req, res) => {
     attributes: { exclude: ['createdAt', 'updatedAt'] },
     include: [
       {
+        // TODO: to get latest `createdAt` enrollment field
+        model: models.Enrollment,
+        as: 'enrollment',
+        attributes: ['enrollmentId', 'rollNo'],
+        include: [
+          {
+            model: models.Status,
+            as: 'status',
+            attributes: ['name'],
+          },
+          {
+            model: models.AcademicYear,
+            as: 'academicYear',
+            attributes: ['name'],
+          },
+          {
+            model: models.AttendanceYear,
+            as: 'attendanceYear',
+            attributes: ['name'],
+          },
+          {
+            model: models.Major,
+            as: 'major',
+            attributes: ['name'],
+          },
+        ],
+      },
+      {
         model: models.Township,
         as: 'township',
         attributes: ['name'],
