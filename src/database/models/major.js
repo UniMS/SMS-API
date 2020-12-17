@@ -1,19 +1,19 @@
-"use strict";
+'use strict';
 
-const { Model } = require("sequelize");
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Major extends Model {
     static associate(models) {
       Major.hasMany(models.Enrollment, {
-        foreignKey: "enrollmentId",
-        as: "enrollment",
+        foreignKey: 'majorId',
+        as: 'major',
       });
 
       Major.belongsToMany(models.AttendanceYear, {
-        through: "majors_attendance_years",
-        as: "attendanceYears",
-        foreignKey: "major_id",
+        through: 'majors_attendance_years',
+        as: 'attendanceYears',
+        foreignKey: 'major_id',
       });
 
       // Student.belongsToMany(models.Ethnicity, {
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       majorId: {
         allowNull: false,
         autoIncrement: true,
-        field: "major_id",
+        field: 'major_id',
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
@@ -44,8 +44,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Major",
-      tableName: "majors",
+      modelName: 'Major',
+      tableName: 'majors',
     }
   );
 

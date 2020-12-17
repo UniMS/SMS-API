@@ -521,40 +521,42 @@ exports.getStudent = async (req, res) => {
           {
             model: models.Status,
             as: 'status',
-            attributes: ['name'],
+            attributes: ['statusId', 'name'],
           },
           {
             model: models.AcademicYear,
             as: 'academicYear',
-            attributes: ['name'],
+            attributes: ['academicYearId', 'name'],
           },
           {
             model: models.AttendanceYear,
             as: 'attendanceYear',
-            attributes: ['name'],
+            attributes: ['attendanceYearId', 'name'],
           },
           {
             model: models.Major,
             as: 'major',
-            attributes: ['name'],
+            attributes: ['majorId', 'name'],
           },
         ],
       },
       {
         model: models.Township,
         as: 'township',
-        attributes: ['name'],
-        include: [{ model: models.Region, as: 'region', attributes: ['name'] }],
+        include: [
+          {
+            model: models.Region,
+            as: 'region',
+          },
+        ],
       },
       {
         model: models.Religion,
         as: 'religion',
-        attributes: ['name'],
       },
       {
         model: models.Ethnicity,
         as: 'ethnicities',
-        attributes: ['name'],
       },
     ],
     nest: true,

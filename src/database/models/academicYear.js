@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const { Model } = require("sequelize");
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class AcademicYear extends Model {
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       academicYearId: {
         allowNull: false,
         autoIncrement: true,
-        field: "academic_year_id",
+        field: 'academic_year_id',
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
@@ -25,13 +25,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "AcademicYear",
-      tableName: "academic_years",
-      getterMethods: {
-        academicYearId: function () {
-          return this.academicYearId;
-        },
-      },
+      modelName: 'AcademicYear',
+      tableName: 'academic_years',
+      // getterMethods: {
+      //   academicYearId: function () {
+      //     return this.academicYearId;
+      //   },
+      // },
     }
   );
 
