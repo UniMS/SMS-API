@@ -672,17 +672,18 @@ exports.getAttendanceHistories = async (req, res) => {
       {
         model: models.AcademicYear,
         as: 'academicYear',
-        attributes: ['name'],
       },
       {
         model: models.AttendanceYear,
         as: 'attendanceYear',
-        attributes: ['name'],
       },
       {
         model: models.Status,
         as: 'status',
-        attributes: ['name'],
+      },
+      {
+        model: models.Major,
+        as: 'major',
       },
     ],
     attributes: ['rollNo'],
