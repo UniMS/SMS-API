@@ -723,7 +723,6 @@ exports.getParent = async (req, res) => {
           {
             model: models.Region,
             as: 'region',
-            attributes: ['name'],
           },
         ],
       },
