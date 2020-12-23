@@ -58,6 +58,7 @@ exports.csvStudentHeaders = [
   'religion',
   'ethnicity1',
   'ethnicity2',
+  'region',
   'township',
   'entranceDate',
   'address',
@@ -73,8 +74,10 @@ exports.csvStudentHeaders = [
   'motherNrc',
   'motherJob',
   'motherPhone',
+  'parentRegion',
   'parentTownship',
   'parentAddress',
+  'contactAddress',
 ];
 
 /**

@@ -70,6 +70,7 @@ exports.importWithCSV = async (req, res) => {
         trim: true,
         headers: csvStudentHeaders,
         renameHeaders: true,
+        skipLines: 4,
       })
     )
     .on('error', (error) => console.log(error))
@@ -362,7 +363,6 @@ exports.filterStudents = async (req, res) => {
           {
             model: models.Status,
             as: 'status',
-            attributes: ['name'],
           },
           {
             model: models.Student,
@@ -601,7 +601,7 @@ exports.updateStudent = async (req, res) => {
 
   // update မှာ image attributes များပါလာမလား စစ်.
   if (updatingImageAttributes.length > 0) {
-    const studentOldImages = _.pick(student, studentImageAttributes);
+    const studentOldImages = _.pick(student, updatingImageAttributes);
 
     // ပါလာရင် မူရင်းဟာတွေကို history ထဲကို ရွေ့
     if (studentOldImages.length !== 0) {

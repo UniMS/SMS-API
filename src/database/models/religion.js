@@ -1,13 +1,18 @@
-"use strict";
+'use strict';
 
-const { Model } = require("sequelize");
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Religion extends Model {
     static associate(models) {
       Religion.hasMany(models.Student, {
-        foreignKey: "religionId",
-        as: "student",
+        foreignKey: 'religionId',
+        as: 'student',
+      });
+
+      Religion.hasMany(models.Major, {
+        foreignKey: 'religionId',
+        as: 'major',
       });
     }
   }
@@ -17,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       religionId: {
         allowNull: false,
         autoIncrement: true,
-        field: "religion_id",
+        field: 'religion_id',
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
@@ -28,8 +33,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Religion",
-      tableName: "religions",
+      modelName: 'Religion',
+      tableName: 'religions',
     }
   );
 

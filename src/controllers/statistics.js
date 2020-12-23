@@ -172,8 +172,13 @@ Religion/Ethnicity/Gender Statistics
 --------------------------------------------
 */
 
-// students by academic year + religion
-exports.getStudentsByReligionAcademicYear = async (req, res) => {
+/**
+ * get students by religions
+ * @params {request-parameter} academicYearId
+ * @params {query-string} majorId
+ * @params {query-string} attendanceYearId
+ */
+exports.getStudentsByReligion = async (req, res) => {
   const academicYear = await models.AcademicYear.findOne({
     where: {
       academicYearId: req.params.academicYearId,
@@ -183,32 +188,43 @@ exports.getStudentsByReligionAcademicYear = async (req, res) => {
   if (!academicYear)
     return res.status(404).json({
       status: 'fail',
-      message: 'Invalid input',
+      message: 'Invalid input. Academic Year is required.',
     });
 
   const religions = await models.Religion.findAll({
-    where: {
-      religionId: req.params.religionId,
-    },
-    attributes: ['name'],
+    where: { religionId: req.params.religionId },
     include: [
       {
-        model: models.Student,
-        as: 'student',
-        attributes: ['studentId', 'nameMm', 'nameEn', 'nrc'],
+        model: models.Major,
+        as: 'major',
         include: [
           {
-            model: models.Parent,
-            as: 'parent',
-            attributes: ['fatherNameMm', 'fatherNameEn', 'fatherNrc'],
-          },
-          {
-            model: models.Enrollment,
-            as: 'enrollment',
-            attributes: ['rollNo'],
-            where: {
-              academicYearId: req.params.academicYearId,
-            },
+            model: models.AttendanceYear,
+            as: 'attendanceYear',
+            include: [
+              {
+                model: models.Enrollment,
+                as: 'enrollments',
+                attributes: ['rollNo'],
+                where: {
+                  academicYearId: req.params.academicYearId,
+                },
+                include: [
+                  {
+                    model: models.Student,
+                    as: 'student',
+                    attributes: ['nrc'],
+                    include: [
+                      {
+                        model: models.Parent,
+                        as: 'parent',
+                        attributes: ['fatherNameEn'],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
           },
         ],
       },

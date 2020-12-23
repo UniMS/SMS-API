@@ -11,6 +11,6 @@ module.exports = function (app) {
   app.use('/api/auth', auth);
   app.use('/api/students', authentication, student);
   app.use('/api/gradings', authentication, grading);
-  app.use('/api/statistics', authentication, official, statistic);
+  app.use('/api/statistics', authentication, statistic); // drop official role
   app.all('*', (req, res, next) => next(new Error(`Undefined Route!`)));
 };

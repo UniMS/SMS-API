@@ -15,7 +15,7 @@ app.use(morgan('combined', { stream: logger.stream }));
 
 require('./startup/jwt')();
 require('./startup/router')(app);
-require('./middlewares/error')(app);
+// require('./middlewares/error')(app); // closed while development
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, console.log(`Server started on port ${PORT}...`));

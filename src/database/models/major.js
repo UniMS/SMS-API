@@ -16,6 +16,16 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'major_id',
       });
 
+      Major.hasMany(models.AttendanceYear, {
+        foreignKey: 'majorId',
+        as: 'attendanceYear',
+      });
+
+      // Major.belongsToMany(models.Religion, {
+      //   foreignKey: 'religionId',
+      //   as: 'religion',
+      // });
+
       // Student.belongsToMany(models.Ethnicity, {
       //   through: "student_ethnicities",
       //   as: "ethnicities",
