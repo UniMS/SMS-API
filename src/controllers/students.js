@@ -350,6 +350,7 @@ exports.filterStudents = async (req, res) => {
     });
 
   let students = await models.AttendanceYear.findAll({
+    attributes: ['attendanceYearId', 'name'],
     include: [
       {
         model: models.Enrollment,
