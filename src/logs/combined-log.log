@@ -1,0 +1,70 @@
+{
+  message: '::1 - - [02/Jan/2021:17:47:47 +0000] "PUT /api/users/userId/1/roleId/2 HTTP/1.1" 500 1215 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2021-01-02 09:47:47'
+}
+{
+  message: '::1 - - [02/Jan/2021:17:50:22 +0000] "PUT /api/users/userId/1/roleId/2 HTTP/1.1" 500 1215 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2021-01-02 09:50:22'
+}
+{
+  message: '::1 - - [02/Jan/2021:17:50:51 +0000] "PUT /api/users/userId/1/roleId/2 HTTP/1.1" 500 1215 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2021-01-02 09:50:51'
+}
+{
+  message: '::1 - - [02/Jan/2021:17:51:18 +0000] "PUT /api/users/userId/1/roleId/2 HTTP/1.1" 200 40 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2021-01-02 09:51:18'
+}
+{
+  message: '::1 - - [02/Jan/2021:17:51:35 +0000] "PUT /api/users/userId/1/roleId/1 HTTP/1.1" 200 40 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2021-01-02 09:51:35'
+}
+{
+  message: '::1 - - [02/Jan/2021:17:54:41 +0000] "GET /api/users/userId/7 HTTP/1.1" 500 1121 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2021-01-02 09:54:41'
+}
+{
+  message: '::1 - - [02/Jan/2021:17:55:54 +0000] "GET /api/users/userId/7 HTTP/1.1" 500 1121 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2021-01-02 09:55:54'
+}
+{
+  message: '::1 - - [03/Jan/2021:11:58:27 +0000] "GET /api/users/userId/7 HTTP/1.1" 500 1121 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2021-01-03 03:58:27'
+}
+{
+  message: '::1 - - [03/Jan/2021:12:03:02 +0000] "DELETE /api/users/userId/7 HTTP/1.1" 200 20 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2021-01-03 04:03:02'
+}
+{
+  message: '::1 - - [03/Jan/2021:12:34:04 +0000] "DELETE /api/users/userId/7 HTTP/1.1" 400 22 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2021-01-03 04:34:04'
+}
+{
+  message: '::1 - - [03/Jan/2021:12:34:24 +0000] "DELETE /api/users/userId/7 HTTP/1.1" 400 22 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2021-01-03 04:34:24'
+}
+{
+  message: '::1 - - [03/Jan/2021:12:35:16 +0000] "DELETE /api/users/userId/7 HTTP/1.1" 400 22 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2021-01-03 04:35:16'
+}
+{
+  message: '::1 - - [03/Jan/2021:12:37:35 +0000] "PUT /api/users/userId/7/roleId/1 HTTP/1.1" 400 22 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2021-01-03 04:37:35'
+}
+{
+  message: '::1 - - [03/Jan/2021:12:37:51 +0000] "PUT /api/users/userId/1/roleId/3 HTTP/1.1" 200 228 "-" "PostmanRuntime/7.26.8"\n',
+  level: 'info',
+  timestamp: '2021-01-03 04:37:51'
+}

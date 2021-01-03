@@ -1,3 +1,4 @@
+const { checkPreferences } = require('joi');
 const _ = require('lodash');
 const { User } = require('../database/models');
 const { validate } = require('../database/models/user');
@@ -43,4 +44,43 @@ exports.getMe = async (req, res) => {
   user = _.pick(user, ['name', 'username', 'roleId']);
 
   return res.status(200).json({ status: 'success', data: { user } });
+};
+
+/**
+ * Update current user's role
+ */
+exports.updateUser = async (req, res) => {
+  let user = await User.findOne({ where: { userId: req.params.userId } });
+  if (!user) return res.status(400).json('User does not exist!');
+  else {
+    let user = await User.update(
+      { roleId: req.params.roleId },
+      {
+        where: {
+          userId: req.params.userId
+        }
+      }
+    );
+  }
+
+  return res.status(200).json({ status: 'success', data: { user } });
+};
+
+/**
+ * Delete current user information
+ */
+exports.deleteUser = async (req, res) => {
+  let user = await User.findOne({ where: { userId: req.params.userId } });
+  if (!user) return res.status(400).json('User does not exist!');
+  else {
+    let user = await User.destroy(
+      {
+        where: {
+          userId: req.params.userId
+        }
+      }
+    );
+  }
+
+  return res.status(200).json({ status: 'success' });
 };
